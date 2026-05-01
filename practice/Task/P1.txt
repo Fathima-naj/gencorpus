@@ -1,0 +1,16 @@
+const students = [
+  { id: 1, name: "Aisha", mark: 85, course: "MERN", city: "Kochi" },
+  { id: 2, name: "Rahul", mark: 45, course: "Python", city: "Calicut" },
+  { id: 3, name: "Meera", mark: 92, course: "MERN", city: "Kochi" },
+  { id: 4, name: "Arjun", mark: 60, course: "Java", city: "Trivandrum" },
+  { id: 5, name: "Niya", mark: 30, course: "Python", city: "Kochi" },
+  { id: 6, name: "Farhan", mark: 75, course: "MERN", city: "Calicut" },
+  { id: 7, name: "Dev", mark: 55, course: "Java", city: "Trivandrum" }
+];
+
+
+1)Print all student names
+2)Print students who scored above 70
+3)Sort students by marks ascending
+4)Print total marks of all students
+5)Print average mark

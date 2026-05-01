@@ -1,0 +1,76 @@
+Array
+
+accessfrmdb
+accountDataMethod
+indexOf
+lastIndexOf
+map
+method
+operations
+p1
+push
+q1
+reduce
+splice
+sum
+
+->count
+
+Function
+
+arithmetic
+startWith
+
+
+Pattern
+
+right triangle
+number triangle 
+same number triangle
+running num triangle
+pyramid
+hollow pyramid
+square
+hollow square
+inverted triangle
+right align triangle
+
+diamond
+cross number
+hourglass
+invertednew
+pascal triangle
+pyramid 2
+rhombus
+square with diagonal
+xpattern
+
+
+
+
+leap yr
+
+
+
+evenprint -
+naturalsum -
+reversenum -
+secondLargest-
+palindrome-
+swap-
+reverse-
+odd or even-
+concatination-
+split uppercase-
+prime-
+object-
+
+recursive
+factorial
+fibonacci
+find missing
+call
+apply
+bind
+promise
+async/await
