@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>JavaScript Day 15 – API Interaction (Deep Notes)</title>
+
+<style>
+body{
+font-family: Arial, Helvetica, sans-serif;
+max-width:950px;
+margin:auto;
+padding:25px;
+line-height:1.7;
+background:#f8fafc;
+}
+h1{ color:#1d4ed8; text-align: center; }
+h2{
+margin-top:40px;
+border-bottom:2px solid #e5e7eb;
+padding-bottom:6px;
+}
+h3{
+margin-top:25px;
+color:#1f2937;
+}
+code{
+background:#eef2ff;
+padding:3px 6px;
+border-radius:4px;
+}
+pre{
+background:#e8e8e8;
+padding:15px;
+border-radius:6px;
+overflow-x:auto;
+}
+.note{
+background:#ecfeff;
+border-left:4px solid #06b6d4;
+padding:12px;
+margin:15px 0;
+}
+.warning{
+background:#fff7ed;
+border-left:4px solid #f97316;
+padding:12px;
+margin:15px 0;
+}
+</style>
+</head>
+
+<body>
+
+<h1 >API Interaction in JavaScript</h1>
+
+
+
+<h2>1. What is an API?</h2>
+
+<p>
+API stands for <b>Application Programming Interface</b>.
+It acts as a bridge between frontend (browser) and backend (server).
+</p>
+
+<h3>Real Life Analogy</h3>
+<ul>
+<li>You = Client (Browser)</li>
+<li>Waiter = API</li>
+<li>Kitchen = Server</li>
+</ul>
+
+<p>
+You don't directly access the kitchen. The API communicates and returns data.
+</p>
+
+<div class="note">
+APIs allow dynamic data fetching without reloading the page.
+</div>
+
+<hr>
+
+<h2>2. How API Works</h2>
+
+<pre>
+Browser (JS)
+   ↓
+HTTP Request
+   ↓
+Server (API)
+   ↓
+Database Processing
+   ↓
+JSON Response
+   ↓
+Browser Displays Data
+</pre>
+
+<h3>Key Concepts</h3>
+<ul>
+<li><b>Request</b> → Sent from client</li>
+<li><b>Response</b> → Sent from server</li>
+<li><b>JSON</b> → Data format</li>
+</ul>
+
+<hr>
+
+<h2>3. What is JSON?</h2>
+
+<p>
+JSON (JavaScript Object Notation) is a lightweight data format.
+</p>
+
+<pre>
+{
+  "name": "Fathima",
+  "age": 21
+}
+</pre>
+
+<div class="note">
+Most APIs return data in JSON because it is fast and easy to parse.
+</div>
+
+<hr>
+
+<h2>4. What is Fetch API?</h2>
+
+<p>
+Fetch API is used to send HTTP requests and receive responses.
+It is promise-based and modern.
+</p>
+
+<h3>Basic Syntax</h3>
+
+<pre>
+fetch("API_URL")
+.then(res => res.json())
+.then(data => console.log(data))
+.catch(err => console.log(err));
+</pre>
+
+<h3>How Fetch Works Internally</h3>
+
+<ul>
+<li>Request is sent to server</li>
+<li>Server processes request</li>
+<li>Response is returned</li>
+<li>Fetch returns a Promise</li>
+</ul>
+
+<div class="note">
+fetch() does not return data directly, it returns a Promise.
+</div>
+
+<hr>
+
+<h2>5. Why Two .then() ? (Important)</h2>
+
+<pre>
+fetch(url)
+.then(res => res.json())
+.then(data => console.log(data))
+</pre>
+
+<h3>Explanation</h3>
+
+<ul>
+<li>First .then → handles Response object</li>
+<li>res.json() → converts raw stream into JS object</li>
+<li>Second .then → gets actual data</li>
+</ul>
+
+<div class="note">
+res.json() also returns a Promise, that's why we need another .then()
+</div>
+
+<hr>
+
+<h2>6. async / await Version</h2>
+
+<pre>
+async function getData(){
+  let res = await fetch("API_URL");
+  let data = await res.json();
+  console.log(data);
+}
+getData();
+</pre>
+
+<h3>Why async/await?</h3>
+
+<ul>
+<li>Cleaner syntax</li>
+<li>Looks synchronous</li>
+<li>Better readability</li>
+</ul>
+
+<hr>
+
+<h2>7. HTTP Methods</h2>
+
+<p>
+HTTP methods define what type of action the client (browser) wants to perform on the server.
+They are very important in API communication because they tell the server
+<b>what to do with the data</b>.
+</p>
+
+<table border="1" cellpadding="8">
+<tr>
+<th>Method</th>
+<th>Purpose</th>
+</tr>
+<tr><td>GET</td><td>Retrieve data</td></tr>
+<tr><td>POST</td><td>Create data</td></tr>
+<tr><td>PUT</td><td>Update entire data</td></tr>
+<tr><td>PATCH</td><td>Partial update</td></tr>
+<tr><td>DELETE</td><td>Remove data</td></tr>
+</table>
+
+<h3>Detailed Explanation</h3>
+
+<h4>1. GET (Read Data)</h4>
+<p>
+GET is used to <b>fetch data from the server</b> without changing anything.
+It is the most commonly used HTTP method.
+</p>
+
+<pre>
+fetch("https://api.com/users")
+</pre>
+
+<ul>
+<li>Safe method (does not modify data)</li>
+<li>Used for displaying data (users, posts, products)</li>
+</ul>
+
+<h4>2. POST (Create Data)</h4>
+<p>
+POST is used to <b>send new data to the server</b> and create a resource.
+</p>
+
+<pre>
+fetch("https://api.com/users", {
+  method: "POST",
+  body: JSON.stringify({ name: "Fathima" }),
+  headers: {
+    "Content-Type": "application/json"
+  }
+});
+</pre>
+
+<ul>
+<li>Used in forms (signup, login, add product)</li>
+<li>Data is sent in request body</li>
+</ul>
+
+<h4>3. PUT (Update Entire Data)</h4>
+<p>
+PUT is used to <b>update an entire resource</b>.
+It replaces the old data completely.
+</p>
+
+<pre>
+fetch("https://api.com/users/1", {
+  method: "PUT",
+  body: JSON.stringify({ name: "New Name" }),
+  headers: {
+    "Content-Type": "application/json"
+  }
+});
+</pre>
+
+<ul>
+<li>Replaces full object</li>
+<li>If some fields are missing, they may be removed</li>
+</ul>
+
+<h4>4. PATCH (Partial Update)</h4>
+<p>
+PATCH is used to <b>update only specific fields</b> of a resource.
+</p>
+
+<pre>
+fetch("https://api.com/users/1", {
+  method: "PATCH",
+  body: JSON.stringify({ name: "Updated Name" }),
+  headers: {
+    "Content-Type": "application/json"
+  }
+});
+</pre>
+
+<ul>
+<li>Updates only selected fields</li>
+<li>Safer than PUT when partial changes are needed</li>
+</ul>
+
+<h4>5. DELETE (Remove Data)</h4>
+<p>
+DELETE is used to <b>remove data from the server</b>.
+</p>
+
+<pre>
+fetch("https://api.com/users/1", {
+  method: "DELETE"
+});
+</pre>
+
+<ul>
+<li>Deletes a resource permanently</li>
+<li>Used in admin panels, dashboards</li>
+</ul>
+
+<div class="note">
+GET is most commonly used in frontend development, while POST, PUT, PATCH, and DELETE
+are mainly used when working with backend or full-stack applications.
+</div>
+<hr>
+
+<h2>8. GET Request</h2>
+
+<pre>
+fetch("https://jsonplaceholder.typicode.com/users")
+.then(res => res.json())
+.then(data => console.log(data));
+</pre>
+
+<p>
+GET is used to retrieve data without modifying anything.
+</p>
+
+<hr>
+
+<h2>9. Understanding res.json()</h2>
+
+<p>
+Response from fetch is not directly usable because it is a stream.
+</p>
+
+<pre>
+res.json()
+</pre>
+
+<ul>
+<li>Converts stream → JavaScript object</li>
+<li>Returns a Promise</li>
+</ul>
+
+<div class="note">
+Without res.json(), you cannot access actual API data.
+</div>
+
+<hr>
+
+<h2>10. Display Data in DOM</h2>
+
+<h3>HTML</h3>
+<pre>
+<ul id="userList"></ul>
+</pre>
+
+<h3>JavaScript</h3>
+
+<pre>
+fetch("https://jsonplaceholder.typicode.com/users")
+.then(res => res.json())
+.then(users => {
+  let list = document.getElementById("userList");
+
+  users.forEach(user => {
+    let li = document.createElement("li");
+    li.textContent = user.name;
+    list.appendChild(li);
+  });
+});
+</pre>
+
+<p>
+This dynamically adds data without refreshing the page.
+</p>
+
+<hr>
+<h2>11. Error Handling</h2>
+
+<p>
+Error handling is important when working with APIs because things can go wrong
+while fetching data. There are mainly two types of errors:
+</p>
+
+<ul>
+<li><b>Network Error</b></li>
+<li><b>HTTP Error</b></li>
+</ul>
+
+<h3>1. Network Error</h3>
+
+<p>
+A network error happens when the request <b>cannot reach the server at all</b>.
+This means the browser failed to connect to the API.
+</p>
+
+<h4>Common Reasons</h4>
+<ul>
+<li>No internet connection</li>
+<li>Wrong URL (invalid domain)</li>
+<li>Server is down</li>
+</ul>
+
+<pre>
+fetch("wrong-url")
+.catch(err => console.log("Network Error"));
+</pre>
+
+<p>
+In this case, fetch will directly go to <code>.catch()</code>.
+</p>
+
+<div class="note">
+Network errors happen before the server responds.
+</div>
+
+<hr>
+
+<h3>2. HTTP Error</h3>
+
+<p>
+An HTTP error happens when the request <b>reaches the server</b>, but the server
+responds with an error status code.
+</p>
+
+<h4>Common Status Codes</h4>
+<ul>
+<li><b>404</b> → Not Found</li>
+<li><b>500</b> → Server Error</li>
+<li><b>403</b> → Forbidden</li>
+</ul>
+
+<pre>
+async function getData(){
+  let res = await fetch("API_URL");
+
+  if(!res.ok){
+    throw new Error("Request Failed");
+  }
+
+  let data = await res.json();
+}
+</pre>
+
+<p>
+Here, we manually check <code>res.ok</code> to detect errors.
+</p>
+
+<div class="warning">
+Fetch does NOT throw errors automatically for 404 or 500.
+</div>
+
+<hr>
+
+<h3>Key Difference</h3>
+
+<table border="1" cellpadding="8">
+<tr>
+<th>Type</th>
+<th>When it Happens</th>
+<th>Handled By</th>
+</tr>
+<tr>
+<td>Network Error</td>
+<td>Request fails before reaching server</td>
+<td>.catch()</td>
+</tr>
+<tr>
+<td>HTTP Error</td>
+<td>Server responds with error (404, 500)</td>
+<td>Manual check (res.ok)</td>
+</tr>
+</table>
+
+<h2>12. Real World Example</h2>
+
+<pre>
+async function loadPosts(){
+
+let res = await fetch("https://jsonplaceholder.typicode.com/posts");
+
+let posts = await res.json();
+
+let container = document.getElementById("posts");
+
+posts.slice(0,5).forEach(post => {
+
+let div = document.createElement("div");
+
+div.innerHTML = `
+<h3>${post.title}</h3>
+<p>${post.body}</p>
+`;
+
+container.appendChild(div);
+
+});
+
+}
+loadPosts();
+</pre>
+
+<h3>Why slice(0,5)?</h3>
+<ul>
+<li>Limit data</li>
+<li>Improve performance</li>
+</ul>
+
+<hr>
+
+<h2>13. Fetch Workflow</h2>
+
+<pre>
+1. fetch() called
+2. HTTP request sent
+3. Server processes request
+4. JSON response received
+5. res.json() parses data
+6. Data displayed in UI
+</pre>
+
+
+
+<script>
+        fetch("https://jsonplaceholder.typicode.com/users")
+.then(res => res.json())
+.then(users => {
+  let list = document.getElementById("userList");
+
+  users.forEach(user => {
+    let li = document.createElement("li");
+    li.textContent = user.name;
+    list.appendChild(li);
+  });
+});
+</script>
+</body>
+</html>

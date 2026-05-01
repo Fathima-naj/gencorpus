@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>JavaScript Day 10 - Objects</title>
+
+<style>
+
+body{
+font-family: Arial, Helvetica, sans-serif;
+max-width: 900px;
+margin: auto;
+padding: 20px;
+line-height: 1.7;
+}
+
+h1{
+text-align: center;
+margin-bottom: 40px;
+}
+
+h2{
+color:#0d6efd;
+margin-top:40px;
+}
+
+code{
+background:#f4f4f4;
+padding:3px 6px;
+border-radius:4px;
+}
+
+pre{
+background:#f4f4f4;
+padding:15px;
+border-radius:6px;
+overflow-x:auto;
+}
+
+.task{
+background:#e8f4ff;
+padding:15px;
+border-left:5px solid #0d6efd;
+margin-top:15px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Objects</h1>
+
+<p>
+Objects are used to store <b>multiple values in a single variable</b> using
+<b>key–value pairs</b>.
+</p>
+
+<pre>
+let person = {
+ name: "Fathima",
+ age: 22,
+ city: "Malappuram"
+};
+</pre>
+
+<ul>
+<li><b>name, age, city</b> → properties (keys)</li>
+<li><b>"Fathima", 22</b> → values</li>
+</ul>
+
+<hr>
+
+<h2>1. Properties & Values</h2>
+
+<pre>
+let student = {
+ name: "Aisha",
+ course: "MERN",
+ age: 21
+};
+
+console.log(student.name);
+console.log(student.age);
+</pre>
+
+<div class="task">
+Create an object called <code>car</code> with properties
+brand, model, year and print them.
+</div>
+
+<hr>
+
+<h2>2. Add / Update / Delete Properties</h2>
+
+<p>Add a property</p>
+
+<pre>
+let user = {
+ name: "Rahul",
+ age: 25
+};
+
+user.city = "Kochi";
+</pre>
+
+<p>Update a property</p>
+
+<pre>
+user.age = 26;
+</pre>
+
+<p>Delete a property</p>
+
+<pre>
+delete user.age;
+</pre>
+
+<div class="task">
+Create an object <code>book</code> with title and author.
+Add price property and delete author property.
+</div>
+
+<hr>
+
+<h2>3. Dot Notation vs Bracket Notation</h2>
+
+<h3>Dot Notation</h3>
+
+<pre>
+let person = {
+ name: "Ali",
+ age: 30
+};
+
+console.log(person.name);
+</pre>
+
+<h3>Bracket Notation</h3>
+
+<pre>
+console.log(person["age"]);
+</pre>
+
+<p>
+Bracket notation is useful when keys contain spaces.
+</p>
+
+<pre>
+let obj = {
+ "first name": "Sara"
+};
+
+console.log(obj["first name"]);
+</pre>
+
+<div class="task">
+Create an object with property <code>"phone number"</code>
+and access it using bracket notation.
+</div>
+
+<hr>
+
+<h2>4. Nested Objects</h2>
+
+<pre>
+let student = {
+ name: "Amina",
+ marks: {
+  math: 90,
+  science: 85
+ }
+};
+
+console.log(student.marks.math);
+</pre>
+
+<div class="task">
+Create an object <code>employee</code> with:
+<ul>
+<li>name</li>
+<li>position</li>
+<li>address object (city, pincode)</li>
+</ul>
+Print the city.
+</div>
+
+<hr>
+
+<h2>5. Object Methods</h2>
+
+<p>Functions inside objects are called <b>methods</b>.</p>
+
+<pre>
+let person = {
+ name: "Nisha",
+ greet: function(){
+  console.log("Hello!");
+ }
+};
+
+person.greet();
+</pre>
+
+<h3>Using this keyword</h3>
+
+<pre>
+let user = {
+ name: "Arjun",
+
+ sayHello: function(){
+  console.log("Hello " + this.name);
+ }
+};
+
+user.sayHello();
+</pre>
+
+<div class="task">
+Create an object <code>calculator</code> with a method
+<code>add(a,b)</code> that prints the sum.
+</div>
+
+<hr>
+
+<h2>Difference Between Function and Object Method</h2>
+
+<p>
+A <b>function</b> is a block of reusable code that performs a task.
+When a function is placed <b>inside an object</b>, it is called a
+<b>method</b>.
+</p>
+
+<h3>1. Function</h3>
+
+<p>
+A function exists independently and is not part of any object.
+</p>
+
+<pre>
+function greet(){
+ console.log("Hello");
+}
+
+greet();
+</pre>
+
+<p>
+Here <code>greet()</code> is a normal function.
+</p>
+
+<hr>
+
+<h3>2. Object Method</h3>
+
+<p>
+When a function is stored inside an object property,
+it is called a <b>method</b>.
+</p>
+
+<pre>
+let person = {
+
+ name: "Aisha",
+
+ greet: function(){
+  console.log("Hello");
+ }
+
+};
+
+person.greet();
+</pre>
+
+<p>
+Here <code>greet()</code> belongs to the <b>person object</b>,
+so it is called a <b>method</b>.
+</p>
+
+<hr>
+
+<h3>3. Method Using <code>this</code></h3>
+
+<p>
+Methods often use <code>this</code> to access object properties.
+</p>
+
+<pre>
+let user = {
+
+ name: "Rahul",
+
+ sayHello: function(){
+  console.log("Hello " + this.name);
+ }
+
+};
+
+user.sayHello();
+</pre>
+
+<hr>
+
+<h3>Key Difference</h3>
+
+<table border="1" cellpadding="8">
+<tr>
+<th>Function</th>
+<th>Method</th>
+</tr>
+
+<tr>
+<td>Standalone block of code</td>
+<td>Function inside an object</td>
+</tr>
+
+<tr>
+<td>Called directly</td>
+<td>Called using object</td>
+</tr>
+
+<tr>
+<td>greet()</td>
+<td>person.greet()</td>
+</tr>
+
+<tr>
+<td>Does not belong to an object</td>
+<td>Belongs to an object</td>
+</tr>
+
+</table>
+
+<h2>6. The <code>this</code> Keyword</h2>
+
+<p>
+In JavaScript, <code>this</code> refers to the <b>object that is currently executing the function</b>.
+It is not fixed — its value depends on <b>how the function is called</b>.
+</p>
+
+<p>
+Instead of writing the object name again, we use <code>this</code>.
+</p>
+
+<h3>Example</h3>
+
+<pre>
+let user = {
+ name: "Rahul",
+ age: 25,
+
+ sayHello: function(){
+  console.log("Hello " + this.name);
+ }
+};
+
+user.sayHello();
+</pre>
+
+<p><b>Output</b></p>
+
+<pre>
+Hello Rahul
+</pre>
+
+<p><b>Here:</b></p>
+
+<ul>
+<li><code>this.name</code> refers to <code>user.name</code></li>
+<li>The method <code>sayHello()</code> is called by the <code>user</code> object</li>
+<li>So <code>this</code> represents the <b>user object</b></li>
+</ul>
+
+---
+
+<h3>Without using <code>this</code></h3>
+
+<pre>
+let user = {
+ name: "Rahul",
+
+ sayHello: function(){
+  console.log("Hello " + user.name);
+ }
+};
+</pre>
+
+<p>
+This works, but using <code>this</code> is better because it makes the method reusable.
+</p>
+
+---
+
+<h3>Important Points About <code>this</code></h3>
+
+<ul>
+
+<li>
+<b>1. Depends on how function is called</b><br>
+<code>this</code> value changes based on the calling context, not where it is written.
+</li>
+
+<br>
+
+<li>
+<b>2. Global Scope</b>
+<pre>
+console.log(this);
+</pre>
+In browser → refers to <code>window</code> object
+</li>
+
+<br>
+
+<li>
+<b>3. Inside a Normal Function</b>
+<pre>
+function show(){
+ console.log(this);
+}
+show();
+</pre>
+Non-strict mode → <code>window</code><br>
+Strict mode → <code>undefined</code>
+</li>
+
+<br>
+
+<li>
+<b>4. Arrow Functions</b>
+<pre>
+let user = {
+ name: "Rahul",
+ greet: () => {
+  console.log(this.name);
+ }
+};
+user.greet();
+</pre>
+Arrow functions do <b>not</b> have their own <code>this</code>.<br>
+They take <code>this</code> from the surrounding (lexical) scope.
+</li>
+
+
+
+<h2>6. Check Property (in Operator)</h2>
+
+<p>
+The <code>in</code> operator checks if a property exists.
+</p>
+
+<pre>
+let user = {
+ name: "Sara",
+ age: 22
+};
+
+console.log("name" in user);
+console.log("email" in user);
+</pre>
+
+<hr>
+
+<h2>7. Loop Through Objects (for...in)</h2>
+
+<pre>
+let student = {
+ name: "Ali",
+ age: 20,
+ course: "MERN"
+};
+
+for(let key in student){
+ console.log(key, student[key]);
+}
+</pre>
+
+Output
+
+<pre>
+name Ali
+age 20
+course MERN
+</pre>
+
+<hr>
+
+<h2>8. Optional Chaining</h2>
+
+<p>
+Optional chaining prevents errors when accessing nested properties.
+</p>
+
+<pre>
+let user = {
+ name: "Rahul"
+};
+
+console.log(user.address?.city);
+</pre>
+
+Output
+
+<pre>
+undefined
+</pre>
+
+<hr>
+
+<h2>9. Object Inside Array</h2>
+
+<pre>
+let users = [
+ {name:"Ali", age:22},
+ {name:"Sara", age:24},
+ {name:"John", age:30}
+];
+
+console.log(users[1].name);
+</pre>
+
+Output
+
+<pre>
+Sara
+</pre>
+
+<hr>
+
+<h2>10. Array Inside Object</h2>
+
+<pre>
+let student = {
+ name:"Amina",
+ skills:["HTML","CSS","JavaScript"]
+};
+
+console.log(student.skills[1]);
+</pre>
+
+Output
+
+<pre>
+CSS
+</pre>
+
+<hr>
+
+<h2>Mini Practice</h2>
+
+<ul>
+<li>Create an object <b>movie</b> with title, director, year.</li>
+<li>Add a rating property.</li>
+<li>Delete the year property.</li>
+<li>Create a nested object reviews.</li>
+<li>Add a method showTitle().</li>
+<li>Loop through the object using <code>for...in</code>.</li>
+<li>Check if rating exists using <code>in</code>.</li>
+</ul>
+
+<hr>
+
+</body>
+</html>
+

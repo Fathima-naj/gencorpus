@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced JavaScript Concepts</title>
+
+<style>
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  max-width: 1100px;
+  margin:auto;
+  padding:25px;
+  line-height:1.8;
+  background:#f9fafb;
+}
+h1,h2{
+  color:#2c3e50;
+}
+pre{
+  background:#eaeaea;
+  color:#121212;
+  padding:15px;
+  border-radius:8px;
+  overflow-x:auto;
+}
+.box{
+  background:#fff;
+  padding:20px;
+  border-radius:10px;
+  margin-bottom:25px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.05);
+}
+</style>
+</head>
+
+<body>
+
+<h1 style="text-align: center;">Advanced JavaScript </h1>
+
+<div class="box">
+<h2>1. Prototypes</h2>
+
+<p>JavaScript uses <b>prototype-based inheritance</b>, which means objects can inherit properties and methods from other objects.</p>
+
+<ul>
+<li>Every object in JavaScript has an internal hidden property called <b>[[Prototype]]</b></li>
+<li>This links one object to another (parent object)</li>
+<li>Using this, objects can share methods and properties</li>
+</ul>
+
+<h3>🔹 Basic Example</h3>
+
+<pre>
+function Person(name){
+  this.name = name;
+}
+
+Person.prototype.sayHello = function(){
+  console.log("Hello " + this.name);
+}
+
+let user = new Person("Fathima");
+user.sayHello(); // Hello Fathima
+</pre>
+
+<p><b>Explanation:</b></p>
+<ul>
+<li><code>Person</code> is a constructor function</li>
+<li><code>Person.prototype</code> is an object where shared methods are stored</li>
+<li>All objects created using <code>new Person()</code> will access these methods</li>
+<li><code>user</code> does NOT have <code>sayHello</code> directly → it is taken from prototype</li>
+</ul>
+
+<hr>
+
+<h3>🔹 How Prototype Works Internally</h3>
+
+<pre>
+console.log(user.__proto__ === Person.prototype); // true
+</pre>
+
+<ul>
+<li><code>__proto__</code> is a reference to the object's prototype</li>
+<li>When JS cannot find a property → it searches in prototype (Prototype Chain)</li>
+</ul>
+
+<hr>
+
+<h3>🔹 Prototype Chain</h3>
+
+<pre>
+let arr = [1,2,3];
+
+console.log(arr.__proto__);              // Array prototype
+console.log(arr.__proto__.__proto__);    // Object prototype
+console.log(arr.__proto__.__proto__.__proto__); // null
+</pre>
+
+<p><b>Flow:</b></p>
+<p>Array → Object → null</p>
+
+<p>This is called <b>Prototype Chain</b>.</p>
+
+<hr>
+
+<h3>🔹 Why Prototype is Important (Memory Efficiency)</h3>
+
+<h4>❌ Without Prototype (Bad Practice)</h4>
+
+<pre>
+function Person(name){
+  this.name = name;
+  this.sayHello = function(){
+    console.log("Hello " + this.name);
+  }
+}
+
+let u1 = new Person("A");
+let u2 = new Person("B");
+</pre>
+
+<ul>
+<li>Each object creates a new copy of <code>sayHello()</code></li>
+<li>Wastes memory</li>
+</ul>
+
+<h4>✅ With Prototype (Best Practice)</h4>
+
+<pre>
+function Person(name){
+  this.name = name;
+}
+
+Person.prototype.sayHello = function(){
+  console.log("Hello " + this.name);
+}
+</pre>
+
+<ul>
+<li>Only ONE copy of <code>sayHello()</code></li>
+<li>All objects share it → efficient</li>
+</ul>
+
+<hr>
+
+<h3>🔹 Adding Properties to Prototype</h3>
+
+<pre>
+Person.prototype.age = 21;
+
+let user1 = new Person("Fathima");
+console.log(user1.age); // 21
+</pre>
+
+<p>Even though <code>age</code> is not inside object → it comes from prototype.</p>
+
+<hr>
+
+<h3>🔹 Overriding Prototype Property</h3>
+
+<pre>
+user1.age = 25;
+
+console.log(user1.age); // 25 (own property)
+</pre>
+
+<p>JS first checks object → then prototype.</p>
+
+<hr>
+
+<h3>🔹 Built-in Prototype Example</h3>
+
+<pre>
+Array.prototype.myMethod = function(){
+  console.log("Custom method");
+}
+
+let nums = [1,2,3];
+nums.myMethod(); // Custom method
+</pre>
+
+<p>Here we are extending the Array prototype.</p>
+
+<hr>
+
+<h3>🔹 Key Interview Points</h3>
+
+<ul>
+<li>Prototype is used for <b>inheritance in JavaScript</b></li>
+<li>All objects have a hidden <b>[[Prototype]]</b></li>
+<li>Functions have a <b>prototype property</b></li>
+<li>Prototype helps in <b>memory optimization</b></li>
+<li>JS uses <b>Prototype Chain</b> to resolve properties</li>
+</ul>
+
+<p><b>Key Point:</b> Methods inside prototype are shared → memory efficient.</p>
+
+</div>
+
+<div class="box">
+<h2>2. this, call, apply, bind</h2>
+
+<h3>this</h3>
+<p>Refers to the object that is executing the function.</p>
+
+<pre>
+let user = {
+  name: "Naja",
+  greet(){
+    console.log(this.name);
+  }
+}
+user.greet();
+</pre>
+
+<h3>call()</h3>
+<p>Calls function with given <b>this</b> and arguments separately.</p>
+
+<pre>
+function greet(city){
+  console.log(this.name + " from " + city);
+}
+
+greet.call({name:"Fathima"}, "Malappuram");
+</pre>
+
+<h3>apply()</h3>
+<p>Same as call, but arguments passed as array.</p>
+
+<pre>
+greet.apply({name:"Fathima"}, ["Kerala"]);
+</pre>
+
+<h3>bind()</h3>
+<p>Returns a new function with fixed <b>this</b>.</p>
+
+<pre>
+let newFunc = greet.bind({name:"Fathima"});
+newFunc("India");
+</pre>
+
+</div>
+
+<div class="box">
+<h2>3. Garbage Collection</h2>
+
+<p>JavaScript automatically manages memory using a process called <b>Garbage Collection</b>.</p>
+
+<p>It removes objects from memory when they are no longer needed, so developers don’t have to manually free memory.</p>
+
+<ul>
+<li>Uses <b>Mark and Sweep algorithm</b></li>
+<li>Works based on <b>reachability (references)</b></li>
+<li>If an object has <b>no reference</b> → it becomes eligible for deletion</li>
+</ul>
+
+<hr>
+
+<h3>🔹 Basic Example</h3>
+
+<pre>
+let user = { name: "A" };
+
+user = null; // now object has no reference
+</pre>
+
+<p><b>Explanation:</b></p>
+<ul>
+<li>Initially, object <code>{name:"A"}</code> is stored in memory</li>
+<li><code>user</code> is pointing (referencing) that object</li>
+<li>After <code>user = null</code> → reference is removed</li>
+<li>No reference → object becomes <b>eligible for garbage collection</b></li>
+</ul>
+
+<hr>
+
+<h3>🔹 How Garbage Collection Works (Mark & Sweep)</h3>
+
+<p><b>Step 1: Mark Phase</b></p>
+<ul>
+<li>JavaScript starts from <b>root objects</b> (global variables, window, etc.)</li>
+<li>Marks all reachable (used) objects</li>
+</ul>
+
+<p><b>Step 2: Sweep Phase</b></p>
+<ul>
+<li>Unmarked objects are considered <b>unused</b></li>
+<li>They are removed from memory</li>
+</ul>
+
+<hr>
+
+<h3>🔹 Workflow Example</h3>
+
+<pre>
+let user = { name: "Fathima" };
+
+let admin = user; // two references
+
+user = null; 
+</pre>
+
+<p><b>Explanation:</b></p>
+<ul>
+<li>Object still exists because <code>admin</code> is referencing it</li>
+<li>Garbage collector will NOT delete it</li>
+</ul>
+
+<pre>
+admin = null; 
+</pre>
+
+<ul>
+<li>Now no references exist</li>
+<li>Object becomes eligible for garbage collection</li>
+</ul>
+
+<hr>
+
+<h3>🔹 Nested Object Example</h3>
+
+<pre>
+let user = {
+  name: "A",
+  address: {
+    city: "Kochi"
+  }
+};
+
+user = null;
+</pre>
+
+<ul>
+<li>Main object lost reference</li>
+<li>Nested object also becomes unreachable</li>
+<li>Both will be removed from memory</li>
+</ul>
+
+<hr>
+
+<h3>🔹 Function Scope Example</h3>
+
+<pre>
+function createUser(){
+  let user = { name: "Temp User" };
+}
+
+createUser();
+</pre>
+
+<ul>
+<li><code>user</code> exists only inside function</li>
+<li>After function execution → no reference remains</li>
+<li>Automatically garbage collected</li>
+</ul>
+
+<hr>
+
+<h3>🔹 Important Concept: Reachability</h3>
+
+<p>An object is kept in memory as long as it is <b>reachable</b>.</p>
+
+<ul>
+<li>Reachable → NOT deleted</li>
+<li>Unreachable → deleted</li>
+</ul>
+
+<hr>
+
+<h3>🔹 Memory Leak (Important for Interview)</h3>
+
+<pre>
+let users = [];
+
+function addUser(){
+  let user = { name: "A" };
+  users.push(user);
+}
+</pre>
+
+<ul>
+<li>Objects are always stored in array</li>
+<li>References are never removed</li>
+<li>This causes <b>memory leak</b></li>
+</ul>
+
+<p><b>Solution:</b></p>
+
+<pre>
+users = []; // remove references
+</pre>
+
+<hr>
+
+<h3>🔹 Key Interview Points</h3>
+
+<ul>
+<li>JavaScript uses <b>automatic memory management</b></li>
+<li>Uses <b>Mark and Sweep algorithm</b></li>
+<li>Works based on <b>references (reachability)</b></li>
+<li>No reference → eligible for garbage collection</li>
+<li>Memory leaks happen when references are not removed</li>
+</ul>
+
+<p><b>Key Point:</b> JavaScript frees memory automatically when objects are no longer reachable.</p>
+
+</div><div class="box">
+<h2>4. Map, Set, WeakMap</h2>
+
+<p>These are advanced data structures in JavaScript used for storing and managing data efficiently.</p>
+
+<hr>
+
+<h3>🔹 Map</h3>
+
+<p>A <b>Map</b> stores <b>key-value pairs</b> just like objects, but with more flexibility.</p>
+
+<ul>
+<li>Keys can be <b>any data type</b> (string, number, object, function)</li>
+<li>Maintains insertion order</li>
+<li>Has built-in methods for easy operations</li>
+</ul>
+
+<h4>Example:</h4>
+
+<pre>
+let map = new Map();
+
+map.set("name", "Fathima");
+map.set(1, "Number Key");
+
+console.log(map.get("name")); // Fathima
+console.log(map.get(1)); // Number Key
+</pre>
+
+<h4>Using Object as Key:</h4>
+
+<pre>
+let obj = {id: 1};
+
+map.set(obj, "User Data");
+
+console.log(map.get(obj)); // User Data
+</pre>
+
+<h4>Important Methods:</h4>
+
+<ul>
+<li><code>set(key, value)</code> → add data</li>
+<li><code>get(key)</code> → retrieve data</li>
+<li><code>has(key)</code> → check existence</li>
+<li><code>delete(key)</code> → remove item</li>
+<li><code>clear()</code> → remove all items</li>
+<li><code>size</code> → number of entries</li>
+</ul>
+
+<hr>
+
+<h3>🔹 Set</h3>
+
+<p>A <b>Set</b> stores <b>unique values only</b> (no duplicates allowed).</p>
+
+<ul>
+<li>Duplicates are automatically removed</li>
+<li>Stores values (not key-value pairs)</li>
+</ul>
+
+<h4>Example:</h4>
+
+<pre>
+let set = new Set([1, 2, 2, 3]);
+
+console.log(set); // {1, 2, 3}
+</pre>
+
+<h4>Adding Values:</h4>
+
+<pre>
+set.add(4);
+set.add(2); // ignored (duplicate)
+
+console.log(set); // {1, 2, 3, 4}
+</pre>
+
+<h4>Checking & Deleting:</h4>
+
+<pre>
+console.log(set.has(2)); // true
+
+set.delete(2);
+
+console.log(set); // {1, 3, 4}
+</pre>
+
+<h4>Use Case:</h4>
+<ul>
+<li>Remove duplicates from array</li>
+</ul>
+
+<pre>
+let numbers = [1,2,2,3,4,4];
+
+let unique = [...new Set(numbers)];
+
+console.log(unique); // [1,2,3,4]
+</pre>
+
+<hr>
+
+<h3>🔹 WeakMap</h3>
+
+<p>A <b>WeakMap</b> is similar to Map but has special memory behavior.</p>
+
+<ul>
+<li>Keys must be <b>objects only</b></li>
+<li>Keys are stored as <b>weak references</b></li>
+<li>If object is removed → automatically garbage collected</li>
+<li>Not iterable (no loop)</li>
+</ul>
+
+<h4>Example:</h4>
+
+<pre>
+let weakMap = new WeakMap();
+
+let user = {name: "Fathima"};
+
+weakMap.set(user, "User Data");
+
+console.log(weakMap.get(user)); // User Data
+</pre>
+
+<h4>Garbage Collection Behavior:</h4>
+
+<pre>
+let user = {name: "A"};
+
+weakMap.set(user, "Data");
+
+user = null; 
+</pre>
+
+<ul>
+<li>No reference to object</li>
+<li>Garbage collector removes it automatically</li>
+<li>Prevents <b>memory leaks</b></li>
+</ul>
+
+<hr>
+
+<h3>🔹 Map vs Object</h3>
+
+<ul>
+<li>Object keys → only string/symbol</li>
+<li>Map keys → any data type</li>
+<li>Map has better performance for frequent operations</li>
+</ul>
+
+<hr>
+
+<h3>🔹 Set vs Array</h3>
+
+<ul>
+<li>Array → allows duplicates</li>
+<li>Set → only unique values</li>
+</ul>
+
+<hr>
+
+<h3>🔹 Map vs WeakMap</h3>
+
+<ul>
+<li>Map → strong reference (not auto deleted)</li>
+<li>WeakMap → weak reference (auto garbage collected)</li>
+<li>WeakMap → keys must be objects</li>
+<li>WeakMap → not iterable</li>
+</ul>
+
+<hr>
+
+<h3>🔹 Key Interview Points</h3>
+
+<ul>
+<li><b>Map</b> → flexible key-value storage</li>
+<li><b>Set</b> → unique values only</li>
+<li><b>WeakMap</b> → avoids memory leaks</li>
+<li>WeakMap keys must be objects</li>
+<li>Set is commonly used to remove duplicates</li>
+</ul>
+
+<p><b>Key Point:</b> Use Map for flexible data storage, Set for unique values, and WeakMap for memory-safe object references.</p>
+
+</div>
+
+<div class="box">
+<h2>5. IIFE (Immediately Invoked Function Expression)</h2>
+
+<p>Function that runs immediately after creation.</p>
+
+<pre>
+(function(){
+  console.log("I run instantly!");
+})();
+</pre>
+
+<p><b>Use Case:</b> Avoid global scope pollution</p>
+
+</div>
+
+
+<div class="box">
+<h2>6. Higher Order Functions</h2>
+
+<p>Functions that:</p>
+<ul>
+<li>Take another function as argument</li>
+<li>Return a function</li>
+</ul>
+
+<pre>
+function greet(name){
+  return function(message){
+    console.log(message + " " + name);
+  }
+}
+
+let fn = greet("Fathima");
+fn("Hello");
+</pre>
+
+<p>Examples: <b>map(), filter(), reduce()</b></p>
+
+</div>
+
+<div class="box">
+<h2>7. Debouncing</h2>
+
+<p><b>Debouncing</b> is a technique used to <b>delay function execution</b> until a certain time has passed after the last event.</p>
+
+<p>It ensures that a function runs <b>only after the user stops triggering an event</b> (like typing, scrolling, resizing).</p>
+
+<hr>
+
+<h3>🔹 Basic Idea</h3>
+
+<ul>
+<li>User triggers event multiple times (typing)</li>
+<li>Function execution is delayed</li>
+<li>If event happens again → timer resets</li>
+<li>Function runs only once after delay</li>
+</ul>
+
+<hr>
+
+<h3>🔹 Debounce Function</h3>
+
+<pre>
+function debounce(fn, delay){
+  let timer;
+
+  return function(...args){
+    clearTimeout(timer);
+
+    timer = setTimeout(() => {
+      fn.apply(this, args);
+    }, delay);
+  }
+}
+</pre>
+
+<p><b>Explanation:</b></p>
+<ul>
+<li><code>timer</code> stores the timeout ID</li>
+<li><code>clearTimeout()</code> cancels previous execution</li>
+<li><code>setTimeout()</code> sets new delay</li>
+<li>Only the <b>last call executes</b></li>
+</ul>
+
+<hr>
+
+<h3>🔹 Real Example: Search Input (🔥 Important)</h3>
+
+<input type="text" id="searchBox" placeholder="Search here..." />
+
+<pre>
+function searchData(value){
+  console.log("Searching for:", value);
+}
+
+const debouncedSearch = debounce(function(e){
+  searchData(e.target.value);
+}, 500);
+
+document.getElementById("searchBox")
+  .addEventListener("input", debouncedSearch);
+</pre>
+
+<p><b>How it works:</b></p>
+<ul>
+<li>User types "F", "Fa", "Fat", "Fathima"</li>
+<li>Without debounce → function runs 4 times ❌</li>
+<li>With debounce → runs only once after typing stops ✔️</li>
+</ul>
+
+<hr>
+
+<h3>🔹 Step-by-Step Flow</h3>
+
+<pre>
+User types → timer starts (500ms)
+User types again → previous timer cleared
+New timer starts again
+User stops typing → timer completes
+Function executes once
+</pre>
+
+<hr>
+
+<h3>🔹 Without Debounce (Problem)</h3>
+
+<pre>
+document.getElementById("searchBox")
+  .addEventListener("input", function(e){
+    console.log("Searching:", e.target.value);
+  });
+</pre>
+
+<ul>
+<li>Runs on every keystroke ❌</li>
+<li>Too many API calls ❌</li>
+<li>Poor performance ❌</li>
+</ul>
+
+<hr>
+
+<h3>🔹 With Debounce (Solution)</h3>
+
+<ul>
+<li>Reduces unnecessary calls ✔️</li>
+<li>Improves performance ✔️</li>
+<li>Better user experience ✔️</li>
+</ul>
+
+<hr>
+
+<h3>🔹 Real-Life Analogy</h3>
+
+<p>
+Imagine a lift door 🚪:<br>
+It waits for people to stop entering before closing.<br>
+Each new person resets the timer → same as debounce.
+</p>
+
+<hr>
+
+<h3>🔹 Use Cases</h3>
+
+<ul>
+<li>Search input (API calls)</li>
+<li>Window resize events</li>
+<li>Scroll events</li>
+<li>Form validation</li>
+</ul>
+
+<hr>
+
+
+<p><b>Key Point:</b> Debouncing ensures a function runs only after the user stops triggering an event.</p>
+
+</div>
+<div class="box">
+<h2>8. Throttling</h2>
+
+<p><b>Throttling</b> is a technique used to <b>limit how often a function executes</b> within a specific time interval.</p>
+
+<p>It ensures that a function runs <b>at most once in a given time period</b>, no matter how many times the event is triggered.</p>
+
+<hr>
+
+<h3>🔹 Basic Idea</h3>
+
+<ul>
+<li>Event triggers many times (scroll, resize)</li>
+<li>Function executes immediately</li>
+<li>Then it is blocked for a fixed time (limit)</li>
+<li>After the time passes → allowed again</li>
+</ul>
+
+<hr>
+
+<h3>🔹 Throttle Function</h3>
+
+<pre>
+function throttle(fn, limit){
+  let flag = true;
+
+  return function(...args){
+    if(flag){
+      fn.apply(this, args);
+      flag = false;
+
+      setTimeout(() => {
+        flag = true;
+      }, limit);
+    }
+  }
+}
+</pre>
+
+<p><b>Explanation:</b></p>
+<ul>
+<li><code>flag</code> controls execution</li>
+<li>First call → function runs immediately</li>
+<li>Next calls within time → ignored</li>
+<li>After <code>limit</code> → function allowed again</li>
+</ul>
+
+<hr>
+
+<h3>🔹 Real Example: Scroll Event </h3>
+
+<pre>
+function handleScroll(){
+  console.log("Scrolling...");
+}
+
+const throttledScroll = throttle(handleScroll, 1000);
+
+window.addEventListener("scroll", throttledScroll);
+</pre>
+
+<p><b>How it works:</b></p>
+<ul>
+<li>User scrolls continuously</li>
+<li>Without throttle → function runs many times ❌</li>
+<li>With throttle → runs once every 1 second ✔️</li>
+</ul>
+
+<hr>
+
+<h3>🔹 Step-by-Step Flow</h3>
+
+<pre>
+User scrolls → function executes immediately
+Next scroll events → ignored for 1 second
+After 1 second → next scroll triggers function again
+</pre>
+
+<hr>
+
+<h3>🔹 Without Throttling (Problem)</h3>
+
+<pre>
+window.addEventListener("scroll", function(){
+  console.log("Scrolling...");
+});
+</pre>
+
+<ul>
+<li>Runs hundreds of times ❌</li>
+<li>Performance issues ❌</li>
+<li>UI lag ❌</li>
+</ul>
+
+<hr>
+
+<h3>🔹 With Throttling (Solution)</h3>
+
+<ul>
+<li>Limits execution ✔️</li>
+<li>Improves performance ✔️</li>
+<li>Better control over events ✔️</li>
+</ul>
+
+<hr>
+
+<h3>🔹 Debounce vs Throttle </h3>
+
+<ul>
+<li><b>Debounce</b> → runs after user stops event</li>
+<li><b>Throttle</b> → runs at regular intervals</li>
+</ul>
+
+<hr>
+
+<h3>🔹 Real-Life Analogy</h3>
+
+<p>
+Imagine a water tap 🚰:<br>
+Throttling controls water flow to come at fixed intervals, not continuously.
+</p>
+
+<hr>
+
+<h3>🔹 Use Cases</h3>
+
+<ul>
+<li>Scroll events</li>
+<li>Window resize</li>
+<li>Mouse movement tracking</li>
+<li>Button click rate limiting</li>
+</ul>
+
+<hr>
+
+
+
+<p><b>Key Point:</b> Throttling ensures a function runs at most once in a fixed time interval.</p>
+
+</div>
+
+<div class="box">
+<h2>9. Web Workers</h2>
+
+<p>Runs JavaScript in background thread.</p>
+
+<ul>
+<li>Prevents UI blocking</li>
+<li>Used for heavy calculations</li>
+</ul>
+
+<pre>
+// main.js
+let worker = new Worker("worker.js");
+
+worker.postMessage("Start");
+worker.onmessage = function(e){
+  console.log(e.data);
+}
+</pre>
+
+</div>
+
+<div class="box">
+<h2>10. Functional vs Procedural Programming</h2>
+
+<p>These are two different programming paradigms (styles) used to write and organize code.</p>
+
+<hr>
+
+<h3>🔹 Functional Programming</h3>
+
+<p>Functional programming focuses on writing <b>pure functions</b> and avoiding changes to data.</p>
+
+<ul>
+<li>Uses <b>pure functions</b></li>
+<li>Avoids modifying existing data (immutability)</li>
+<li>No side effects</li>
+<li>Functions are treated as <b>first-class citizens</b></li>
+</ul>
+
+<h4>Example:</h4>
+
+<pre>
+function add(a, b){
+  return a + b;
+}
+
+console.log(add(2, 3)); // 5
+</pre>
+
+<h4>Example with Array:</h4>
+
+<pre>
+let numbers = [1, 2, 3];
+
+let doubled = numbers.map(num => num * 2);
+
+console.log(doubled); // [2, 4, 6]
+console.log(numbers); // original unchanged
+</pre>
+
+<p><b>Explanation:</b></p>
+<ul>
+<li>No change to original array</li>
+<li>Returns a new array</li>
+<li>No side effects</li>
+</ul>
+
+<h4>Pure Function Rule:</h4>
+
+<pre>
+function multiply(a, b){
+  return a * b;
+}
+</pre>
+
+<ul>
+<li>Same input → same output</li>
+<li>No external dependency</li>
+</ul>
+
+<hr>
+
+<h3>🔹 Procedural Programming</h3>
+
+<p>Procedural programming focuses on <b>step-by-step instructions</b> to solve a problem.</p>
+
+<ul>
+<li>Uses variables and loops</li>
+<li>Changes data directly (mutable)</li>
+<li>Execution follows sequence of steps</li>
+</ul>
+
+<h4>Example:</h4>
+
+<pre>
+let result = 0;
+
+for(let i = 1; i <= 3; i++){
+  result += i;
+}
+
+console.log(result); // 6
+</pre>
+
+<h4>Array Example:</h4>
+
+<pre>
+let numbers = [1, 2, 3];
+let doubled = [];
+
+for(let i = 0; i < numbers.length; i++){
+  doubled.push(numbers[i] * 2);
+}
+
+console.log(doubled); // [2, 4, 6]
+</pre>
+
+<p><b>Explanation:</b></p>
+<ul>
+<li>Uses loop and variables</li>
+<li>Step-by-step logic</li>
+<li>More control but more code</li>
+</ul>
+
+<hr>
+
+<h3>🔹 Key Differences</h3>
+
+<table border="1" cellpadding="8">
+<tr>
+<th>Functional Programming</th>
+<th>Procedural Programming</th>
+</tr>
+
+<tr>
+<td>Uses pure functions</td>
+<td>Uses step-by-step instructions</td>
+</tr>
+
+<tr>
+<td>No side effects</td>
+<td>Can modify data</td>
+</tr>
+
+<tr>
+<td>Immutable data</td>
+<td>Mutable data</td>
+</tr>
+
+<tr>
+<td>Short and declarative</td>
+<td>Long and detailed</td>
+</tr>
+
+<tr>
+<td>Uses map, filter, reduce</td>
+<td>Uses loops (for, while)</td>
+</tr>
+
+</table>
+
+<hr>
+
+<h3>🔹 Real-Life Analogy</h3>
+
+<p>
+<b>Functional:</b> Like using a calculator → input → output (no change inside)<br><br>
+
+<b>Procedural:</b> Like cooking recipe → step-by-step instructions
+</p>
+
+<hr>
+
+<h3>🔹 When to Use</h3>
+
+<ul>
+<li><b>Functional:</b> Data transformation, React development, clean code</li>
+<li><b>Procedural:</b> Simple logic, algorithms, step-based problems</li>
+</ul>
+
+<hr>
+
+
+
+<p><b>Key Point:</b> Functional focuses on <b>what to do</b>, Procedural focuses on <b>how to do</b>.</p>
+
+</div>
+
+<div class="box">
+<h2>11. Polyfills (Concept)</h2>
+
+<p>A <b>Polyfill</b> is a piece of code used to provide <b>modern JavaScript features in older browsers</b> that do not support them.</p>
+
+<p>It ensures that your code works consistently across all browsers.</p>
+
+<hr>
+
+<h3>🔹 Simple Definition</h3>
+
+<p>
+Polyfill = <b>Fallback code</b> for missing features
+</p>
+
+<hr>
+
+<h3>🔹 Why Polyfills are Needed</h3>
+
+<ul>
+<li>Older browsers do not support modern JS features</li>
+<li>Example: <code>map()</code>, <code>filter()</code>, <code>Promise</code></li>
+<li>Polyfills add these features manually</li>
+</ul>
+
+<hr>
+
+<h3>🔹 Example: Array.map Polyfill</h3>
+
+<pre>
+if(!Array.prototype.map){
+  Array.prototype.map = function(callback){
+    let result = [];
+
+    for(let i = 0; i < this.length; i++){
+      result.push(callback(this[i], i));
+    }
+
+    return result;
+  }
+}
+</pre>
+
+<h4>🔍 Explanation:</h4>
+
+<ul>
+<li><code>if(!Array.prototype.map)</code> → checks if <code>map()</code> is not available</li>
+<li>If missing → we define our own <code>map()</code></li>
+<li><code>this</code> → refers to the array on which map is called</li>
+<li><code>callback</code> → function applied to each element</li>
+<li>Loop runs through array and builds a new array</li>
+</ul>
+
+<hr>
+
+<h3>🔹 Usage Example</h3>
+
+<pre>
+let numbers = [1, 2, 3];
+
+let doubled = numbers.map(num => num * 2);
+
+console.log(doubled); // [2, 4, 6]
+</pre>
+
+<p>Even if browser doesn't support <code>map()</code>, polyfill makes it work.</p>
+
+<hr>
+
+<h3>🔹 Another Simple Polyfill Example (Custom)</h3>
+
+<pre>
+if(!String.prototype.repeat){
+  String.prototype.repeat = function(n){
+    let result = "";
+    for(let i = 0; i < n; i++){
+      result += this;
+    }
+    return result;
+  }
+}
+</pre>
+
+<pre>
+console.log("Hi".repeat(3)); // HiHiHi
+</pre>
+
+<hr>
+
+<h3>🔹 Important Rules for Polyfills</h3>
+
+<ul>
+<li>Always check if feature exists before adding</li>
+<li>Do NOT overwrite existing functionality</li>
+<li>Write clean and optimized code</li>
+</ul>
+
+<hr>
+
+<h3>🔹 Real-Life Analogy</h3>
+
+<p>
+Imagine your phone doesn’t support a new app feature 📱<br>
+You install an update or workaround → that is a <b>polyfill</b>
+</p>
+
+<hr>
+
+<p><b>Key Point:</b> Polyfills allow modern JavaScript code to run in older browsers.</p>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DAY 5 – Control Flow</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    padding: 20px;
+    line-height: 1.6;
+    color: #333;
+}
+.section-box{
+    background: #ffffff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.05);
+}
+h1{
+    text-align: center;
+    color: #2c3e50;
+}
+h2{
+    color: #2c3e50;
+}
+pre{
+    background: #eeeeee;
+    color: #000000;
+    padding: 15px;
+    overflow-x: auto;
+    border-radius: 5px;
+}
+code{
+    color: #000000;
+}
+.note{
+    background: #f8f9fa;
+    padding: 10px;
+    border-left: 5px solid #6c757d;
+    margin-top: 10px;
+}
+.task{
+    background: #e9f7ef;
+    padding: 15px;
+    border-left: 5px solid #28a745;
+    margin-top: 20px;
+}
+</style>
+
+</head>
+<body>
+
+<h1> JavaScript Control Flow</h1>
+<p>Control flow decides which code runs and when based on conditions.</p>
+<div class="section-box">
+<h2>1️⃣ if Statement</h2>
+<p>The <code>if</code> statement executes a block of code if a condition is true.</p>
+
+<pre><code>
+let age = 18;
+
+if(age >= 18){
+    console.log("You are eligible to vote");
+}
+</code></pre>
+
+<div class="note">
+Condition inside if must return TRUE or FALSE.
+</div>
+</div>
+
+<div class="section-box">
+<h2>2️⃣ if...else Statement</h2>
+<p>Used when we want two possible outcomes.</p>
+
+<pre><code>
+let number = 5;
+
+if(number % 2 === 0){
+    console.log("Even number");
+}else{
+    console.log("Odd number");
+}
+</code></pre>
+</div>
+
+<div class="section-box">
+<h2>3️⃣ if...else if...else</h2>
+<p>Used when we have multiple conditions.</p>
+
+<pre><code>
+let mark = 85;
+
+if(mark >= 90){
+    console.log("Grade A");
+}
+else if(mark >= 75){
+    console.log("Grade B");
+}
+else if(mark >= 50){
+    console.log("Grade C");
+}
+else{
+    console.log("Fail");
+}
+</code></pre>
+</div>
+
+<div class="section-box">
+<h2>4️⃣ Nested if</h2>
+<p>Placing an if statement inside another if statement.</p>
+
+<pre><code>
+let username = "admin";
+let password = "1234";
+
+if(username === "admin"){
+    if(password === "1234"){
+        console.log("Login successful");
+    }else{
+        console.log("Wrong password");
+    }
+}else{
+    console.log("Invalid username");
+}
+</code></pre>
+
+<div class="note">
+Nested if is used when one condition depends on another.
+</div>
+</div>
+
+<div class="section-box">
+<h2>5️⃣ Ternary Operator ( ? : )</h2>
+<p>Short form of if...else.</p>
+
+Syntax:
+<pre><code>
+condition ? trueValue : falseValue;
+</code></pre>
+
+Example:
+
+<pre><code>
+let age = 20;
+
+let result = (age >= 18) ? "Adult" : "Minor";
+console.log(result);
+</code></pre>
+
+<div class="note">
+Use ternary for simple conditions only.
+</div>
+
+<div class="section-box">
+<h2>6️⃣ Nested Ternary Operator</h2>
+
+<p>A nested ternary means using one ternary operator inside another.</p>
+
+<p><strong>Syntax:</strong></p>
+
+<pre><code>
+condition1 ? value1 :
+condition2 ? value2 :
+condition3 ? value3 :
+defaultValue;
+</code></pre>
+
+<p><strong>Example:</strong></p>
+
+<pre><code>
+let mark = 85;
+
+let grade = mark >= 90 ? "Grade A" :
+            mark >= 75 ? "Grade B" :
+            mark >= 50 ? "Grade C" :
+            "Fail";
+
+console.log(grade);
+</code></pre>
+
+<p><strong>Output:</strong></p>
+<pre><code>
+Grade B
+</code></pre>
+
+<div class="note">
+⚠️ Nested ternary should be used carefully.  
+If the logic becomes complex, prefer <code>if...else if</code> for better readability.
+</div>
+
+</div>
+</div>
+
+<div class="section-box">
+<h2>6️⃣ switch Statement</h2>
+<p>Used when checking multiple values of one variable.</p>
+
+<pre><code>
+let day = 3;
+
+switch(day){
+    case 1:
+        console.log("Monday");
+        break;
+    case 2:
+        console.log("Tuesday");
+        break;
+    case 3:
+        console.log("Wednesday");
+        break;
+    default:
+        console.log("Invalid day");
+}
+</code></pre>
+
+<div class="note">
+Break is important to stop execution.
+</div>
+</div>
+
+<div class="section-box task">
+<h2>📝 Task: control.js</h2>
+
+<p>Create a file named <strong>control.js</strong> and write programs for:</p>
+
+<ol>
+<li>Check whether a number is positive, negative or zero.</li>
+<li>Check whether a number is divisible by 3 and 5.</li>
+<li>Print grade based on mark using if...else if.</li>
+<li>Create a login system using nested if.</li>
+<li>Convert if...else grade program into ternary operator.</li>
+<li>Create a simple calculator using switch ( +, -, *, / ).</li>
+</ol>
+
+</div>
+
+
+
+</body>
+</html>

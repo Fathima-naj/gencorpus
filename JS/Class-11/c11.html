@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>JavaScript Built-in Objects</title>
+
+<style>
+
+body{
+font-family: Arial, Helvetica, sans-serif;
+max-width: 900px;
+margin: auto;
+padding: 20px;
+line-height: 1.8;
+background:#f9fafb;
+}
+
+h1{
+text-align:center;
+margin-bottom:40px;
+}
+
+h2{
+color:#2563eb;
+margin-top:40px;
+}
+
+h3{
+margin-top:25px;
+color:#1e293b;
+}
+
+code{
+background:#eef2ff;
+padding:4px 6px;
+border-radius:4px;
+}
+
+pre{
+background:#dcdcdd;
+color:#000000;
+padding:15px;
+border-radius:6px;
+overflow-x:auto;
+}
+
+.task{
+background:#ecfdf5;
+border-left:5px solid #10b981;
+padding:15px;
+margin-top:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>JavaScript Built-in Objects</h1>
+
+
+<h2>1. String Object</h2>
+
+<p>
+The <b>String object</b> is used to work with text.
+Strings are sequences of characters like letters, numbers, symbols, and spaces.
+</p>
+
+<h3>Creating Strings</h3>
+
+<pre>
+let name = "Fathima";
+let city = 'Malappuram';
+let message = `Hello World`;
+</pre>
+
+<hr>
+
+<h3>length</h3>
+
+<p>Returns number of characters in a string.</p>
+
+<pre>
+let text = "JavaScript";
+
+console.log(text.length);
+</pre>
+
+Output
+
+<pre>
+10
+</pre>
+
+<hr>
+
+<h3>charAt()</h3>
+
+<p>Returns character at a specific position.</p>
+
+<pre>
+let text = "JavaScript";
+
+console.log(text.charAt(2));
+</pre>
+
+Output
+
+<pre>
+v
+</pre>
+
+<hr>
+
+<h3>toUpperCase()</h3>
+
+<pre>
+let text = "hello";
+
+console.log(text.toUpperCase());
+</pre>
+
+Output
+
+<pre>
+HELLO
+</pre>
+
+<hr>
+
+<h3>toLowerCase()</h3>
+
+<pre>
+let text = "HELLO";
+
+console.log(text.toLowerCase());
+</pre>
+
+Output
+
+<pre>
+hello
+</pre>
+
+<hr>
+
+<h3>includes()</h3>
+
+<p>Checks whether a string contains a value.</p>
+
+<pre>
+let text = "JavaScript";
+
+console.log(text.includes("Script"));
+</pre>
+
+Output
+
+<pre>
+true
+</pre>
+
+<hr>
+
+<h3>indexOf()</h3>
+
+<p>Returns the position of first occurrence.</p>
+
+<pre>
+let text = "Hello World";
+
+console.log(text.indexOf("World"));
+</pre>
+
+Output
+
+<pre>
+6
+</pre>
+
+<hr>
+
+<h3>startsWith()</h3>
+
+<pre>
+let text = "JavaScript";
+
+console.log(text.startsWith("Java"));
+</pre>
+
+Output
+
+<pre>
+true
+</pre>
+
+<hr>
+
+<h3>endsWith()</h3>
+
+<pre>
+let text = "JavaScript";
+
+console.log(text.endsWith("Script"));
+</pre>
+
+Output
+
+<pre>
+true
+</pre>
+
+<hr>
+
+<h3>slice()</h3>
+
+<p>Extracts part of a string.</p>
+
+<pre>
+let text = "JavaScript";
+
+console.log(text.slice(0,4));
+</pre>
+
+Output
+
+<pre>
+Java
+</pre>
+
+<hr>
+
+<h3>substring()</h3>
+
+<pre>
+let text = "JavaScript";
+
+console.log(text.substring(4,10));
+</pre>
+
+Output
+
+<pre>
+Script
+</pre>
+
+<hr>
+
+<h3>replace()</h3>
+
+<p>Replaces first occurrence.</p>
+
+<pre>
+let text = "Hello World";
+
+console.log(text.replace("World","JavaScript"));
+</pre>
+
+Output
+
+<pre>
+Hello JavaScript
+</pre>
+
+<hr>
+
+<h3>replaceAll()</h3>
+
+<pre>
+let text = "Hello Hello";
+
+console.log(text.replaceAll("Hello","Hi"));
+</pre>
+
+Output
+
+<pre>
+Hi Hi
+</pre>
+
+<hr>
+
+<h3>trim()</h3>
+
+<p>Removes spaces from both sides.</p>
+
+<pre>
+let text = "   hello   ";
+
+console.log(text.trim());
+</pre>
+
+Output
+
+<pre>
+hello
+</pre>
+
+<hr>
+
+<h3>split()</h3>
+
+<p>Converts string to array.</p>
+
+<pre>
+let fruits = "apple,banana,orange";
+
+console.log(fruits.split(","));
+</pre>
+
+Output
+
+<pre>
+["apple","banana","orange"]
+</pre>
+
+<hr>
+
+<h3>concat()</h3>
+
+<p>Joins strings.</p>
+
+<pre>
+let first = "Hello";
+let second = "World";
+
+console.log(first.concat(" ",second));
+</pre>
+
+Output
+
+<pre>
+Hello World
+</pre>
+
+<hr>
+
+<h3>repeat()</h3>
+
+<pre>
+let text = "Hi ";
+
+console.log(text.repeat(3));
+</pre>
+
+Output
+
+<pre>
+Hi Hi Hi
+</pre>
+
+<hr>
+
+<h3>padStart()</h3>
+
+<pre>
+let num = "5";
+
+console.log(num.padStart(3,"0"));
+</pre>
+
+Output
+
+<pre>
+005
+</pre>
+
+<hr>
+
+<h3>padEnd()</h3>
+
+<pre>
+let num = "5";
+
+console.log(num.padEnd(3,"0"));
+</pre>
+
+Output
+
+<pre>
+500
+</pre>
+
+<div class="task">
+
+<b>Mini Task</b>
+
+<ol>
+<li>Create string <code>"javascript programming"</code></li>
+<li>Convert it to uppercase</li>
+<li>Find its length</li>
+<li>Check if it contains "program"</li>
+<li>Extract "javascript" using slice()</li>
+</ol>
+
+</div>
+
+<hr>
+
+<!-- NUMBER OBJECT -->
+
+<h2>2. Number Object</h2>
+
+<h3>parseInt()</h3>
+
+<pre>
+let num = "50";
+
+console.log(parseInt(num));
+</pre>
+
+<h3>parseFloat()</h3>
+
+<pre>
+let value = "10.75";
+
+console.log(parseFloat(value));
+</pre>
+
+<h3>toFixed()</h3>
+
+<pre>
+let price = 12.56789;
+
+console.log(price.toFixed(2));
+</pre>
+
+<div class="task">
+
+<b>Mini Task</b>
+
+<ol>
+<li>Convert "45.67" into number</li>
+<li>Convert "100px" into integer</li>
+<li>Use toFixed(2) on number 7.45678</li>
+</ol>
+
+</div>
+
+<hr>
+
+<!-- DATE -->
+
+<h2>3. Date Object</h2>
+
+<pre>
+let today = new Date();
+
+console.log(today);
+</pre>
+
+<h3>getFullYear()</h3>
+
+<pre>
+console.log(today.getFullYear());
+</pre>
+
+<h3>getMonth()</h3>
+
+<pre>
+console.log(today.getMonth());
+</pre>
+
+<h3>getDate()</h3>
+
+<pre>
+console.log(today.getDate());
+</pre>
+
+<h3>getHours()</h3>
+
+<pre>
+console.log(today.getHours());
+</pre>
+
+<div class="task">
+
+<b>Mini Task</b>
+
+<ol>
+<li>Create new Date object</li>
+<li>Print current year</li>
+<li>Print current month</li>
+<li>Print current day</li>
+</ol>
+
+</div>
+
+<hr>
+<!-- MATH -->
+
+<h2>4. Math Object</h2>
+
+<p>
+The <b>Math object</b> provides built-in mathematical constants and functions.
+Unlike other objects, you do <b>not need to create it using new</b>.
+</p>
+
+<hr>
+
+<h3>Math.round()</h3>
+
+<p>Rounds a number to the nearest integer.</p>
+
+<pre>
+console.log(Math.round(4.6));
+</pre>
+
+Output
+
+<pre>
+5
+</pre>
+
+<hr>
+
+<h3>Math.floor()</h3>
+
+<p>Rounds a number down to the nearest integer.</p>
+
+<pre>
+console.log(Math.floor(4.9));
+</pre>
+
+Output
+
+<pre>
+4
+</pre>
+
+<hr>
+
+<h3>Math.ceil()</h3>
+
+<p>Rounds a number up to the nearest integer.</p>
+
+<pre>
+console.log(Math.ceil(4.1));
+</pre>
+
+Output
+
+<pre>
+5
+</pre>
+
+<hr>
+
+<h3>Math.trunc()</h3>
+
+<p>Removes the decimal part of a number.</p>
+
+<pre>
+console.log(Math.trunc(4.9));
+</pre>
+
+Output
+
+<pre>
+4
+</pre>
+
+<hr>
+
+<h3>Math.max()</h3>
+
+<p>Returns the largest value.</p>
+
+<pre>
+console.log(Math.max(5,10,2,8));
+</pre>
+
+Output
+
+<pre>
+10
+</pre>
+
+<hr>
+
+<h3>Math.min()</h3>
+
+<p>Returns the smallest value.</p>
+
+<pre>
+console.log(Math.min(5,10,2,8));
+</pre>
+
+Output
+
+<pre>
+2
+</pre>
+
+<hr>
+
+<h3>Math.abs()</h3>
+
+<p>Returns the absolute (positive) value.</p>
+
+<pre>
+console.log(Math.abs(-10));
+</pre>
+
+Output
+
+<pre>
+10
+</pre>
+
+<hr>
+
+<h3>Math.sqrt()</h3>
+
+<p>Returns the square root of a number.</p>
+
+<pre>
+console.log(Math.sqrt(25));
+</pre>
+
+Output
+
+<pre>
+5
+</pre>
+
+<hr>
+
+<h3>Math.pow()</h3>
+
+<p>Returns power of a number.</p>
+
+<pre>
+console.log(Math.pow(2,3));
+</pre>
+
+Output
+
+<pre>
+8
+</pre>
+
+<hr>
+
+<h3>Math.random()</h3>
+
+<p>Generates a random number between 0 and 1.</p>
+
+<pre>
+console.log(Math.random());
+</pre>
+
+Example: random number between 1 and 10
+
+<pre>
+let random = Math.floor(Math.random() * 10) + 1;
+
+console.log(random);
+</pre>
+
+<hr>
+
+<h3>Math.PI</h3>
+
+<p>Returns the value of π (pi).</p>
+
+<pre>
+console.log(Math.PI);
+</pre>
+
+Output
+
+<pre>
+3.141592653589793
+</pre>
+
+<hr>
+
+<div class="task">
+
+<b>Mini Task</b>
+
+<ol>
+<li>Round 5.7 using Math.round()</li>
+<li>Find maximum value from (12,45,3,67)</li>
+<li>Find minimum value from (12,45,3,67)</li>
+<li>Find square root of 81</li>
+<li>Generate random number between 1–20</li>
+<li>Find absolute value of -25</li>
+</ol>
+
+</div>
+
+</body>
+</html>

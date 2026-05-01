@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class-6 Functions (45 Minutes)</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    padding: 20px;
+    line-height: 1.6;
+    color: #333;
+}
+.section-box{
+    background: #ffffff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.05);
+}
+h1{
+    text-align: center;
+    color: #2c3e50;
+}
+h2{
+    color: #2c3e50;
+}
+pre{
+    background: #eeeeee;
+    padding: 15px;
+    overflow-x: auto;
+    border-radius: 5px;
+}
+.note{
+    background: #f8f9fa;
+    padding: 10px;
+    border-left: 5px solid #6c757d;
+    margin-top: 10px;
+}
+.task{
+    background: #e9f7ef;
+    padding: 15px;
+    border-left: 5px solid #28a745;
+    margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>JavaScript Functions</h1>
+
+<p>A function is a reusable block of code designed to perform a task.</p>
+
+<!-- 1 -->
+<div class="section-box">
+<h2>1️⃣ Function Declaration & Calling</h2>
+
+<pre><code>
+function greet(){
+    console.log("Hello Students");
+}
+
+greet();   // Calling the function
+</code></pre>
+
+<div class="note">
+Function declaration is hoisted (we will learn hoisting later).
+</div>
+</div>
+
+<!-- 2 -->
+<div class="section-box">
+<h2>2️⃣ Parameters & Return</h2>
+
+<pre><code>
+function add(a, b){
+    return a + b;
+}
+
+let result = add(10, 5);
+console.log(result);
+</code></pre>
+
+<ul>
+<li><strong>Parameter</strong> → Variable inside function (a, b)</li>
+<li><strong>Argument</strong> → Value passed while calling (10, 5)</li>
+</ul>
+
+<div class="note">
+Return stop the execution of function and return a value
+</div>
+</div>
+
+<!-- 3 -->
+<div class="section-box">
+<h2>3️⃣ Function Expression </h2>
+
+<pre><code>
+const multiply = function(a, b){
+    return a * b;
+};
+
+console.log(multiply(4, 5));
+</code></pre>
+
+<div class="note">
+Function expression is NOT hoisted like normal function.
+</div>
+</div>
+
+<!-- 4 -->
+<div class="section-box">
+<h2>4️⃣ Arrow Functions</h2>
+
+<pre><code>
+const subtract = (a, b) => {
+    return a - b;
+};
+
+console.log(subtract(10, 3));
+</code></pre>
+
+<h4>Short Version:</h4>
+
+<pre><code>
+const square = num => num * num;
+
+console.log(square(5));
+</code></pre>
+
+<div class="note">
+If only one line, return keyword is not required.
+</div>
+</div>
+
+<!-- 5 -->
+<div class="section-box">
+<h2>5️⃣ Default Parameters </h2>
+
+<pre><code>
+function greetUser(name = "Guest"){
+    console.log("Welcome " + name);
+}
+
+greetUser("Fathima");
+greetUser();
+</code></pre>
+
+<div class="note">
+If argument is missing, default value is used.
+</div>
+</div>
+
+<!-- 6 -->
+<div class="section-box">
+<h2>6️⃣ Hoisting </h2>
+
+<p>During the memory creation phase of the execution context, JavaScript allocates memory for variables and functions before executing the code line by line.</p>
+
+<h4>Function Hoisting</h4>
+
+<pre><code>
+greet();
+
+function greet(){
+    console.log("Hello");
+}
+</code></pre>
+
+<div class="note">
+Function declaration works before definition because it is hoisted.
+</div>
+
+<h4>Variable Hoisting (var)</h4>
+
+<pre><code>
+console.log(a);
+var a = 10;
+</code></pre>
+
+Output:
+undefined
+
+<div class="note">
+var is hoisted but initialized with undefined.
+</div>
+
+<h4>let & const</h4>
+
+<pre><code>
+console.log(b);
+let b = 20;
+</code></pre>
+
+Output:
+ReferenceError
+</div>
+
+<!-- 7 -->
+<div class="section-box">
+<h2>7️⃣ Temporal Dead Zone (TDZ)</h2>
+
+<p>
+Temporal Dead Zone is the time between variable hoisting and initialization 
+for let and const.
+</p>
+
+<pre><code>
+{
+    console.log(x); // Error
+    let x = 5;
+}
+</code></pre>
+
+<div class="note">
+Between block start and variable initialization → variable is in TDZ.
+</div>
+
+<p><strong>Simple Rule:</strong></p>
+<ul>
+<li>var → undefined</li>
+<li>let/const → ReferenceError (TDZ)</li>
+</ul>
+</div>
+
+<!-- Practice -->
+<div class="section-box task">
+<h2>📝 Practice Tasks</h2>
+
+<ol>
+<li>Create a function to check even or odd.</li>
+<li>Create a function to find largest of two numbers.</li>
+<li>Create a calculator using functions.</li>
+</ol>
+</div>
+
+</body>
+</html>

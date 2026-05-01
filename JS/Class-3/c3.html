@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Data Types</title>
+
+<style>
+
+body{
+font-family: Arial, Helvetica, sans-serif;
+max-width:900px;
+margin:auto;
+padding:20px;
+line-height:1.7;
+}
+
+h1{
+text-align:center;
+margin-bottom:40px;
+}
+
+h2{
+color:#0d6efd;
+margin-top:40px;
+}
+
+code{
+background:#f4f4f4;
+padding:3px 6px;
+border-radius:4px;
+}
+
+pre{
+background:#f4f4f4;
+padding:15px;
+border-radius:6px;
+overflow-x:auto;
+}
+
+.task{
+background:#e8f4ff;
+padding:15px;
+border-left:5px solid #0d6efd;
+margin-top:15px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>JavaScript Day 3 – Data Types</h1>
+
+<p>
+A <b>data type</b> defines the type of value stored in a variable.
+JavaScript is a <b>dynamically typed language</b>, meaning the data type
+is determined automatically.
+</p>
+
+<pre>
+let name = "Fathima";
+let age = 22;
+let isStudent = true;
+</pre>
+
+<hr>
+
+<h2>1. Primitive Data Types</h2>
+
+<p>
+Primitive data types store a <b>single value</b>.
+</p>
+
+<ul>
+<li>String</li>
+<li>Number</li>
+<li>Boolean</li>
+<li>Undefined</li>
+<li>Null</li>
+<li>BigInt</li>
+<li>Symbol</li>
+</ul>
+
+<hr>
+
+<h2>2. typeof Operator</h2>
+
+<p>
+The <code>typeof</code> operator is used to check the type of a variable.
+</p>
+
+<pre>
+let name = "Ali";
+let age = 25;
+let isAdmin = false;
+
+console.log(typeof name);
+console.log(typeof age);
+console.log(typeof isAdmin);
+</pre>
+
+Output
+
+<pre>
+string
+number
+boolean
+</pre>
+
+More examples:
+
+<pre>
+console.log(typeof undefined);
+console.log(typeof null);
+</pre>
+
+Output
+
+<pre>
+undefined
+object
+</pre>
+
+<p>
+Note: <code>null</code> returning <code>object</code> is a known JavaScript bug.
+</p>
+
+<hr>
+
+<h2>3. String</h2>
+
+<p>
+Strings represent text values.
+</p>
+
+<pre>
+let firstName = "Sara";
+let lastName = 'Khan';
+</pre>
+
+Strings can include letters, numbers, and symbols.
+
+<pre>
+let message = "Welcome to JavaScript";
+</pre>
+
+<hr>
+
+<h2>4. Number</h2>
+
+Numbers represent numeric values.
+
+<pre>
+let age = 20;
+let price = 199.99;
+</pre>
+
+JavaScript numbers include both integers and decimals.
+
+<hr>
+
+<h3>Special Number Values</h3>
+
+<h4>NaN (Not a Number)</h4>
+
+<pre>
+console.log("hello" * 5);
+</pre>
+
+Output
+
+<pre>
+NaN
+</pre>
+
+<h4>Infinity</h4>
+
+<pre>
+console.log(10 / 0);
+</pre>
+
+Output
+
+<pre>
+Infinity
+</pre>
+
+<hr>
+
+<h2>5. Boolean</h2>
+
+Boolean values represent logical values.
+
+<pre>
+let isLoggedIn = true;
+let isAdmin = false;
+</pre>
+
+Booleans are commonly used in conditions.
+
+<hr>
+
+<h2>6. Undefined</h2>
+
+A variable declared without a value becomes undefined.
+
+<pre>
+let score;
+
+console.log(score);
+</pre>
+
+Output
+
+<pre>
+undefined
+</pre>
+
+<hr>
+
+<h2>7. Null</h2>
+
+Null represents an intentional empty value.
+
+<pre>
+let result = null;
+
+console.log(result);
+</pre>
+
+Output
+
+<pre>
+null
+</pre>
+
+<hr>
+
+<h2>8. null vs undefined</h2>
+
+<table border="1" cellpadding="8">
+
+<tr>
+<th>undefined</th>
+<th>null</th>
+</tr>
+
+<tr>
+<td>Variable declared but not assigned</td>
+<td>Intentional empty value</td>
+</tr>
+
+<tr>
+<td>Automatically assigned</td>
+<td>Assigned manually</td>
+</tr>
+
+<tr>
+<td>typeof → undefined</td>
+<td>typeof → object</td>
+</tr>
+
+</table>
+
+Example
+
+<pre>
+let x;
+console.log(x);
+
+let y = null;
+console.log(y);
+</pre>
+
+<hr>
+
+<h2>9. String Concatenation</h2>
+
+String concatenation means joining strings together.
+
+<pre>
+let firstName = "Ali";
+let lastName = "Khan";
+
+let fullName = firstName + " " + lastName;
+
+console.log(fullName);
+</pre>
+
+Output
+
+<pre>
+Ali Khan
+</pre>
+
+<hr>
+
+<h2>10. Template Literals</h2>
+
+Template literals use backticks (`).
+
+They allow variables inside strings using ${}.
+
+<pre>
+let name = "Sara";
+let age = 24;
+
+let message = `My name is ${name} and I am ${age} years old`;
+
+console.log(message);
+</pre>
+
+Output
+
+<pre>
+My name is Sara and I am 24 years old
+</pre>
+
+Advantages:
+
+<ul>
+<li>Easier to read</li>
+<li>Supports multi-line strings</li>
+<li>Supports variable interpolation</li>
+</ul>
+
+<hr>
+
+<h2>11. Type Coercion</h2>
+
+Type coercion means automatic conversion of data types.
+
+Example:
+
+<pre>
+console.log("5" + 2);
+</pre>
+
+Output
+
+<pre>
+52
+</pre>
+
+Explanation  
+Number 2 becomes a string.
+
+<hr>
+
+Example
+
+<pre>
+console.log("5" - 2);
+</pre>
+
+Output
+
+<pre>
+3
+</pre>
+
+Explanation  
+String "5" becomes number 5.
+
+<hr>
+
+Example
+
+<pre>
+console.log(true + 1);
+</pre>
+
+Output
+
+<pre>
+2
+</pre>
+
+true becomes 1.
+
+<hr>
+
+<h2>12. Truthy and Falsy Values</h2>
+
+In JavaScript, some values behave like true or false.
+
+Falsy values:
+
+<ul>
+<li>false</li>
+<li>0</li>
+<li>"" (empty string)</li>
+<li>null</li>
+<li>undefined</li>
+<li>NaN</li>
+</ul>
+
+Example
+
+<pre>
+if(0){
+ console.log("True");
+}else{
+ console.log("False");
+}
+</pre>
+
+Output
+
+<pre>
+False
+</pre>
+
+<hr>
+
+<h2>13. Explicit Type Conversion</h2>
+
+Sometimes we convert types manually.
+
+<h3>Convert to Number</h3>
+
+<pre>
+let num = Number("100");
+console.log(num);
+</pre>
+
+<h3>Convert to String</h3>
+
+<pre>
+let str = String(200);
+console.log(str);
+</pre>
+
+<h3>Convert to Boolean</h3>
+
+<pre>
+let value = Boolean(1);
+console.log(value);
+</pre>
+
+<hr>
+
+<hr>
+
+<h2>2. Non-Primitive Data Types</h2>
+
+<p>
+Non-primitive data types are used to store <b>multiple values</b> or more complex data.
+They are also called <b>reference types</b>.
+</p>
+
+<ul>
+<li>Object</li>
+<li>Array</li>
+<li>Function</li>
+</ul>
+
+<h3>Object</h3>
+<p>Objects store data in key-value pairs.</p>
+<pre>
+let user = {
+  name: "Fathima",
+  age: 22
+};
+
+console.log(user.name);
+</pre>
+
+<h3>Array</h3>
+<p>Arrays store multiple values in a list.</p>
+<pre>
+let fruits = ["apple", "banana", "mango"];
+
+console.log(fruits[0]);
+</pre>
+
+<h3>Function</h3>
+<p>Functions are reusable blocks of code.</p>
+<pre>
+function greet(){
+  console.log("Hello!");
+}
+
+greet();
+</pre>
+
+<p>
+<b>Note:</b> Non-primitive types are stored by <b>reference</b>, not by value.
+</p>
+<hr>
+
+<h2>Mini Practice</h2>
+
+<ul>
+
+<li>Create variables for name, age, and isStudent.</li>
+
+<li>Check their types using typeof.</li>
+
+<li>Concatenate two strings.</li>
+
+<li>Create a template literal sentence.</li>
+
+<li>Test "10" + 5 and "10" - 5.</li>
+
+<li>Create variables with null and undefined.</li>
+
+<li>Check truthy and falsy values.</li>
+
+</ul>
+
+
+</body>
+</html>

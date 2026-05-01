@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Day 4 - JavaScript Operators</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            line-height: 1.6;
+        }
+        h1{
+            color: #2c3e50;
+        }
+        h2{
+            color: #27ae60;
+            border-bottom: 2px solid #27ae60;
+            padding-bottom: 5px;
+        }
+        .example{
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-left: 5px solid #27ae60;
+            margin: 15px 0;
+        }
+        code{
+            color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+
+<h1 style="text-align: center;">  JavaScript Operators</h1>
+
+<!-- Arithmetic Operators -->
+<h2>1️⃣ Arithmetic Operators</h2>
+<p>Arithmetic operators are used to perform mathematical calculations.</p>
+
+<table border="1" cellpadding="8">
+    <tr>
+        <th>Operator</th>
+        <th>Description</th>
+        <th>Example</th>
+    </tr>
+    <tr>
+        <td>+</td>
+        <td>Addition</td>
+        <td>10 + 5 = 15</td>
+    </tr>
+    <tr>
+        <td>-</td>
+        <td>Subtraction</td>
+        <td>10 - 5 = 5</td>
+    </tr>
+    <tr>
+        <td>*</td>
+        <td>Multiplication</td>
+        <td>10 * 5 = 50</td>
+    </tr>
+    <tr>
+        <td>/</td>
+        <td>Division</td>
+        <td>10 / 5 = 2</td>
+    </tr>
+    <tr>
+        <td>%</td>
+        <td>Modulus (Remainder)</td>
+        <td>10 % 3 = 1</td>
+    </tr>
+</table>
+
+<div class="example">
+<strong>Example:</strong>
+<pre><code>
+let a = 10;
+let b = 5;
+
+console.log(a + b); // 15
+console.log(a - b); // 5
+console.log(a * b); // 50
+console.log(a / b); // 2
+console.log(a % b); // 0
+</code></pre>
+</div>
+
+<hr>
+
+<!-- Assignment Operators -->
+<h2>2️⃣ Assignment Operators</h2>
+<p>Assignment operators are used to assign values to variables.</p>
+
+<table border="1" cellpadding="8">
+    <tr>
+        <th>Operator</th>
+        <th>Example</th>
+        <th>Meaning</th>
+    </tr>
+    <tr>
+        <td>=</td>
+        <td>x = 5</td>
+        <td>Assign value 5 to x</td>
+    </tr>
+    <tr>
+        <td>+=</td>
+        <td>x += 2</td>
+        <td>x = x + 2</td>
+    </tr>
+    <tr>
+        <td>-=</td>
+        <td>x -= 2</td>
+        <td>x = x - 2</td>
+    </tr>
+    <tr>
+        <td>*=</td>
+        <td>x *= 2</td>
+        <td>x = x * 2</td>
+    </tr>
+    <tr>
+        <td>/=</td>
+        <td>x /= 2</td>
+        <td>x = x / 2</td>
+    </tr>
+    <tr>
+        <td>%=</td>
+        <td>x %= 2</td>
+        <td>x = x % 2</td>
+    </tr>
+</table>
+
+<div class="example">
+<pre><code>
+let x = 10;
+x += 5;   // x = 15
+x -= 3;   // x = 12
+
+console.log(x);
+</code></pre>
+</div>
+
+<hr>
+
+<!-- Increment & Decrement -->
+<h2>3️⃣ Increment and Decrement</h2>
+<p>Increment (++) increases value by 1.</p>
+<p>Decrement (--) decreases value by 1.</p>
+
+<h3>Post Increment</h3>
+<p>It returns the value before the increment.</p>
+<div class="example">
+<pre><code>
+let a = 5;
+console.log(a++); // 5 (first prints, then increases)
+console.log(a);   // 6
+</code></pre>
+</div>
+
+<h3>Pre Increment</h3>
+<p>It returns the value after the increment.</p>
+<div class="example">
+<pre><code>
+let b = 5;
+console.log(++b); // 6 (first increases, then prints)
+</code></pre>
+</div>
+
+<h3>Decrement</h3>
+<div class="example">
+<pre><code>
+let c = 5;
+console.log(c--); // 5
+console.log(c);   // 4
+</code></pre>
+</div>
+
+<hr>
+
+<!-- Comparison Operators -->
+<h2>4️⃣ Comparison Operators (== vs ===)</h2>
+<p>Comparison operators compare two values and return true or false.</p>
+
+<table border="1" cellpadding="8">
+    <tr>
+        <th>Operator</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td>==</td>
+        <td>Equal to (checks value only)</td>
+    </tr>
+    <tr>
+        <td>===</td>
+        <td>Strict Equal (checks value and type)</td>
+    </tr>
+    <tr>
+        <td>!=</td>
+        <td>Not equal</td>
+    </tr>
+    <tr>
+        <td>></td>
+        <td>Greater than</td>
+    </tr>
+    <tr>
+        <td><</td>
+        <td>Less than</td>
+    </tr>
+    <tr>
+        <td>>=</td>
+        <td>Greater or Equal</td>
+    </tr>
+    <tr>
+        <td><=</td>
+        <td>Less or Equal</td>
+    </tr>
+</table>
+
+<div class="example">
+<pre><code>
+let a = 5;
+let b = "5";
+
+console.log(a == b);  // true (value same)
+console.log(a === b); // false (different data type)
+</code></pre>
+</div>
+
+<p><strong>Important:</strong> Always prefer <code>===</code> in real projects.</p>
+
+<hr>
+
+<!-- Logical Operators -->
+<h2>5️⃣ Logical Operators</h2>
+<p>Logical operators are used to combine multiple conditions.</p>
+
+<table border="1" cellpadding="8">
+    <tr>
+        <th>Operator</th>
+        <th>Name</th>
+        <th>Example</th>
+    </tr>
+    <tr>
+        <td>&&</td>
+        <td>AND</td>
+        <td>true && true → true</td>
+    </tr>
+    <tr>
+        <td>||</td>
+        <td>OR</td>
+        <td>true || false → true</td>
+    </tr>
+    <tr>
+        <td>!</td>
+        <td>NOT</td>
+        <td>!true → false</td>
+    </tr>
+</table>
+
+<div class="example">
+<pre><code>
+let age = 20;
+let hasID = true;
+
+console.log(age > 18 && hasID); // true
+console.log(age < 18 || hasID); // true
+console.log(!hasID);            // false
+</code></pre>
+</div>
+
+<hr>
+
+<!-- Task Section -->
+<h2>📝 Task: Output Prediction </h2>
+
+<p>Predict the output before running the program.</p>
+
+<div class="example">
+<pre><code>
+let x = 10;
+let y = "10";
+
+console.log(x == y);
+console.log(x === y);
+
+let a = 5;
+console.log(a++);
+console.log(++a);
+
+let b = 20;
+b += 10;
+console.log(b);
+
+console.log(true && false);
+console.log(true || false);
+</code></pre>
+</div>
+
+<h3>Expected Output:</h3>
+
+<ul>
+    <li>true</li>
+    <li>false</li>
+    <li>5</li>
+    <li>7</li>
+    <li>30</li>
+    <li>false</li>
+    <li>true</li>
+</ul>
+
+<hr>
+
+</body>
+</html>

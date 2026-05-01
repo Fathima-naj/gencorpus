@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>JavaScript - Modern Objects</title>
+
+<style>
+
+body{
+font-family: Arial, Helvetica, sans-serif;
+max-width:900px;
+margin:auto;
+padding:20px;
+line-height:1.8;
+background:#f9fafb;
+}
+
+h1{
+text-align:center;
+margin-bottom:40px;
+}
+
+h2{
+color:#2563eb;
+margin-top:40px;
+}
+
+h3{
+margin-top:25px;
+}
+
+code{
+background:#f7f7f7;
+color: #393a3a;
+padding:3px 6px;
+border-radius:4px;
+}
+
+pre{
+background:#f4f4f4;
+color:#0a0c10;
+padding:15px;
+border-radius:8px;
+overflow:auto;
+}
+
+.note{
+background:#ecfeff;
+padding:15px;
+border-left:5px solid #06b6d4;
+margin:20px 0;
+}
+
+.warning{
+background:#fff7ed;
+padding:15px;
+border-left:5px solid #f97316;
+margin:20px 0;
+}
+
+.task{
+background:#f0fdf4;
+padding:20px;
+border-left:5px solid #22c55e;
+margin-top:40px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>JavaScript – Modern Objects</h1>
+
+
+<h2>1. Object Destructuring</h2>
+
+<p>
+Object destructuring is a modern JavaScript feature that allows you to
+extract values from objects and store them in variables easily.
+</p>
+
+<p>
+Instead of accessing properties one by one, destructuring allows you to
+extract them in a single line.
+</p>
+
+<h3>Normal Way</h3>
+
+<pre>
+const user = {
+name: "Fathima",
+age: 22,
+city: "Kozhikode"
+}
+
+const name = user.name
+const age = user.age
+const city = user.city
+
+console.log(name)
+console.log(age)
+console.log(city)
+</pre>
+
+<p>
+This works, but it becomes repetitive when objects have many properties.
+</p>
+
+<h3>Using Destructuring</h3>
+
+<pre>
+const user = {
+name: "Fathima",
+age: 22,
+city: "Kozhikode"
+}
+
+const {name, age, city} = user
+
+console.log(name)
+console.log(age)
+console.log(city)
+</pre>
+
+<p>
+JavaScript automatically creates variables from object keys.
+</p>
+
+<div class="note">
+Important Rule:  
+Variable names must match the object property names.
+</div>
+
+<h3>Renaming Variables</h3>
+
+<p>
+You can rename variables during destructuring.
+</p>
+
+<pre>
+const user = {
+name: "Fathima",
+age: 22
+}
+
+const {name: userName, age: userAge} = user
+
+console.log(userName)
+console.log(userAge)
+</pre>
+
+<h3>Default Values</h3>
+
+<p>
+If a property does not exist, you can give a default value.
+</p>
+
+<pre>
+const user = {
+name: "Fathima"
+}
+
+const {name, age = 18} = user
+
+console.log(age)
+</pre>
+
+<h3>Destructuring in Functions</h3>
+
+<pre>
+function printUser({name, age}) {
+console.log(name)
+console.log(age)
+}
+
+printUser({
+name: "Fathima",
+age: 22
+})
+</pre>
+
+<div class="note">
+Destructuring is very common in React when receiving props.
+</div>
+
+<hr>
+
+<h2>2. Shorthand Properties</h2>
+
+<p>
+When creating objects, JavaScript allows a shorter syntax if the variable name
+and property name are the same.
+</p>
+
+<h3>Normal Object Creation</h3>
+
+<pre>
+const name = "Fathima"
+const age = 22
+
+const user = {
+name: name,
+age: age
+}
+
+console.log(user)
+</pre>
+
+<h3>Using Shorthand Properties</h3>
+
+<pre>
+const name = "Fathima"
+const age = 22
+
+const user = {
+name,
+age
+}
+
+console.log(user)
+</pre>
+
+<p>
+This automatically assigns variable values to properties.
+</p>
+
+<div class="note">
+Shorthand properties make object creation cleaner and are widely used in
+modern JavaScript.
+</div>
+
+<hr>
+
+<h2>3. Object.keys()</h2>
+
+<p>
+<code>Object.keys()</code> returns an array of all keys in an object.
+</p>
+
+<pre>
+const user = {
+name: "Fathima",
+age: 22,
+city: "Malappuram"
+}
+
+const keys = Object.keys(user)
+
+console.log(keys)
+</pre>
+
+Output
+
+<pre>
+["name","age","city"]
+</pre>
+
+<h3>Looping Using Object.keys()</h3>
+
+<pre>
+const user = {
+name: "Fathima",
+age: 22,
+city: "Malappuram"
+}
+
+Object.keys(user).forEach(key => {
+console.log(key, user[key])
+})
+</pre>
+
+<hr>
+
+<h2>4. Object.values()</h2>
+
+<p>
+Returns an array of object values.
+</p>
+
+<pre>
+const user = {
+name: "Fathima",
+age: 22,
+city: "Malappuram"
+}
+
+const values = Object.values(user)
+
+console.log(values)
+</pre>
+
+Output
+
+<pre>
+["Fathima",22,"Malappuram"]
+</pre>
+
+<hr>
+
+<h2>5. Object.entries()</h2>
+
+<p>
+Returns key-value pairs as arrays.
+</p>
+
+<pre>
+const user = {
+name: "Fathima",
+age: 22
+}
+
+const entries = Object.entries(user)
+
+console.log(entries)
+</pre>
+
+Output
+
+<pre>
+[
+["name","Fathima"],
+["age",22]
+]
+</pre>
+
+<h3>Looping With entries</h3>
+
+<pre>
+const user = {
+name: "Fathima",
+age: 22
+}
+
+for(const [key,value] of Object.entries(user)){
+console.log(key,value)
+}
+</pre>
+
+<hr>
+
+<h2>6. Shallow Copy vs Deep Copy</h2>
+
+<p>
+Copying objects in JavaScript is tricky because objects are stored by reference.
+</p>
+
+<h3>Shallow Copy</h3>
+
+<p>
+A shallow copy only copies the first level.
+Nested objects are still shared.
+</p>
+
+<pre>
+const user = {
+name: "Fathima",
+address: {
+city: "Kozhikode"
+}
+}
+
+const copy = {...user}
+
+copy.address.city = "Delhi"
+
+console.log(user.address.city)
+</pre>
+
+<p>
+Output will also change in original object.
+</p>
+
+<div class="warning">
+Because nested objects still reference the same memory.
+</div>
+
+<h3>Ways to Create Shallow Copy</h3>
+
+<pre>
+Object.assign({}, obj)
+
+{...obj}
+</pre>
+
+<hr>
+
+<h2>7. Deep Copy</h2>
+
+<p>
+Deep copy duplicates the entire object including nested objects.
+</p>
+
+<p>
+Changes in copied object will NOT affect original object.
+</p>
+
+<hr>
+
+<h2>8. structuredClone()</h2>
+
+<p>
+Modern JavaScript introduced <code>structuredClone()</code> to create deep copies.
+</p>
+
+<pre>
+const user = {
+name: "Fathima",
+address:{
+city:"Kozhikode"
+}
+}
+
+const copy = structuredClone(user)
+
+copy.address.city = "Delhi"
+
+console.log(user.address.city)
+</pre>
+
+Output
+
+<pre>
+Kozhikode
+</pre>
+
+<p>
+Original object is not affected.
+</p>
+
+<div class="note">
+structuredClone() is the safest and modern way to deep copy objects.
+</div>
+
+
+<hr>
+
+<div class="task">
+
+<h2>Mini Task</h2>
+
+<p>Create an object called <b>student</b></p>
+
+<pre>
+name
+age
+course
+city
+</pre>
+
+Do the following:
+
+<ol>
+
+<li>Use destructuring to extract name and course</li>
+
+<li>Use shorthand properties to create a new object</li>
+
+<li>Print all keys using Object.keys()</li>
+
+<li>Print all values using Object.values()</li>
+
+<li>Loop through object using Object.entries()</li>
+
+<li>Create a shallow copy using spread operator</li>
+
+<li>Create a deep copy using structuredClone()</li>
+
+</ol>
+
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>JavaScript Day 16 – CRUD with Fetch</title>
+
+<style>
+body{
+font-family: Arial, Helvetica, sans-serif;
+max-width:1000px;
+margin:auto;
+padding:25px;
+line-height:1.8;
+background:#f8fafc;
+}
+h1{ color:#1d4ed8; text-align: center;}
+h2{
+margin-top:40px;
+border-bottom:2px solid #e5e7eb;
+padding-bottom:6px;
+}
+h3{ margin-top:25px; color:#1f2937; }
+code{
+background:#eef2ff;
+padding:3px 6px;
+border-radius:4px;
+}
+pre{
+background:#e8e8e8;
+padding:15px;
+border-radius:6px;
+overflow-x:auto;
+}
+.note{
+background:#ecfeff;
+border-left:4px solid #06b6d4;
+padding:12px;
+margin:15px 0;
+}
+.warning{
+background:#fff7ed;
+border-left:4px solid #f97316;
+padding:12px;
+margin:15px 0;
+}
+</style>
+</head>
+
+<body>
+
+<h1> CRUD with Fetch API </h1>
+
+<p>
+CRUD operations are the backbone of any application. Whether it is Instagram, 
+Amazon, or your MERN project, everything revolves around creating, reading,
+updating, and deleting data from a server.
+</p>
+
+<hr>
+
+<h2>1. Understanding CRUD Internally</h2>
+
+<p>
+CRUD operations interact with the server and database. Each operation maps to an HTTP method.
+</p>
+
+<table border="1" cellpadding="8">
+<tr>
+<th>Operation</th>
+<th>HTTP Method</th>
+<th>Database Action</th>
+</tr>
+<tr><td>Create</td><td>POST</td><td>INSERT</td></tr>
+<tr><td>Read</td><td>GET</td><td>SELECT</td></tr>
+<tr><td>Update</td><td>PUT / PATCH</td><td>UPDATE</td></tr>
+<tr><td>Delete</td><td>DELETE</td><td>DELETE</td></tr>
+</table>
+
+<div class="note">
+Frontend (Fetch) → API → Backend → Database → Response → UI
+</div>
+
+<hr>
+
+<h2>2.  POST (Create)</h2>
+
+<p>
+POST sends data to the server. The data is included in the <b>request body</b>.
+</p>
+
+<pre>
+fetch("https://api.com/posts", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    title: "Hello",
+    body: "Post content"
+  })
+})
+</pre>
+
+<h3>How it Works Internally</h3>
+<ul>
+<li>Browser sends HTTP request</li>
+<li>Body is converted to JSON string</li>
+<li>Server parses JSON</li>
+<li>Data is stored in database</li>
+<li>Response (201 Created) is returned</li>
+</ul>
+
+<div class="note">
+Always use JSON.stringify() because server cannot understand JS objects directly.
+</div>
+
+<hr>
+
+<h2>3. GET (Read)</h2>
+
+<p>
+GET requests retrieve data. No body is sent.
+</p>
+
+<pre>
+fetch("https://api.com/posts")
+</pre>
+
+<h3>Internal Flow</h3>
+<ul>
+<li>Request sent</li>
+<li>Server queries database</li>
+<li>Returns JSON response</li>
+</ul>
+
+<div class="note">
+GET requests are cached by browsers for performance.
+</div>
+
+<hr>
+
+<h2>4. PUT vs PATCH</h2>
+
+<h3>PUT (Full Update)</h3>
+
+<p>
+Replaces entire resource.
+</p>
+
+<pre>
+{
+  "name": "New Name"
+}
+</pre>
+
+<p>If original object had more fields, they may be lost.</p>
+
+<h3>PATCH (Partial Update)</h3>
+
+<p>
+Updates only specific fields.
+</p>
+
+<pre>
+{
+  "name": "Updated Name"
+}
+</pre>
+
+<div class="note">
+Use PATCH when updating small changes. Use PUT when replacing entire data.
+</div>
+
+<hr>
+
+<h2>5. DELETE (Remove)</h2>
+
+<pre>
+fetch("https://api.com/posts/1", {
+  method: "DELETE"
+})
+</pre>
+
+<h3>Internal Flow</h3>
+<ul>
+<li>Request sent to server</li>
+<li>Server deletes record</li>
+<li>Response (200 or 204) returned</li>
+</ul>
+
+<hr>
+
+<h2>6. Headers</h2>
+
+<p>
+Headers provide metadata about the request.
+</p>
+
+<h3>Important Headers</h3>
+
+<ul>
+<li><b>Content-Type</b> → defines data format</li>
+<li><b>Authorization</b> → security token</li>
+<li><b>Accept</b> → expected response format</li>
+</ul>
+
+<pre>
+headers: {
+  "Content-Type": "application/json"
+}
+</pre>
+
+<div class="note">
+Without correct headers, server may not understand your request.
+</div>
+
+<hr>
+
+<h2>7. Authorization Header (Security)</h2>
+
+<p>
+Used to authenticate users using tokens (JWT).
+</p>
+
+<pre>
+headers: {
+  "Authorization": "Bearer TOKEN"
+}
+</pre>
+
+<h3>Flow</h3>
+<ul>
+<li>User logs in</li>
+<li>Server returns token</li>
+<li>Token stored in frontend</li>
+<li>Token sent in every request</li>
+</ul>
+
+<div class="warning">
+Never expose tokens publicly (security risk).
+</div>
+
+<hr>
+
+<h2>8. Status Codes</h2>
+
+<p>
+HTTP Status Codes are responses sent by the server to indicate what happened to a request.
+They help the client (browser/frontend) understand whether the request was successful or not.
+</p>
+
+<table border="1" cellpadding="8">
+<tr>
+<th>Range</th>
+<th>Meaning</th>
+<th>Explanation</th>
+</tr>
+<tr>
+<td>2xx</td>
+<td>Success</td>
+<td>The request was successful and processed correctly.</td>
+</tr>
+<tr>
+<td>3xx</td>
+<td>Redirection</td>
+<td>Further action is needed (like redirecting to another URL).</td>
+</tr>
+<tr>
+<td>4xx</td>
+<td>Client Error</td>
+<td>The request has an error from the client side (wrong input, missing data).</td>
+</tr>
+<tr>
+<td>5xx</td>
+<td>Server Error</td>
+<td>The server failed to process a valid request.</td>
+</tr>
+</table>
+
+<h3>Important Status Codes</h3>
+
+<ul>
+<li>
+<b>200 → OK</b><br>
+Request was successful and data is returned.<br>
+Example: Fetching user details.
+</li>
+
+<br>
+
+<li>
+<b>201 → Created</b><br>
+New resource is successfully created.<br>
+Example: User registration or adding a product.
+</li>
+
+<br>
+
+<li>
+<b>204 → No Content</b><br>
+Request successful but no data is returned.<br>
+Example: Deleting a record.
+</li>
+
+<br>
+
+<li>
+<b>400 → Bad Request</b><br>
+Client sent invalid data.<br>
+Example: Missing fields or wrong input format.
+</li>
+
+<br>
+
+<li>
+<b>401 → Unauthorized</b><br>
+User is not authenticated (not logged in or token missing).<br>
+Example: Accessing protected route without JWT.
+</li>
+
+<br>
+
+<li>
+<b>403 → Forbidden</b><br>
+User is authenticated but does not have permission.<br>
+Example: Normal user trying to access admin panel.
+</li>
+
+<br>
+
+<li>
+<b>404 → Not Found</b><br>
+Requested resource does not exist.<br>
+Example: Invalid API route or wrong ID.
+</li>
+
+<br>
+
+<li>
+<b>409 → Conflict</b><br>
+Request conflicts with existing data.<br>
+Example: Email already exists.
+</li>
+
+<br>
+
+<li>
+<b>422 → Unprocessable Entity</b><br>
+Valid data format but logical error.<br>
+Example: Weak password or invalid business rule.
+</li>
+
+<br>
+
+<li>
+<b>500 → Internal Server Error</b><br>
+Something went wrong on the server.<br>
+Example: Database failure or server crash.
+</li>
+</ul>
+
+<h3>Simple Understanding</h3>
+
+<p>
+Think of status codes like exam results:
+</p>
+
+<ul>
+<li>2xx → Pass </li>
+<li>3xx → Go somewhere else </li>
+<li>4xx → Your mistake </li>
+<li>5xx → Server mistake </li>
+</ul>
+<hr>
+
+<h2>9. Error Handling</h2>
+
+<pre>
+async function fetchData(){
+  try{
+    let res = await fetch("API_URL");
+
+    if(!res.ok){
+      throw new Error("HTTP Error: " + res.status);
+    }
+
+    let data = await res.json();
+    console.log(data);
+
+  }catch(error){
+    console.log("Error:", error.message);
+  }
+}
+</pre>
+
+<h3>Types of Errors (with Examples)</h3>
+
+<ul>
+
+<li>
+<b>1. Network Error</b> → Happens when there is no internet or server is unreachable
+
+<pre>
+// Example: Wrong domain / no internet
+fetch("https://wrongapiurl.com/data")
+  .then(res => res.json())
+  .catch(err => console.log("Network Error:", err));
+</pre>
+
+<p>
+👉 This error occurs before getting any response from the server.
+</p>
+</li>
+
+<br>
+
+<li>
+<b>2. HTTP Error</b> → Server responds but with error status (404, 500)
+
+<pre>
+// Example: API returns 404 Not Found
+async function getUser(){
+  try{
+    let res = await fetch("https://jsonplaceholder.typicode.com/invalid-url");
+
+    if(!res.ok){
+      throw new Error("HTTP Error: " + res.status);
+    }
+
+    let data = await res.json();
+  }catch(err){
+    console.log(err.message);
+  }
+}
+</pre>
+
+<p>
+👉 Here server responds, but response is not successful.
+</p>
+</li>
+
+<br>
+
+<li>
+<b>3. Parsing Error</b> → Happens when JSON is invalid or cannot be parsed
+
+<pre>
+// Example: Invalid JSON parsing
+try{
+  let data = JSON.parse("Invalid JSON");
+}catch(err){
+  console.log("Parsing Error:", err.message);
+}
+</pre>
+
+<p>
+👉 Occurs when converting response or data fails.
+</p>
+</li>
+
+</ul>
+
+<div class="note">
+<b>Important:</b>
+<ul>
+<li>Always use try-catch with async/await to handle errors properly</li>
+<li>fetch() does NOT throw error for HTTP errors → we must check res.ok manually</li>
+<li>Network errors go directly to catch block</li>
+<li>Parsing errors occur during JSON conversion</li>
+</ul>
+</div>
+<hr>
+
+<h2>10. Best Practices</h2>
+
+<ul>
+<li>Always check <code>res.ok</code></li>
+<li>Use async/await for readability</li>
+<li>Handle errors properly</li>
+<li>Use correct HTTP method</li>
+<li>Secure APIs using Authorization</li>
+</ul>
+
+<hr>
+
+<h2>11. Real World Flow</h2>
+
+<pre>
+User Action → Fetch API → Server → Database → Response → UI Update
+</pre>
+
+<p>
+Example:
+User clicks "Add Product" → POST request → data stored → UI updates
+</p>
+
+
+
+<hr>
+
+<h2>12. try...catch...finally</h2>
+
+<p>
+Used to handle errors safely in JavaScript.
+</p>
+
+<pre>
+try {
+  let result = 10 / 2;
+  console.log(result);
+} catch (error) {
+  console.log("Error occurred:", error.message);
+} finally {
+  console.log("This always runs");
+}
+</pre>
+
+<h3>Explanation</h3>
+<ul>
+<li><b>try</b> → Code that may cause error</li>
+<li><b>catch</b> → Handles error</li>
+<li><b>finally</b> → Always executes (cleanup code)</li>
+</ul>
+
+<div class="note">
+finally is optional but useful for closing resources, loaders, etc.
+</div>
+
+<hr>
+
+<h2>13. throw Keyword</h2>
+
+<p>
+Used to create custom errors manually.
+</p>
+
+<pre>
+function checkAge(age){
+  if(age < 18){
+    throw new Error("You must be 18+");
+  }
+  console.log("Access granted");
+}
+
+try{
+  checkAge(16);
+}catch(err){
+  console.log(err.message);
+}
+</pre>
+
+<div class="note">
+throw helps you control validation and error flow manually.
+</div>
+
+<hr>
+
+<h2>14. JSON (JavaScript Object Notation)</h2>
+
+<p>
+JSON is a format used to send and receive data between frontend and backend.
+</p>
+
+<h3>Convert JS → JSON</h3>
+<pre>
+let user = { name: "Fathima", age: 21 };
+
+let jsonData = JSON.stringify(user);
+console.log(jsonData);
+</pre>
+
+<h3>Convert JSON → JS</h3>
+<pre>
+let data = '{"name":"Fathima","age":21}';
+
+let obj = JSON.parse(data);
+console.log(obj.name);
+</pre>
+
+<div class="note">
+API always sends data in JSON format.
+</div>
+
+<hr>
+
+<h2>15. LocalStorage & SessionStorage</h2>
+
+<h3>LocalStorage</h3>
+<ul>
+<li>Stores data permanently (until manually cleared)</li>
+<li>Shared across tabs</li>
+</ul>
+
+<pre>
+// Save
+localStorage.setItem("name", "Fathima");
+
+// Get
+let name = localStorage.getItem("name");
+
+// Remove
+localStorage.removeItem("name");
+
+// Clear all
+localStorage.clear();
+</pre>
+
+<h3>SessionStorage</h3>
+<ul>
+<li>Data removed when tab is closed</li>
+<li>Not shared across tabs</li>
+</ul>
+
+<pre>
+sessionStorage.setItem("user", "Naja");
+</pre>
+
+<table border="1" cellpadding="8">
+<tr>
+<th>Feature</th>
+<th>LocalStorage</th>
+<th>SessionStorage</th>
+</tr>
+<tr>
+<td>Lifetime</td>
+<td>Permanent</td>
+<td>Until tab close</td>
+</tr>
+<tr>
+<td>Scope</td>
+<td>All tabs</td>
+<td>Single tab</td>
+</tr>
+</table>
+
+<div class="note">
+Storage only stores strings → use JSON.stringify() for objects.
+</div>
+
+<hr>
+
+<h2>16. Simple To-Do App using LocalStorage</h2>
+
+<h3>HTML</h3>
+
+<input type="text" id="taskInput" placeholder="Enter task">
+<button onclick="addTask()">Add</button>
+
+<ul id="taskList"></ul>
+
+
+<script>
+  let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+function renderTasks(){
+  let list = document.getElementById("taskList");
+  list.innerHTML = "";
+
+  tasks.forEach((task, index) => {
+    let li = document.createElement("li");
+    li.innerHTML = `
+      ${task}
+      <button onclick="deleteTask(${index})">X</button>
+    `;
+    list.appendChild(li);
+  });
+}
+
+function addTask(){
+  let input = document.getElementById("taskInput");
+  if(input.value === "") return;
+
+  tasks.push(input.value);
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+
+  input.value = "";
+  renderTasks();
+}
+
+function deleteTask(index){
+  tasks.splice(index, 1);
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+  renderTasks();
+}
+
+renderTasks();
+</script>
+
+<h3>JavaScript</h3>
+<pre>
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+function renderTasks(){
+  let list = document.getElementById("taskList");
+  list.innerHTML = "";
+
+  tasks.forEach((task, index) => {
+    let li = document.createElement("li");
+    li.innerHTML = `
+      ${task}
+      <button onclick="deleteTask(${index})">X</button>
+    `;
+    list.appendChild(li);
+  });
+}
+
+function addTask(){
+  let input = document.getElementById("taskInput");
+  if(input.value === "") return;
+
+  tasks.push(input.value);
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+
+  input.value = "";
+  renderTasks();
+}
+
+function deleteTask(index){
+  tasks.splice(index, 1);
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+  renderTasks();
+}
+
+renderTasks();
+</pre>
+
+<h3>Flow</h3>
+<ul>
+<li>User adds task</li>
+<li>Stored in array</li>
+<li>Saved in localStorage</li>
+<li>Rendered on UI</li>
+<li>Persists even after refresh</li>
+</ul>
+
+<div class="note">
+This is a basic real-world example of CRUD using browser storage.
+</div>

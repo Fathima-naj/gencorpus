@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>JavaScript Day 15 – Asynchronous JavaScript</title>
+
+<style>
+body{
+font-family: Arial, Helvetica, sans-serif;
+max-width: 950px;
+margin:auto;
+padding:25px;
+line-height:1.7;
+background:#f8fafc;
+}
+h1{ color:#1d4ed8; }
+h2{
+margin-top:40px;
+border-bottom:2px solid #e5e7eb;
+padding-bottom:6px;
+}
+h3{
+margin-top:25px;
+color:#1f2937;
+}
+code{
+background:#eef2ff;
+padding:3px 6px;
+border-radius:4px;
+}
+pre{
+background:#ededed;
+color:#040404;
+padding:15px;
+border-radius:6px;
+overflow-x:auto;
+}
+.note{
+background:#ecfeff;
+border-left:4px solid #06b6d4;
+padding:12px;
+margin:15px 0;
+}
+.warning{
+background:#fff7ed;
+border-left:4px solid #f97316;
+padding:12px;
+margin:15px 0;
+}
+</style>
+</head>
+
+<body>
+
+<h2>Asynchronous JavaScript</h2>
+
+<p>
+JavaScript is <b>single-threaded</b>, meaning it executes one task at a time.
+However, modern applications require operations that take time such as:
+</p>
+
+<ul>
+<li>API requests</li>
+<li>File reading</li>
+<li>Database queries</li>
+<li>Timers</li>
+<li>User interactions</li>
+</ul>
+
+<p>
+To handle these tasks without blocking the program, JavaScript uses
+<b>asynchronous programming</b>.
+</p>
+
+<hr>
+
+<h2>1. Synchronous JavaScript</h2>
+
+<p>
+In synchronous execution, code runs <b>line by line</b>.
+Each task must finish before the next one starts.
+</p>
+
+<pre>
+console.log("Start");
+console.log("Process data");
+console.log("End");
+</pre>
+
+<div class="note">
+Every statement waits for the previous statement to complete.
+</div>
+
+<h3>Problem with Synchronous Code</h3>
+
+<pre>
+console.log("Start");
+for(let i = 0; i < 1e9; i++){}
+console.log("End");
+</pre>
+
+<p>This blocks execution and freezes UI.</p>
+
+<hr>
+
+<h2>2. Asynchronous JavaScript</h2>
+
+<pre>
+console.log("Start");
+
+setTimeout(() => {
+console.log("Async Task");
+}, 2000);
+
+console.log("End");
+</pre>
+
+<pre>
+Start
+End
+Async Task
+</pre>
+
+<div class="note">
+setTimeout runs later, allowing other code to execute first.
+</div>
+
+<hr>
+
+<h2>3. Callbacks</h2>
+
+<pre>
+function greet(name, callback){
+console.log("Hello " + name);
+callback();
+}
+</pre>
+
+<h3>Async Callback Example</h3>
+
+<pre>
+function fetchData(callback){
+setTimeout(() => {
+console.log("Data received");
+callback();
+}, 2000);
+}
+</pre>
+
+<div class="note">
+Callback runs only after async task completes.
+</div>
+
+<hr>
+
+<h2>4. Callback Hell</h2>
+
+<pre>
+setTimeout(() => {
+console.log("Step 1");
+
+setTimeout(() => {
+console.log("Step 2");
+
+setTimeout(() => {
+console.log("Step 3");
+}, 1000);
+
+}, 1000);
+
+}, 1000);
+</pre>
+
+<div class="warning">
+Deep nesting makes code unreadable and hard to maintain.
+</div>
+
+<hr>
+<h2>5. Promises</h2>
+
+<div class="box">
+<h3>What is a Promise?</h3>
+<p>A Promise is an object that represents the <b>eventual completion or failure</b> of an asynchronous operation.</p>
+<p><b>Example idea:</b> "I will give you the result later (success or failure)."</p>
+</div>
+
+<div class="box">
+<h3>Why Promises?</h3>
+<ul>
+<li>Avoid callback hell</li>
+<li>Better readability</li>
+<li>Improved error handling</li>
+</ul>
+</div>
+
+<div class="box">
+<h3>Promise States</h3>
+<ul>
+<li><b>Pending</b> → Operation is running</li>
+<li><b>Fulfilled (Resolved)</b> → Success</li>
+<li><b>Rejected</b> → Failed</li>
+</ul>
+</div>
+
+<div class="box">
+<h3>Example</h3>
+<pre>
+let promise = new Promise((resolve, reject) => {
+    let success = true;
+
+    if(success){
+        resolve("Data loaded");
+    } else {
+        reject("Error");
+    }
+});
+</pre>
+
+<p><b>Flow:</b></p>
+<ul>
+<li>Initially → Pending</li>
+<li>If success → Resolved</li>
+<li>If failure → Rejected</li>
+</ul>
+</div>
+
+<div class="box">
+<h3>Consuming a Promise</h3>
+<pre>
+promise
+  .then((res) => {
+    console.log(res);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+</pre>
+
+<ul>
+<li><b>.then()</b> → Runs on success</li>
+<li><b>.catch()</b> → Runs on error</li>
+</ul>
+</div>
+
+<div class="box">
+<h3>Real Example (API)</h3>
+<pre>
+fetch("https://api.com/data")
+  .then(res => res.json())
+  .then(data => console.log(data))
+  .catch(err => console.log(err));
+</pre>
+</div>
+
+<hr>
+
+<!-- ASYNC AWAIT -->
+<h2>6. async / await</h2>
+
+<div class="box">
+<h3> What is async / await?</h3>
+<p>Modern way to handle promises, making code look <b>synchronous and readable</b>.</p>
+</div>
+
+<div class="box">
+<h3>async Keyword</h3>
+<pre>
+async function fetchData() {
+    return "Hello";
+}
+</pre>
+<p>Always returns a <b>Promise</b>.</p>
+</div>
+
+<div class="box">
+<h3>await Keyword</h3>
+<pre>
+async function fetchData(){
+    let data = await getData();
+    console.log(data);
+}
+</pre>
+
+<div class="note">
+await pauses execution until the Promise resolves.
+</div>
+</div>
+
+<div class="box">
+<h3> Example with Delay</h3>
+<pre>
+function getData(){
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve("Data received");
+        }, 2000);
+    });
+}
+
+async function fetchData(){
+    let data = await getData();
+    console.log(data);
+}
+
+fetchData();
+</pre>
+</div>
+
+<div class="box">
+<h3> Error Handling</h3>
+<pre>
+async function fetchData(){
+    try {
+        let data = await getData();
+        console.log(data);
+    } catch (error) {
+        console.log(error);
+    }
+}
+</pre>
+</div>
+
+<div class="box">
+<h3> Promise vs async/await</h3>
+<ul>
+<li><b>Promise (.then)</b> → Chain-based</li>
+<li><b>async/await</b> → Cleaner & readable</li>
+<li><b>Error handling:</b> .catch() vs try...catch</li>
+</ul>
+</div>
+
+<div class="box">
+<h3> Key Points</h3>
+<ul>
+<li>Promise handles async operations</li>
+<li>resolve → success</li>
+<li>reject → failure</li>
+<li>async returns promise</li>
+<li>await waits for result</li>
+</ul>
+</div>
+<hr>
+<h2>7. JavaScript Event Loop (DEEP + VISUAL EXPLANATION)</h2>
+
+<p>
+JavaScript is <b>single-threaded</b>, meaning it can execute only one task at a time.
+But it can still handle asynchronous operations using the <b>Event Loop</b>.
+</p>
+
+<hr>
+
+<h3>📊 Event Loop Diagram</h3>
+
+<img src="https://miro.medium.com/v2/resize:fit:1400/1*4lHHyfEhVB0LnQ3HlhSs8g.png" 
+alt="Event Loop Diagram" 
+style="width:100%; border-radius:10px; margin:15px 0;" />
+
+<div class="note">
+This diagram shows how Call Stack, Web APIs, Callback Queue, and Event Loop work together.
+</div>
+
+<hr>
+
+<h3>🧠 Core Components Explained</h3>
+
+<ul>
+<li><b>Call Stack</b></li>
+</ul>
+
+<p>
+The Call Stack is where JavaScript executes code line by line.
+It follows <b>LIFO (Last In First Out)</b>.
+</p>
+
+<pre>
+function first(){
+second();
+}
+
+function second(){
+console.log("Hello");
+}
+
+first();
+</pre>
+
+<p>
+Stack Order:
+</p>
+
+<pre>
+first()
+second()
+console.log()
+</pre>
+
+<hr>
+
+<ul>
+<li><b>Web APIs</b></li>
+</ul>
+
+<p>
+Web APIs are provided by the browser (not JavaScript).
+They handle asynchronous tasks like:
+</p>
+
+<ul>
+<li>setTimeout</li>
+<li>fetch (API calls)</li>
+<li>DOM events (click, input)</li>
+</ul>
+
+<div class="note">
+Purpose: Move time-consuming tasks OUTSIDE the call stack to avoid blocking.
+</div>
+
+<hr>
+
+<ul>
+<li><b>Callback Queue (Task Queue)</b></li>
+</ul>
+
+<p>
+After an async task completes in Web APIs, its callback function is placed in the <b>Callback Queue</b>.
+</p>
+
+<div class="note">
+It waits here until the Call Stack becomes empty.
+</div>
+
+<hr>
+
+<ul>
+<li><b>Event Loop</b></li>
+</ul>
+
+<p>
+The Event Loop continuously checks:
+</p>
+
+<pre>
+"Is Call Stack empty?"
+</pre>
+
+<p>
+If YES → it moves the callback from queue → to Call Stack
+</p>
+
+<div class="note">
+Event Loop is like a manager that coordinates execution.
+</div>
+
+<hr>
+
+<h3>⚙️ Step-by-Step Execution Example</h3>
+
+<pre>
+console.log("Start");
+
+setTimeout(() => {
+console.log("Async Task");
+}, 2000);
+
+console.log("End");
+</pre>
+
+<h3>🔍 Internal Working</h3>
+
+<pre>
+1. "Start" → goes to Call Stack → executed
+
+2. setTimeout → sent to Web API
+   Timer starts (2 sec)
+
+3. "End" → executed immediately
+
+4. After 2 sec → callback goes to Callback Queue
+
+5. Event Loop checks → Call Stack empty? YES
+
+6. Moves callback → Call Stack
+
+7. "Async Task" executes
+</pre>
+
+<hr>
+
+<h3>📌 Important Rule</h3>
+
+<div class="warning">
+Even if delay is 0ms, callback runs ONLY after Call Stack is empty.
+</div>
+
+<pre>
+console.log("Start");
+
+setTimeout(() => {
+console.log("Timeout");
+}, 0);
+
+console.log("End");
+</pre>
+
+<pre>
+Output:
+Start
+End
+Timeout
+</pre>
+
+<hr>
+
+<h3>🚀 Microtask vs Macrotask (VERY IMPORTANT)</h3>
+
+<p>
+There are TWO queues:
+</p>
+
+<ul>
+<li><b>Microtask Queue</b> → Promises (.then, async/await)</li>
+<li><b>Macrotask Queue</b> → setTimeout, setInterval</li>
+</ul>
+
+<div class="note">
+Microtasks ALWAYS execute before Macrotasks.
+</div>
+
+<h3>Example</h3>
+
+<pre>
+console.log("Start");
+
+setTimeout(() => console.log("Timeout"), 0);
+
+Promise.resolve().then(() => console.log("Promise"));
+
+console.log("End");
+</pre>
+
+<h3>Output</h3>
+
+<pre>
+Start
+End
+Promise
+Timeout
+</pre>
+
+<hr>
+
+<h3>🧩 Real Understanding Flow</h3>
+
+<pre>
+1. Execute all synchronous code (Call Stack)
+
+2. Check Microtask Queue → execute all (Promises)
+
+3. Then take one Macrotask (setTimeout)
+
+4. Repeat cycle
+</pre>
+
+<div class="note">
+This cycle keeps running → that's the Event Loop.
+</div>
+
+<hr>
+
+<h3>🎯 Real-Life Analogy</h3>
+
+<pre>
+Call Stack = Chef 👨‍🍳
+Web API = Kitchen Staff 👩‍🍳
+Callback Queue = Ready Orders Table 🍽️
+Event Loop = Waiter 🧑‍🍽️
+</pre>
+
+<p>
+Chef cooks main dishes.  
+Time-consuming tasks are given to staff.  
+When ready → waiter brings them back to chef.
+</p>
+
+<h2>9. Real World Example</h2>
+
+<pre>
+async function getUsers(){
+let res = await fetch("https://jsonplaceholder.typicode.com/users");
+let data = await res.json();
+console.log(data);
+}
+getUsers();
+</pre>
+
+</body>
+</html>

@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JavaScript Day 1</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family: 'Poppins', sans-serif;
+background:#ffffff;
+color:#1e293b;
+line-height:1.8;
+}
+
+/* Layout */
+.container{
+max-width:1000px;
+margin:auto;
+padding:30px;
+}
+
+/* Headings */
+h1{
+text-align:center;
+font-size:2.5rem;
+margin-bottom:30px;
+color:#0ea5e9;
+}
+
+h2{
+margin-top:40px;
+color:#0284c7;
+border-left:4px solid #0ea5e9;
+padding-left:12px;
+}
+
+h3{
+margin-top:20px;
+color:#334155;
+}
+
+/* Card */
+.card{
+background:#ffffff;
+padding:20px;
+border-radius:12px;
+margin-top:20px;
+border:1px solid #e2e8f0;
+box-shadow:0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* Code block */
+.code{
+background:#f8fafc;
+padding:15px;
+border-radius:8px;
+font-family:monospace;
+margin-top:10px;
+overflow-x:auto;
+color:#0f172a;
+border:1px solid #e2e8f0;
+}
+
+/* Result box */
+.result{
+background:#f1f5f9;
+padding:12px;
+border-radius:8px;
+margin-top:10px;
+border:1px solid #cbd5f5;
+color:#1e293b;
+}
+
+/* Notes */
+.note{
+background:#fff7ed;
+padding:12px;
+border-radius:8px;
+margin-top:10px;
+color:#9a3412;
+border-left:5px solid #fb923c;
+}
+
+/* Task */
+.task{
+background:#ecfdf5;
+padding:12px;
+border-radius:8px;
+margin-top:10px;
+color:#065f46;
+border-left:5px solid #10b981;
+}
+
+/* Quiz */
+.quiz{
+background:#fef2f2;
+padding:12px;
+border-radius:8px;
+margin-top:10px;
+color:#991b1b;
+border-left:5px solid #ef4444;
+}
+
+/* List */
+ul{
+margin-top:10px;
+padding-left:20px;
+}
+
+/* Table */
+table{
+width:100%;
+margin-top:15px;
+border-collapse:collapse;
+background:#ffffff;
+}
+
+td, th{
+border:1px solid #e2e8f0;
+padding:10px;
+text-align:left;
+}
+
+th{
+background:#e0f2fe;
+color:#0369a1;
+}
+
+/* Highlight */
+.highlight{
+color:#16a34a;
+font-weight:bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>JavaScript – Day 1</h1>
+
+<!-- WHAT IS JS -->
+
+<h2>1. What is JavaScript?</h2>
+<div class="card">
+<p>
+JavaScript is a high-level programming language used to make websites interactive and dynamic.
+Without JavaScript, websites would only display static content.
+</p>
+
+<h3>Technologies of the Web</h3>
+<ul>
+<li><b>HTML</b> – Defines structure (heading, paragraph, button)</li>
+<li><b>CSS</b> – Adds styling (colors, layout, spacing)</li>
+<li><b>JavaScript</b> – Adds logic (clicks, actions, updates)</li>
+</ul>
+
+<h3>Example</h3>
+<div class="code">
+&lt;script&gt;
+document.write("Hello JavaScript");
+&lt;/script&gt;
+</div>
+
+<div class="result">Hello JavaScript</div>
+
+<div class="note">
+JavaScript can update content, respond to user actions, validate forms,
+and communicate with servers without reloading the page.
+</div>
+</div>
+<!-- HOW JS WORKS -->
+
+<h2>2. How JavaScript Works</h2>
+
+<div class="card">
+
+<h3>Single Threaded</h3>
+<p>JavaScript executes one task at a time.</p>
+
+<h3>Synchronous Execution</h3>
+<p>Code runs line by line from top to bottom.</p>
+
+<pre>
+<div class="code">
+console.log("Start");
+console.log("Middle");
+console.log("End");
+</div>
+</pre>
+
+<div class="result">
+Start<br>Middle<br>End
+</div>
+
+<h3>Execution Context </h3>
+
+<p>
+Whenever JavaScript runs, it creates a special environment called an
+<b>Execution Context</b> where all code is executed.
+</p>
+
+<p>
+This context manages:
+</p>
+
+<ul>
+<li>Variables (let, const, var)</li>
+<li>Functions</li>
+<li>The value of <b>this</b></li>
+</ul>
+
+<h3>Two Phases of Execution</h3>
+
+<p>JavaScript does not execute code immediately. It works in two phases:</p>
+
+<h4>1. Memory Creation Phase (Creation Phase)</h4>
+<ul>
+<li>Variables are stored with initial value <b>undefined</b></li>
+<li>Functions are stored completely in memory</li>
+</ul>
+
+<h4>2. Code Execution Phase</h4>
+<ul>
+<li>Code runs line by line</li>
+<li>Values are assigned to variables</li>
+<li>Functions are executed</li>
+</ul>
+
+<h3>Example</h3>
+<pre>
+<div class="code">
+console.log(a);
+
+var a = 10;
+
+console.log(a);
+</div>
+</pre>
+
+<div class="result">
+undefined<br>10
+</div>
+
+<div class="note">
+During memory phase, variable <b>a</b> is created with value <b>undefined</b>.
+Later in execution phase, it gets the value 10.
+</div>
+
+<!-- SCRIPT -->
+
+<h2>3. Add JavaScript in HTML</h2>
+<div class="card">
+
+<p>
+JavaScript is added using the <b>&lt;script&gt;</b> tag.
+</p>
+
+<h3>Internal JavaScript</h3>
+<div class="code">
+&lt;script&gt;
+console.log("Hello");
+&lt;/script&gt;
+</div>
+
+<h3>External JavaScript</h3>
+<div class="code">
+&lt;script src="script.js"&gt;&lt;/script&gt;
+</div>
+
+<h3>Placement</h3>
+<ul>
+<li>Inside &lt;head&gt;</li>
+<li>At the end of &lt;body&gt; (recommended)</li>
+</ul>
+
+<div class="note">
+Placing script at the bottom improves page loading performance.
+</div>
+
+</div>
+<!-- ROLE -->
+
+<h2>4. Role of JavaScript</h2>
+<div class="card">
+
+<p>JavaScript controls the behavior of web applications.</p>
+
+<ul>
+<li>Update content dynamically</li>
+<li>Handle button clicks</li>
+<li>Validate user input</li>
+<li>Fetch data from APIs</li>
+</ul>
+
+<h3>Example</h3>
+
+<pre>
+<div class="code">
+let name = "Fathima";
+document.write("Welcome " + name);
+</div>
+</pre>
+
+<div class="result">Welcome Fathima</div>
+
+<div class="note">
+JavaScript enables dynamic UI without refreshing the page.
+</div>
+
+</div>
+<!-- BROWSER VS NODE -->
+
+<h2>5. Browser vs Node.js</h2>
+<div class="card">
+
+<p>JavaScript runs in different environments.</p>
+
+<table>
+<tr>
+<th>Feature</th>
+<th>Browser</th>
+<th>Node.js</th>
+</tr>
+<tr>
+<td>DOM Access</td>
+<td>Yes</td>
+<td>No</td>
+</tr>
+<tr>
+<td>File System</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Usage</td>
+<td>Frontend</td>
+<td>Backend</td>
+</tr>
+</table>
+
+<h3>Example</h3>
+
+<div class="code">
+<pre>
+document.write("Hello"); // ❌ Works only in browser
+console.log("Hello");    // ✅ Works everywhere
+</pre>
+</div>
+
+<div class="note">
+Node.js allows JavaScript to run outside the browser.
+</div>
+
+</div>
+
+<!-- V8 -->
+
+<h2>7. V8 Engine</h2>
+<div class="card">
+
+<p>
+JavaScript cannot be understood directly by the computer.
+It needs an engine to convert it into machine code.
+</p>
+
+<div class="code">
+JavaScript → V8 Engine → Machine Code → Output
+</div>
+
+<ul>
+<li>Used in Google Chrome</li>
+<li>Used in Node.js</li>
+</ul>
+
+<div class="note">
+V8 engine converts JavaScript into fast machine-level instructions.
+</div>
+
+</div>
+<h2>8.Where JavaScript runs</h2>
+
+<div class="card">
+
+<ul>
+<li>Web Browsers (Chrome, Firefox)</li>
+<li>Servers using Node.js</li>
+<li>Mobile Apps (React Native)</li>
+<li>Desktop Apps (Electron)</li>
+</ul>
+
+</div>
+<!-- NODE -->
+
+<h2>9. Install Node.js</h2>
+<div class="card">
+
+<ol>
+<li>Go to official website</li>
+<li>Download LTS version</li>
+<li>Install using setup</li>
+<li>Open terminal</li>
+</ol>
+
+<div class="note">
+LTS version is stable and recommended for beginners.
+</div>
+
+</div>
+<!-- VERIFY -->
+
+<h2>10. Verify Installation</h2>
+
+<div class="card">
+
+<div class="code">node -v</div>
+<div class="code">npm -v</div>
+
+</div>
+
+<!-- FIRST PROGRAM -->
+
+<h2>11. First Program</h2>
+<div class="card">
+
+<p>Create a file <b>hello.js</b></p>
+
+<div class="code">
+console.log("Hello JavaScript");
+</div>
+
+<p>Run in terminal:</p>
+
+<div class="code">
+node hello.js
+</div>
+
+<div class="result">Hello JavaScript</div>
+
+<div class="note">
+Node executes JavaScript files outside the browser.
+</div>
+
+</div><!-- CONSOLE -->
+
+<h2>12. console.log()</h2>
+<div class="card">
+
+<p>console.log() prints output to the console.</p>
+
+<div class="code">
+<pre>
+console.log("Hello");
+console.log("Age:", 20);
+console.log(10 + 20);
+</pre>
+</div>
+
+<h3>Why use it?</h3>
+<ul>
+<li>Debug code</li>
+<li>Check values</li>
+<li>Track program flow</li>
+</ul>
+
+<div class="note">
+Developers use console.log extensively for debugging.
+</div>
+
+</div>
+<!-- OUTPUT TYPES -->
+
+<h2>13. Types of Output</h2>
+<div class="card">
+
+<div class="code">
+<pre>
+alert("Hello");        // Popup (Browser only)
+document.write("Hi");  // Writes on webpage
+console.log("Hey");    // Prints in console
+</pre>
+</div>
+
+<div class="note">
+alert() is rarely used in modern apps, mostly for learning.
+</div>
+
+</div>
+
+
+<!-- TASK -->
+
+<h2>16. Practice Task</h2>
+
+<div class="task">
+
+<div class="code">
+<pre>
+console.log("My name is Fathima");
+console.log("I am learning JavaScript");
+console.log(10 + 5);
+</pre>
+</div>
+
+</div>
+
+
+</div>
+
+</body>
+</html>

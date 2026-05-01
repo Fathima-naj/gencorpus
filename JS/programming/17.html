@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>web workers</h2>
+    <button id="startBtn">Start computations</button>
+    <div id="result">Result will appear here...</div>
+
+
+    <script>
+        if(window.Worker){
+            const worker=new Worker("worker.js")
+            //listen for message from the worker
+            worker.onmessage=function(e){
+                document.getElementById("result").innerText="Result: "+e.data
+            };
+
+            //start worker on button click
+            document.getElementById("startBtn").addEventListener('click',function(){
+                document.getElementById('result').innerText="computing...";
+                worker.postMessage("start")
+            })
+        }else{
+        alert("your browser dont support web workers")
+        }
+    </script>
+</body>
+</html>

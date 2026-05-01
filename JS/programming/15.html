@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .card{
+            background-color: rgb(248, 248, 248);
+            padding: 15px;
+            margin-bottom:15px ;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+  <div id="posts">
+    
+  </div>
+  <script>
+    async function loadpost() {
+        let res=await fetch ('https://jsonplaceholder.typicode.com/posts')
+        let posts=await res.json()
+        let container= document.getElementById('posts')
+        posts.slice(0,5).forEach(post=>{
+            let div=document.createElement('div')
+            div.classList.add("card");
+            div.innerHTML=`<h3>${post.title}</h3>
+            <p>${post.body}</p>
+            `;
+            container.appendChild(div)
+        })
+    }
+    loadpost()
+  </script>
+</body>
+</html>

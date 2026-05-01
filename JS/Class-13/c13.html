@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>JavaScript Day 14 – Forms & Events (Detailed Notes)</title>
+
+<style>
+
+body{
+font-family: Arial, Helvetica, sans-serif;
+max-width:950px;
+margin:auto;
+padding:25px;
+line-height:1.7;
+background:#f8fafc;
+}
+
+h1{
+color:#1d4ed8;
+}
+
+h2{
+margin-top:40px;
+color:#0f172a;
+border-bottom:2px solid #e5e7eb;
+padding-bottom:5px;
+}
+
+h3{
+color:#1f2937;
+margin-top:25px;
+}
+
+code{
+background:#eef2ff;
+padding:3px 6px;
+border-radius:4px;
+}
+
+pre{
+background:#d1d1d1;
+color:#0e0e0e;
+padding:15px;
+border-radius:6px;
+overflow-x:auto;
+}
+
+.note{
+background:#ecfeff;
+border-left:4px solid #06b6d4;
+padding:12px;
+margin:15px 0;
+}
+
+.warning{
+background:#fff7ed;
+border-left:4px solid #f97316;
+padding:12px;
+margin:15px 0;
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<h2>Forms & Events </h2>
+
+<p>
+Forms are used to collect user input such as login credentials, search queries,
+contact information, and registrations.
+JavaScript allows us to <b>read form data, validate it, show errors,
+and control submission behavior.</b>
+</p>
+
+<hr>
+
+<h2>1. Accessing Form Fields</h2>
+
+<p>
+Before validating or processing a form, JavaScript must access the form inputs.
+</p>
+
+<h3>Method 1: Using getElementById()</h3>
+
+<pre>
+<input type="text" id="username">
+
+<script>
+
+let name = document.getElementById("username").value;
+console.log(name);
+
+</script>
+
+</pre>
+
+<p>
+<code>.value</code> returns the current value typed by the user.
+</p>
+
+<h3>Method 2: Using querySelector()</h3>
+
+<pre>
+<input type="email" class="email">
+
+<script>
+
+let email = document.querySelector(".email").value;
+console.log(email);
+
+</script>
+
+</pre>
+
+<h3>Method 3: Using form.elements</h3>
+
+<pre>
+<form id="loginForm">
+
+<input type="text" name="username">
+<input type="password" name="password">
+
+</form>
+
+<script>
+
+let form = document.getElementById("loginForm");
+
+let username = form.elements["username"].value;
+let password = form.elements["password"].value;
+
+console.log(username, password);
+
+</script>
+
+</pre>
+
+<div class="note">
+<b>Tip:</b> Using <code>form.elements</code> is helpful when working with large forms.
+</div>
+
+<hr>
+
+<h2>2. Handling Form Submission</h2>
+
+<p>
+Forms automatically reload the page when submitted.
+To control submission behavior we use the <b>submit event</b>.
+</p>
+
+<pre>
+<form id="form">
+<input type="text" id="name">
+<button type="submit">Submit</button>
+</form>
+
+<script>
+
+document.getElementById("form").addEventListener("submit", function(event){
+
+console.log("Form submitted");
+
+});
+
+</script>
+
+</pre>
+
+<h3>Prevent Default Form Submission</h3>
+
+<pre>
+document.getElementById("form").addEventListener("submit", function(e){
+
+e.preventDefault(); // stops page reload
+
+console.log("Form handled with JavaScript");
+
+});
+</pre>
+
+<div class="warning">
+Without <code>preventDefault()</code>, the page reloads and JavaScript data may be lost.
+</div>
+
+<hr>
+
+<h2>3. Form Validation using JavaScript</h2>
+
+<p>
+Validation ensures users provide correct and complete information.
+</p>
+
+<h3>Example: Required Field Validation</h3>
+
+<pre>
+<form id="userForm">
+
+<input type="text" id="username" placeholder="Enter name">
+<button type="submit">Submit</button>
+
+<p id="error"></p>
+
+</form>
+
+<script>
+
+document.getElementById("userForm").addEventListener("submit", function(e){
+
+let name = document.getElementById("username").value;
+let error = document.getElementById("error");
+
+if(name === ""){
+error.textContent = "Name is required";
+error.style.color = "red";
+
+e.preventDefault();
+}
+
+});
+
+</script>
+
+</pre>
+
+<h3>Email Format Validation</h3>
+
+<pre>
+let email = document.getElementById("email").value;
+
+let pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+if(!pattern.test(email)){
+error.textContent = "Invalid email format";
+}
+</pre>
+
+<h3>Password Length Validation</h3>
+
+<pre>
+if(password.length < 6){
+error.textContent = "Password must be at least 6 characters";
+}
+</pre>
+
+<div class="note">
+Validation can also be done using <b>HTML5 attributes</b> like required, minlength,
+pattern, etc., but JavaScript provides more control.
+</div>
+
+<hr>
+
+<h2>4. Displaying Error Messages</h2>
+
+<p>
+Instead of alerts, error messages should appear near the input field.
+</p>
+
+<h3>Example</h3>
+
+<pre>
+<input type="text" id="name">
+<span id="nameError"></span>
+
+<script>
+
+let name = document.getElementById("name").value;
+
+if(name === ""){
+document.getElementById("nameError").textContent =
+"Please enter your name";
+}
+
+</script>
+
+</pre>
+
+<h3>Best Practice</h3>
+
+<ul>
+<li>Show message below input</li>
+<li>Use red color</li>
+<li>Clear message when input becomes valid</li>
+</ul>
+
+<hr>
+
+<h2>5. JavaScript Events</h2>
+
+<p>
+An event is an action that happens in the browser.
+</p>
+
+<h3>Common Form Events</h3>
+
+<table border="1" cellpadding="8">
+
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+
+<tr>
+<td>click</td>
+<td>User clicks element</td>
+</tr>
+
+<tr>
+<td>submit</td>
+<td>Form submitted</td>
+</tr>
+
+<tr>
+<td>input</td>
+<td>User types in field</td>
+</tr>
+
+<tr>
+<td>change</td>
+<td>Input value changes</td>
+</tr>
+
+<tr>
+<td>focus</td>
+<td>Input receives focus</td>
+</tr>
+
+<tr>
+<td>blur</td>
+<td>Input loses focus</td>
+</tr>
+
+</table>
+
+<hr>
+
+<h2>6. Event Bubbling</h2>
+
+<p>
+Event bubbling means the event starts from the target element
+and moves upward through its ancestors.
+</p>
+
+<h3>Structure</h3>
+
+<pre>
+
+DIV (parent)
+   |
+BUTTON (child)
+
+</pre>
+
+<h3>Example</h3>
+
+<pre>
+<div id="parent">
+<button id="child">Click</button>
+</div>
+
+<script>
+
+document.getElementById("child").addEventListener("click", function(){
+console.log("Button clicked");
+});
+
+document.getElementById("parent").addEventListener("click", function(){
+console.log("Div clicked");
+});
+
+</script>
+
+</pre>
+
+<h3>Output when clicking button</h3>
+
+<pre>
+Button clicked
+Div clicked
+</pre>
+
+<div class="note">
+The event first triggers on the button, then bubbles to the parent.
+</div>
+
+<hr>
+
+<h2>7. Stopping Event Bubbling</h2>
+
+<p>
+Use <code>stopPropagation()</code> to prevent the event from reaching parent elements.
+</p>
+
+<pre>
+document.getElementById("child").addEventListener("click", function(e){
+
+console.log("Button clicked");
+
+e.stopPropagation();
+
+});
+</pre>
+
+Now the parent event will not run.
+
+<hr>
+
+<h2>8. Event Delegation</h2>
+
+<p>
+Event delegation attaches a single event listener to a parent
+instead of multiple child elements.
+</p>
+
+<h3>Why use it?</h3>
+
+<ul>
+<li>Better performance</li>
+<li>Works for dynamically added elements</li>
+<li>Cleaner code</li>
+</ul>
+
+<h3>Example</h3>
+
+<pre>
+<ul id="menu">
+<li>Home</li>
+<li>About</li>
+<li>Contact</li>
+</ul>
+
+<script>
+
+document.getElementById("menu").addEventListener("click", function(e){
+
+if(e.target.tagName === "LI"){
+console.log("Clicked:", e.target.textContent);
+}
+
+});
+
+</script>
+
+</pre>
+
+<div class="note">
+Only one event listener handles clicks for all list items.
+</div>
+
+<hr>
+
+<h2>9. Event Propagation</h2>
+
+<p>
+Event propagation describes how events travel through the DOM.
+</p>
+
+<h3>Three Phases</h3>
+
+<pre>
+
+1️⃣ Capturing Phase
+Document → Parent → Child
+
+2️⃣ Target Phase
+Event reaches target element
+
+3️⃣ Bubbling Phase
+Child → Parent → Document
+
+</pre>
+
+<h3>Capturing Example</h3>
+
+<pre>
+element.addEventListener("click", handler, true);
+</pre>
+
+The third parameter <code>true</code> enables capturing.
+
+<h3>Bubbling Example</h3>
+
+<pre>
+element.addEventListener("click", handler, false);
+</pre>
+
+Default behavior is bubbling.
+
+<hr>
+
+<h2>10. Real-World Example (Form Validation)</h2>
+
+<pre>
+<form id="signup">
+
+<input type="text" id="username" placeholder="Username">
+<span id="userError"></span>
+
+<input type="password" id="password" placeholder="Password">
+<span id="passError"></span>
+
+<button type="submit">Register</button>
+
+</form>
+
+<script>
+
+document.getElementById("signup").addEventListener("submit", function(e){
+
+let username = document.getElementById("username").value;
+let password = document.getElementById("password").value;
+
+if(username === ""){
+document.getElementById("userError").textContent = "Username required";
+e.preventDefault();
+}
+
+if(password.length < 6){
+document.getElementById("passError").textContent =
+"Password must be 6 characters";
+e.preventDefault();
+}
+
+});
+
+</script>
+
+</pre>
+
+<hr>
+
+<h2>Summary</h2>
+
+<ul>
+
+<li>JavaScript can access form inputs using DOM methods.</li>
+
+<li>Form validation ensures correct user input.</li>
+
+<li>Error messages should appear near form fields.</li>
+
+<li>Events represent user actions like click, input, submit.</li>
+
+<li>Event bubbling moves from child → parent.</li>
+
+<li>stopPropagation() stops bubbling.</li>
+
+<li>Event delegation attaches event to parent elements.</li>
+
+<li>Event propagation includes capturing and bubbling phases.</li>
+
+</ul>
+
+</body>
+</html>

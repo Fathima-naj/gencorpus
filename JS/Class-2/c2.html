@@ -1,0 +1,476 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Variables & Syntax</title>
+
+<style>
+
+body{
+font-family: Arial, Helvetica, sans-serif;
+max-width:900px;
+margin:auto;
+padding:20px;
+line-height:1.7;
+}
+
+h1{
+text-align:center;
+margin-bottom:40px;
+}
+
+h2{
+color:#0d6efd;
+margin-top:40px;
+}
+
+code{
+background:#f4f4f4;
+padding:3px 6px;
+border-radius:4px;
+}
+
+pre{
+background:#f4f4f4;
+padding:15px;
+border-radius:6px;
+overflow-x:auto;
+}
+
+.task{
+background:#e8f4ff;
+padding:15px;
+border-left:5px solid #0d6efd;
+margin-top:15px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1> Variables & Syntax</h1>
+
+<p>
+Variables are used to <b>store data values</b>.  
+In JavaScript, variables can store numbers, text, arrays, objects, and more.
+</p>
+
+<pre>
+let name = "Fathima";
+let age = 22;
+</pre>
+
+<p>
+Here:
+</p>
+
+<ul>
+<li><b>name</b> and <b>age</b> are variables</li>
+<li>"Fathima" and 22 are values</li>
+</ul>
+
+<hr>
+
+<h2>1. Variable Concept</h2>
+
+<p>
+A variable is a container used to store data values.
+</p>
+
+<pre>
+let city = "Kochi";
+</pre>
+
+<p>
+Here:
+</p>
+
+<ul>
+<li><b>city</b> → variable name (identifier)</li>
+<li>"Kochi" → value stored in memory</li>
+</ul>
+
+<h3>How JavaScript Stores Variables</h3>
+
+<p>
+When JavaScript executes this code, it:
+</p>
+
+<ul>
+<li>Creates a memory space</li>
+<li>Stores the value</li>
+<li>Links the variable name to that value</li>
+</ul>
+
+<div class="task">
+Think of a variable as a <b>name tag attached to a box</b> storing data.
+</div>
+
+<h3>Example</h3>
+
+<pre>
+let score = 50;
+
+score = 80;
+
+console.log(score);
+</pre>
+
+Output:
+<pre>80</pre>
+
+<p>
+The variable updates its value instead of creating a new one.
+</p>
+<hr>
+
+<h2>2. Declaring Variables </h2>
+
+<p>
+Declaring a variable means telling JavaScript to create it.
+</p>
+
+<p>
+JavaScript has three keywords:
+</p>
+
+<ul>
+<li><code>var</code> → old method</li>
+<li><code>let</code> → modern and recommended</li>
+<li><code>const</code> → constant values</li>
+</ul>
+
+<div class="task">
+In modern JavaScript:
+<ul>
+<li>Use <b>let</b> for changing values</li>
+<li>Use <b>const</b> by default</li>
+<li>Avoid <b>var</b></li>
+</ul>
+</div>
+<hr>
+
+<h2>3. var</h2>
+
+
+
+<h3>Features</h3>
+
+<ul>
+<li>Can be reassigned</li>
+<li>Can be redeclared</li>
+</ul>
+
+<h3>Example</h3>
+
+<pre>
+var age = 20;
+age = 25;
+console.log(age);
+</pre>
+
+<h3>Redeclaration</h3>
+
+<pre>
+var name = "Ali";
+var name = "Rahul";
+
+console.log(name);
+</pre>
+
+<!-- <h3>Problem with var</h3>
+
+<pre>
+if(true){
+  var x = 10;
+}
+
+console.log(x);
+</pre>
+
+Output:
+<pre>10</pre> -->
+
+<!-- <div class="task">
+var ignores block scope, which can cause bugs in large applications.
+</div>
+<hr> -->
+
+<h2>4. let</h2>
+
+<p>
+<code>let</code> is the modern way to declare variables.
+</p>
+
+<pre>
+let age = 25;
+</pre>
+
+<p>
+The value can be updated.
+</p>
+
+<pre>
+let score = 80;
+
+score = 90;
+
+console.log(score);
+</pre>
+
+<p>
+But <code>let</code> cannot be redeclared in the same scope.
+</p>
+
+<pre>
+let name = "Sara";
+let name = "Aisha"; 
+</pre>
+
+<p>
+This will cause an error.
+</p>
+
+<hr>
+
+<h2>5. const</h2>
+
+<p>
+<code>const</code> is used when the value should not change.
+</p>
+
+<pre>
+const country = "India";
+</pre>
+
+<p>
+Reassigning a const variable causes an error.
+</p>
+
+<pre>
+const pi = 3.14;
+
+pi = 3.1415;
+</pre>
+
+<p>
+This will give an error.
+</p>
+
+<div class="task">
+Create a constant variable called <code>PI</code>
+and print its value.
+</div>
+
+<hr>
+
+<h2>6. Difference Between var, let, const</h2>
+
+<table border="1" cellpadding="8">
+
+<tr>
+<th>Feature</th>
+<th>var</th>
+<th>let</th>
+<th>const</th>
+</tr>
+
+<tr>
+<td>Redeclaration</td>
+<td>Allowed</td>
+<td>Not allowed</td>
+<td>Not allowed</td>
+</tr>
+
+<tr>
+<td>Reassignment</td>
+<td>Allowed</td>
+<td>Allowed</td>
+<td>Not allowed</td>
+</tr>
+
+<tr>
+<td>Modern usage</td>
+<td>Rare</td>
+<td>Common</td>
+<td>Common</td>
+</tr>
+
+</table>
+
+<hr>
+
+<h2>7. Identifier Naming Rules</h2>
+
+<p>
+Variable names are called <b>identifiers</b>.
+</p>
+
+Rules:
+
+<ul>
+
+<li>Names must start with a letter, <code>$</code>, or <code>_</code></li>
+
+<li>Names cannot start with a number</li>
+
+<li>No spaces allowed</li>
+
+<li>JavaScript keywords cannot be used</li>
+
+<li>Names are case sensitive</li>
+
+</ul>
+
+<h3>Valid Names</h3>
+
+<pre>
+let userName;
+let _price;
+let $amount;
+</pre>
+
+<h3>Invalid Names</h3>
+
+<pre>
+let 1name;
+let user name;
+let let;
+</pre>
+
+<hr>
+
+<h2>8. Comments</h2>
+
+<p>
+Comments are used to explain code and are ignored by JavaScript.
+</p>
+
+<h3>Single Line Comment</h3>
+
+<pre>
+// This is a comment
+let x = 10;
+</pre>
+
+<h3>Multi Line Comment</h3>
+
+<pre>
+/*
+This is a
+multi-line
+comment
+*/
+</pre>
+
+<hr>
+
+<h2>9. Printing Multiple Values</h2>
+
+<p>
+We can print multiple values using <code>console.log()</code>.
+</p>
+
+<pre>
+let name = "Rahul";
+let age = 25;
+
+console.log(name, age);
+</pre>
+
+Output
+
+<pre>
+Rahul 25
+</pre>
+
+<h3>Using String Concatenation</h3>
+
+<pre>
+console.log("Name: " + name + " Age: " + age);
+</pre>
+
+Output
+
+<pre>
+Name: Rahul Age: 25
+</pre>
+
+<h3>Template Literals (Modern Way)</h3>
+
+<pre>
+console.log(`Name: ${name}, Age: ${age}`);
+</pre>
+
+<div class="task">
+Use template literals instead of + for cleaner code.
+</div>
+<hr>
+
+<h2>10. typeof Operator</h2>
+
+<p>
+The <code>typeof</code> operator is used to check the data type of a value.
+</p>
+
+<pre>
+let name = "Fathima";
+let age = 22;
+let isStudent = true;
+</pre>
+
+<pre>
+console.log(typeof name);
+console.log(typeof age);
+console.log(typeof isStudent);
+</pre>
+
+Output
+
+<pre>
+string
+number
+boolean
+</pre>
+
+
+<h3>More Examples</h3>
+
+<pre>
+console.log(typeof 100);
+console.log(typeof "Hello");
+console.log(typeof false);
+console.log(typeof undefined);
+</pre>
+
+<hr>
+
+<h2>Mini Practice</h2>
+
+<ul>
+
+<li>Create variables for name, age, and city.</li>
+
+<li>Print them using console.log.</li>
+
+<li>Change the value of a <code>let</code> variable.</li>
+
+<li>Create a <code>const</code> variable and try changing it.</li>
+
+<li>Write both single-line and multi-line comments.</li>
+
+<li>Print multiple values in one console.log.</li>
+
+<li>Use <code>typeof</code> to check data types.</li>
+
+</ul>
+
+<hr>
+
+</body>
+</html>

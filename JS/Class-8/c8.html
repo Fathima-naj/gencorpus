@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>JavaScript Arrays & HOFs</title>
+
+<style>
+
+body{
+font-family: Arial, Helvetica, sans-serif;
+max-width:900px;
+margin:auto;
+padding:20px;
+line-height:1.7;
+}
+
+h1{
+text-align:center;
+margin-bottom:40px;
+}
+
+h2{
+color:#0b7dda;
+margin-top:40px;
+}
+
+.example{
+background:#e7f3fe;
+padding:15px;
+border-left:5px solid #2196F3;
+margin:20px 0;
+}
+
+.code{
+background:#f1f1f1;
+padding:12px;
+font-family:monospace;
+border-left:5px solid #04AA6D;
+}
+
+.result{
+background:#fafafa;
+border:1px solid #ddd;
+padding:10px;
+margin-top:10px;
+}
+
+.note{
+background:#fff4cc;
+border-left:5px solid orange;
+padding:10px;
+margin-top:10px;
+}
+
+.task{
+background:#e8f8f5;
+border-left:5px solid #16a085;
+padding:12px;
+margin-top:10px;
+}
+
+</style>
+
+</head>
+<body>
+
+<h1>JavaScript Arrays – Advanced Concepts</h1>
+
+<!-- STACK -->
+
+<h2>1. Stack (LIFO)</h2>
+
+<p>
+A Stack is a data structure that follows the principle <b>LIFO (Last In, First Out)</b>.
+The last element added will be the first element removed.
+</p>
+
+<h3>Example (Stack using Array)</h3>
+
+<div class="example">
+
+<div class="code">
+
+let stack = [];
+
+stack.push(10);
+stack.push(20);
+stack.push(30);
+
+console.log(stack);
+
+stack.pop();
+
+console.log(stack);
+
+</div>
+
+<div class="result">
+
+[10,20,30]  
+[10,20]
+
+</div>
+
+</div>
+
+<div class="note">
+push() adds an element to stack.  
+pop() removes the last element.
+</div>
+
+
+
+<!-- QUEUE -->
+
+<h2>2. Queue (FIFO)</h2>
+
+<p>
+A Queue is a linear data structure that follows the principle:
+</p>
+<p>
+👉 FIFO – First In, First Out
+</p>
+<p>
+This means the first element added to the queue is the first one to be removed.
+</p>
+
+<h3>Example (Queue using Array)</h3>
+
+<div class="example">
+
+<div class="code">
+
+let queue = [];
+
+queue.push("A");
+queue.push("B");
+queue.push("C");
+
+console.log(queue);
+
+queue.shift();
+
+console.log(queue);
+
+</div>
+
+<div class="result">
+
+["A","B","C"]  
+["B","C"]
+
+</div>
+
+</div>
+
+<div class="note">
+shift() removes the first element from array.
+</div>
+
+
+
+<!-- HOF -->
+
+<h2>3. Higher Order Functions (HOF)</h2>
+
+<p>
+A <strong>Higher Order Function (HOF)</strong> is a function that 
+<strong>either takes another function as an argument or returns a function</strong>.
+</p>
+
+<p>
+In JavaScript, functions are treated as values. Because of this, we can pass
+functions inside other functions just like variables. When a function works
+with another function in this way, it is called a Higher Order Function.
+</p>
+
+<h3>Example:</h3>
+
+<pre>
+function greet(name){
+    return "Hello " + name;
+}
+
+function processUser(callback){
+    console.log(callback("Fathima"));
+}
+
+processUser(greet);
+</pre>
+
+<p>
+In the above example, <strong>processUser()</strong> is the Higher Order Function
+because it receives another function (<strong>greet</strong>) as an argument.
+</p>
+
+<p>
+Many JavaScript array methods are Higher Order Functions because they accept
+a function as a parameter to process each element of the array.
+</p>
+
+<h3>Common Array Higher Order Functions:</h3>
+
+<ul>
+<li><strong>forEach()</strong> – Executes a function for each array element</li>
+<li><strong>map()</strong> – Creates a new array by transforming elements</li>
+<li><strong>filter()</strong> – Creates a new array with filtered elements</li>
+<li><strong>reduce()</strong> – Reduces array values into a single value</li>
+<li><strong>find()</strong> – Returns the first matching element</li>
+<li><strong>some()</strong> – Checks if at least one element matches a condition</li>
+<li><strong>every()</strong> – Checks if all elements satisfy a condition</li>
+</ul>
+
+<!-- FOREACH -->
+
+<h2>4. forEach()</h2>
+
+<p>
+forEach() executes a function for each array element.
+It does not return a new array.
+</p>
+
+<div class="example">
+
+<div class="code">
+
+<pre>
+let numbers = [1,2,3,4];
+
+numbers.forEach(function(num){
+console.log(num);
+});
+
+</pre>
+</div>
+
+<div class="result">
+1  
+2  
+3  
+4
+</div>
+
+</div>
+
+
+
+<!-- MAP -->
+
+<h2>5. map()</h2>
+
+<p>
+map() creates a new array by transforming each element.
+</p>
+
+<div class="example">
+
+<div class="code">
+
+<pre>
+let numbers = [1,2,3,4];
+
+let square = numbers.map(function(n){
+return n*n;
+});
+
+console.log(square);
+
+</pre>
+</div>
+
+<div class="result">
+
+[1,4,9,16]
+
+</div>
+
+</div>
+
+
+
+<!-- FILTER -->
+
+<h2>6. filter()</h2>
+
+<p>
+filter() returns elements that satisfy a condition.
+</p>
+
+<div class="example">
+
+<div class="code">
+
+<pre>
+let numbers = [10,15,20,25,30];
+
+let result = numbers.filter(function(n){
+return n>20;
+});
+
+console.log(result);
+
+</pre>
+</div>
+
+<div class="result">
+[25,30]
+</div>
+
+</div>
+
+
+
+<!-- REDUCE -->
+
+<h2>7. reduce()</h2>
+
+<p>
+reduce() reduces the array into a single value.
+Often used for sum or totals.
+</p>
+
+<div class="example">
+
+<div class="code">
+
+<pre>
+let numbers = [1,2,3,4];
+
+let sum = numbers.reduce(function(acc,val){
+return acc+val;
+},0);
+
+console.log(sum);
+
+</pre>
+</div>
+
+<div class="result">
+10
+</div>
+
+</div>
+
+
+
+<!-- FIND -->
+
+<h2>8. find()</h2>
+
+<p>
+find() returns the first element that matches the condition.
+</p>
+
+<div class="example">
+
+<div class="code">
+
+<pre>
+let numbers = [5,10,15,20];
+
+let result = numbers.find(function(n){
+return n>10;
+});
+
+console.log(result);
+</pre>
+
+</div>
+
+<div class="result">
+15
+</div>
+
+</div>
+
+
+
+<!-- SOME -->
+
+<h2>9. some()</h2>
+
+<p>
+some() checks if at least one element satisfies the condition.
+Returns true or false.
+</p>
+
+<div class="example">
+
+<div class="code">
+<pre>
+    
+let numbers = [1,3,5,8];
+
+let result = numbers.some(function(n){
+return n%2===0;
+});
+
+console.log(result);
+</pre>
+
+</div>
+
+<div class="result">
+true
+</div>
+
+</div>
+
+
+
+<!-- EVERY -->
+
+<h2>10. every()</h2>
+
+<p>
+every() checks if all elements satisfy the condition.
+</p>
+
+<div class="example">
+
+<div class="code">
+
+<pre>
+let numbers = [2,4,6,8];
+
+let result = numbers.every(function(n){
+return n%2===0;
+});
+
+console.log(result);
+</pre>
+
+</div>
+
+<div class="result">
+true
+</div>
+
+</div>
+
+
+<!-- LENGTH --> <h2>1. length</h2> <p> length returns the number of elements in an array. </p> <div class="example"> <div class="code"> <pre> let arr = [1,2,3,4];
+
+console.log(arr.length);
+</pre>
+
+</div> <div class="result"> 4 </div> </div>
+
+<!-- toString --> <h2>2. toString()</h2> <p> toString() converts an array into a string. </p> <div class="example"> <div class="code"> <pre> let arr = [1,2,3];
+
+console.log(arr.toString());
+</pre>
+
+</div> <div class="result"> "1,2,3" </div> </div>
+
+<!-- at --> <h2>3. at()</h2> <p> at() returns the element at a specific index. Supports negative index. </p> <div class="example"> <div class="code"> <pre> let arr = [10,20,30];
+
+console.log(arr.at(-1));
+</pre>
+
+</div> <div class="result"> 30 </div> </div>
+
+<!-- join --> <h2>4. join()</h2> <p> join() combines array elements into a string with a separator. </p> <div class="example"> <div class="code"> <pre> let arr = ["A","B","C"];
+
+console.log(arr.join("-"));
+</pre>
+
+</div> <div class="result"> "A-B-C" </div> </div>
+
+<!-- Array.isArray --> <h2>5. Array.isArray()</h2> <p> Checks whether a value is an array or not. </p> <div class="example"> <div class="code"> <pre> let arr = [1,2,3];
+
+console.log(Array.isArray(arr));
+</pre>
+
+</div> <div class="result"> true </div> </div>
+
+<!-- concat --> <h2>6. concat()</h2> <p> concat() merges two or more arrays. </p> <div class="example"> <div class="code"> <pre> let a = [1,2]; let b = [3,4];
+
+let result = a.concat(b);
+
+console.log(result);
+</pre>
+
+</div> <div class="result"> [1,2,3,4] </div> </div>
+
+<!-- flat --> <h2>7. flat()</h2> <p> flat() flattens nested arrays into a single array. </p> <div class="example"> <div class="code"> <pre> let arr = [1,[2,3],[4,5]];
+
+console.log(arr.flat());
+</pre>
+
+</div> <div class="result"> [1,2,3,4,5] </div> </div>
+
+<!-- slice --> <h2>8. slice()</h2> <p> slice() returns a portion of an array without modifying the original array. </p> <div class="example"> <div class="code"> <pre> let arr = [1,2,3,4];
+
+console.log(arr.slice(1,3));
+</pre>
+
+</div> <div class="result"> [2,3] </div> </div>
+
+<!-- splice --> <h2>9. splice()</h2> <p> splice() adds/removes elements and modifies the original array. </p> <div class="example"> <div class="code"> <pre> let arr = [1,2,3];
+
+arr.splice(1,1,99);
+
+console.log(arr);
+</pre>
+
+</div> <div class="result"> [1,99,3] </div> </div>
+
+<!-- indexOf --> <h2>10. indexOf()</h2> <p> indexOf() returns the first index of an element. </p> <div class="example"> <div class="code"> <pre> let arr = [1,2,3,2];
+
+console.log(arr.indexOf(2));
+</pre>
+
+</div> <div class="result"> 1 </div> </div>
+<!-- lastIndexOf --> <h2>11. lastIndexOf()</h2> <p> lastIndexOf() returns the last index of an element. </p> <div class="example"> <div class="code"> <pre> let arr = [1,2,3,2];
+
+console.log(arr.lastIndexOf(2));
+</pre>
+
+</div> <div class="result"> 3 </div> </div>
+<!-- includes --> <h2>12. includes()</h2> <p> includes() checks if an element exists in the array. </p> <div class="example"> <div class="code"> <pre> let arr = [1,2,3];
+
+console.log(arr.includes(2));
+</pre>
+
+</div> <div class="result"> true </div> </div>
+<!-- reverse --> <h2>13. reverse()</h2> <p> reverse() reverses the array (modifies original array). </p> <div class="example"> <div class="code"> <pre> let arr = [1,2,3];
+
+arr.reverse();
+
+console.log(arr);
+</pre>
+
+</div> <div class="result"> [3,2,1] </div> </div>
+<!-- sort --> <h2>14. sort()</h2> <p> sort() sorts the array elements (by default as strings). </p> <div class="example"> <div class="code"> <pre> let arr = [3,1,2];
+
+arr.sort();
+
+console.log(arr);
+</pre>
+
+</div> <div class="result"> [1,2,3] </div> </div>
+
+<h2>15. sort() with Numbers</h2> <p> By default, sort() treats numbers as strings. So we use a compare function to sort numbers correctly. </p> <div class="example"> <div class="code"> <pre> let arr = [10, 5, 2, 25];
+
+// Ascending order
+arr.sort(function(a, b){
+return a - b;
+});
+
+console.log(arr);
+</pre>
+
+</div> <div class="result"> [2, 5, 10, 25] </div> </div>
+<!-- DESCENDING --> <h2>16. sort() Descending</h2> <p> To sort numbers in descending order, reverse the subtraction. </p> <div class="example"> <div class="code"> <pre> let arr = [10, 5, 2, 25];
+
+// Descending order
+arr.sort(function(a, b){
+return b - a;
+});
+
+console.log(arr);
+</pre>
+
+</div> <div class="result"> [25, 10, 5, 2] </div> </div>
+
+<!-- SPREAD -->
+
+<h2>11. Spread Operator (...)</h2>
+
+<p>
+Spread operator expands elements of an array.
+</p>
+<p>allows us to quickly copy all or part of an existing array or object into another array or object.</p>
+
+<div class="example">
+
+<div class="code">
+
+let a = [1,2,3];
+let b = [...a,4,5];
+
+console.log(b);
+
+</div>
+
+<div class="result">
+[1,2,3,4,5]
+</div>
+
+</div>
+
+
+
+<!-- DESTRUCTURING -->
+
+<h2>12. Array Destructuring</h2>
+
+<p>
+Array Destructuring is a JavaScript feature that allows us to extract
+values from an array and store them in variables easily.
+</p>
+
+<p>
+Instead of accessing values using indexes like this:
+</p>
+
+<pre class="code">
+let numbers = [10,20,30];
+
+let a = numbers[0];
+let b = numbers[1];
+let c = numbers[2];
+</pre>
+
+<p>
+We can use destructuring to make the code shorter and cleaner.
+</p>
+
+<h3>Basic Example</h3>
+
+<div class="example">
+
+<pre class="code">
+let numbers = [10,20,30];
+
+let [a,b,c] = numbers;
+
+console.log(a);
+console.log(b);
+console.log(c);
+</pre>
+
+<div class="result">
+10  
+20  
+30
+</div>
+
+</div>
+
+<p>
+Here:
+</p>
+
+<ul>
+<li>a gets the first value</li>
+<li>b gets the second value</li>
+<li>c gets the third value</li>
+</ul>
+
+---
+
+<h3>Skipping Values</h3>
+
+<p>
+We can skip values using commas.
+</p>
+
+<div class="example">
+
+<pre class="code">
+let numbers = [10,20,30,40];
+
+let [first,,third] = numbers;
+
+console.log(first);
+console.log(third);
+</pre>
+
+<div class="result">
+10  
+30
+</div>
+
+</div>
+
+---
+
+<h3>Default Values</h3>
+
+<p>
+If the array does not have enough values,
+we can assign default values.
+</p>
+
+<div class="example">
+
+<pre class="code">
+let numbers = [10];
+
+let [a,b=20] = numbers;
+
+console.log(a);
+console.log(b);
+</pre>
+
+<div class="result">
+10  
+20
+</div>
+
+</div>
+
+---
+
+<h3>Using Rest Operator</h3>
+
+<p>
+The rest operator (...) collects remaining values into another array.
+</p>
+
+<div class="example">
+
+<pre class="code">
+let numbers = [1,2,3,4,5];
+
+let [first,second,...rest] = numbers;
+
+console.log(first);
+console.log(second);
+console.log(rest);
+</pre>
+
+<div class="result">
+1  
+2  
+[3,4,5]
+</div>
+
+</div>
+
+<div class="note">
+Array destructuring makes code cleaner and is commonly used in modern JavaScript
+and frameworks like React.
+</div>
+
+<!-- TASK -->
+
+<h2>Practice Task – array_hof.js</h2>
+
+<div class="task">
+
+<p>Create a file <b>array_hof.js</b> and complete the following tasks:</p>
+
+<ol>
+<li>Create an array of numbers.</li>
+
+<li>Print all elements using <b>forEach()</b>.</li>
+
+<li>Create a new array with squares using <b>map()</b>.</li>
+
+<li>Filter numbers greater than 20 using <b>filter()</b>.</li>
+
+<li>Find the first number divisible by 5 using <b>find()</b>.</li>
+
+<li>Check if any number is negative using <b>some()</b>.</li>
+
+<li>Check if all numbers are positive using <b>every()</b>.</li>
+
+<li>Find the sum of all numbers using <b>reduce()</b>.</li>
+
+<li>Copy the array using the <b>spread operator (...)</b>.</li>
+
+<li>Use <b>array destructuring</b> to extract the first two values.</li>
+</ol>
+
+</div>
+</body>
+</html>

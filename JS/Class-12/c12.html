@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>JavaScript DOM Basics</title>
+
+<style>
+
+body{
+font-family: Arial, Helvetica, sans-serif;
+max-width: 900px;
+margin: auto;
+padding: 20px;
+line-height: 1.8;
+background:#f9fafb;
+}
+
+h1{
+text-align:center;
+margin-bottom:40px;
+}
+
+h2{
+margin-top:40px;
+color:#1f2937;
+}
+
+pre{
+background:#e3e3e3;
+color:#000;
+padding:15px;
+border-radius:8px;
+overflow:auto;
+}
+
+.note{
+background:#e0f2fe;
+padding:10px;
+border-left:4px solid #0284c7;
+margin:15px 0;
+}
+
+table{
+border-collapse: collapse;
+width:100%;
+margin-top:10px;
+}
+
+th,td{
+border:1px solid #ddd;
+padding:10px;
+}
+
+.demo-box{
+margin-top:20px;
+padding:20px;
+background:#dbeafe;
+border-radius:6px;
+}
+
+button{
+padding:10px 15px;
+border:none;
+background:#2563eb;
+color:white;
+border-radius:4px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>JavaScript DOM Basics</h1>
+
+<p>
+DOM stands for <b>Document Object Model</b>.  
+It is a programming interface that represents the structure of an HTML document as a tree of objects.
+</p>
+
+<div class="note">
+Using DOM, JavaScript can access and manipulate HTML elements such as text, attributes, styles, and events.
+</div>
+
+<hr>
+
+<h2>1. What is DOM?</h2>
+
+<p>
+When a webpage loads, the browser converts HTML into a tree-like structure called the DOM.  
+Each HTML element becomes a node that JavaScript can access.
+</p>
+
+<pre>
+HTML Structure
+
+&lt;body&gt;
+  &lt;h1&gt;Hello&lt;/h1&gt;
+&lt;/body&gt;
+</pre>
+
+<pre>
+DOM Tree
+
+document
+ └── body
+      └── h1
+</pre>
+
+Example:
+
+<pre>
+// prints the entire HTML document
+console.log(document);
+</pre>
+
+<hr>
+
+<h2>2. Selecting Elements</h2>
+
+<p>
+To manipulate elements, JavaScript must first select them from the DOM.
+</p>
+
+<h3>getElementById()</h3>
+
+<p>Selects an element using its unique ID.</p>
+
+<pre>
+const title = document.getElementById("title");
+</pre>
+
+Example HTML:
+
+<pre>
+&lt;h1 id="title"&gt;Hello&lt;/h1&gt;
+</pre>
+
+---
+
+<h3>getElementsByClassName()</h3>
+
+<p>Selects all elements that have the same class name.</p>
+
+<pre>
+const items = document.getElementsByClassName("item");
+</pre>
+
+Example:
+
+<pre>
+&lt;p class="item"&gt;One&lt;/p&gt;
+&lt;p class="item"&gt;Two&lt;/p&gt;
+</pre>
+
+---
+
+<h3>getElementsByTagName()</h3>
+
+<p>Selects elements by their HTML tag name.</p>
+
+<pre>
+const paragraphs = document.getElementsByTagName("p");
+</pre>
+
+---
+
+<h3>querySelector()</h3>
+
+<p>
+Selects the <b>first element</b> that matches a CSS selector.
+</p>
+
+<pre>
+const element = document.querySelector(".box");
+</pre>
+
+Example:
+
+<pre>
+&lt;div class="box"&gt;Content&lt;/div&gt;
+</pre>
+
+---
+
+<h3>querySelectorAll()</h3>
+
+<p>
+Selects <b>all elements</b> that match a CSS selector.
+</p>
+
+<pre>
+const elements = document.querySelectorAll(".box");
+</pre>
+
+<div class="note">
+querySelector and querySelectorAll use CSS selector syntax.
+</div>
+
+<hr>
+
+<h2>3. Updating Text</h2>
+
+<p>
+JavaScript can modify the content of HTML elements.
+</p>
+
+<h3>innerText</h3>
+
+<p>Changes visible text inside an element.</p>
+
+<pre>
+document.getElementById("title").innerText = "New Heading";
+</pre>
+
+---
+
+<h3>textContent</h3>
+
+<p>Changes text content including hidden text.</p>
+
+<pre>
+document.getElementById("title").textContent = "Updated Text";
+</pre>
+
+---
+
+<h3>innerHTML</h3>
+
+<p>Allows inserting HTML inside an element.</p>
+
+<pre>
+document.getElementById("box").innerHTML = "&lt;b&gt;Hello&lt;/b&gt;";
+</pre>
+
+<hr>
+
+<h2>4. Updating Styles</h2>
+
+<p>
+JavaScript can dynamically change CSS styles.
+</p>
+
+<pre>
+const box = document.getElementById("box");
+
+box.style.color = "white";
+box.style.backgroundColor = "blue";
+box.style.padding = "20px";
+</pre>
+
+Example result:
+
+- Text becomes white  
+- Background becomes blue  
+- Padding increases
+
+<hr>
+
+<h2>5. Event Listeners</h2>
+
+<p>
+Events allow JavaScript to respond to user interactions such as clicks, typing, or mouse movement.
+</p>
+
+Example:
+
+<pre>
+const btn = document.getElementById("btn");
+
+btn.addEventListener("click", function(){
+alert("Button Clicked");
+});
+</pre>
+
+Explanation:
+
+- `addEventListener()` attaches an event to an element
+- `"click"` is the event type
+- function runs when event occurs
+
+<hr>
+
+<h2>6. Common Events</h2>
+
+<table>
+
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+
+<tr>
+<td>click</td>
+<td>Occurs when user clicks an element</td>
+</tr>
+
+<tr>
+<td>mouseover</td>
+<td>Occurs when mouse enters element</td>
+</tr>
+
+<tr>
+<td>mouseout</td>
+<td>Occurs when mouse leaves element</td>
+</tr>
+
+<tr>
+<td>keydown</td>
+<td>Occurs when keyboard key is pressed</td>
+</tr>
+
+<tr>
+<td>submit</td>
+<td>Occurs when form is submitted</td>
+</tr>
+
+</table>
+
+<hr>
+
+<h2>7. Live DOM Example</h2>
+
+<p>
+Click the button below to see DOM manipulation in action.
+</p>
+
+<div class="demo-box">
+
+<h2 id="title">Hello DOM</h2>
+
+<p id="box">This text will change using JavaScript.</p>
+
+<button id="btn">Click Me</button>
+
+</div>
+
+
+<script src="dom.js"></script>
+
+</body>
+</html>

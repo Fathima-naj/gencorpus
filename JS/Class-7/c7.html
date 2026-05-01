@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>JavaScript Core Concepts</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+body{
+    font-family: Verdana, sans-serif;
+    margin:0;
+    background-color:#f1f1f1;
+}
+
+/* Header */
+.header{
+    color:black;
+    padding:20px;
+    text-align:center;
+}
+
+/* Container */
+.container{
+    width:90%;
+    max-width:1000px;
+    margin:30px auto;
+}
+
+/* Section */
+.section{
+    background:white;
+    padding:20px;
+    margin-bottom:25px;
+    border-left:5px solid #5f6261;
+    box-shadow:0 2px 5px rgba(0,0,0,0.08);
+}
+
+pre{
+    background-color:#E7E9EB;
+    padding:15px;
+    overflow:auto;
+    border-left:4px solid #676968;
+}
+
+h2{
+    color:#000000;
+}
+
+p{
+    line-height:1.6;
+}
+
+ul{
+    line-height:1.8;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>JavaScript Core Concepts</h1>
+</div>
+
+<div class="container">
+
+    <!-- Scope Introduction -->
+    <div class="section">
+        <h2>Scope in JavaScript</h2>
+        <p>
+            Scope defines where a variable can be accessed in a program.
+            It controls the visibility and lifetime of variables.
+        </p>
+        <p>
+            In JavaScript, there are mainly three types of scope:
+        </p>
+        <ul>
+            <li><b>Global Scope</b> – Variable accessible everywhere.</li>
+            <li><b>Function Scope</b> – Variable accessible only inside a function.</li>
+            <li><b>Block Scope</b> – Variable accessible only inside { } block.</li>
+        </ul>
+    </div>
+
+    <!-- Block vs Function Scope -->
+    <div class="section">
+        <h2>1. Block Scope vs Function Scope</h2>
+
+        <h3>Function Scope (var)</h3>
+         <p>
+            Function scope means a variable declared inside a function
+            can only be used inside that function.
+        </p>
+<pre>
+function test() {
+    var a = 10;
+}
+console.log(a); // Error
+</pre>
+
+        <h3>Block Scope (let)</h3>
+        <p>
+            Block scope means a variable declared inside a block { }
+            can only be used inside that block.
+        </p>
+
+<pre>
+if(true){
+    let b = 20;
+}
+console.log(b); // Error
+</pre>
+    </div>
+
+    <!-- var vs let -->
+    <div class="section">
+        <h2>2. var vs let</h2>
+
+        <p>
+            Both <b>var</b> and <b>let</b> are used to declare variables,
+            but they behave differently.
+        </p>
+
+        <ul>
+            <li><b>var</b> → Function scoped</li>
+            <li><b>let</b> → Block scoped</li>
+            <li><b>var</b> allows redeclaration</li>
+            <li><b>let</b> does not allow redeclaration in same scope</li>
+            <li><b>let</b> is safer and recommended in modern JavaScript</li>
+        </ul>
+
+<pre>
+var x = 10;
+var x = 20; // Allowed
+
+let y = 10;
+let y = 20; // Error
+</pre>
+    </div>
+
+    <!-- Lexical Scope -->
+    <div class="section">
+        <h2>3. Lexical Scope & Closures</h2>
+
+        <p>
+            Lexical scope means a function can access variables
+            from its parent (outer) function.
+        </p>
+
+        <h3>Lexical Scope Example</h3>
+<pre>
+function outer(){
+    let name = "JS";
+
+    function inner(){
+        console.log(name);
+    }
+    inner();
+}
+outer();
+</pre>
+
+        <p>
+            A closure is created when an inner function remembers
+            and accesses variables from its outer function even after
+            the outer function has finished execution.
+        </p>
+
+        <h3>Closure Example</h3>
+<pre>
+function counter(){
+    let count = 0;
+
+    return function(){
+        count++;
+        console.log(count);
+    }
+}
+
+let c = counter();
+c();
+c();
+</pre>
+    </div>
+
+    <!-- Arrays -->
+    <div class="section">
+        <h2>4. Array Creation & Access</h2>
+
+        <p>
+            An array is a data structure used to store multiple values
+            in a single variable.
+        </p>
+
+        <p>
+            Arrays are zero-indexed, meaning the first element starts at index 0.
+        </p>
+
+<pre>
+let arr = [10, 20, 30];
+
+console.log(arr[0]);      // 10
+console.log(arr.length);  // 3
+</pre>
+    </div>
+
+    <!-- Looping -->
+   <div class="section">
+    <h2>5. Looping in JavaScript</h2>
+
+    <p>
+        Looping is used to execute a block of code multiple times.
+        It is commonly used for arrays, numbers, and repetitive tasks.
+    </p>
+
+    <h3>1. for Loop</h3>
+    <p>
+        Used when you know how many times you want to run the loop.
+    </p>
+<pre>
+for(let i = 0; i < 5; i++){
+    console.log(i);
+}
+</pre>
+
+    <h3>2. while Loop</h3>
+    <p>
+        Runs as long as the condition is true.
+    </p>
+<pre>
+let i = 0;
+
+while(i < 5){
+    console.log(i);
+    i++;
+}
+</pre>
+
+    <h3>3. do...while Loop</h3>
+    <p>
+        Executes at least once, even if condition is false.
+    </p>
+<pre>
+let i = 0;
+
+do{
+    console.log(i);
+    i++;
+}while(i < 5);
+</pre>
+
+    <h3>4. for...of Loop (Best for Arrays)</h3>
+    <p>
+        Used to loop through array values directly.
+    </p>
+<pre>
+let arr = [10,20,30];
+
+for(let value of arr){
+    console.log(value);
+}
+</pre>
+
+    <h3>5. for...in Loop</h3>
+    <p>
+        Used to loop through indexes of an array or keys of an object.
+    </p>
+<pre>
+let arr = [10,20,30];
+
+for(let index in arr){
+    console.log(index);      // prints index
+    console.log(arr[index]); // prints value
+}
+</pre>
+
+    <h3>6. break Statement</h3>
+    <p>
+        Stops the loop immediately.
+    </p>
+<pre>
+for(let i = 0; i < 10; i++){
+    if(i === 5){
+        break;
+    }
+    console.log(i);
+}
+</pre>
+
+    <h3>7. continue Statement</h3>
+    <p>
+        Skips current iteration and continues with next.
+    </p>
+<pre>
+for(let i = 0; i < 5; i++){
+    if(i === 2){
+        continue;
+    }
+    console.log(i);
+}
+</pre>
+
+    <h3>8. Nested Loop</h3>
+    <p>
+        A loop inside another loop.
+        Commonly used for patterns and matrix problems.
+    </p>
+<pre>
+for(let i = 1; i <= 3; i++){
+    for(let j = 1; j <= 3; j++){
+        console.log(i, j);
+    }
+}
+</pre>
+
+    <h3>When to Use Which Loop?</h3>
+    <ul>
+        <li><b>for</b> → When count is known</li>
+        <li><b>while</b> → When condition-based looping</li>
+        <li><b>do...while</b> → Must execute at least once</li>
+        <li><b>for...of</b> → Best for arrays</li>
+        <li><b>for...in</b> → Best for objects</li>
+    </ul>
+
+</div>
+    <!-- Array Methods -->
+    <div class="section">
+        <h2>6. Array Methods</h2>
+
+        <p>
+            JavaScript provides built-in methods to add or remove
+            elements from an array.
+        </p>
+
+<pre>
+let numbers = [1,2,3];
+
+numbers.push(4);     
+numbers.pop();       
+numbers.shift();     
+numbers.unshift(0);  
+
+console.log(numbers);
+</pre>
+
+        <ul>
+            <li><b>push()</b> → Adds element at the end</li>
+            <li><b>pop()</b> → Removes element from the end</li>
+            <li><b>shift()</b> → Removes first element</li>
+            <li><b>unshift()</b> → Adds element at the beginning</li>
+        </ul>
+    </div>
+
+    <!-- Practice -->
+    <div class="section">
+        <h2>Practice Questions</h2>
+        <ul>
+      <li>Create an array of 5 numbers and print the first and last element.</li>
+    <li>Add an element at the end of an array using <b>push()</b> and remove the last element using <b>pop()</b>.</li>
+    <li>Print numbers from 1 to 10 using a <b>for</b> loop.</li>
+    <li>Print even numbers between 1 and 20.</li>
+    <li>Loop through an array using <b>for...of</b> and print each value.</li>
+    <li>Find the largest number in an array using a loop.</li>
+    <li>Print a right triangle star pattern using nested loops.</li>
+</ul>
+    </div>
+
+</div>
+
+</body>
+</html>
