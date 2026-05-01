@@ -1,0 +1,46 @@
+import { Routes, Route } from "react-router-dom";
+import Layout from "./layout/Layout";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Login from "./pages/Login";
+import Users from "./pages/Users";
+import UserDetails from "./pages/UserDetails";
+import Dashboard from "./pages/Dashboard";
+import Profile from "./pages/Profile";
+import Settings from "./pages/Settings";
+import NotFound from "./pages/NotFound";
+import PrivateRoute from "./components/PrivateRoute";
+
+function App() {
+  return (
+    <Routes>
+
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="about" element={<About />} />
+
+        <Route path="users" element={
+          <PrivateRoute><Users /></PrivateRoute>
+        } />
+
+        <Route path="user/:id" element={
+          <PrivateRoute><UserDetails /></PrivateRoute>
+        } />
+
+        <Route path="dashboard" element={
+          <PrivateRoute><Dashboard /></PrivateRoute>
+        }>
+          <Route path="profile" element={<Profile />} />
+          <Route path="settings" element={<Settings />} />
+        </Route>
+
+      </Route>
+
+      <Route path="/login" element={<Login />} />
+      <Route path="*" element={<NotFound />} />
+
+    </Routes>
+  );
+}
+
+export default App;

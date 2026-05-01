@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>React Notes - Conditional Rendering & Lists</title>
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  padding: 20px;
+}
+
+h1{
+  text-align:center;
+}
+
+h2{
+  background:#f4f4f4;
+  padding:10px;
+  border-left:5px solid #04AA6D;
+}
+
+.example{
+  background:#f9f9f9;
+  padding:10px;
+  margin:10px 0;
+  border-left:4px solid #2196F3;
+}
+
+code{
+  background:#eee;
+  padding:2px 5px;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>React - Conditional Rendering & Lists</h1>
+
+<!-- ================= CONDITIONAL RENDERING ================= -->
+
+<h2>🔹 Conditional Rendering</h2>
+
+<p>Conditional rendering means showing different UI based on conditions (like if, true/false).</p>
+
+<!-- IF -->
+<h3>1. Using if statement (Expanded)</h3>
+
+<p>
+The <b>if statement</b> is used when you want to return completely different UI based on a condition.
+</p>
+
+<p><b>Important:</b> You cannot use <code>if</code> directly inside JSX. It must be used <b>before the return statement</b>.</p>
+
+<h3>🔹 Basic Example</h3>
+
+<div class="example">
+<pre>
+function App() {
+const isLoggedIn = true;
+
+if (isLoggedIn) {
+return &lt;h1&gt;Welcome User&lt;/h1&gt;;
+} else {
+return &lt;h1&gt;Please Login&lt;/h1&gt;;
+}
+}
+ </pre>
+
+</div>
+
+<p>👉 If <code>isLoggedIn</code> is true → "Welcome User" is shown</p>
+<p>👉 If false → "Please Login" is shown</p>
+
+<hr>
+
+<h3>🔹 Example with Variable</h3>
+
+<div class="example">
+<pre>
+function App() {
+  const isLoggedIn = false;
+  let message;
+
+if (isLoggedIn) {
+message = "Welcome Back!";
+} else {
+message = "Please Login First";
+}
+
+return &lt;h2&gt;{message}&lt;/h2&gt;;
+} </pre>
+
+</div>
+
+<p>👉 Here we store result in a variable and render it inside JSX.</p>
+
+<hr>
+
+<h3>🔹 Example with Multiple Conditions</h3>
+
+<div class="example">
+<pre>
+function App() {
+  const user = "admin";
+
+if (user === "admin") {
+return &lt;h1&gt;Admin Dashboard&lt;/h1&gt;;
+} else if (user === "user") {
+return &lt;h1&gt;User Dashboard&lt;/h1&gt;;
+} else {
+return &lt;h1&gt;Guest Page&lt;/h1&gt;;
+}
+} </pre>
+
+</div>
+
+<p>👉 You can use <code>else if</code> for multiple conditions.</p>
+
+<hr>
+
+<h3>🔹 When to Use if Statement?</h3>
+
+<ul>
+  <li>When you need <b>full control</b> over rendering</li>
+  <li>When returning <b>completely different UI</b></li>
+  <li>When logic is <b>complex</b></li>
+</ul>
+
+<hr>
+
+<h3>⚠️ Common Mistake</h3>
+
+<div class="example">
+<pre>
+return (
+  &lt;div&gt;
+    if(isLoggedIn){   // ❌ WRONG
+      &lt;h1&gt;Welcome&lt;/h1&gt;
+    }
+  &lt;/div&gt;
+)
+</pre>
+</div>
+
+<p>❌ You cannot write <code>if</code> inside JSX like this.</p>
+
+<p>✅ Instead, use:</p>
+<ul>
+  <li><code>if</code> outside return</li>
+  <li><code>&&</code> operator</li>
+  <li><code>ternary operator</code></li>
+</ul>
+
+</div>
+
+<!-- && -->
+
+<h3>2. Using && (AND operator)</h3>
+
+<p>Used when you want to show something only if condition is true.</p>
+
+<div class="example">
+<pre>
+function App() {
+  const isLoggedIn = true;
+
+return (
+<div>
+isLoggedIn && &lt;p&gt;Welcome back!&lt;/p&gt;
+</div>
+);
+} </pre>
+
+</div>
+
+<p>👉 If condition is false, nothing will render.</p>
+
+<!-- TERNARY -->
+
+<h3>3. Using Ternary Operator</h3>
+
+<p>Best for if-else inside JSX.</p>
+
+<div class="example">
+<pre>
+function App() {
+  const isLoggedIn = false;
+
+return (
+<div>
+{isLoggedIn ?
+&lt;h1&gt; Dashboard &lt;/h1&gt; :
+&lt;h1&gt; Login Page &lt;/h1&gt;
+}
+</div>
+);
+} </pre>
+
+</div>
+
+<!-- ================= LIST RENDERING ================= -->
+<h2>🔹 Rendering Lists (Arrays)</h2>
+
+<p>
+In React, we use the <code>map()</code> function to display lists (arrays) dynamically.
+Instead of writing elements manually, React can generate them automatically from data.
+</p>
+
+<h3>🔹 Basic Example</h3>
+
+<div class="example">
+<pre>
+function App() {
+  const fruits = ["Apple", "Banana", "Mango"];
+
+return (
+ &lt;ul&gt;
+{fruits.map((item) => (
+ &lt;li&gt;{item}&lt;/li&gt;
+))}
+ &lt;/ul&gt;
+);
+} </pre>
+
+</div>
+
+<p>👉 Each array item becomes one &lt;li&gt; element.</p>
+
+<hr>
+
+<h3>🔸 How map() Works</h3>
+
+<ul>
+  <li>Loops through each item in the array</li>
+  <li>Runs a function for every item</li>
+  <li>Returns JSX (HTML-like code)</li>
+  <li>Creates multiple elements dynamically</li>
+</ul>
+
+<hr>
+
+<h3>🔹 Using Index (Second Parameter)</h3>
+
+<p>You can also access the index of each item.</p>
+
+<div class="example">
+<pre>
+{fruits.map((item, index) => (
+  &lt;li&gt;
+    {index + 1}. {item}
+  &lt;/li&gt;
+))}
+</pre>
+</div>
+
+<p>👉 Output: 1. Apple, 2. Banana, 3. Mango</p>
+
+<hr>
+
+<h3>🔹 Rendering Objects in Array</h3>
+
+<p>Often, arrays contain objects instead of simple strings.</p>
+
+<div class="example">
+<pre>
+const users = [
+  { id: 1, name: "Ali" },
+  { id: 2, name: "Sara" }
+];
+
+return (
+ &lt;ul&gt;
+{users.map((user) => (
+&lt;li&gt;{user.name}&lt;/li&gt;
+))}
+&lt;/ul&gt;
+); </pre>
+
+</div>
+
+<p>👉 Access object properties using <code>user.name</code></p>
+
+<hr>
+
+<h3>🔹 Conditional Rendering Inside map()</h3>
+
+<p>You can apply conditions while rendering lists.</p>
+
+<div class="example">
+<pre>
+{fruits.map((item) => (
+  item === "Banana" ? 
+    &lt;li&gt;🍌 {item}&lt;/li&gt; : 
+    &lt;li&gt;{item}&lt;/li&gt;
+))}
+</pre>
+</div>
+
+<p>👉 Adds special UI for Banana.</p>
+
+<hr>
+
+<h3>🔹 Empty List Handling</h3>
+
+<div class="example">
+<pre>
+{fruits.length === 0 ? (
+  &lt;p&gt;No items found&lt;/p&gt;
+) : (
+  &lt;ul&gt;
+    {fruits.map((item, index) => (
+      &lt;li key={index}&gt;{item}&lt;/li&gt;
+    ))}
+  &lt;/ul&gt;
+)}
+</pre>
+</div>
+
+<p>👉 Shows message when array is empty.</p>
+
+<hr>
+
+<h3>🔹 When to Use map()</h3>
+
+<ul>
+  <li>Displaying lists (todos, users, products)</li>
+  <li>Rendering dynamic data from API</li>
+  <li>Creating reusable UI components</li>
+</ul>
+
+</div>
+
+<!-- KEYS -->
+
+<h2>🔹 Keys & Why They Matter</h2>
+
+<p>Keys help React identify which item changed, added, or removed.</p>
+
+<h3>❌ Without Key (Wrong)</h3>
+
+<div class="example">
+<pre>
+{fruits.map((item) => (
+  &lt;li&gt;{item}&lt;/li&gt;
+))}
+</pre>
+</div>
+
+<h3>✅ With Key (Correct)</h3>
+
+<div class="example">
+<pre>
+{fruits.map((item, index) => (
+  &lt;li key={index}&gt;{item}&lt;/li&gt;
+))}
+</pre>
+</div>
+
+<p>👉 Best practice: Use unique ID instead of index when possible.</p>
+
+<h2>🛠 Todo List App</h2>
+
+<div class="example">
+
+
+<pre>
+import React, { useState } from "react";
+
+function App() {
+
+  const [input, setInput] = useState("");
+  const [todos, setTodos] = useState([]);
+  const [editIndex, setEditIndex] = useState(null);
+
+  // Add or Update Todo
+  const handleAdd = () => {
+    if(input.trim() === "") return;
+
+    if(editIndex !== null){
+      const updatedTodos = [...todos];
+      updatedTodos[editIndex].text = input;
+      setTodos(updatedTodos);
+      setEditIndex(null);
+    } else {
+     setTodos([...todos, { id: Date.now(), text: input }]);
+    }
+
+    setInput("");
+  };
+
+  // Delete Todo
+  const handleDelete = (index) => {
+    const newTodos = todos.filter((_, i) => i !== index);
+    setTodos(newTodos);
+  };
+
+
+  // Edit Todo
+  const handleEdit = (index) => {
+    setInput(todos[index].text);
+    setEditIndex(index);
+  };
+
+  return (
+    &lt;div&gt;
+
+      &lt;input 
+        type="text" 
+        value={input}
+        onChange={(e) =&gt; setInput(e.target.value)}
+        placeholder="Enter task"
+      /&gt;
+
+      &lt;button onClick={handleAdd}&gt;
+        {editIndex !== null ? "Update" : "Add"}
+      &lt;/button&gt;
+
+      {todos.length === 0 ? (
+        &lt;p&gt;No tasks available&lt;/p&gt;
+      ) : (
+        &lt;ul&gt;
+          {todos.map((todo, index) =&gt; (
+            &lt;li key={todo.id}&gt;
+
+              &lt;span 
+              
+              &gt;
+                {todo.text}
+              &lt;/span&gt;
+
+              &lt;button onClick={() =&gt; handleEdit(index)}&gt;Edit&lt;/button&gt;
+              &lt;button onClick={() =&gt; handleDelete(index)}&gt;Delete&lt;/button&gt;
+
+            &lt;/li&gt;
+          ))}
+        &lt;/ul&gt;
+      )}
+
+    &lt;/div&gt;
+  );
+}
+
+export default App;
+</pre>
+
+<h3>✨ Features Included:</h3>
+<ul>
+  <li>Add new todo</li>
+  <li>Edit existing todo</li>
+  <li>Delete todo</li>
+  <li>Shows "No tasks available" when empty</li>
+</ul>
+
+<h3>💡 Try Enhancing:</h3>
+<ul>
+  <li>Add localStorage (save todos)</li>
+  <li>Add filters (All / Completed / Pending)</li>
+  <li>Add animations</li>
+</ul>
+
+</div>
+
+
+</body>
+</html>

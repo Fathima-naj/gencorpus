@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JSX Deep Dive</title>
+
+<style>
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  max-width: 1000px;
+  margin: auto;
+  padding: 25px;
+  line-height: 1.8;
+  background: #f9fafb;
+}
+
+h1{
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+h2{
+  color: #2563eb;
+  margin-top: 30px;
+}
+
+pre{
+  background: #eeeeee;
+  color: #151515;
+  padding: 15px;
+  border-radius: 10px;
+  overflow-x: auto;
+}
+
+.box{
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+</style>
+</head>
+
+<body>
+
+<h1> JSX (JavaScript XML) </h1>
+
+<!-- 1. What is JSX -->
+<h2>1. What is JSX?</h2>
+
+<div class="box">
+<p><b>JSX (JavaScript XML)</b> is a syntax used in React to write HTML-like code inside JavaScript.</p>
+
+<p>It makes UI code easier to read and write.</p>
+
+<p>JSX is not real HTML. It gets converted into JavaScript (React.createElement) behind the scenes.</p>
+
+<pre>
+const element = &lt;h1&gt;Hello World&lt;/h1&gt;;
+</pre>
+
+<p><b>Converted to:</b></p>
+
+<pre>
+React.createElement("h1", null, "Hello World");
+</pre>
+</div>
+
+<!-- JSX WORKING -->
+<h2> How JSX Works (Babel & React.createElement)</h2>
+
+<div class="box">
+
+<p>JSX does NOT work directly in the browser.</p>
+
+<p>Browsers understand only <b>JavaScript</b>, not JSX.</p>
+
+<p>So JSX must be converted into normal JavaScript.</p>
+
+<h3>Step 1: Babel (Compiler)</h3>
+
+<p><b>Babel</b> is a JavaScript compiler that converts JSX into JavaScript.</p>
+
+<p>It transforms JSX into <b>React.createElement()</b> calls.</p>
+
+<pre>
+const element = &lt;h1&gt;Hello&lt;/h1&gt;;
+</pre>
+
+<p><b>Babel converts it into:</b></p>
+
+<pre>
+const element = React.createElement("h1", null, "Hello");
+</pre>
+
+<h3>Step 2: React.createElement()</h3>
+
+<p>This function creates a <b>React Element (Virtual DOM object)</b>.</p>
+
+<p>Syntax:</p>
+
+<pre>
+React.createElement(type, props, children)
+</pre>
+
+<ul>
+<li><b>type</b> → HTML tag or component</li>
+<li><b>props</b> → attributes (className, id, etc.)</li>
+<li><b>children</b> → content inside element</li>
+</ul>
+
+<h3>Example Breakdown</h3>
+
+<pre>
+const element = (
+  &lt;h1 className="title"&gt;
+    Hello World
+  &lt;/h1&gt;
+);
+</pre>
+
+<p><b>Converted to:</b></p>
+
+<pre>
+const element = React.createElement(
+  "h1",
+  { className: "title" },
+  "Hello World"
+);
+</pre>
+
+<h3>Nested JSX Example</h3>
+
+<pre>
+const element = (
+  &lt;div&gt;
+    &lt;h1&gt;Hello&lt;/h1&gt;
+    &lt;p&gt;Welcome&lt;/p&gt;
+  &lt;/div&gt;
+);
+</pre>
+
+<p><b>Converted to:</b></p>
+
+<pre>
+const element = React.createElement(
+  "div",
+  null,
+  React.createElement("h1", null, "Hello"),
+  React.createElement("p", null, "Welcome")
+);
+</pre>
+
+<h3>Final Flow</h3>
+
+<pre>
+JSX → Babel → React.createElement() → Virtual DOM → Real DOM
+</pre>
+
+<h3>Key Points</h3>
+
+<ul>
+<li>JSX is just syntactic sugar</li>
+<li>Babel compiles JSX into JavaScript</li>
+<li>React.createElement creates Virtual DOM</li>
+<li>React updates only changed parts in Real DOM</li>
+</ul>
+
+</div>
+
+<!-- 2. JSX Rules -->
+<h2>2. JSX Rules & Syntax</h2>
+
+<div class="box">
+
+<ul>
+<li>JSX must return a <b>single parent element</b></li>
+<li>Every tag must be <b>closed</b></li>
+<li>Use <b>camelCase</b> for attributes</li>
+<li>Use <b>className</b> instead of class</li>
+<li>Use <b>{ }</b> to write JavaScript inside JSX</li>
+</ul>
+
+<p><b>Example:</b></p>
+
+<pre>
+function App(){
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Hello&lt;/h1&gt;
+      &lt;p&gt;Welcome&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+</pre>
+
+</div>
+
+<!-- 3. JSX vs HTML -->
+<h2>3. JSX vs HTML Differences</h2>
+
+<div class="box">
+
+<table border="1" cellpadding="10">
+<tr>
+<th>HTML</th>
+<th>JSX</th>
+</tr>
+
+<tr>
+<td>class</td>
+<td>className</td>
+</tr>
+
+
+<tr>
+<td>onclick</td>
+<td>onClick</td>
+</tr>
+
+<tr>
+<td>Can have multiple root elements</td>
+<td>Only one root element</td>
+</tr>
+
+<tr>
+<td>Attributes are strings</td>
+<td>Attributes can use JS ( { } )</td>
+</tr>
+
+</table>
+
+<p><b>Example:</b></p>
+
+<pre>
+&lt;!-- HTML --&gt;
+&lt;input class="box" /&gt;
+
+&lt;!-- JSX --&gt;
+&lt;input className="box" /&gt;
+</pre>
+
+</div>
+
+<!-- 4. Embedding Expressions -->
+<h2>4. Embedding Expressions in JSX</h2>
+
+<div class="box">
+
+<p>You can use JavaScript inside JSX using <b>{ }</b>.</p>
+<h4>Types of expressions:</h4>
+
+<ul>
+<li>Variables</li>
+<li>Math operations</li>
+<li>Functions</li>
+<li>Conditions</li>
+</ul>
+<pre>
+const name = "Fathima";
+
+&lt;h1&gt;Hello {name}&lt;/h1&gt;
+</pre>
+
+<p><b>Examples:</b></p>
+
+<pre>
+&lt;p&gt;2 + 2 = {2 + 2}&lt;/p&gt;
+
+&lt;p&gt;{true ? "Yes" : "No"}&lt;/p&gt;
+</pre>
+
+<pre>
+function greet(){
+  return "Good Morning";
+}
+
+&lt;h1&gt;{greet()}&lt;/h1&gt;
+</pre>
+
+<p><b>Important Notes:</b></p>
+<ul>
+<li>Expressions return a value</li>
+<li>Statements (if, for) cannot be directly used</li>
+</ul>
+
+</div>
+
+
+<!-- IF STATEMENTS -->
+<h2>5. JSX If Statements (Conditional Rendering)</h2>
+<div class="box">
+
+<p>JSX does NOT allow direct if statements inside return.</p>
+
+<p><b>❌ Wrong:</b></p>
+
+<pre>
+&lt;h1&gt;
+  if(true){
+    Hello
+  }
+&lt;/h1&gt;
+</pre>
+
+<h3>✅ Correct Methods:</h3>
+
+<h4>1. Ternary Operator</h4>
+
+<pre>
+&lt;h1&gt;
+  {isLoggedIn ? "Welcome" : "Please Login"}
+&lt;/h1&gt;
+</pre>
+
+<h4>2. Logical AND (&&)</h4>
+
+<pre>
+{isAdmin && &lt;p&gt;Admin Panel&lt;/p&gt;}
+</pre>
+
+<h4>3. If outside JSX</h4>
+
+<pre>
+let message;
+
+if(isLoggedIn){
+  message = "Welcome";
+}else{
+  message = "Login";
+}
+
+&lt;h1&gt;{message}&lt;/h1&gt;
+</pre>
+
+</div>
+<!-- 5. JSX with Attributes -->
+<h2>6. JSX with Attributes</h2>
+
+<div class="box">
+
+<p>Attributes in JSX are written using camelCase and can use JavaScript.</p>
+
+<pre>
+const url = "https://google.com";
+
+&lt;a href={url}&gt;Go to Google&lt;/a&gt;
+</pre>
+
+<p><b>Inline Styling:</b></p>
+
+<pre>
+&lt;h1 style={{color: "red", fontSize: "20px"}}&gt;
+  Hello
+&lt;/h1&gt;
+</pre>
+
+<p>Note: Style uses <b>object</b> (double curly braces)</p>
+
+</div>
+
+
+<!-- CLASSNAME -->
+<h3>a) class → className</h3>
+<div class="box">
+
+<p>In JSX, <b>class</b> is replaced by <b>className</b>.</p>
+
+<p><b>Reason:</b> "class" is a reserved keyword in JavaScript.</p>
+
+<pre>
+&lt;div className="container"&gt;Hello&lt;/div&gt;
+</pre>
+
+
+<h3>b) CamelCase Attributes</h3>
+
+<p>JSX uses camelCase for attributes.</p>
+
+<pre>
+onclick  → onClick
+tabindex → tabIndex
+</pre>
+
+<h3>c) Event Attributes</h3>
+
+<p>Events are written in camelCase and use functions.</p>
+
+<pre>
+function clickMe(){
+  alert("Clicked");
+}
+
+&lt;button onClick={clickMe}&gt;Click&lt;/button&gt;
+</pre>
+
+<h3>d) Boolean Attributes</h3>
+
+<p>Boolean values are written inside {}.</p>
+
+<pre>
+&lt;input disabled={true} /&gt;
+&lt;input disabled={false} /&gt;
+</pre>
+
+<p>Shortcut:</p>
+
+<pre>
+&lt;input disabled /&gt;
+</pre>
+
+<h3>e) Style Attribute</h3>
+
+<p>Style is written as a JavaScript object.</p>
+
+<pre>
+&lt;h1 style={{color:"red", fontSize:"20px"}}&gt;
+  Hello
+&lt;/h1&gt;
+</pre>
+
+<p><b>Rules:</b></p>
+<ul>
+<li>Use camelCase (fontSize)</li>
+<li>Value must be string or number</li>
+</ul>
+
+</div>
+
+<!-- MULTI LINE JSX -->
+<h2>7. Multi-line JSX Code</h2>
+<div class="box">
+
+<p>JSX written in multiple lines must be wrapped inside parentheses <b>( )</b>.</p>
+
+<pre>
+function App(){
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Hello&lt;/h1&gt;
+      &lt;p&gt;Welcome&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+</pre>
+
+<p><b>Why?</b></p>
+<ul>
+<li>Improves readability</li>
+<li>Prevents JavaScript errors</li>
+<li>Required when JSX spans multiple lines</li>
+</ul>
+
+</div>
+
+<!-- ONE ROOT ELEMENT -->
+<h2>8. One Top-Level Element Rule</h2>
+<div class="box">
+
+<p>JSX must have only <b>one parent element</b>.</p>
+
+<p><b>❌ Wrong:</b></p>
+
+<pre>
+return (
+  &lt;h1&gt;Hello&lt;/h1&gt;
+  &lt;p&gt;World&lt;/p&gt;
+);
+</pre>
+
+<p><b>✅ Correct:</b></p>
+
+<pre>
+return (
+  &lt;div&gt;
+    &lt;h1&gt;Hello&lt;/h1&gt;
+    &lt;p&gt;World&lt;/p&gt;
+  &lt;/div&gt;
+);
+</pre>
+
+
+</div>
+<!-- 6. Fragments -->
+<h2>9. Fragment Usage</h2>
+
+<div class="box">
+
+<p>Fragments allow grouping multiple elements without adding extra DOM nodes.</p>
+
+<p><b>Why?</b> Avoid unnecessary divs</p>
+
+<pre>
+import React from "react";
+
+function App(){
+  return (
+    &lt;&gt;
+      &lt;h1&gt;Title&lt;/h1&gt;
+      &lt;p&gt;Paragraph&lt;/p&gt;
+    &lt;/&gt;
+  );
+}
+</pre>
+
+<p><b>Alternative:</b></p>
+
+<pre>
+&lt;React.Fragment&gt;
+  &lt;h1&gt;Hello&lt;/h1&gt;
+&lt;/React.Fragment&gt;
+</pre>
+
+</div>
+
+
+<!-- COMMENTS -->
+<h2>10. Comments in JSX</h2>
+<div class="box">
+
+<p>Comments inside JSX must be written using <b>{/* comment */}</b>.</p>
+
+<pre>
+return (
+  &lt;div&gt;
+    {/* This is a comment */}
+    &lt;h1&gt;Hello&lt;/h1&gt;
+  &lt;/div&gt;
+);
+</pre>
+
+<p><b>Outside JSX:</b></p>
+
+<pre>
+// Normal JS comment
+</pre>
+
+</div>
+
+<!-- Practice -->
+<h2>🛠 Practice: Convert HTML UI into JSX</h2>
+
+<div class="box">
+
+<p><b>HTML:</b></p>
+
+<pre>
+&lt;div class="card"&gt;
+  &lt;img src="image.jpg" alt="img"&gt;
+  &lt;h2&gt;Product&lt;/h2&gt;
+  &lt;button onclick="buy()"&gt;Buy&lt;/button&gt;
+&lt;/div&gt;
+</pre>
+
+<p><b>JSX:</b></p>
+
+<pre>
+function Card(){
+
+  function buy(){
+    alert("Purchased");
+  }
+
+  return (
+    &lt;div className="card"&gt;
+      &lt;img src="image.jpg" alt="img" /&gt;
+      &lt;h2&gt;Product&lt;/h2&gt;
+      &lt;button onClick={buy}&gt;Buy&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+</pre>
+
+</div>
+
+</body>
+</html>

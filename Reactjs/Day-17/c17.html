@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>React - Performance Optimization</title>
+
+<style>
+body{
+  background:#f5f7fb;
+  font-family: Arial, sans-serif;
+  margin:0;
+}
+
+.header{
+  background:#f59e0b;
+  color:white;
+  padding:25px;
+  text-align:center;
+}
+
+.container{
+  max-width:1000px;
+  margin:20px auto;
+  padding:20px;
+}
+
+.section{
+  background:white;
+  padding:20px;
+  margin-bottom:20px;
+  border-radius:10px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.05);
+}
+
+h2{ color:#333; }
+h3{ color:#444; }
+
+.example{
+  background:#1e293b;
+  color:#f8fafc;
+  padding:15px;
+  border-radius:8px;
+  margin-top:10px;
+  overflow-x:auto;
+}
+
+.note{
+  background:#fff7ed;
+  padding:12px;
+  border-left:5px solid #f97316;
+  border-radius:6px;
+  margin:10px 0;
+}
+
+ul{ padding-left:20px; }
+li{ margin-bottom:6px; }
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+  <h1>⚡ React Performance Optimization</h1>
+  <p>Make Your Apps Faster & Efficient</p>
+</div>
+
+<div class="container">
+
+<!-- ================= WHY ================= -->
+
+<div class="section">
+<h2>1. Why Optimization Matters?</h2>
+
+<p>
+Performance optimization improves speed, responsiveness, and user experience of your React application.
+</p>
+
+<ul>
+  <li>Faster UI rendering</li>
+  <li>Better user experience</li>
+  <li>Reduced unnecessary computations</li>
+  <li>Efficient resource usage</li>
+</ul>
+
+<div class="note">
+👉 Without optimization, apps may feel slow and laggy
+</div>
+</div>
+
+---
+
+<!-- ================= REACT MEMO ================= -->
+
+<div class="section">
+<h2>2. React.memo</h2>
+
+<p>
+<b>React.memo</b> prevents a component from re-rendering if its props have not changed.
+</p>
+
+<div class="example">
+<code>
+const MyComponent = React.memo(function MyComponent(props){
+  return &lt;h2&gt;{props.name}&lt;/h2&gt;;
+});
+</code>
+</div>
+
+<ul>
+  <li>Works like PureComponent</li>
+  <li>Shallow comparison of props</li>
+</ul>
+
+<div class="note">
+👉 Use when component receives same props frequently
+</div>
+</div>
+
+---
+
+<!-- ================= USECALLBACK ================= -->
+
+<div class="section">
+<h2>3. useCallback</h2>
+
+<p>
+<b>useCallback</b> memoizes a function so it does not get recreated on every render.
+</p>
+
+<div class="example">
+<code>
+const handleClick = useCallback(() => {
+  console.log("Clicked");
+}, []);
+</code>
+</div>
+
+<ul>
+  <li>Prevents unnecessary function recreation</li>
+  <li>Useful with React.memo</li>
+</ul>
+</div>
+
+---
+
+<!-- ================= USEMEMO ================= -->
+
+<div class="section">
+<h2>4. useMemo</h2>
+
+<p>
+<b>useMemo</b> memoizes computed values to avoid expensive recalculations.
+</p>
+
+<div class="example">
+<code>
+const result = useMemo(() => {
+  return expensiveCalculation(num);
+}, [num]);
+</code>
+</div>
+
+<ul>
+  <li>Used for heavy computations</li>
+  <li>Recomputes only when dependencies change</li>
+</ul>
+</div>
+
+---
+
+<!-- ================= AVOID RE-RENDERS ================= -->
+
+<div class="section">
+<h2>5. Avoiding Unnecessary Re-renders</h2>
+
+<ul>
+  <li>Use React.memo for components</li>
+  <li>Use useCallback for functions</li>
+  <li>Use useMemo for calculations</li>
+  <li>Avoid inline functions in JSX</li>
+  <li>Keep state minimal</li>
+</ul>
+
+<div class="example">
+<code>
+// ❌ Causes re-render
+<button onClick={() => handleClick()}>
+
+// ✅ Better
+<button onClick={handleClick}>
+</code>
+</div>
+</div>
+
+---
+
+<!-- ================= LAZY LOADING ================= -->
+
+<div class="section">
+<h2>6. Lazy Loading & Code Splitting</h2>
+
+<p>
+Lazy loading loads components only when needed.
+</p>
+
+<div class="example">
+<code>
+import React, { Suspense, lazy } from "react";
+
+const About = lazy(() => import("./About"));
+
+function App(){
+  return (
+    &lt;Suspense fallback="Loading..."&gt;
+      &lt;About /&gt;
+    &lt;/Suspense&gt;
+  );
+}
+</code>
+</div>
+
+<ul>
+  <li>Reduces initial bundle size</li>
+  <li>Improves load time</li>
+</ul>
+</div>
+
+---
+
+<!-- ================= WHEN TO USE ================= -->
+
+<div class="section">
+<h2>7. When to Optimize?</h2>
+
+<ul>
+  <li>When app becomes slow</li>
+  <li>Large lists or heavy calculations</li>
+  <li>Frequent re-renders</li>
+</ul>
+
+<div class="note">
+👉 Do not over-optimize small apps
+</div>
+</div>
+
+---
+
+<!-- ================= PRACTICE ================= -->
+
+<div class="section">
+<h2>🛠 Practice: Optimize Slow Component</h2>
+
+<ul>
+  <li>Create a component with heavy calculation</li>
+  <li>Observe slow rendering</li>
+  <li>Apply useMemo to optimize</li>
+  <li>Wrap child component with React.memo</li>
+  <li>Use useCallback for functions</li>
+</ul>
+
+<div class="example">
+<code>
+const slowValue = useMemo(() => heavyFunction(num), [num]);
+</code>
+</div>
+</div>
+
+---
+
+<!-- ================= SUMMARY ================= -->
+
+<div class="section">
+<h2>Summary</h2>
+
+<ul>
+  <li>React.memo → prevents re-render</li>
+  <li>useCallback → memoizes function</li>
+  <li>useMemo → memoizes value</li>
+  <li>Lazy loading → improves load time</li>
+</ul>
+</div>
+
+</div>
+
+</body>
+</html>

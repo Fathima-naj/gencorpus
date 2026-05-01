@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>React API Integration Notes</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f4f6f8;
+    line-height: 1.6;
+  }
+  header {
+    padding: 20px;
+    text-align: center;
+  }
+  .container {
+    padding: 20px;
+    max-width: 900px;
+    margin: auto;
+  }
+  .section {
+    background: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  h2 {
+    color: #04AA6D;
+  }
+  pre {
+    background: #f1f1f1;
+    padding: 10px;
+    overflow-x: auto;
+    border-radius: 5px;
+  }
+  code {
+    color: #c7254e;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>React API Integration</h1>
+</header>
+
+<div class="container">
+
+<div class="section">
+<h2>1. What is API Integration?</h2>
+<p>API Integration means connecting React frontend with backend to send and receive data.</p>
+</div>
+
+<div class="section">
+<h2>2. fetch() vs axios</h2>
+
+<h3>fetch()</h3>
+<p><b>fetch()</b> is a built-in JavaScript function used to make HTTP requests. It returns a Promise.</p>
+
+<pre><code>fetch("https://api.example.com/users")
+  .then(res => res.data)
+  .then(data => console.log(data));</code></pre>
+
+<p><b>How it works:</b></p>
+<ul>
+<li><b>fetch("url")</b> → Sends a request to the server (default GET)</li>
+<li><b>res</b> → Response object (contains status, headers, etc.)</li>
+<li><b>res.data</b> → Converts response into usable JSON data</li>
+<li><b>data</b> → Final result you can use in your app</li>
+</ul>
+
+<p><b>Important:</b></p>
+<ul>
+<li>Does NOT automatically handle HTTP errors (like 404, 500)</li>
+<li>You must manually check <code>res.ok</code></li>
+<li>Extra step needed to convert JSON</li>
+</ul>
+
+<hr>
+
+<h3>axios</h3>
+<p><b>axios</b> is a popular external library used for making HTTP requests. It is easier and more powerful than axios().</p>
+
+<pre><code>import axios from "axios";
+
+axios.get("https://api.example.com/users")
+  .then(res => console.log(res.data));</code></pre>
+
+<p><b>How it works:</b></p>
+<ul>
+<li><b>axios.get()</b> → Sends GET request</li>
+<li><b>res</b> → Response object</li>
+<li><b>res.data</b> → Directly gives the actual data (no conversion needed)</li>
+</ul>
+
+<p><b>Advantages:</b></p>
+<ul>
+<li>Automatic JSON parsing</li>
+<li>Better error handling (throws error for bad responses)</li>
+<li>Cleaner and shorter code</li>
+</ul>
+
+<hr>
+
+<h3>Difference Summary</h3>
+<ul>
+<li>fetch → built-in, more manual work</li>
+<li>axios → external, easier and cleaner</li>
+</ul>
+
+</div>
+
+<div class="section">
+<h2>3. CRUD Operations (Using Axios)</h2>
+
+<p>Axios is commonly used in React projects because it provides cleaner syntax and better features compared to axios().</p>
+
+<h3>GET (Fetch Data)</h3>
+<pre><code>import axios from "axios";
+
+const getUsers = async () => {
+const res = await axios.get("/users");
+console.log(res.data);
+};</code></pre>
+
+<h3>POST (Create Data)</h3>
+<pre><code>const createUser = async (user) => {
+  await axios.post("/users", user);
+};</code></pre>
+
+<h3>PUT (Update Data)</h3>
+<pre><code>const updateUser = async (id, user) => {
+  await axios.put(`/users/${id}`, user);
+};</code></pre>
+
+<h3>DELETE (Remove Data)</h3>
+<pre><code>const deleteUser = async (id) => {
+  await axios.delete(`/users/${id}`);
+};</code></pre>
+
+<hr>
+
+<h3>Why Axios is Better Here</h3>
+<ul>
+<li>No need for <code>JSON.stringify()</code></li>
+<li>No need for <code>res.data</code></li>
+<li>Cleaner and shorter code</li>
+<li>Better error handling</li>
+</ul>
+
+</div>
+
+<div class="section">
+<h2>4. Sending Form Data</h2>
+<pre><code>import axios from "axios";
+
+const handleSubmit = async (e) => {
+e.preventDefault();
+
+const user = { name, email };
+
+await axios.post("/users", user);
+};</code></pre>
+
+<p><b>Note:</b></p>
+<ul>
+<li>No need for <code>JSON.stringify()</code></li>
+<li>No need to manually set <code>Content-Type</code></li>
+<li>Axios automatically handles JSON conversion</li>
+</ul>
+
+</div>
+
+<div class="section">
+<h2>5. Handling Headers (Authorization Token)</h2>
+
+<p>In real-world React applications, APIs often require an <b>Authorization token</b> to access protected routes.</p>
+
+<p>This token is usually sent inside the request headers using <b>Bearer authentication</b>.</p>
+
+<h3>Basic Example</h3>
+<pre><code>import axios from "axios";
+
+axios.get("/profile", {
+headers: {
+Authorization: "Bearer token"
+}
+});</code></pre>
+
+<h3>How it works:</h3>
+<ul>
+<li><b>Authorization</b> → Header key used for authentication</li>
+<li><b>Bearer token</b> → The access token received after login</li>
+<li>Server checks token before allowing access to data</li>
+</ul>
+
+<h3>Real-world usage (Dynamic token)</h3>
+<pre><code>const token = localStorage.getItem("token");
+
+axios.get("/profile", {
+headers: {
+Authorization: `Bearer ${token}`
+}
+});</code></pre>
+</div>
+<div class="section">
+<h2>6. Async/Await</h2>
+<pre><code>import axios from "axios";
+
+try {
+const res = await axios.get("/users");
+const data = res.data;
+} catch (err) {
+console.log(err);
+}</code></pre>
+
+</div>
+
+<div class="section">
+<h2>7. Loading & Error State</h2>
+<pre><code>import axios from "axios";
+import { useState } from "react";
+
+const [loading, setLoading] = useState(false);
+const [error, setError] = useState(null);
+
+const fetchUsers = async () => {
+setLoading(true);
+setError(null);
+
+try {
+const res = await axios.get("/users");
+const data = res.data;
+} catch (err) {
+setError(err.message);
+}
+}
+</code></pre>
+</div>
+
+<div class="section">
+<h2>8. Practice</h2>
+<ul>
+<li>Create User Form (POST)</li>
+<li>Fetch Users (GET)</li>
+<li>Delete User (DELETE)</li>
+</ul>
+</div>
+
+</div>
+
+</body>
+</html>

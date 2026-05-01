@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>React Day 6 - State & useState</title>
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  margin:0;
+  background:#f1f1f1;
+}
+
+.header{
+  
+  padding:20px;
+  text-align:center;
+}
+
+.container{
+  width:90%;
+  max-width:1000px;
+  margin:20px auto;
+  background:white;
+  padding:20px;
+  border-radius:8px;
+}
+
+h2{
+  color:#04AA6D;
+  border-bottom:2px solid #ddd;
+  padding-bottom:5px;
+}
+
+.example{
+  background:#f9f9f9;
+  border-left:5px solid #04AA6D;
+  padding:10px;
+  margin:10px 0;
+}
+
+code{
+  display:block;
+  background:#eee;
+  padding:10px;
+  border-radius:5px;
+  white-space:pre-wrap;
+}
+
+.task{
+  background:#fff3cd;
+  border-left:5px solid orange;
+  padding:10px;
+  margin:15px 0;
+}
+</style>
+</head>
+
+<body>
+<div class="header">
+  <h1>React - Day 6</h1>
+  <p>State & useState Hook</p>
+</div>
+
+<div class="container">
+
+<!-- ================= STATE ================= -->
+<h2>1. What is State?</h2>
+
+<p>
+State is a built-in feature in React used to store and manage data that can change over time inside a component.
+</p>
+
+<ul>
+  <li>State makes components <b>dynamic</b></li>
+  <li>It stores values like numbers, text, arrays, objects, etc.</li>
+  <li>When state changes → React automatically updates (re-renders) the UI</li>
+</ul>
+
+<p><b>Example:</b> Counter value, form input, toggle button, theme switch</p>
+
+<div class="example">
+<code>
+// Normal variable ❌
+let count = 0;
+
+// UI will NOT update when changed
+count = count + 1;
+</code>
+</div>
+
+<p>
+<b>Why state?</b> Normal variables do not tell React to re-render.  
+State tells React: "Hey! Something changed → update UI"
+</p>
+
+<p><b>Key Point:</b> State is private to the component where it is defined.</p>
+
+
+<!-- ================= USESTATE ================= -->
+<h2>2. useState Hook Basics</h2>
+
+<p>
+useState is a React Hook that allows functional components to use state.
+</p>
+
+<div class="example">
+<code>
+import { useState } from "react";
+
+function Counter(){
+  const [count, setCount] = useState(0);
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;{count}&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+</code>
+</div>
+
+<ul>
+  <li><b>count</b> → current state value</li>
+  <li><b>setCount</b> → function to update state</li>
+  <li><b>useState(0)</b> → initial value is 0</li>
+</ul>
+
+<p><b>Important:</b></p>
+<ul>
+  <li>useState always returns an array → [value, setter]</li>
+  <li>You can name them anything (but follow convention)</li>
+</ul>
+
+<div class="example">
+<code>
+// Naming convention
+const [data, setData] = useState();
+</code>
+</div>
+
+
+<!-- ================= UPDATING STATE ================= -->
+<h2>3. Updating State</h2>
+
+<p>State is updated using the setter function.</p>
+
+<div class="example">
+<code>
+<button onClick={() => setCount(count + 1)}>
+  Increase
+</button>
+</code>
+</div>
+
+<ul>
+  <li>Calling setter function updates state</li>
+  <li>React schedules a re-render</li>
+  <li>UI updates with new value</li>
+</ul>
+
+<p><b>Best Practice (Very Important):</b></p>
+
+<div class="example">
+<code>
+// Recommended way
+setCount(prev => prev + 1);
+</code>
+</div>
+
+<p>
+👉 This is safer because React updates can be asynchronous.
+</p>
+
+<p><b>Multiple Updates Example:</b></p>
+
+<div class="example">
+<code>
+// ❌ May give wrong result
+setCount(count + 1);
+setCount(count + 1);
+
+// ✅ Correct
+setCount(prev => prev + 1);
+setCount(prev => prev + 1);
+</code>
+</div>
+
+
+<!-- ================= MULTIPLE STATE ================= -->
+<h2>4. Multiple State Variables</h2>
+
+<p>You can create multiple state variables inside a component.</p>
+
+<div class="example">
+<code>
+const [name, setName] = useState("");
+const [age, setAge] = useState(0);
+</code>
+</div>
+
+<ul>
+  <li>Each state is independent</li>
+  <li>Updating one state does NOT affect others</li>
+</ul>
+
+<p><b>Alternative (Object State):</b></p>
+
+<div class="example">
+<code>
+const [user, setUser] = useState({
+  name: "",
+  age: 0
+});
+</code>
+</div>
+
+<p><b>Updating object state:</b></p>
+
+<div class="example">
+<code>
+setUser({...user, name: "Fathima"});
+</code>
+</div>
+
+<p>
+👉 Use <b>spread operator</b> to avoid losing other values.
+</p>
+
+
+<!-- ================= IMMUTABILITY ================= -->
+<h2>5. State Immutability</h2>
+
+<p>
+State should NOT be modified directly. Always create a new value.
+</p>
+
+<div class="example">
+<code>
+// ❌ Wrong (direct mutation)
+count = count + 1;
+
+// ❌ Wrong (object mutation)
+user.name = "Fathima";
+
+// ✅ Correct
+setCount(count + 1);
+
+// ✅ Correct (object)
+setUser({...user, name: "Fathima"});
+</code>
+</div>
+
+<p>
+<b>Why?</b> React uses comparison (old vs new state) to detect changes.
+</p>
+
+<ul>
+  <li>If you mutate directly → React may NOT detect change</li>
+  <li>If you create new value → React re-renders correctly</li>
+</ul>
+
+<p><b>Golden Rule:</b> Never mutate state directly ❗</p>
+
+
+<!-- ================= EXTRA ================= -->
+<h2>6. Types of State</h2>
+
+<div class="example">
+<code>
+// Number
+const [count, setCount] = useState(0);
+
+// String
+const [name, setName] = useState("");
+
+// Boolean
+const [isOn, setIsOn] = useState(false);
+
+// Array
+const [items, setItems] = useState([]);
+
+// Object
+const [user, setUser] = useState({});
+</code>
+</div>
+
+
+<!-- ================= SUMMARY ================= -->
+<h2>Summary</h2>
+
+<ul>
+  <li>State stores dynamic data</li>
+  <li>useState creates state in functional components</li>
+  <li>Always use setter function to update</li>
+  <li>State updates cause re-render</li>
+  <li>Never mutate state directly</li>
+</ul>
+
+
+
+
+<!-- ================= PRACTICE ================= -->
+<h2>🧩 Practice Tasks</h2>
+
+<div class="task">
+<b>Task 1: Counter App</b>
+<ul>
+<li>Create a counter</li>
+<li>Add Increase button</li>
+<li>Add Decrease button</li>
+<li>Add Reset button</li>
+</ul>
+</div>
+
+<div class="task">
+<b>Task 2: Toggle Button</b>
+<ul>
+<li>Create a button</li>
+<li>Switch text between ON and OFF</li>
+</ul>
+</div>
+
+<div class="task">
+<b>Task 3: Theme Switch</b>
+<ul>
+<li>Toggle between Light and Dark mode</li>
+<li>Change background color</li>
+</ul>
+</div>
+
+
+
+</div>
+
+</body>
+</html>

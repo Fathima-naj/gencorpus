@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>React Day 7 - Events & Forms</title>
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  margin:0;
+  background:#f1f1f1;
+}
+
+.header{
+ 
+  padding:20px;
+  text-align:center;
+}
+
+.container{
+  width:90%;
+  max-width:1000px;
+  margin:20px auto;
+  background:white;
+  padding:20px;
+  border-radius:8px;
+}
+
+h2{
+  color:#04AA6D;
+  border-bottom:2px solid #ddd;
+  padding-bottom:5px;
+}
+
+.example{
+  background:#f9f9f9;
+  border-left:5px solid #04AA6D;
+  padding:10px;
+  margin:10px 0;
+}
+
+code{
+  display:block;
+  background:#eee;
+  padding:10px;
+  border-radius:5px;
+  white-space:pre-wrap;
+}
+
+.task{
+  background:#fff3cd;
+  border-left:5px solid orange;
+  padding:10px;
+  margin:15px 0;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <h1>React - Day 7</h1>
+  <p>Events & Forms Basics</p>
+</div>
+
+<div class="container">
+
+<!-- ================= EVENT HANDLING ================= -->
+<h2>1. Event Handling in React</h2>
+
+<p>
+Event handling in React is similar to HTML, but uses <b>camelCase</b> and functions.
+</p>
+
+<ul>
+  <li>HTML → onclick</li>
+  <li>React → onClick</li>
+</ul>
+
+<div class="example">
+<code>
+function App(){
+  function handleClick(){
+    alert("Button Clicked");
+  }
+
+  return (
+    &lt;button onClick={handleClick}&gt;Click Me&lt;/button&gt;
+  );
+}
+</code>
+</div>
+
+<p><b>Important:</b> Always pass a function, not function call.</p>
+
+<div class="example">
+<code>
+// ❌ Wrong
+onClick={handleClick()}
+
+// ✅ Correct
+onClick={handleClick}
+</code>
+</div>
+
+
+<!-- ================= SYNTHETIC EVENTS ================= -->
+<h2>2. Synthetic Events</h2>
+
+<p>
+In React, events are not handled directly using browser events. Instead, React creates its own event system called <b>Synthetic Events</b>.
+</p>
+
+<p>
+A <b>Synthetic Event</b> is a wrapper around the browser’s native event. It behaves the same way but works consistently across all browsers.
+</p>
+
+<ul>
+  <li>Provides the same behavior in all browsers (Chrome, Firefox, etc.)</li>
+  <li>Fixes browser differences automatically</li>
+  <li>Improves performance by managing events efficiently</li>
+</ul>
+
+<p><b>Simple Idea:</b></p>
+<p>
+Instead of using the browser event directly, React gives you a “standard version” of that event.
+</p>
+
+<div class="example">
+<code>
+function handleClick(e){
+  console.log(e); // Synthetic Event (React event object)
+}
+</code>
+</div>
+
+<p>
+👉 Here, <b>e</b> is not a normal DOM event. It is a Synthetic Event created by React.
+</p>
+
+<p><b>Common Properties you will use:</b></p>
+<ul>
+  <li><b>e.target</b> → the element that triggered the event</li>
+  <li><b>e.target.value</b> → value of input field</li>
+  <li><b>e.preventDefault()</b> → stops default behavior (like form reload)</li>
+</ul>
+
+<div class="example">
+<code>
+function handleChange(e){
+  console.log(e.target.value); // input value
+}
+</code>
+</div>
+
+<p><b>Real-life Understanding:</b></p>
+<p>
+Different browsers handle events slightly differently. React solves this by creating Synthetic Events so developers can write code once and it works the same everywhere.
+</p>
+
+<p><b>Important Note:</b></p>
+<ul>
+  <li>You use Synthetic Events in all React events like <b>onClick, onChange, onSubmit</b></li>
+  <li>You don’t need to worry about browser differences</li>
+</ul>
+<!-- ================= INPUT HANDLING ================= -->
+<h2>3. Handling Inputs</h2>
+
+<p>
+React uses <b>onChange</b> to handle input changes.
+</p>
+
+<div class="example">
+<code>
+const [name, setName] = useState("");
+
+&lt;input 
+  type="text" 
+  value={name} 
+  onChange={(e) => setName(e.target.value)}
+/>
+</code>
+</div>
+
+<ul>
+  <li>value → controlled by state</li>
+  <li>onChange → updates state</li>
+</ul>
+
+
+<!-- ================= ONCHANGE ================= -->
+<h2>4. onChange Event</h2>
+
+<p>
+Triggered whenever input value changes.
+</p>
+
+<div class="example">
+<code>
+function handleChange(e){
+  setName(e.target.value);
+}
+</code>
+</div>
+
+<p>
+Used for text, checkbox, select, etc.
+</p>
+
+
+<!-- ================= ONSUBMIT ================= -->
+<h2>5. onSubmit Event</h2>
+
+<p>
+Used to handle form submission.
+</p>
+
+<div class="example">
+<code>
+function handleSubmit(e){
+  e.preventDefault(); // stop page reload
+  console.log("Form Submitted");
+}
+
+<form onSubmit={handleSubmit}>
+  &lt;button type="submit"&gt;Submit&lt;/button&gt;
+</form>
+</code>
+</div>
+
+<ul>
+  <li>Forms reload page by default</li>
+  <li>use <b>e.preventDefault()</b> to stop it</li>
+</ul>
+
+
+<!-- ================= CONTROLLED ================= -->
+<h2>6. Controlled Components</h2>
+
+<p>
+Controlled components are inputs controlled by React state.
+</p>
+
+<div class="example">
+<code>
+const [email, setEmail] = useState("");
+
+&lt;input 
+  type="email" 
+  value={email} 
+  onChange={(e) => setEmail(e.target.value)}
+/>
+</code>
+</div>
+
+<ul>
+  <li>React controls input value</li>
+  <li>Single source of truth = state</li>
+</ul>
+
+
+<!-- ================= UNCONTROLLED ================= -->
+<h2>7. Uncontrolled Components</h2>
+
+<p>
+Uncontrolled components use DOM directly (no state).
+</p>
+
+<div class="example">
+<code>
+&lt;input type="text" />
+</code>
+</div>
+
+<ul>
+  <li>Value is stored in DOM</li>
+  <li>Less control</li>
+</ul>
+
+<p><b>Using ref (advanced):</b></p>
+
+<div class="example">
+<code>
+const inputRef = useRef();
+
+< input ref={inputRef} />
+</code>
+</div>
+
+
+<h2>8. useRef</h2>
+
+<p>
+useRef is a React Hook used to create a reference that persists across renders.
+</p>
+
+<div class="example">
+<code>
+import { useRef } from "react";
+
+const inputRef = useRef(); </code>
+
+</div>
+
+<ul>
+<li>Stores value inside <b>.current</b></li>
+<li>Does NOT trigger re-render</li>
+<li>Value persists across renders</li>
+</ul>
+
+<div class="note">
+<b>Doubt Clarification:</b><br>
+useRef does NOT reset on re-render.<br>
+Value remains same unless manually changed.
+</div>
+
+<h3>Accessing DOM Element</h3>
+
+<div class="example">
+<code>
+const inputRef = useRef();
+
+function handleClick(){
+inputRef.current.focus();
+}
+
+<input ref={inputRef} /> </code>
+
+</div>
+
+<div class="note">
+<b>Explanation:</b><br>
+inputRef.current points to actual DOM element
+</div>
+
+<h3>Storing Value Without Re-render</h3>
+
+<div class="example">
+<code>
+const countRef = useRef(0);
+
+function handleClick(){
+countRef.current++;
+console.log(countRef.current);
+} </code>
+
+</div>
+
+<div class="note">
+<b>Important:</b><br>
+Updating useRef value does NOT update UI automatically
+</div>
+
+<h3>useRef vs useState</h3>
+
+<ul>
+<li>useState → triggers re-render</li>
+<li>useRef → does NOT trigger re-render</li>
+</ul>
+
+<div class="note">
+<b>Key Understanding:</b><br>
+useRef = store value silently<br>
+useState = store value and update UI
+</div>
+
+<h3>When to Use useRef?</h3>
+
+<ul>
+<li>Access DOM elements (focus, scroll)</li>
+<li>Store previous values</li>
+<li>Store mutable data without re-render</li>
+</ul>
+
+<h2>9. Re-render</h2>
+
+<div class="note">
+<b>Doubt Clarification:</b><br>
+Re-render = component runs again when state/props change<br>
+UI updates but page does NOT reload
+</div>
+
+<div class="note">
+<b>Important Difference:</b><br>
+useState → triggers re-render<br>
+useRef → does NOT trigger re-render
+</div>
+
+
+
+
+<!-- ================= CONTROLLED VS UNCONTROLLED ================= -->
+<h2>8. Controlled vs Uncontrolled</h2>
+
+<ul>
+  <li>Controlled → React manages data ✅</li>
+  <li>Uncontrolled → DOM manages data ❌</li>
+</ul>
+
+<p><b>Recommendation:</b> Always use controlled components in React.</p>
+
+
+<!-- ================= PRACTICE ================= -->
+<h2> Practice Tasks</h2>
+
+<div class="task">
+<b> Input Field</b>
+<ul>
+<li>Create a text input</li>
+<li>Display typed value below</li>
+</ul>
+</div>
+
+
+
+
+
+
+
+<!-- ================= SUMMARY ================= -->
+<h2>Summary</h2>
+
+<ul>
+  <li>React uses camelCase events</li>
+  <li>onClick, onChange, onSubmit are common events</li>
+  <li>Synthetic events normalize browser behavior</li>
+  <li>Controlled components are preferred</li>
+</ul>
+
+</div>
+
+</body>
+</html>
+
+

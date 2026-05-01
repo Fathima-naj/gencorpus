@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DAY 4 – Tailwind CSS with React</title>
+
+<style>
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  max-width: 1100px;
+  margin:auto;
+  padding:25px;
+  line-height:1.8;
+  background:#f9fafb;
+}
+h1,h2,h3{
+  color:#111827;
+}
+.box{
+  background:#fff;
+  padding:20px;
+  border-radius:10px;
+  margin-bottom:20px;
+  box-shadow:0 0 10px rgba(0,0,0,0.05);
+}
+pre{
+  background:#d6d7d8;
+  color:#111;
+  padding:15px;
+  border-radius:8px;
+  overflow-x:auto;
+}
+</style>
+
+</head>
+<body>
+
+<h1 style="text-align: center;"> Tailwind CSS with React</h1>
+
+<div class="box">
+<h2>1. What is Tailwind CSS?</h2>
+
+<p>Tailwind CSS is a <b>utility-first CSS framework</b> used to build modern UI directly in HTML/JSX.</p>
+
+<p>
+Instead of writing custom CSS, Tailwind provides small utility classes like:
+<b>padding, margin, color, flex, grid</b> etc.
+</p>
+
+<p>👉 You combine these utilities to design UI.</p>
+
+<h3>🔹 Example</h3>
+<pre>
+&lt;div class="bg-blue-500 text-white p-4"&gt;
+  Hello Tailwind
+&lt;/div&gt;
+</pre>
+
+</div>
+
+<div class="box">
+<h2>2. Why Tailwind? (Utility-First)</h2>
+
+<p>
+Traditional CSS:
+- Write separate CSS file
+- Name classes manually
+- Hard to maintain
+<br>
+Tailwind:
+- Write styles directly in JSX
+- No naming confusion
+- Faster development
+</p>
+
+<h3>🔹 Advantages</h3>
+<ul>
+<li>No CSS file needed</li>
+<li>Faster UI development</li>
+<li>Highly customizable</li>
+<li>Responsive design built-in</li>
+</ul>
+
+</div>
+
+<div class="box">
+<h2>3. Installing Tailwind in Vite React</h2>
+
+<h3>📦 Step 1: Install</h3>
+<pre>
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+</pre>
+
+<h3>📁 Step 2: Configure tailwind.config.js</h3>
+<pre>
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}"
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+</pre>
+
+<h3>🎨 Step 3: Add Tailwind to CSS</h3>
+<pre>
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+</pre>
+
+<h3>💡 Important</h3>
+<p>
+Tailwind scans your files and removes unused CSS → makes app fast.
+</p>
+
+</div>
+
+<div class="box">
+<h2>4. Common Utility Classes </h2>
+
+<h3>🔹 Flexbox</h3>
+
+<p><b>Flexbox</b> is used to align and arrange items in a row or column.</p>
+
+<p>
+Flex works on a <b>parent-child relationship</b>.
+The parent becomes a flex container and children become flex items.
+</p>
+
+<pre>
+&lt;div class="flex justify-center items-center h-40"&gt;
+  Centered Content
+&lt;/div&gt;
+</pre>
+
+<h4>🔹 Important Classes</h4>
+<ul>
+<li><b>flex</b> → enables flexbox</li>
+<li><b>flex-col</b> → column layout</li>
+<li><b>justify-center</b> → horizontal alignment</li>
+<li><b>items-center</b> → vertical alignment</li>
+<li><b>justify-between</b> → space between items</li>
+<li><b>gap-4</b> → space between children</li>
+</ul>
+
+<h4>💡 Real Use</h4>
+<p>Navbar, card layout, centering elements</p>
+
+<hr>
+
+<h3>🔹 Grid</h3>
+
+<p><b>Grid</b> is used for 2D layouts (rows + columns).</p>
+
+<p>
+Grid divides the container into columns and rows.
+You control how many columns and spacing.
+</p>
+
+<pre>
+&lt;div class="grid grid-cols-3 gap-4"&gt;
+  &lt;div&gt;1&lt;/div&gt;
+  &lt;div&gt;2&lt;/div&gt;
+  &lt;div&gt;3&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+<h4>🔹 Important Classes</h4>
+<ul>
+<li><b>grid</b> → enables grid</li>
+<li><b>grid-cols-3</b> → 3 columns</li>
+<li><b>gap-4</b> → space between items</li>
+<li><b>col-span-2</b> → item spans 2 columns</li>
+</ul>
+
+<h4>💡 Flex vs Grid</h4>
+<ul>
+<li>Flex → 1D layout (row OR column)</li>
+<li>Grid → 2D layout (row + column)</li>
+</ul>
+
+<hr>
+
+<h3>🔹 Spacing</h3>
+
+<p>Spacing controls <b>margin and padding</b>.</p>
+
+<p>
+Tailwind uses a spacing scale:
+1 = 0.25rem, 4 = 1rem, etc.
+</p>
+
+<pre>
+p-4   → padding (all sides)
+m-4   → margin (all sides)
+mt-4  → margin-top
+mb-4  → margin-bottom
+px-4  → left + right padding
+py-4  → top + bottom padding
+</pre>
+
+<h4>💡 Real Use</h4>
+<p>Spacing improves UI readability and layout structure.</p>
+
+<hr>
+
+<h3>🔹 Colors</h3>
+
+<p>Tailwind provides a <b>predefined color palette</b>.</p>
+
+<p>
+Colors follow a scale:
+50 (light) → 900 (dark)
+</p>
+
+<pre>
+bg-blue-500
+text-white
+border-gray-300
+hover:bg-blue-600
+</pre>
+
+<h4>🔹 Examples</h4>
+<ul>
+<li><b>bg-*</b> → background color</li>
+<li><b>text-*</b> → text color</li>
+<li><b>border-*</b> → border color</li>
+</ul>
+
+<h4>💡 Real Use</h4>
+<p>Buttons, cards, themes, hover effects</p>
+
+<hr>
+
+<h3>🔹 Typography</h3>
+
+<p>Typography controls text styling.</p>
+
+<p>
+Good typography improves readability and user experience.
+</p>
+
+<pre>
+text-xl        → font size
+font-bold      → font weight
+text-center    → alignment
+uppercase      → transform text
+
+</pre>
+
+<h4>💡 Real Use</h4>
+<p>Headings, paragraphs, UI text styling</p>
+
+<hr>
+
+<h3>🔥 Combined Example</h3>
+
+<pre>
+&lt;div class="flex justify-between items-center bg-blue-500 text-white p-4"&gt;
+  &lt;h1 class="text-xl font-bold"&gt;Logo&lt;/h1&gt;
+  &lt;button class="bg-white text-blue-500 px-4 py-2 rounded"&gt;
+    Login
+  &lt;/button&gt;
+&lt;/div&gt;
+</pre>
+
+<p><b>Concepts used:</b> Flex + Spacing + Colors + Typography</p>
+
+</div>
+<div class="box">
+<h2>5. Responsive Design</h2>
+
+<p>
+Tailwind uses <b>mobile-first approach</b>.
+</p>
+
+<h3>🔹 Breakpoints</h3>
+<ul>
+<li>sm → small screens</li>
+<li>md → tablets</li>
+<li>lg → laptops</li>
+<li>xl → large screens</li>
+</ul>
+
+<h3>🔹 Example</h3>
+<pre>
+&lt;div class="text-sm md:text-lg lg:text-2xl"&gt;
+  Responsive Text
+&lt;/div&gt;
+</pre>
+
+</div>
+
+<div class="box">
+<h2>6. Reusable UI Patterns</h2>
+
+<p>
+Instead of repeating long class lists, you can create reusable components.
+</p>
+
+<pre>
+const Button = () =&gt; (
+  &lt;button class="bg-blue-500 text-white px-4 py-2 rounded"&gt;
+    Click Me
+  &lt;/button&gt;
+)
+</pre>
+
+</div>
+
+<div class="box">
+<h2>7. 🛠 Practice: Responsive Card Layout</h2>
+
+<pre>
+&lt;div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"&gt;
+
+  &lt;div class="bg-white shadow p-4 rounded"&gt;
+    &lt;h2 class="text-xl font-bold"&gt;Product&lt;/h2&gt;
+    &lt;p&gt;₹500&lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;div class="bg-white shadow p-4 rounded"&gt;
+    &lt;h2 class="text-xl font-bold"&gt;Product&lt;/h2&gt;
+    &lt;p&gt;₹500&lt;/p&gt;
+  &lt;/div&gt;
+
+&lt;/div&gt;
+</pre>
+
+<h3>💡 What happens?</h3>
+<ul>
+<li>Mobile → 1 column</li>
+<li>Tablet → 2 columns</li>
+<li>Laptop → 3 columns</li>
+</ul>
+
+</div>
+
+<div class="box">
+<h2>8. 🛠 Practice: Navbar</h2>
+
+<pre>
+&lt;nav class="flex justify-between items-center bg-blue-500 text-white p-4"&gt;
+
+  &lt;h1 class="text-xl font-bold"&gt;MyApp&lt;/h1&gt;
+
+  &lt;div class="space-x-4"&gt;
+    &lt;a href="#"&gt;Home&lt;/a&gt;
+    &lt;a href="#"&gt;About&lt;/a&gt;
+    &lt;a href="#"&gt;Contact&lt;/a&gt;
+  &lt;/div&gt;
+
+&lt;/nav&gt;
+</pre>
+
+<h3>💡 Concepts Used</h3>
+<ul>
+<li>Flexbox</li>
+<li>Spacing</li>
+<li>Colors</li>
+<li>Alignment</li>
+</ul>
+
+</div>
+
+
+<div class="box">
+<h2> Summary</h2>
+
+<ul>
+<li>Tailwind = utility-first CSS framework</li>
+<li>No separate CSS needed</li>
+<li>Mobile-first responsive design</li>
+<li>Faster development</li>
+<li>Reusable UI components</li>
+</ul>
+
+</div>
+
+</body>
+</html>

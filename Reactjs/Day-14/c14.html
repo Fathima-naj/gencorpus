@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+body{
+  background:#f5f7fb;
+  font-family: Arial, sans-serif;
+  margin:12px;
+}
+
+.header{
+  background:#4f46e5;
+  color:white;
+  padding:25px;
+  text-align:center;
+}
+
+.container{
+  max-width:1000px;
+  margin:20px auto;
+  padding:20px;
+}
+
+h2{
+  color:#333;
+  margin-top:30px;
+}
+
+h3{
+  color:#444;
+  margin-top:20px;
+}
+
+/* Sections */
+.section{
+  background:white;
+  padding:20px;
+  margin-bottom:20px;
+  border-radius:10px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* Code block */
+.example{
+  background:#eaeaeb;
+ 
+  padding:15px;
+  border-radius:8px;
+  overflow-x:auto;
+  margin-top:10px;
+}
+
+code{
+  font-family: monospace;
+  white-space: pre-wrap;
+}
+
+/* Notes */
+.note{
+  background:#e0f2fe;
+  padding:12px;
+  border-left:5px solid #0284c7;
+  border-radius:6px;
+  margin:10px 0;
+}
+
+/* Task box */
+.task{
+  background:#fef9c3;
+  padding:15px;
+  border-left:5px solid #eab308;
+  border-radius:8px;
+}
+
+/* List */
+ul{
+  padding-left:20px;
+}
+
+li{
+  margin-bottom:6px;
+}
+
+/* Divider */
+hr{
+  border:none;
+  height:1px;
+  background:#ddd;
+  margin:20px 0;
+}
+</style>
+</head>
+<body>
+
+<!-- ================= CONTEXT API ================= -->
+
+<h2 style="text-align: center;margin-bottom: 5px;"> React Context API</h2>
+
+<p>
+Context API is a built-in feature in React that allows you to share data globally across components
+without passing props manually through every level.
+</p>
+
+<ul>
+  <li>Helps avoid <b>prop drilling</b></li>
+  <li>Used for global data like theme, user authentication, language</li>
+  <li>Improves code readability and maintainability</li>
+</ul>
+
+<div class="note">
+<b>Real World Example:</b> Dark/Light mode, Logged-in user info, App language settings
+</div>
+
+
+<!-- ================= WHAT IS CONTEXT ================= -->
+
+<h2>1. What is Context?</h2>
+
+<p>
+Context provides a way to share values like state, functions, or objects between components
+without explicitly passing props through each level of the component tree.
+</p>
+
+<p>
+It acts like a <b>global storage</b> inside your React app.
+</p>
+
+<div class="example">
+<code>
+// Without Context
+App → Parent → Child → GrandChild ❌
+
+// With Context
+App → Context → Any Component ✅
+</code>
+</div>
+
+<ul>
+  <li>Data becomes accessible anywhere inside the Provider</li>
+  <li>Reduces unnecessary prop passing</li>
+</ul>
+
+
+<!-- ================= PROP DRILLING ================= -->
+
+<h2>2. Prop Drilling Problem</h2>
+
+<p>
+Prop drilling occurs when you pass data from a top-level component to deeply nested components
+through multiple intermediate components.
+</p>
+
+<div class="example">
+<code>
+function App(){
+  return &lt;Parent name="Fathima" /&gt;
+}
+
+function Parent(props){
+  return &lt;Child name={props.name} /&gt;
+}
+
+function Child(props){
+  return &lt;GrandChild name={props.name} /&gt;
+}
+</code>
+</div>
+
+<ul>
+  <li>Intermediate components don’t need the data but still pass it</li>
+  <li>Leads to messy and hard-to-maintain code</li>
+  <li>Increases complexity in large applications</li>
+</ul>
+
+<div class="note">
+👉 Context API solves this by providing direct access to data
+</div>
+
+
+<!-- ================= CREATE CONTEXT ================= -->
+<h2>3. Creating Context</h2>
+
+<p>
+Context is created using the <b>createContext()</b> function. It returns a Context object
+that contains two main components:
+</p>
+
+<ul>
+  <li><b>Provider</b> → used to provide data</li>
+  <li><b>Consumer</b> → used to access data</li>
+</ul>
+
+<div class="example">
+<code>
+import { createContext } from "react";
+
+export const MyContext = createContext();
+</code>
+</div>
+
+<p>
+You can also pass a <b>default value</b> while creating context.
+This value is used when a component tries to access context outside a Provider.
+</p>
+
+<div class="example">
+<code>
+export const MyContext = createContext("Guest User");
+</code>
+</div>
+
+<ul>
+  <li>Default value acts as fallback</li>
+  <li>Useful for testing or avoiding undefined errors</li>
+</ul>
+
+<div class="note">
+👉 Important: Default value is used ONLY if no Provider is found above the component
+</div>
+
+
+<h3>🔍 Behind the Scenes</h3>
+
+<p>
+React internally keeps track of the nearest Provider above a component.
+When a component calls <b>useContext</b>, it reads data from the closest Provider.
+</p>
+
+<div class="example">
+<code>
+// If multiple providers exist
+&lt;MyContext.Provider value="A"&gt;
+  &lt;MyContext.Provider value="B"&gt;
+    &lt;Child /&gt;
+  &lt;/MyContext.Provider&gt;
+&lt;/MyContext.Provider&gt;
+
+// Child will get "B" (nearest provider)
+</code>
+</div>
+
+
+<!-- ================= PROVIDER ================= -->
+
+<h2>4. Provider</h2>
+
+<p>
+The <b>Provider</b> is used to wrap components and make data available to all its child components.
+</p>
+
+<div class="example">
+<code>
+import { MyContext } from "./MyContext";
+
+function App(){
+  return (
+    &lt;MyContext.Provider value={{name: "Fathima"}}&gt;
+      &lt;Home /&gt;
+    &lt;/MyContext.Provider&gt;
+  );
+}
+</code>
+</div>
+
+<ul>
+  <li><b>value</b> → data shared globally</li>
+  <li>All child components can access this data</li>
+  <li>Works for deeply nested components</li>
+</ul>
+
+
+<h3>📦 Passing Multiple Values</h3>
+
+<p>
+You can pass multiple values using an object.
+</p>
+
+<div class="example">
+<code>
+value={{
+  name: "Fathima",
+  age: 21,
+  isLoggedIn: true
+}}
+</code>
+</div>
+
+<p>
+Then access them using:
+</p>
+
+<div class="example">
+<code>
+const { name, age } = useContext(MyContext);
+</code>
+</div>
+
+<!-- ================= CONSUMER ================= -->
+
+<h2>5. Consumer (Old Method)</h2>
+
+<p>
+Consumer is the older way to access context values.
+</p>
+
+<div class="example">
+<code>
+&lt;MyContext.Consumer&gt;
+  {(data) =&gt; &lt;p&gt;{data.name}&lt;/p&gt;}
+&lt;/MyContext.Consumer&gt;
+</code>
+</div>
+
+<ul>
+  <li>Uses a function as a child</li>
+  <li>Less readable compared to hooks</li>
+</ul>
+
+<div class="note">
+👉 Rarely used now, replaced by useContext
+</div>
+
+<!-- ================= USECONTEXT ================= -->
+
+<h2>6. useContext Hook (Modern Way)</h2>
+
+<p>
+The <b>useContext</b> hook is the modern and easiest way to access context values.
+</p>
+
+<div class="example">
+<code>
+import { useContext } from "react";
+import { MyContext } from "./MyContext";
+
+function Home(){
+  const data = useContext(MyContext);
+
+  return &lt;p&gt;{data.name}&lt;/p&gt;;
+}
+</code>
+</div>
+
+<ul>
+  <li>Cleaner syntax</li>
+  <li>Direct access to context value</li>
+  <li>Works inside functional components</li>
+</ul>
+
+
+<!-- ================= WHEN TO USE ================= -->
+
+<h2>7. When to Use Context?</h2>
+
+<ul>
+  <li>Authentication (user login data)</li>
+  <li>Theme (dark/light mode)</li>
+  <li>Language settings</li>
+  <li>Global app settings</li>
+</ul>
+
+<div class="note">
+👉 Avoid using Context for frequently changing large data (can affect performance)
+</div>
+
+
+<!-- ================= PRACTICE ================= -->
+
+<h2>🛠 Practice: Theme / Language Context</h2>
+
+<h3>Task 1: Theme Context</h3>
+<ul>
+  <li>Create ThemeContext</li>
+  <li>Store value: light / dark</li>
+  <li>Add toggle button</li>
+  <li>Change background color dynamically</li>
+</ul>
+
+<div class="example">
+<code>
+const [theme, setTheme] = useState("light");
+
+const toggleTheme = () => {
+  setTheme(theme === "light" ? "dark" : "light");
+};
+</code>
+</div>
+
+
+<h3>Task 2: Language Context</h3>
+<ul>
+  <li>Create LanguageContext</li>
+  <li>Store value: English / Malayalam</li>
+  <li>Switch language using button</li>
+</ul>
+
+<div class="example">
+<code>
+{language === "en" ? "Hello" : "നമസ്കാരം"}
+</code>
+</div>
+
+
+<!-- ================= SUMMARY ================= -->
+
+<h2>Summary</h2>
+
+<ul>
+  <li>Context API → global state management</li>
+  <li>Avoids prop drilling</li>
+  <li>Provider → supplies data</li>
+  <li>useContext → consumes data</li>
+  <li>Best for small to medium global state</li>
+</ul>
+
+</body>
+</html>

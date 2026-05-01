@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>React - useReducer Hook</title>
+
+<style>
+body{
+  background:#f5f7fb;
+  font-family: Arial, sans-serif;
+  margin:0;
+}
+
+.header{
+  background:#0ea5e9;
+  color:white;
+  padding:25px;
+  text-align:center;
+}
+
+.container{
+  max-width:1000px;
+  margin:20px auto;
+  padding:20px;
+}
+
+.section{
+  background:white;
+  padding:20px;
+  margin-bottom:20px;
+  border-radius:10px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.05);
+}
+
+h2{ color:#333; margin-top:20px; }
+h3{ color:#444; margin-top:15px; }
+
+.example{
+  background:#eaebec;
+  padding:15px;
+  border-radius:8px;
+  margin-top:10px;
+  overflow-x:auto;
+}
+
+.note{
+  background:#e0f2fe;
+  padding:12px;
+  border-left:5px solid #0284c7;
+  border-radius:6px;
+  margin:10px 0;
+}
+
+ul{ padding-left:20px; }
+li{ margin-bottom:6px; }
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+  <h1>⚛️ React useReducer Hook</h1>
+  <p>Advanced State Management</p>
+</div>
+
+<div class="container">
+
+<!-- ================= WHAT IS useReducer ================= -->
+
+<div class="section">
+<h2>1. What is useReducer?</h2>
+
+<p>
+<b>useReducer</b> is a React Hook used for managing complex state logic in components.
+It is an alternative to <b>useState</b>.
+</p>
+
+<ul>
+  <li>Best for complex state logic</li>
+  <li>Handles multiple state updates</li>
+  <li>Centralized state logic using reducer function</li>
+</ul>
+
+
+</div>
+
+<!-- ================= SYNTAX ================= -->
+
+<div class="section">
+<h2>Basic Syntax</h2>
+
+<div class="example">
+<code>
+const [state, dispatch] = useReducer(reducer, initialState);
+</code>
+</div>
+
+<ul>
+  <li><b>state</b> → current state</li>
+  <li><b>dispatch</b> → function to update state</li>
+  <li><b>reducer</b> → logic to update state</li>
+</ul>
+</div>
+
+<!-- ================= useState vs useReducer ================= -->
+
+<div class="section">
+<h2>2. useReducer vs useState</h2>
+
+<ul>
+  <li><b>useState:</b> Simple state (counter, toggle)</li>
+  <li><b>useReducer:</b> Complex state (multiple values, logic)</li>
+</ul>
+
+<div class="example">
+<code>
+// useState
+const [count, setCount] = useState(0);
+
+// useReducer
+const [state, dispatch] = useReducer(reducer, {count:0});
+</code>
+</div>
+
+<div class="note">
+👉 Use useReducer when state logic becomes complex
+</div>
+</div>
+
+<!-- ================= REDUCER FUNCTION ================= -->
+
+<div class="section">
+<h2>3. Reducer Function</h2>
+
+<p>
+Reducer is a function that decides how state changes based on an action.
+</p>
+
+<div class="example">
+<code>
+function reducer(state, action){
+  switch(action.type){
+    case "INCREMENT":
+      return {count: state.count + 1};
+
+    case "DECREMENT":
+      return {count: state.count - 1};
+
+    default:
+      return state;
+  }
+}
+</code>
+</div>
+
+<ul>
+  <li>Takes <b>state</b> and <b>action</b></li>
+  <li>Returns new state</li>
+</ul>
+</div>
+
+<!-- ================= ACTIONS ================= -->
+
+<div class="section">
+<h2>4. Actions</h2>
+
+<p>
+Actions are objects that describe what should happen.
+</p>
+
+<div class="example">
+<code>
+{ type: "INCREMENT" }
+{ type: "DECREMENT" }
+</code>
+</div>
+
+<ul>
+  <li>Must have a <b>type</b></li>
+  <li>Can include extra data (payload)</li>
+</ul>
+
+<div class="example">
+<code>
+{ type: "ADD", payload: 5 }
+</code>
+</div>
+</div>
+
+<!-- ================= DISPATCH ================= -->
+
+<div class="section">
+<h2>5. Dispatching Actions</h2>
+
+<p>
+Dispatch is used to send actions to the reducer.
+</p>
+
+<div class="example">
+<code>
+<button onClick={() => dispatch({type:"INCREMENT"})}>
+  +
+</button>
+</code>
+</div>
+
+<ul>
+  <li>Triggers reducer</li>
+  <li>Updates state</li>
+</ul>
+</div>
+
+<!-- ================= FULL EXAMPLE ================= -->
+
+<div class="section">
+<h2>6. Full Example (Counter)</h2>
+
+<div class="example">
+<code>
+const initialState = { count: 0 };
+
+function reducer(state, action){
+  switch(action.type){
+    case "INC": return {count: state.count + 1};
+    case "DEC": return {count: state.count - 1};
+    default: return state;
+  }
+}
+
+function Counter(){
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  return (
+    &lt;div&gt;
+      &lt;h2&gt;{state.count}&lt;/h2&gt;
+      &lt;button onClick={() => dispatch({type:"INC"})}&gt;+&lt;/button&gt;
+      &lt;button onClick={() => dispatch({type:"DEC"})}&gt;-&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+</code>
+</div>
+</div>
+
+<!-- ================= CONTEXT + REDUCER ================= -->
+
+<div class="section">
+<h2>7. Combining useReducer + Context</h2>
+
+<p>
+You can combine useReducer with Context to create global state management.
+</p>
+
+<div class="example">
+<code>
+const AppContext = createContext();
+
+function AppProvider({children}){
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  return (
+    &lt;AppContext.Provider value={{state, dispatch}}&gt;
+      {children}
+    &lt;/AppContext.Provider&gt;
+  );
+}
+</code>
+</div>
+
+<ul>
+  <li>Global state management</li>
+  <li>No prop drilling</li>
+</ul>
+
+<div class="note">
+👉 This pattern is used in real-world apps
+</div>
+</div>
+
+<!-- ================= WHEN TO USE ================= -->
+
+<div class="section">
+<h2>8. When to Use useReducer?</h2>
+
+<ul>
+  <li>Complex state logic</li>
+  <li>Multiple related states</li>
+  <li>State depends on previous state</li>
+  <li>Managing global state (with Context)</li>
+</ul>
+</div>
+
+<!-- ================= PRACTICE ================= -->
+
+<div class="section">
+<h2>🛠 Practice: Global Counter App</h2>
+
+<ul>
+  <li>Create a counter using useReducer</li>
+  <li>Add buttons: Increment, Decrement, Reset</li>
+  <li>Use Context to make counter global</li>
+  <li>Access counter in multiple components</li>
+</ul>
+
+<div class="example">
+<code>
+dispatch({ type: "RESET" });
+</code>
+</div>
+</div>
+
+<!-- ================= SUMMARY ================= -->
+
+<div class="section">
+<h2>Summary</h2>
+
+<ul>
+  <li>useReducer → advanced state management</li>
+  <li>Reducer → handles logic</li>
+  <li>Action → describes update</li>
+  <li>Dispatch → triggers update</li>
+  <li>Works great with Context</li>
+</ul>
+</div>
+
+</div>
+
+</body>
+</html>

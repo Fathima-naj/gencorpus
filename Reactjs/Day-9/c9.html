@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>React Forms (Advanced) Notes</title>
+
+<style>
+body{
+  font-family: Arial;
+  line-height: 1.6;
+  padding: 20px;
+  background:#f9f9f9;
+}
+
+h1, h2{
+  color:#333;
+}
+
+.section{
+  background:white;
+  padding:15px;
+  margin:15px 0;
+  border-left:5px solid #4CAF50;
+  border-radius:5px;
+}
+
+.example{
+  background:#f1f1f1;
+  padding:10px;
+  margin:10px 0;
+  border-left:5px solid #2196F3;
+  overflow-x:auto;
+}
+
+code{
+  color:#d63384;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1 style="text-align: center;"> React Forms </h1>
+
+<!-- Handling Multiple Inputs -->
+<div class="section">
+<h2>🔹 Handling Multiple Inputs</h2>
+
+<p>
+In React, we handle multiple form inputs using a <b>single state object</b>.
+Each input should have a <code>name</code> attribute.
+</p>
+
+<div class="example">
+<pre>
+const [formData, setFormData] = useState({
+  name: "",
+  email: "",
+  password: ""
+});
+
+const handleChange = (e) => {
+  const { name, value } = e.target;
+
+  setFormData({
+    ...formData,
+    [name]: value
+  });
+};
+</pre>
+</div>
+
+<p>
+👉 This approach avoids creating separate state variables for each input.
+</p>
+</div>
+
+<!-- Form Submission -->
+<div class="section">
+<h2>🔹 Form Submission</h2>
+
+<p>
+React uses <code>onSubmit</code> to handle form submission.
+</p>
+
+<div class="example">
+<pre>
+const handleSubmit = (e) => {
+  e.preventDefault(); // prevent page reload
+
+  console.log(formData);
+};
+</pre>
+</div>
+
+<p>
+👉 Always use <code>e.preventDefault()</code> to stop default HTML behavior.
+</p>
+</div>
+
+<!-- Validation Logic -->
+<div class="section">
+<h2>🔹 Validation Logic</h2>
+
+<p>
+Validation ensures user inputs are correct before submission.
+It helps prevent empty fields, invalid formats, and weak data.
+</p>
+
+<h3>🔹 Common Validations</h3>
+<ul>
+  <li>Required fields check</li>
+  <li>Email format validation (using Regex)</li>
+  <li>Password length validation</li>
+</ul>
+
+<h3>🔹 Example with Improved Logic</h3>
+
+<div class="example">
+<pre>
+const validate = () => {
+  let errors = {};
+
+  // Regex for Email Validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  // Required Field Validation
+  if (!formData.name || formData.name.trim() === "") {
+    errors.name = "Name is required";
+  }
+
+  if (!formData.email || formData.email.trim() === "") {
+    errors.email = "Email is required";
+  } 
+  else if (!emailRegex.test(formData.email)) {
+    errors.email = "Invalid email format";
+  }
+
+  if (!formData.password || formData.password.trim() === "") {
+    errors.password = "Password is required";
+  } 
+  else if (formData.password.length < 6) {
+    errors.password = "Password must be at least 6 characters";
+  }
+
+  return errors;
+};
+</pre>
+</div>
+
+<h3>🔹 Explanation</h3>
+<ul>
+  <li><b>Required Check:</b> Ensures field is not empty using <code>trim()</code></li>
+  <li><b>Regex:</b> Validates correct email structure</li>
+  <li><b>test():</b> Returns true if email matches pattern</li>
+  <li><b>Errors Object:</b> Stores messages for each invalid field</li>
+</ul>
+
+<h3>🔹 Example Email Regex Breakdown</h3>
+<div class="example">
+<pre>
+/^[^\s@]+@[^\s@]+\.[^\s@]+$/
+</pre>
+</div>
+
+<ul>
+  <li><code>^[^\s@]+</code> → Text before @</li>
+  <li><code>@</code> → Must contain @ symbol</li>
+  <li><code>[^\s@]+</code> → Domain name</li>
+  <li><code>\.</code> → Dot (.)</li>
+  <li><code>[^\s@]+$</code> → Domain extension (like .com)</li>
+</ul>
+
+</div>
+<!-- Error Messages -->
+<div class="section">
+<h2>🔹 Error Messages</h2>
+
+<p>
+Store errors in state and display them dynamically.
+</p>
+
+<div class="example">
+<pre>
+const [errors, setErrors] = useState({});
+
+const handleSubmit = (e) => {
+  e.preventDefault();
+
+  const validationErrors = validate();
+
+  if(Object.keys(validationErrors).length > 0){
+    setErrors(validationErrors);
+  } else {
+    console.log("Form Submitted");
+  }
+};
+</pre>
+</div>
+
+<p>
+👉 Display errors in UI:
+</p>
+
+<div class="example">
+<pre>
+{errors.name && &lt;p&gt;{errors.name}&lt;/p&gt;}
+</pre>
+</div>
+
+</div>
+
+<!-- Controlled Components -->
+<div class="section">
+<h2>🔹 Controlled Components (Best Practices)</h2>
+
+<ul>
+  <li>Always store input values in state</li>
+  <li>Use <code>value</code> + <code>onChange</code></li>
+  <li>Never manipulate DOM directly</li>
+  <li>Keep form state in a single object (for large forms)</li>
+  <li>Validate before submitting</li>
+</ul>
+
+<div class="example">
+<pre>
+&lt;input
+  type="text"
+  name="name"
+  value={formData.name}
+  onChange={handleChange}
+/&gt;
+</pre>
+</div>
+
+</div>
+
+<!-- Mini Project -->
+<div class="section">
+<h2>🛠 Mini Project: Registration Form</h2>
+
+<p><b>Features to Implement:</b></p>
+
+<ul>
+  <li>Input fields: Name, Email, Password</li>
+  <li>Handle multiple inputs using one state</li>
+  <li>Form submission using onSubmit</li>
+  <li>Validation logic for all fields</li>
+  <li>Display error messages</li>
+  <li>Disable submit button if errors exist</li>
+</ul>
+
+<p><b>Steps:</b></p>
+
+<ol>
+  <li>Create form UI</li>
+  <li>Add state for form data</li>
+  <li>Create handleChange function</li>
+  <li>Create validation function</li>
+  <li>Handle form submission</li>
+  <li>Display errors dynamically</li>
+</ol>
+
+<div class="example">
+<pre>
+&lt;form onSubmit={handleSubmit}&gt;
+
+&lt;input name="name" onChange={handleChange} /&gt;
+{errors.name && &lt;p&gt;{errors.name}&lt;/p&gt;}
+
+&lt;input name="email" onChange={handleChange} /&gt;
+{errors.email && &lt;p&gt;{errors.email}&lt;/p&gt;}
+
+&lt;input name="password" type="password" onChange={handleChange} /&gt;
+{errors.password && &lt;p&gt;{errors.password}&lt;/p&gt;}
+
+&lt;button type="submit"&gt;Register&lt;/button&gt;
+
+&lt;/form&gt;
+</pre>
+</div>
+
+</div>
+
+</body>
+</html>

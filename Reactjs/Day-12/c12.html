@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>React Day 12 - React Router</title>
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  margin:0;
+  background:#f1f1f1;
+}
+
+.header{
+  padding:20px;
+  text-align:center;
+}
+
+.container{
+  width:90%;
+  max-width:1000px;
+  margin:20px auto;
+  background:white;
+  padding:20px;
+  border-radius:8px;
+}
+
+h2{
+  color:#04AA6D;
+  border-bottom:2px solid #ddd;
+  padding-bottom:5px;
+}
+
+.example{
+  background:#f9f9f9;
+  border-left:5px solid #04AA6D;
+  padding:10px;
+  margin:10px 0;
+}
+
+code{
+  display:block;
+  background:#eee;
+  padding:10px;
+  border-radius:5px;
+  white-space:pre-wrap;
+}
+
+.task{
+  background:#fff3cd;
+  border-left:5px solid orange;
+  padding:10px;
+  margin:15px 0;
+}
+
+.note{
+  background:#e7f3fe;
+  border-left:5px solid #2196F3;
+  padding:10px;
+  margin:10px 0;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+  <h1>React - Day 12</h1>
+  <p>React Router </p>
+</div>
+
+<div class="container">
+
+<!-- ================= INTRO ================= -->
+
+<h2>1. What is React Router?</h2>
+
+<p>
+React Router is a library that allows navigation between different pages (components) in a React app without reloading the page.
+</p>
+
+<ul>
+  <li>Creates <b>Single Page Application (SPA)</b></li>
+  <li>No full page reload</li>
+  <li>Fast & smooth navigation</li>
+</ul>
+
+<div class="note">
+<b>Real World Example:</b> Instagram, Facebook → pages change without reload
+</div>
+
+<p><b>Without Router ❌:</b> Full page reload</p>
+<p><b>With Router ✅:</b> Only component updates</p>
+
+
+<!-- ================= INSTALL ================= -->
+
+<h2>2. Installation & Setup</h2>
+
+<div class="example">
+<code>
+npm install react-router-dom
+</code>
+</div>
+
+<div class="example">
+<code>
+import { BrowserRouter } from "react-router-dom";
+
+root.render(
+&lt;BrowserRouter&gt;
+  &lt;App /&gt;
+&lt;/BrowserRouter&gt;
+); </code>
+
+</div>
+
+<ul>
+  <li><b>BrowserRouter</b> → enables routing</li>
+  <li>Must wrap entire app</li>
+</ul>
+
+<div class="note">
+👉 Only ONE BrowserRouter should be used in app
+</div>
+
+
+
+<!-- ================= ROUTES ================= -->
+
+<h2>3. Routes & Route</h2>
+
+<div class="example">
+<code>
+import { Routes, Route } from "react-router-dom";
+
+&lt;Routes&gt;
+  &lt;Route path="/" element={&lt;Home /&gt;} /&gt;
+  &lt;Route path="/about" element={&lt;About /&gt;} /&gt;
+&lt;/Routes&gt; </code>
+
+</div>
+
+<ul>
+  <li><b>Routes</b> → Wrapper for all routes</li>
+  <li><b>Route</b> → Defines URL + Component</li>
+</ul>
+
+
+<!-- ================= NESTED ROUTES ================= -->
+
+<h2>4. Nested Routes</h2>
+
+<div class="example">
+<code>
+&lt;Route path="/dashboard" element={&lt;Dashboard /&gt;}&gt;
+  &lt;Route path="profile" element={&lt;Profile /&gt;} /&gt;
+&lt;/Route&gt;
+</code>
+</div>
+
+<div class="example">
+<code>
+// Inside Dashboard.jsx
+import { Outlet } from "react-router-dom";
+
+<Outlet /> </code>
+
+</div>
+
+<ul>
+  <li><b>Outlet</b> → placeholder for child routes</li>
+</ul>
+
+
+<!-- ================= LINK ================= -->
+
+<h2>5. Link Navigation</h2>
+
+<div class="example">
+<code>
+import { Link } from "react-router-dom";
+
+&lt;Link to="/"&gt;Home&lt;/Link&gt;
+&lt;Link to="/about"&gt;About&lt;/Link&gt; </code>
+
+</div>
+
+<ul>
+  <li>Prevents page reload</li>
+  <li>Works like &lt;a&gt; tag but SPA friendly</li>
+</ul>
+
+
+<!-- ================= NAVLINK ================= -->
+
+<h2>6. NavLink (Active Styling)</h2>
+
+<div class="example">
+<code>
+import { NavLink } from "react-router-dom";
+
+&lt;NavLink
+  to="/about"
+  style={({isActive}) =&gt; ({
+    color: isActive ? "red" : "black"
+  })}
+&gt;
+  About
+&lt;/NavLink&gt;</code>
+
+</div>
+
+<ul>
+  <li>Automatically detects active route</li>
+  <li>Used for navigation bars</li>
+</ul>
+
+
+<!-- ================= PROGRAMMATIC ================= -->
+
+<h2>7. Programmatic Navigation (useNavigate)</h2>
+
+<div class="example">
+<code>
+import { useNavigate } from "react-router-dom";
+
+function Home(){
+const navigate = useNavigate();
+
+return (
+&lt;button onClick={() =&gt; navigate("/about")}&gt;
+  Go to About
+&lt;/button&gt;
+);
+} </code>
+
+</div>
+
+<ul>
+  <li>Navigate using JS logic</li>
+  <li>Useful after form submit/login</li>
+</ul>
+
+
+
+<!-- ================= DYNAMIC ================= -->
+
+<h2>8. Dynamic Routing (Params)</h2>
+
+<div class="example">
+<code>
+&lt;Route path="/user/:id" element={&lt;User /&gt;} /&gt;
+</code>
+</div>
+
+<div class="example">
+<code>
+import { useParams } from "react-router-dom";
+
+function User(){
+const { id } = useParams();
+
+return &lt;h2&gt;User ID: {id}&lt;/h2&gt;;
+} </code>
+
+</div>
+
+<ul>
+  <li>Dynamic values in URL</li>
+  <li>Used for profiles, products, etc.</li>
+</ul>
+
+
+
+<!-- ================= QUERY PARAMS ================= -->
+
+<h2>9. Query Parameters</h2>
+
+<div class="example">
+<code>
+// URL: /search?name=react
+
+import { useSearchParams } from "react-router-dom";
+
+const [params] = useSearchParams();
+const name = params.get("name"); </code>
+
+</div>
+
+<!-- ================= 404 ================= -->
+
+<h2>10. 404 Page (Not Found)</h2>
+
+<div class="example">
+<code>
+&lt;Route path="*" element={&lt;NotFound /&gt;} /&gt;
+</code>
+</div>
+
+<ul>
+  <li>Handles invalid routes</li>
+</ul>
+
+<!-- ================= PROTECTED ================= -->
+
+<h2>11. Protected Routes</h2>
+
+<div class="example">
+<code>
+function PrivateRoute({ children }){
+  const isAuth = true;
+
+return isAuth ? children : &lt;Navigate to="/login" /&gt;
+} </code>
+
+</div>
+
+<div class="example">
+<code>
+&lt;Route path="/dashboard" element={
+  &lt;PrivateRoute&gt;
+    &lt;Dashboard /&gt;
+  &lt;/PrivateRoute&gt;
+} /&gt;
+</code>
+</div>
+
+<!-- ================= ROUTE-BASED LAYOUT ================= -->
+
+<h2>13. Route-Based Layout</h2>
+
+<p>
+Route-based layout means creating a common layout (like Navbar, Sidebar, Footer) 
+that stays the same across multiple pages, while only the inner content changes based on the route.
+</p>
+
+<ul>
+  <li>Used in dashboards and multi-page apps</li>
+  <li>Avoids repeating UI code</li>
+  <li>Uses <b>Nested Routes</b> + <b>Outlet</b></li>
+</ul>
+
+<div class="note">
+<b>Real World Example:</b> Admin dashboard → Sidebar & Navbar stay fixed, content changes
+</div>
+
+<div class="example">
+<code>
+// Layout.jsx
+import { Outlet } from "react-router-dom";
+
+function Layout(){
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Navbar&lt;/h1&gt;
+
+      &lt;hr /&gt;
+
+      {/* Page Content Changes Here */}
+      &lt;Outlet /&gt;
+
+      &lt;hr /&gt;
+
+      &lt;h3&gt;Footer&lt;/h3&gt;
+    &lt;/div&gt;
+  );
+}
+</code>
+</div>
+
+<div class="example">
+<code>
+// App.jsx
+import { Routes, Route } from "react-router-dom";
+import Layout from "./Layout";
+
+&lt;Routes&gt;
+  &lt;Route path="/" element={&lt;Layout /&gt;}&gt;
+    &lt;Route index element={&lt;Home /&gt;} /&gt;
+    &lt;Route path="about" element={&lt;About /&gt;} /&gt;
+    &lt;Route path="dashboard" element={&lt;Dashboard /&gt;} /&gt;
+  &lt;/Route&gt;
+&lt;/Routes&gt;
+</code>
+</div>
+
+<ul>
+  <li><b>Layout Component</b> → Common UI (Navbar, Footer)</li>
+  <li><b>Outlet</b> → Dynamic content loads here</li>
+  <li><b>Nested Routes</b> → child pages inside layout</li>
+</ul>
+<!-- ================= SUMMARY ================= -->
+
+<h2>Summary</h2>
+
+<ul>
+  <li>React Router → navigation system</li>
+  <li>BrowserRouter → wraps app</li>
+  <li>Routes & Route → define pages</li>
+  <li>Link → navigation</li>
+  <li>NavLink → active styling</li>
+  <li>useNavigate → redirect</li>
+  <li>useParams → dynamic routing</li>
+  <li>Nested routes → layouts</li>
+  <li>Protected routes → security</li>
+</ul>
+
+    
+</div>
+
+</body>
+</html>

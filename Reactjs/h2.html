@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Input Display</title>
+</head>
+<body>
+
+  <h2>Enter Something:</h2>
+
+  <!-- Input box -->
+  <input type="text" id="userInput" placeholder="Type here...">
+
+  <!-- Button -->
+  <button onclick="displayText()">Submit</button>
+
+  <!-- Output -->
+  <h3 id="hh"></h3>
+
+  <script>
+    function displayText() {
+      // Get value from input
+      let inputValue = document.getElementById("userInput").value;
+
+      // Display it
+      document.getElementById("hh").innerText = inputValue;
+    }
+  </script>
+
+</body>
+</html>

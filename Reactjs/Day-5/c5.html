@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>React Props - Complete Notes</title>
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  line-height: 1.8;
+  max-width: 1100px;
+  margin:auto;
+  padding:20px;
+  background:#f4f6f8;
+}
+
+h1,h2,h3{
+  color:#2c3e50;
+}
+
+pre{
+  background:#e6e6e6;
+  color:#141313;
+  padding:15px;
+  overflow-x:auto;
+  border-radius:8px;
+}
+
+.box{
+  background:#fff;
+  padding:20px;
+  margin-bottom:20px;
+  border-radius:10px;
+  box-shadow:0 0 10px rgba(0,0,0,0.05);
+}
+
+.highlight{
+  color:#e67e22;
+  font-weight:bold;
+}
+</style>
+
+</head>
+<body>
+
+<h1 style="text-align: center;"> React Props </h1>
+
+<div class="box">
+
+<h2>1. What are Props?</h2>
+
+<p>
+<span class="highlight">Props (short for Properties)</span> are used to pass data 
+from one component to another in React.
+</p>
+
+<p>
+They work similarly to <b>function parameters</b> in JavaScript. Just like you pass values to a function, 
+you pass data to components using props.
+</p>
+
+<p>
+Props are <b>read-only (immutable)</b>, meaning:
+</p>
+
+<ul>
+<li>You cannot modify props inside the child component</li>
+<li>If you try to change them, React will not allow it</li>
+<li>They ensure predictable data flow (one-way data flow)</li>
+</ul>
+
+<h3>🔹 Example</h3>
+
+<pre>
+function Welcome(props) {
+  return &lt;h1&gt;Hello {props.name}&lt;/h1&gt;;
+}
+</pre>
+
+<ul>
+<li>Props come from the parent component</li>
+<li>Child components only "use" the data</li>
+<li>This makes debugging easier</li>
+</ul>
+
+</div>
+
+<div class="box">
+
+<h2>2. Passing Data Between Components</h2>
+
+<p>
+React follows <b>unidirectional (one-way) data flow</b>:
+</p>
+
+<ul>
+<li>Data flows from <b>Parent → Child</b></li>
+<li>Child cannot directly modify parent data</li>
+</ul>
+
+<h3>🔹 Example</h3>
+
+<pre>
+// Parent Component
+function App() {
+  return &lt;User name="Fathima" age={22} /&gt;;
+}
+
+// Child Component
+function User(props) {
+  return (
+    &lt;div&gt;
+      &lt;p&gt;Name: {props.name}&lt;/p&gt;
+      &lt;p&gt;Age: {props.age}&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+</pre>
+
+<h3>Important Notes</h3>
+<ul>
+<li>String props → written inside quotes</li>
+<li>Number/boolean/JS expressions → inside { }</li>
+<li>You can pass arrays, objects, and functions as props</li>
+</ul>
+
+<h3>🔹 Advanced Example (Passing Function)</h3>
+
+<pre>
+function App() {
+  function handleClick() {
+    alert("Button clicked!");
+  }
+
+  return &lt;Button onClick={handleClick} /&gt;;
+}
+
+function Button(props) {
+  return &lt;button onClick={props.onClick}&gt;Click&lt;/button&gt;;
+}
+</pre>
+
+</div>
+
+<div class="box">
+
+<h2>3. Props Destructuring</h2>
+
+<p>
+Destructuring is a JavaScript feature that extracts values from objects.
+</p>
+
+<h3>🔹 Without Destructuring</h3>
+
+<pre>
+function User(props) {
+  return &lt;p&gt;{props.name}&lt;/p&gt;;
+}
+</pre>
+
+<h3>🔹 With Destructuring</h3>
+
+<pre>
+function User({ name, age }) {
+  return (
+    &lt;div&gt;
+      &lt;p&gt;Name: {name}&lt;/p&gt;
+      &lt;p&gt;Age: {age}&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+</pre>
+
+<h3>🔹 Destructuring Inside Function Body</h3>
+
+<pre>
+function User(props) {
+  const { name, age } = props;
+  return &lt;p&gt;{name}&lt;/p&gt;;
+}
+</pre>
+
+<h3>💡 Benefits</h3>
+<ul>
+<li>Cleaner code</li>
+<li>Better readability</li>
+<li>Less repetition</li>
+</ul>
+
+</div>
+
+<div class="box">
+
+<h2>4. Default Props</h2>
+
+<p>
+Default props provide fallback values when no prop is passed.
+</p>
+
+<h3>🔹 Example</h3>
+
+<pre>
+function User({ name = "Guest" }) {
+  return &lt;h2&gt;Hello {name}&lt;/h2&gt;;
+}
+</pre>
+
+<h3>Why Important?</h3>
+<ul>
+<li>Prevents undefined errors</li>
+<li>Improves user experience</li>
+<li>Makes components more reliable</li>
+</ul>
+
+<h3>🔹 Old Method</h3>
+
+<pre>
+User.defaultProps = {
+  name: "Guest"
+};
+</pre>
+
+<h3>⚠️ Note</h3>
+<p>
+Default props method is less used in modern functional components. Prefer destructuring.
+</p>
+
+</div>
+
+<div class="box">
+
+<h2>5. PropTypes (Type Checking)</h2>
+
+<p>
+PropTypes help validate the type of props passed to a component.
+</p>
+
+<h3>🔹 Why Use It?</h3>
+<ul>
+<li>Catches bugs early</li>
+<li>Improves code maintainability</li>
+<li>Acts as documentation</li>
+</ul>
+
+<h3>🔹 Example</h3>
+
+<pre>
+import PropTypes from 'prop-types';
+
+function User({ name, age }) {
+  return &lt;p&gt;{name} - {age}&lt;/p&gt;;
+}
+
+User.propTypes = {
+  name: PropTypes.string,
+  age: PropTypes.number
+};
+</pre>
+
+<h3>🔹 Common Types</h3>
+
+<ul>
+<li>string</li>
+<li>number</li>
+<li>bool</li>
+<li>array</li>
+<li>object</li>
+<li>func</li>
+</ul>
+
+<h3>🔹 Required Props</h3>
+
+<pre>
+User.propTypes = {
+  name: PropTypes.string.isRequired
+};
+</pre>
+
+</div>
+
+<div class="box">
+
+<h2>6. Reusability Using Props</h2>
+
+<p>
+Props allow you to create <b>dynamic and reusable components</b>.
+</p>
+
+<h3>🔹 Example</h3>
+
+<pre>
+function Button({ text }) {
+  return &lt;button&gt;{text}&lt;/button&gt;;
+}
+
+&lt;Button text="Login" /&gt;
+&lt;Button text="Signup" /&gt;
+</pre>
+
+<h3>Real-World Use</h3>
+<ul>
+<li>Cards</li>
+<li>Buttons</li>
+<li>Forms</li>
+<li>Modals</li>
+</ul>
+
+<h3>💡 Key Idea</h3>
+<p>
+Instead of creating multiple components, create <b>one reusable component</b> and change data using props.
+</p>
+
+</div>
+
+<div class="box">
+
+<h2>7. 🛠 Mini Task: Product Card Using Props</h2>
+
+<p>Create a reusable UI component for products.</p>
+
+<h3>🔹 Product Component</h3>
+
+<pre>
+function ProductCard({ title, price, image }) {
+  return (
+    &lt;div className="card"&gt;
+      &lt;img src={image} alt={title} width="150" /&gt;
+      &lt;h3&gt;{title}&lt;/h3&gt;
+      &lt;p&gt;₹{price}&lt;/p&gt;
+      &lt;button&gt;Buy Now&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+</pre>
+
+<h3>🔹 Using Product Component</h3>
+
+<pre>
+function App() {
+  return (
+    &lt;div&gt;
+      &lt;ProductCard 
+        title="Headphones" 
+        price={1999} 
+        image="img1.jpg" 
+      /&gt;
+
+      &lt;ProductCard 
+        title="Smart Watch" 
+        price={2999} 
+        image="img2.jpg" 
+      /&gt;
+    &lt;/div&gt;
+  );
+}
+</pre>
+
+<h3> Advanced Idea</h3>
+
+<pre>
+const products = [
+  { id: 1, title: "Phone", price: 15000 },
+  { id: 2, title: "Laptop", price: 50000 }
+];
+
+products.map(product => (
+  &lt;ProductCard 
+    key={product.id}
+    title={product.title}
+    price={product.price}
+  /&gt;
+));
+</pre>
+
+</div>
+
+<div class="box">
+
+<h2>📌 Final Summary</h2>
+
+<ul>
+<li>Props = data passed from parent to child</li>
+<li>They are immutable</li>
+<li>Enable component communication</li>
+<li>Improve reusability</li>
+<li>Support dynamic UI</li>
+<li>Used everywhere in React apps</li>
+</ul>
+
+</div>
+</body>
+</html>

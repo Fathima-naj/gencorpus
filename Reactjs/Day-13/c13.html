@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+
+body{
+  margin:0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background:#f4f6f9;
+  color:#333;
+}
+
+/* Container */
+.container{
+  max-width:900px;
+  margin:30px auto;
+  background:#fff;
+  padding:30px;
+  border-radius:10px;
+  box-shadow:0 4px 15px rgba(0,0,0,0.08);
+}
+
+/* Headings */
+h2{
+  color:#2c3e50;
+  margin-top:30px;
+  border-left:5px solid #3498db;
+  padding-left:10px;
+}
+
+h3{
+  margin-top:20px;
+  color:#34495e;
+}
+
+/* Paragraph */
+p{
+  line-height:1.6;
+}
+
+/* Lists */
+ul{
+  margin-left:20px;
+  line-height:1.8;
+}
+
+li{
+  margin-bottom:5px;
+}
+
+/* Code blocks */
+.example{
+  background:#1e1e1e;
+  color:#fff;
+  padding:15px;
+  border-radius:8px;
+  margin-top:10px;
+  overflow-x:auto;
+}
+
+code{
+  color:#b89808;
+}
+
+/* Section Divider */
+hr{
+  margin:30px 0;
+  border:none;
+  height:1px;
+  background:#ddd;
+}
+
+/* Note box */
+.note{
+  background:#eaf6ff;
+  border-left:5px solid #3498db;
+  padding:12px;
+  margin:15px 0;
+  border-radius:5px;
+}
+
+/* Task Highlight */
+h3{
+  background:#f8f9fa;
+  padding:8px;
+  border-radius:5px;
+}
+
+/* Buttons (optional if you add later) */
+button{
+  padding:8px 15px;
+  border:none;
+  background:#3498db;
+  color:white;
+  border-radius:5px;
+  cursor:pointer;
+}
+
+button:hover{
+  background:#2980b9;
+}
+
+/* Responsive */
+@media(max-width:768px){
+  .container{
+    margin:10px;
+    padding:20px;
+  }
+}
+
+</style>
+    </style>
+</head>
+<body>
+    <h2 style="text-align: center;">🛠 Assignment: Multi-Page Dashboard</h2>
+
+  <div class="container">
+      <!-- ================= ASSIGNMENT ================= -->
+
+
+<p>
+Build a Multi-Page Dashboard application using React and React Router.
+This task will help you understand real-world routing, layouts, and API integration.
+</p>
+
+<!-- ================= OBJECTIVE ================= -->
+
+<h2>🎯 Objective</h2>
+
+<ul>
+  <li>Understand routing in React</li>
+  <li>Work with dynamic pages</li>
+  <li>Fetch and display API data</li>
+  <li>Build a structured dashboard layout</li>
+</ul>
+
+<!-- ================= TASKS ================= -->
+
+<h2>📌 Tasks</h2>
+
+<h3>1. Setup Routing</h3>
+<ul>
+  <li>Install <code>react-router-dom</code></li>
+  <li>Create routes for:
+    <ul>
+      <li>Home</li>
+      <li>About</li>
+      <li>Users</li>
+      <li>Dashboard</li>
+      <li>Login</li>
+    </ul>
+  </li>
+</ul>
+
+---
+
+<h3>2. Navigation</h3>
+<ul>
+  <li>Create a Navbar</li>
+  <li>Use <code>NavLink</code> for navigation</li>
+  <li>Highlight active link</li>
+</ul>
+
+---
+
+<h3>3. Route-Based Layout</h3>
+<ul>
+  <li>Create a <code>Layout.jsx</code></li>
+  <li>Add Navbar</li>
+  <li>Use <code>&lt;Outlet /&gt;</code> for page content</li>
+</ul>
+
+---
+
+<h3>4. API Data Display</h3>
+<ul>
+  <li>Fetch data from:
+    <br>
+    <code>https://jsonplaceholder.typicode.com/users</code>
+  </li>
+  <li>Display users list in Users page</li>
+  <li>Show name and email</li>
+</ul>
+
+---
+
+<h3>5. Dynamic Routing</h3>
+<ul>
+  <li>Create route: <code>/user/:id</code></li>
+  <li>On clicking a user → navigate to details page</li>
+  <li>Display selected user ID or details</li>
+</ul>
+
+---
+
+<h3>6. Nested Routes (Dashboard)</h3>
+<ul>
+  <li>Create Dashboard page</li>
+  <li>Add nested routes:
+    <ul>
+      <li>Profile</li>
+      <li>Settings</li>
+    </ul>
+  </li>
+  <li>Use <code>Outlet</code> inside Dashboard</li>
+</ul>
+
+---
+
+<h3>7. Protected Routes</h3>
+<ul>
+  <li>Create <code>PrivateRoute</code></li>
+  <li>Allow access only if user is logged in</li>
+  <li>Otherwise redirect to Login page</li>
+</ul>
+
+---
+
+<h3>8. Login & Redirect</h3>
+<ul>
+  <li>Create Login page</li>
+  <li>After login → redirect to Dashboard</li>
+</ul>
+
+---
+
+<h3>9. 404 Page</h3>
+<ul>
+  <li>Create NotFound page</li>
+  <li>Show message: "Page Not Found"</li>
+</ul>
+
+---
+
+<h3>10. Final Routing Structure</h3>
+
+<div class="example">
+<code>
+/               → Home
+/about          → About
+/users          → Users
+/user/:id       → User Details
+/dashboard      → Dashboard (Protected)
+/dashboard/profile
+/dashboard/settings
+/login          → Login
+*               → 404 Page
+</code>
+</div>
+
+
+  </div>
+</body>
+</html>

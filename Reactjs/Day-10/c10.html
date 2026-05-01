@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>React useEffect Hook - Complete Guide</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        line-height: 1.6;
+        background: #f4f6f8;
+    }
+    h1, h2 {
+        color: #2c3e50;
+    }
+    .section {
+        background: white;
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    .code {
+        
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: auto;
+    }
+    .note {
+        background: #fff3cd;
+        padding: 10px;
+        border-left: 5px solid orange;
+        margin-top: 10px;
+    }
+</style>
+</head>
+
+<body>
+
+<h1>⚛️ React useEffect Hook - Complete Guide</h1>
+<!-- WHAT IS USEEFFECT -->
+<div class="section">
+  <h2>📌 What is useEffect?</h2>
+
+  <p>
+    <b>useEffect</b> is a React Hook used to perform <b>side effects</b> in functional components.
+  </p>
+
+  <p>
+    It runs code after the component renders.
+  </p>
+
+  <div class="code">
+    <pre>
+import { useEffect } from "react";
+
+useEffect(() => {
+  console.log("Component Rendered");
+});
+    </pre>
+  </div>
+
+  <div class="note">
+    👉 Runs after every render by default <br><br>
+
+    🔹 <b>What are Side Effects?</b><br>
+    Side effects are operations that affect things <b>outside the component</b> or 
+    don't directly return UI.<br><br>
+
+    ✅ Examples of Side Effects:
+    <ul>
+      <li>Fetching data from an API</li>
+      <li>Updating the DOM manually</li>
+      <li>Using timers (setTimeout / setInterval)</li>
+      <li>Adding event listeners</li>
+      <li>Local storage access</li>
+    </ul>
+
+    💡 React components should stay pure, so <b>useEffect</b> is used to handle these side effects separately.
+  </div>
+</div>
+
+<!-- LIFECYCLE METHODS -->
+<div class="section">
+<h2>🔄 React Lifecycle (with useEffect)</h2>
+
+<p>
+In class components, React had lifecycle methods like:
+</p>
+
+<ul>
+<li><b>componentDidMount</b> → runs after first render</li>
+<li><b>componentDidUpdate</b> → runs on updates</li>
+<li><b>componentWillUnmount</b> → cleanup before removal</li>
+</ul>
+<br>
+<p>A cleanup function is a function returned from useEffect that is used to stop or clean up side effects
+ </p><p>  when:</p>
+
+the component unmounts
+or before the effect runs again
+<br>
+<p>
+👉 In functional components, <b>useEffect replaces all of these</b>.
+</p>
+
+<h3>1. componentDidMount (Mount)</h3>
+<div class="code">
+<pre>
+useEffect(() => {
+  console.log("Component Mounted");
+}, []);
+</pre>
+</div>
+
+<div class="note">
+👉 Empty dependency array [] = runs only once (like componentDidMount)
+</div>
+
+<h3>2. componentDidUpdate (Update)</h3>
+<div class="code">
+<pre>
+useEffect(() => {
+  console.log("Component Updated");
+}, [count]);
+</pre>
+</div>
+
+<div class="note">
+👉 Runs whenever dependency (count) changes
+</div>
+
+<h3>3. componentWillUnmount (Unmount)</h3>
+<div class="code">
+<pre>
+useEffect(() => {
+  return () => {
+    console.log("Component Unmounted");
+  };
+}, []);
+</pre>
+</div>
+
+<div class="note">
+👉 Cleanup function = runs before component is removed
+</div>
+
+</div>
+
+
+
+<!-- DEPENDENCY ARRAY -->
+<div class="section">
+<h2>📦 Dependency Array</h2>
+
+<p>The second argument controls when useEffect runs.</p>
+
+<h3>1. No Dependency Array</h3>
+<div class="code">
+<pre>
+useEffect(() => {
+  console.log("Runs every render");
+});
+</pre>
+</div>
+
+<div class="note">
+👉 Similar to componentDidUpdate + componentDidMount (runs always)
+</div>
+
+<h3>2. Empty Dependency Array []</h3>
+<div class="code">
+<pre>
+useEffect(() => {
+  console.log("Runs only once (on mount)");
+}, []);
+</pre>
+</div>
+
+<div class="note">
+👉 Same as componentDidMount
+</div>
+
+<h3>3. With Dependencies</h3>
+<div class="code">
+<pre>
+useEffect(() => {
+  console.log("Runs when count changes");
+}, [count]);
+</pre>
+</div>
+
+<div class="note">
+👉 Same as componentDidUpdate for specific values
+</div>
+
+<div class="note">
+👉 Always include dependencies to avoid bugs
+</div>
+</div>
+
+<!-- CLEANUP FUNCTION -->
+<div class="section">
+<h2>🧹 Cleanup Function</h2>
+
+<p>
+Cleanup function is used to remove side effects like timers or event listeners.
+</p>
+
+<div class="code">
+<pre>
+useEffect(() => {
+  const timer = setInterval(() => {
+    console.log("Running...");
+  }, 1000);
+
+  return () => {
+    clearInterval(timer);
+  };
+}, []);
+</pre>
+</div>
+
+<div class="note">
+👉 Works like componentWillUnmount
+</div>
+
+</div>
+<!-- PRACTICE --> <div class="section"> <h2>🛠 Practice Examples</h2>
+     <h3>1. Timer Example</h3> 
+     <div class="code"> 
+        <pre> import { useState, useEffect } from "react"; 
+            function Timer() {
+                 const [count, setCount] = useState(0);
+                 useEffect(() => {
+                    console.log("Effect started");
+
+                    const interval = setInterval(() => {
+                      console.log("Running interval");
+                      setCount(prev => prev + 1);
+                    }, 1000);
+
+                    return () => {
+                      console.log("Cleanup called");
+                      clearInterval(interval);
+                    };
+                  }, []);
+               
+             return &lt;h2&gt;{count}&lt;/h2&gt;; 
+            } </pre> 
+                </div> <h3>2. API Call Example</h3> 
+                <div class="code"> 
+                    <pre> import { useState, useEffect } from "react";
+                         function FetchData() { 
+                            const [data, setData] = useState([]);
+                         useEffect(() => { 
+                            fetch("https://jsonplaceholder.typicode.com/posts")
+                             .then(res => res.json())
+                              .then(data => setData(data));
+                            }, []);
+                        return ( 
+                            &lt;ul&gt; 
+                            {data.map(item => (
+                                 &lt;li key={item.id}&gt;{item.title}&lt;/li&gt; 
+                                 ))} &lt;/ul&gt; );
+                             } </pre> </div> </div>
+<!-- SUMMARY -->
+<div class="section">
+<h2>📚 Summary</h2>
+
+<ul>
+<li>useEffect handles side effects</li>
+<li>Dependency array controls execution</li>
+<li>Replaces lifecycle methods</li>
+<li>Cleanup prevents memory leaks</li>
+</ul>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>React - Custom Hooks</title>
+
+<style>
+body{
+  background:#f5f7fb;
+  font-family: Arial, sans-serif;
+  margin:0;
+}
+
+.header{
+  background:#10b981;
+  color:white;
+  padding:25px;
+  text-align:center;
+}
+
+.container{
+  max-width:1000px;
+  margin:20px auto;
+  padding:20px;
+}
+
+.section{
+  background:white;
+  padding:20px;
+  margin-bottom:20px;
+  border-radius:10px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.05);
+}
+
+h2{ color:#333; }
+h3{ color:#444; }
+
+.example{
+  background:#1e293b;
+  color:#f8fafc;
+  padding:15px;
+  border-radius:8px;
+  margin-top:10px;
+  overflow-x:auto;
+}
+
+.note{
+  background:#ecfdf5;
+  padding:12px;
+  border-left:5px solid #10b981;
+  border-radius:6px;
+  margin:10px 0;
+}
+
+ul{ padding-left:20px; }
+li{ margin-bottom:6px; }
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+  <h1>⚛️ React Custom Hooks</h1>
+  <p>Reusable Logic in React</p>
+</div>
+
+<div class="container">
+
+<!-- ================= WHAT ARE CUSTOM HOOKS ================= -->
+
+<div class="section">
+<h2>1. What are Custom Hooks?</h2>
+
+<p>
+Custom Hooks are JavaScript functions that allow you to reuse logic across multiple components.
+They use built-in React Hooks like <b>useState</b>, <b>useEffect</b>, etc.
+</p>
+
+<ul>
+  <li>Start with <b>use</b> keyword</li>
+  <li>Reusable logic (not UI)</li>
+  <li>Helps avoid code duplication</li>
+</ul>
+
+<div class="note">
+👉 Example: useFetch, useForm, useToggle
+</div>
+</div>
+
+---
+
+<!-- ================= RULES ================= -->
+
+<div class="section">
+<h2>2. Rules of Hooks</h2>
+
+<ul>
+  <li>Only call Hooks at the top level (not inside loops/conditions)</li>
+  <li>Only call Hooks inside React functions or custom hooks</li>
+</ul>
+
+<div class="example">
+<code>
+// ❌ Wrong
+if(true){
+  useState();
+}
+
+// ✅ Correct
+const [count, setCount] = useState(0);
+</code>
+</div>
+
+<div class="note">
+👉 Breaking rules may cause bugs or unexpected behavior
+</div>
+</div>
+
+---
+
+<!-- ================= CREATE CUSTOM HOOK ================= -->
+
+<div class="section">
+<h2>3. Creating a Custom Hook</h2>
+
+<p>
+A custom hook is just a function that uses other hooks.
+</p>
+
+<div class="example">
+<code>
+function useCounter(){
+  const [count, setCount] = useState(0);
+
+  const increment = () => setCount(count + 1);
+
+  return { count, increment };
+}
+</code>
+</div>
+
+<ul>
+  <li>Reusable logic</li>
+  <li>Returns state + functions</li>
+</ul>
+</div>
+
+---
+
+<!-- ================= USEFETCH ================= -->
+
+<div class="section">
+<h2>4. Example: useFetch</h2>
+
+<p>
+Used to fetch API data.
+</p>
+
+<div class="example">
+<code>
+import { useEffect, useState } from "react";
+
+function useFetch(url){
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        setData(data);
+        setLoading(false);
+      });
+  }, [url]);
+
+  return { data, loading };
+}
+</code>
+</div>
+</div>
+
+---
+
+<!-- ================= USETOGGLE ================= -->
+
+<div class="section">
+<h2>5. Example: useToggle</h2>
+
+<p>
+Used to toggle true/false values.
+</p>
+
+<div class="example">
+<code>
+function useToggle(initial = false){
+  const [value, setValue] = useState(initial);
+
+  const toggle = () => setValue(!value);
+
+  return [value, toggle];
+}
+</code>
+</div>
+</div>
+
+---
+
+<!-- ================= USEFORM ================= -->
+
+<div class="section">
+<h2>6. Example: useForm</h2>
+
+<p>
+Used to manage form inputs.
+</p>
+
+<div class="example">
+<code>
+function useForm(initialValues){
+  const [values, setValues] = useState(initialValues);
+
+  const handleChange = (e) => {
+    setValues({
+      ...values,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  return { values, handleChange };
+}
+</code>
+</div>
+</div>
+
+---
+
+<!-- ================= WHEN TO USE ================= -->
+
+<div class="section">
+<h2>7. When to Use Custom Hooks?</h2>
+
+<ul>
+  <li>When logic is repeated in multiple components</li>
+  <li>API calls</li>
+  <li>Forms handling</li>
+  <li>Toggle logic</li>
+</ul>
+
+<div class="note">
+👉 Keeps components clean and reusable
+</div>
+</div>
+
+---
+
+<!-- ================= PRACTICE ================= -->
+
+<div class="section">
+<h2>🛠 Practice: Convert Logic into Custom Hook</h2>
+
+<ul>
+  <li>Create a counter using useState</li>
+  <li>Convert it into <b>useCounter</b> hook</li>
+  <li>Use it in multiple components</li>
+</ul>
+
+<div class="example">
+<code>
+// Before
+const [count, setCount] = useState(0);
+
+// After
+const { count, increment } = useCounter();
+</code>
+</div>
+
+</div>
+
+---
+
+<!-- ================= SUMMARY ================= -->
+
+<div class="section">
+<h2>Summary</h2>
+
+<ul>
+  <li>Custom Hooks → reusable logic</li>
+  <li>Must start with "use"</li>
+  <li>Follow rules of hooks</li>
+  <li>Used for API, forms, toggles</li>
+</ul>
+</div>
+
+</div>
+
+</body>
+</html>

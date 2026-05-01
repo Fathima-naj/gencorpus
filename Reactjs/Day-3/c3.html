@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DAY 3 – React Components</title>
+
+<style>
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  max-width: 1100px;
+  margin:auto;
+  padding:25px;
+  line-height:1.8;
+  background:#f9fafb;
+}
+h1,h2,h3{
+  color:#111827;
+}
+.box{
+  background:#fff;
+  padding:20px;
+  border-radius:10px;
+  margin-bottom:20px;
+  box-shadow:0 0 10px rgba(0,0,0,0.05);
+}
+pre{
+  background:#d6d7d8;
+  color:#111111;
+  padding:15px;
+  border-radius:8px;
+  overflow-x:auto;
+}
+</style>
+
+</head>
+<body>
+
+<h1 style="text-align: center;"> React Components</h1>
+
+<div class="box">
+<h2>1. What are Components?</h2>
+
+<p>Components are the <b>core building blocks of a React application</b>.</p>
+
+<p>React follows a <b>component-based architecture</b>, where the UI is divided into small independent parts.</p>
+
+<p>
+Instead of updating the whole page like traditional DOM manipulation, React updates only specific components.
+This makes applications <b>fast and efficient</b>.
+</p>
+
+<ul>
+<li><b>Reusability</b> – Same component can be used multiple times</li>
+<li><b>Maintainability</b> – Fix one component, changes reflect everywhere</li>
+<li><b>Scalability</b> – Large apps can be built easily</li>
+<li><b>Separation of concerns</b> – Each component handles its own logic</li>
+</ul>
+
+</div>
+
+<div class="box">
+<h2>2. Functional Components</h2>
+
+<p>A functional component is simply a <b>JavaScript function that returns JSX</b>.</p>
+
+<p>
+JSX is not HTML — it is converted into <b>React.createElement()</b> internally.
+</p>
+
+<pre>
+function Header(){
+  return &lt;h1&gt;Welcome&lt;/h1&gt;
+}
+</pre>
+
+<pre>
+const Header = () =&gt; &lt;h1&gt;Welcome&lt;/h1&gt;;
+</pre>
+
+<h3>🔹 Rules</h3>
+<ul>
+<li>Must start with <b>capital letter</b></li>
+<li>Must return <b>JSX</b></li>
+<li>Must have <b>one parent element</b></li>
+</ul>
+
+<h3>❗ Why One Parent?</h3>
+<p>
+React can only return one object. JSX compiles into one JavaScript object.
+</p>
+
+</div>
+
+<div class="box">
+<h2>3. Exporting Components</h2>
+
+<p>Export is used to <b>share components between files</b>.</p>
+
+<p>
+React apps are modular. Each component is in a separate file.
+Export helps in <b>code organization and reusability across files</b>.
+</p>
+
+<h3>🔹 Default Export</h3>
+<pre>
+// Header.jsx
+function Header(){
+  return &lt;h1&gt;Header&lt;/h1&gt;
+}
+
+export default Header;
+</pre>
+
+<ul>
+<li>Only one default export per file</li>
+<li>Can import with any name</li>
+</ul>
+
+<pre>
+import MyHeader from "./Header";
+</pre>
+
+<h3>🔹 Named Export</h3>
+<pre>
+// Named Export
+export const Header = () =&gt; &lt;h1&gt;Header&lt;/h1&gt;;
+</pre>
+
+<ul>
+<li>Multiple exports allowed</li>
+<li>Name must match exactly</li>
+</ul>
+
+<pre>
+import { Header } from "./Header";
+</pre>
+
+<h3>💡 When to Use?</h3>
+<ul>
+<li>Default → when one main component</li>
+<li>Named → when multiple utilities/components</li>
+</ul>
+
+</div>
+
+<div class="box">
+<h2>4. Importing Components</h2>
+
+<p>Import is used to <b>use components from other files</b>.</p>
+
+<p>
+Import connects different files, allowing React to build a <b>component tree</b>.
+</p>
+
+<pre>
+import Header from "./Header";
+</pre>
+
+<pre>
+import { Header } from "./Header";
+</pre>
+
+<pre>
+function App(){
+  return (
+    &lt;div&gt;
+      &lt;Header /&gt;
+    &lt;/div&gt;
+  )
+}
+</pre>
+
+<h3>⚠️ Common Errors</h3>
+<ul>
+<li>Wrong file path</li>
+<li>Default vs Named confusion</li>
+<li>Missing export</li>
+</ul>
+
+</div>
+
+<div class="box">
+<h2>5. Component Reusability</h2>
+
+<p>Reusability means writing once and using multiple times.</p>
+
+
+<p>
+React avoids duplication. Instead of copying code, you reuse components,
+which improves performance and reduces bugs.
+</p>
+
+<pre>
+function Card(){
+  return &lt;div&gt;Product Card&lt;/div&gt;
+}
+
+function App(){
+  return (
+    &lt;div&gt;
+      &lt;Card /&gt;
+      &lt;Card /&gt;
+      &lt;Card /&gt;
+    &lt;/div&gt;
+  )
+}
+</pre>
+
+</div>
+
+<div class="box">
+<h2>6. Component Composition</h2>
+
+<p>Composition means combining smaller components to build bigger UI.</p>
+
+
+<p>
+React follows <b>composition over inheritance</b>.
+Instead of extending classes, we combine components.
+</p>
+
+<pre>
+function Header(){
+  return &lt;h1&gt;Header&lt;/h1&gt;
+}
+
+function Footer(){
+  return &lt;h1&gt;Footer&lt;/h1&gt;
+}
+
+function App(){
+  return (
+    &lt;div&gt;
+      &lt;Header /&gt;
+      &lt;p&gt;Main Content&lt;/p&gt;
+      &lt;Footer /&gt;
+    &lt;/div&gt;
+  )
+}
+</pre>
+
+</div>
+
+<div class="box">
+<h2>7. Complete Example</h2>
+
+<p>
+This structure represents a real React app where each UI part is modular.
+React combines them into a <b>component tree</b>.
+</p>
+
+<pre>
+// Header.jsx
+const Header = () =&gt; {
+  return (
+    &lt;header&gt;
+      &lt;h1&gt;My Website&lt;/h1&gt;
+    &lt;/header&gt;
+  )
+}
+export default Header;
+</pre>
+
+<pre>
+// Footer.jsx
+const Footer = () =&gt; {
+  return (
+    &lt;footer&gt;
+      &lt;p&gt;© 2026 My Website&lt;/p&gt;
+    &lt;/footer&gt;
+  )
+}
+export default Footer;
+</pre>
+
+<pre>
+// Card.jsx
+const Card = () =&gt; {
+  return (
+    &lt;div className="card"&gt;
+      &lt;h3&gt;Product Name&lt;/h3&gt;
+      &lt;p&gt;Price: ₹500&lt;/p&gt;
+    &lt;/div&gt;
+  )
+}
+export default Card;
+</pre>
+
+<pre>
+// App.jsx
+import Header from "./Header";
+import Footer from "./Footer";
+import Card from "./Card";
+
+function App(){
+  return (
+    &lt;div&gt;
+      &lt;Header /&gt;
+      &lt;Card /&gt;
+      &lt;Card /&gt;
+      &lt;Card /&gt;
+      &lt;Footer /&gt;
+    &lt;/div&gt;
+  )
+}
+
+export default App;
+</pre>
+
+</div>
+
+<div class="box">
+<h2>Summary</h2>
+
+<ul>
+<li>Components = reusable UI blocks</li>
+<li>Functional components return JSX</li>
+<li>Export → share components</li>
+<li>Import → use components</li>
+<li>Reusability avoids duplication</li>
+<li>Composition builds complex UI</li>
+<li>React uses component tree structure</li>
+</ul>
+
+</div>
+
+</body>
+</html>
