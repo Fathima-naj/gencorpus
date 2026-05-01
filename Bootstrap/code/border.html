@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    span{
+        width: 50px;
+        height:50px;
+        padding:10px;
+        
+    }
+    img{
+        width: 100px;
+        height: 100px;
+    }
+  </style>
+</head>
+<body class="m-3 p-3">
+   
+<span class="border p-3 border-danger m-3">1</span>
+<span class="border-top p-3 border-danger m-3">2</span>
+<span class="border-end p-3 border-danger">3</span>
+<span class="border-bottom p-3 border-danger">4</span>
+<span class="border-start p-3 border-danger">5</span>
+  <br><br>
+<h2>Border subtractive</h2>
+<br><br>
+ <div class="d-flex gap-3">
+       <span class="border border-0  m-3">1</span>
+<span class="border border-top-0 p-3 border-danger m-3">2</span>
+<span class="border border-end-0 p-3 border-danger m-3">3</span>
+<span class="border border-bottom-0 p-3 border-danger m-3">4</span>
+<span class="border border-start-0 p-3 border-danger m-3">5</span>
+
+ </div>
+ <div class="d-flex gap-4">
+    <span class="border border-primary"></span>
+<span class="border border-primary-subtle"></span>
+<span class="border border-secondary"></span>
+<span class="border border-secondary-subtle"></span>
+<span class="border border-success"></span>
+<span class="border border-success-subtle"></span>
+<span class="border border-danger"></span>
+<span class="border border-danger-subtle"></span>
+<span class="border border-warning"></span>
+<span class="border border-warning-subtle"></span>
+<span class="border border-info"></span>
+<span class="border border-info-subtle"></span>
+<span class="border border-light"></span>
+<span class="border border-light-subtle"></span>
+<span class="border border-dark"></span>
+<span class="border border-dark-subtle"></span>
+<span class="border border-black" ></span>
+<span class="border border-white"></span>
+ </div>
+
+ <h2>form border</h2>
+ <div class="mb-4">
+  <label for="exampleFormControlInput1" class="form-label">Email address</label>
+  <input type="email" class="form-control border-success" id="exampleFormControlInput1" placeholder="name@example.com">
+</div>
+
+<div class="h4 pb-2 mb-4 text-danger border-bottom border-danger">
+  Dangerous heading
+</div>
+
+<div class="p-3 bg-info bg-opacity-50 border border-info border-start-0 rounded-end">
+  Changing border color and width
+</div>
+
+<div class="d-flex">
+    <div class="border border-success p-2 mb-2">This is default success border</div>
+<div class="border border-success p-2" style="--bs-border-opacity: .5;">This is 50% opacity success border</div>
+</div>
+
+<h2>border opacity</h2>
+<div class="d-flex gap-4">
+    <div class="border border-success p-2 mb-2">This is default success border</div>
+<div class="border border-success p-2 mb-2 border-opacity-75">This is 75% opacity success border</div>
+<div class="border border-success p-2 mb-2 border-opacity-50">This is 50% opacity success border</div>
+<div class="border border-success p-2 mb-2 border-opacity-25">This is 25% opacity success border</div>
+<div class="border border-success p-2 border-opacity-10">This is 10% opacity success border</div>
+</div>
+<br>
+<h2>border width</h2>
+<div class="d-flex gap-4">
+<span class="border border-1"></span>
+<span class="border border-2"></span>
+<span class="border border-3"></span>
+<span class="border border-4"></span>
+<span class="border border-5"></span>
+</div>
+
+<h2>Border radius</h2>
+<div class="d-flex gap-5">
+    <img src="img.jpg" class="rounded" alt="...">
+<img src="img.jpg" class="rounded-top" alt="...">
+<img src="img.jpg" class="rounded-end" alt="...">
+<img src="img.jpg" class="rounded-bottom" alt="...">
+<img src="img.jpg" class="rounded-start" alt="...">
+</div>
+<br>
+<div class="d-flex gap-3">
+<img src="img.jpg" class="rounded-0" alt="...">
+<img src="img.jpg" class="rounded-1" alt="...">
+<img src="img.jpg" class="rounded-2" alt="...">
+<img src="img.jpg" class="rounded-3" alt="...">
+<img src="img.jpg" class="rounded-4" alt="...">
+<img src="img.jpg" class="rounded-5" alt="...">
+<img src="img.jpg" class="rounded-circle" alt="...">
+<img src="img.jpg" class="rounded-pill" alt="...">
+</div>
+<br>
+<div class="d-flex gap-3">
+
+    <img src="img.jpg" class="rounded-bottom-1" alt="...">
+<img src="img.jpg" class="rounded-start-2" alt="...">
+<img src="img.jpg" class="rounded-end-circle" alt="...">
+<img src="img.jpg" class="rounded-start-pill" alt="...">
+<img src="img.jpg" class="rounded-5 rounded-top-0" alt="...">
+</div>
+</body>
+</html>

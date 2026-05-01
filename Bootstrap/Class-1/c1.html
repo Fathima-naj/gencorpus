@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bootstrap 5 - Complete Class 1 Notes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body { background-color: #f8f9fa; }
+    .code-box {
+      background: #f1f1f1;
+      padding: 15px;
+      border-left: 5px solid #04AA6D;
+      font-family: monospace;
+      white-space: pre-wrap;
+    }
+    .section-title {
+      border-bottom: 2px solid #dee2e6;
+      padding-bottom: 8px;
+      margin-top: 60px;
+      margin-bottom: 20px;
+    }
+    .example-box {
+      background: white;
+      padding: 15px;
+      border: 1px solid #dee2e6;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container my-5">
+
+<h1 class="display-5 text-center mb-4">Bootstrap 5 - Class 1</h1>
+<p class="lead text-center">Complete Introduction & Core Concepts</p>
+
+<!-- 1 WHAT IS BOOTSTRAP -->
+<h2 class="section-title">1. What is Bootstrap?</h2>
+
+<p><strong>Bootstrap</strong> is a free CSS framework used to create responsive and mobile-first websites quickly.</p>
+
+<h5>Why Use Bootstrap?</h5>
+<ul>
+  <li>Faster development</li>
+  <li>Mobile-first design</li>
+  <li>Prebuilt components</li>
+  <li>Consistent layout system</li>
+</ul>
+
+<h5>Bootstrap CDN Link</h5>
+<div class="code-box">
+&lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"&gt;
+</div>
+
+<!-- 2 INSTALLATION -->
+<h2 class="section-title">2. CDN vs Local Installation</h2>
+
+<h5>CDN Method</h5>
+<p>Loads Bootstrap from internet.</p>
+
+<div class="code-box">
+&lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"&gt &lt/script&gt;
+</div>
+
+<h5>Local Method</h5>
+<p>Download Bootstrap files and link manually.</p>
+
+<div class="code-box">
+&lt;link rel="stylesheet" href="css/bootstrap.min.css"&gt;
+&lt;script src="js/bootstrap.bundle.min.js"&gt;&lt;/script&gt;
+</div>
+
+<!-- 3 CONTAINER -->
+<h2 class="section-title">3. Containers</h2>
+
+<p>Bootstrap requires a container to wrap content.</p>
+
+<h5>.container</h5>
+<p>Responsive fixed-width container.</p>
+<div class="code-box">
+&lt;div class="container"&gt;Content&lt;/div&gt;
+</div>
+
+<div class="example-box container bg-light p-3">
+This is inside .container
+</div>
+<p>Width changes based on screen size.</p>
+
+<h5>.container-fluid</h5>
+<p>Full-width container (100%).</p>
+<div class="code-box">
+&lt;div class="container-fluid"&gt;Content&lt;/div&gt;
+</div>
+
+<div class="example-box container-fluid bg-secondary text-white p-3">
+This is inside .container-fluid
+</div>
+
+<h5>Responsive Containers</h5>
+<div class="code-box">
+.container-sm
+.container-md
+.container-lg
+.container-xl
+.container-xxl
+</div>
+
+<!-- 4 GRID -->
+<h2 class="section-title">4. Grid System</h2>
+
+<p>Bootstrap grid system uses 12 columns and Flexbox.</p>
+
+<h5>Basic Structure</h5>
+<div class="code-box">
+&lt;div class="row"&gt;
+  &lt;div class="col"&gt;Column&lt;/div&gt;
+  &lt;div class="col"&gt;Column&lt;/div&gt;
+&lt;/div&gt;
+</div>
+
+<div class="row text-white text-center mb-3">
+  <div class="col bg-primary p-3">Column</div>
+  <div class="col bg-success p-3">Column</div>
+</div>
+
+<h5>Equal columns</h5>
+<div class="code-box">
+&lt;div class="row"&gt;
+  &lt;div class="col"&gt;Col-1&lt;/div&gt;
+  &lt;div class="col"&gt;Col-2&lt;/div&gt;
+  &lt;div class="col"&gt;Col-3&lt;/div&gt;
+&lt;/div&gt;
+</div>
+
+<div class="row text-white text-center mb-3">
+  <div class="col bg-primary p-3">Col-1</div>
+  <div class="col bg-success p-3">Col-2</div>
+  <div class="col bg-danger p-3">Col-3</div>
+</div>
+
+<h5>Fixed Columns</h5>
+<div class="code-box">
+&lt;div class="col-4"&gt;4&lt;/div&gt;
+&lt;div class="col-8"&gt;8&lt;/div&gt;
+</div>
+
+<div class="row text-white text-center mb-3">
+  <div class="col-4 bg-danger p-3">4</div>
+  <div class="col-8 bg-warning p-3">8</div>
+</div>
+
+<h5>Nested Columns</h5>
+<div class="code-box">
+&lt;div class="row"&gt;
+  &lt;div class="col-6"&gt;
+    Parent Column
+
+    &lt;div class="row"&gt;
+      &lt;div class="col-6"&gt;Nested Column&lt;/div&gt;
+      &lt;div class="col-6"&gt;Nested Column&lt;/div&gt;
+    &lt;/div&gt;
+
+  &lt;/div&gt;
+  &lt;div class="col-6"&gt;Parent Column&lt;/div&gt;
+&lt;/div&gt;
+</div>
+
+<div class="container">
+  <div class="row text-center text-white">
+
+    <!-- Parent Column -->
+    <div class="col-6 bg-primary p-3">
+      Parent Column (col-6)
+
+      <!-- Nested Row -->
+      <div class="row mt-3">
+        <div class="col-6 bg-warning text-dark p-3">
+          Nested Column 1
+        </div>
+        <div class="col-6 bg-danger p-3">
+          Nested Column 2
+        </div>
+      </div>
+    </div>
+     <!-- Second Parent Column -->
+    <div class="col-6 bg-success p-3">
+      Parent Column (col-6)
+    </div>
+
+  </div>
+</div>
+
+<h5>Gutters</h5>
+<p>Spacing between columns</p>
+<div class="code-box">
+&lt;div class="row g-3"&gt;
+</div>
+
+<div class="container">
+  <div class="row g-3">
+    <div class="col">
+      <div class="bg-primary text-white p-3">Column</div>
+    </div>
+    <div class="col">
+      <div class="bg-success text-white p-3">Column</div>
+    </div>
+  </div>
+</div>
+
+<!-- 5 BREAKPOINTS -->
+<h2 class="section-title">5. Breakpoints</h2>
+
+<table class="table table-bordered">
+<tr><th>Breakpoint</th><th>Size</th></tr>
+<tr><td>sm</td><td>≥ 576px</td></tr>
+<tr><td>md</td><td>≥ 768px</td></tr>
+<tr><td>lg</td><td>≥ 992px</td></tr>
+<tr><td>xl</td><td>≥ 1200px</td></tr>
+<tr><td>xxl</td><td>≥ 1400px</td></tr>
+</table>
+
+<h5>Responsive Column Example</h5>
+<div class="code-box">
+&lt;div class="col-12 col-md-6 col-lg-4"&gt;
+</div>
+</div>
+
+<div class="row">
+  <div class="col-12 col-md-6 col-lg-4 bg-info text-white p-3 text-center">
+    Resize Screen
+  </div>
+</div>
+
+<!-- 6 TYPOGRAPHY -->
+<h2 class="section-title">6. Typography Utilities</h2>
+
+<div class="code-box">
+fw-bold
+text-center
+text-uppercase
+fst-italic
+display-4
+</div>
+
+<div class="example-box">
+  <h1 class="display-4">Display Heading</h1>
+  <p class="fw-bold">Bold Text</p>
+  <p class="text-uppercase">Uppercase</p>
+  <p class="fst-italic">Italic Text</p>
+</div>
+
+<!-- 7 COLORS -->
+<h2 class="section-title">7. Color Utilities</h2>
+
+<div class="code-box">
+text-primary
+bg-success
+bg-warning
+bg-dark text-white
+</div>
+
+<div class="example-box">
+  <p class="text-primary">Primary Text</p>
+  <div class="bg-success text-white p-2">Success Background</div>
+  <div class="bg-warning p-2">Warning Background</div>
+  <div class="bg-dark text-white p-2">Dark Background</div>
+</div>
+
+<!-- 8 SPACING -->
+<h2 class="section-title">8. Margin & Padding Utilities</h2>
+
+<p><strong>Format:</strong> m{side}-{size} / p{side}-{size}</p>
+
+<div class="code-box">
+mt-3
+mb-5
+ms-2
+px-4
+py-3
+m-auto
+</div>
+
+<div class="example-box bg-light mt-4 p-4 text-center">
+  Example Box (mt-4 p-4)
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Class 2 — Bootstrap Layouts & Grid Advanced</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body{background:#f4f6f9;}
+.section-box{background:white;padding:25px;border-radius:8px;margin-bottom:40px;}
+pre{background:#f8f9fa;padding:15px;border-radius:5px;}
+.note{background:#fff3cd;padding:15px;border-left:5px solid orange;}
+</style>
+</head>
+
+<body>
+
+<div class="container my-5">
+
+<h1 class="mb-4 text-center">Class 2 </h1>
+<h1 class="mb-4 text-center">Bootstrap Layouts & Grid Advanced</h1>
+
+<!-- 1 GRID NESTING -->
+<div class="section-box">
+<h2>1️⃣ Grid Nesting</h2>
+
+<p><strong>Rule:</strong> A nested <code>.row</code> must be inside a <code>.col-*</code>.</p>
+
+<pre><code>
+&lt;div class="row"&gt;
+  &lt;div class="col-md-6"&gt;
+
+    &lt;div class="row"&gt;
+      &lt;div class="col-6"&gt;Nested 1&lt;/div&gt;
+      &lt;div class="col-6"&gt;Nested 2&lt;/div&gt;
+    &lt;/div&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<div class="row">
+  <div class="col-md-6 bg-light p-3">
+    Parent Column
+    <div class="row mt-3">
+      <div class="col-6 bg-primary text-white p-3">Nested 1</div>
+      <div class="col-6 bg-success text-white p-3">Nested 2</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- 2 COLUMN ORDER -->
+<div class="section-box">
+<h2>2️⃣ Column Ordering</h2>
+
+<pre><code>
+&lt;div class="row"&gt;
+  &lt;div class="col-md-6 order-2 order-md-1"&gt;Column 1&lt;/div&gt;
+  &lt;div class="col-md-6 order-1 order-md-2"&gt;Column 2&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<div class="row">
+  <div class="col-md-6 order-2 order-md-1 bg-primary text-white p-3">
+    First on Desktop
+  </div>
+  <div class="col-md-6 order-1 order-md-2 bg-success text-white p-3">
+    First on Mobile
+  </div>
+</div>
+</div>
+
+<!-- 3 AUTO LAYOUT -->
+<div class="section-box">
+<h2>3️⃣ Auto Layout Columns</h2>
+
+<pre><code>
+&lt;div class="row"&gt;
+  &lt;div class="col"&gt;1&lt;/div&gt;
+  &lt;div class="col"&gt;2&lt;/div&gt;
+  &lt;div class="col"&gt;3&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<div class="row text-center">
+  <div class="col bg-primary text-white p-3">1</div>
+  <div class="col bg-success text-white p-3">2</div>
+  <div class="col bg-danger text-white p-3">3</div>
+</div>
+</div>
+
+<!-- 4 RESPONSIVE GRID -->
+<div class="section-box">
+<h2>4️⃣ Responsive Grid</h2>
+
+<pre><code>
+&lt;div class="col-12 col-sm-6 col-lg-3"&gt;
+&lt;/div&gt;
+</code></pre>
+
+<div class="row">
+  <div class="col-12 col-sm-6 col-lg-3 bg-primary text-white p-3">
+    Resize Screen
+  </div>
+</div>
+</div>
+
+<!-- 5 DISPLAY UTILITIES -->
+<div class="section-box">
+<h2>5️⃣ Display Utilities</h2>
+
+<h5>1. d-none</h5>
+<pre><code>
+&lt;div class="d-none"&gt;Hidden&lt;/div&gt;
+</code></pre>
+
+<div class="bg-danger text-white p-3 d-none">
+  You cannot see me (display: none)
+</div>
+
+<hr>
+
+<h5>2. d-block</h5>
+<pre><code>
+&lt;span class="d-block"&gt;Block Element&lt;/span&gt;
+</code></pre>
+
+<span class="bg-primary text-white p-3 d-block">
+  I am block (takes full width)
+</span>
+
+<hr>
+
+<h5>3. d-inline</h5>
+<pre><code>
+&lt;div class="d-inline"&gt;Inline&lt;/div&gt;
+</code></pre>
+
+<div class="bg-success text-white p-3 d-inline">
+  Inline 1
+</div>
+<div class="bg-warning text-dark p-3 d-inline">
+  Inline 2
+</div>
+
+<hr>
+
+<h5>4. d-inline-block</h5>
+<pre><code>
+&lt;div class="d-inline-block"&gt;Inline Block&lt;/div&gt;
+</code></pre>
+
+<div class="bg-info text-white p-3 d-inline-block" style="width:150px;">
+  Inline Block 1
+</div>
+<div class="bg-secondary text-white p-3 d-inline-block" style="width:150px;">
+  Inline Block 2
+</div>
+
+<hr>
+
+<h5>5. d-flex</h5>
+<pre><code>
+&lt;div class="d-flex"&gt;Flex Container&lt;/div&gt;
+</code></pre>
+
+<div class="d-flex justify-content-between bg-light p-3 border">
+  <div class="bg-primary text-white p-2">Item 1</div>
+  <div class="bg-success text-white p-2">Item 2</div>
+  <div class="bg-danger text-white p-2">Item 3</div>
+</div>
+
+<hr>
+
+<h5>6. Responsive Display</h5>
+<pre><code>
+&lt;div class="d-none d-md-block"&gt;
+Visible on medium screens+
+&lt;/div&gt;
+</code></pre>
+
+<div class="bg-dark text-white p-3 d-none d-md-block">
+  Visible only on medium screens and above
+</div>
+
+</div>
+
+<!-- 6 FLEXBOX -->
+<!-- 6 FLEXBOX -->
+<div class="section-box">
+<h2>6️⃣ Flexbox Utilities</h2>
+
+<!-- Direction -->
+<h5>Direction</h5>
+<pre><code>
+&lt;div class="d-flex flex-row"&gt;&lt;/div&gt;
+&lt;div class="d-flex flex-column"&gt;&lt;/div&gt;
+&lt;div class="d-flex flex-row-reverse"&gt;&lt;/div&gt;
+&lt;div class="d-flex flex-column-reverse"&gt;&lt;/div&gt;
+</code></pre>
+
+<div class="d-flex flex-row bg-light p-3 mb-3 border gap-2">
+  <div class="p-2 bg-primary text-white">1</div>
+  <div class="p-2 bg-success text-white">2</div>
+</div>
+
+<div class="d-flex flex-column bg-light p-3 mb-3 border gap-2">
+  <div class="p-2 bg-primary text-white">Column 1</div>
+  <div class="p-2 bg-success text-white">Column 2</div>
+</div>
+
+<div class="d-flex flex-row-reverse bg-light p-3 mb-3 border gap-2">
+  <div class="p-2 bg-primary text-white">1</div>
+  <div class="p-2 bg-success text-white">2</div>
+</div>
+
+<div class="d-flex flex-column-reverse bg-light p-3 mb-3 border gap-2">
+  <div class="p-2 bg-primary text-white">1</div>
+  <div class="p-2 bg-success text-white">2</div>
+</div>
+
+
+<!-- Wrap -->
+<h5>Wrap</h5>
+<pre><code>
+&lt;div class="d-flex flex-wrap"&gt;&lt;/div&gt;
+</code></pre>
+
+<div class="d-flex flex-wrap bg-light p-3 mb-3 border gap-2">
+  <div class="p-2 bg-primary text-white">1</div>
+  <div class="p-2 bg-success text-white">2</div>
+  <div class="p-2 bg-danger text-white">3</div>
+  <div class="p-2 bg-warning text-dark">4</div>
+  <div class="p-2 bg-info text-white">5</div>
+</div>
+
+<!-- Gap -->
+<h5>Gap</h5>
+<pre><code>
+&lt;div class="d-flex gap-3"&gt;&lt;/div&gt;
+</code></pre>
+
+<div class="d-flex gap-3 bg-light p-3 border">
+  <div class="bg-primary text-white p-2">A</div>
+  <div class="bg-success text-white p-2">B</div>
+  <div class="bg-danger text-white p-2">C</div>
+</div>
+
+</div>
+
+
+<!-- 7 ALIGNMENT -->
+<div class="section-box">
+<h2>7️⃣ Alignment Utilities</h2>
+
+<!-- Horizontal -->
+<h5>Horizontal (justify-content)</h5>
+<pre><code>
+justify-content-start
+justify-content-center
+justify-content-end
+justify-content-between
+justify-content-around
+justify-content-evenly
+</code></pre>
+
+<div class="d-flex justify-content-evenly bg-light p-3 mb-3 border">
+  <div class="p-2 bg-primary text-white">1</div>
+  <div class="p-2 bg-success text-white">2</div>
+  <div class="p-2 bg-danger text-white">3</div>
+</div>
+
+
+<!-- Vertical -->
+<h5>Vertical (align-items)</h5>
+<pre><code>
+align-items-start
+align-items-center
+align-items-end
+align-items-stretch
+</code></pre>
+
+<div class="d-flex align-items-center bg-light p-3 mb-3 border" style="height:120px;">
+  <div class="bg-primary text-white p-2">1</div>
+  <div class="bg-success text-white p-2">2</div>
+  <div class="bg-danger text-white p-2">3</div>
+</div>
+
+
+<!-- Align Self -->
+<h5>Individual Item Alignment (align-self)</h5>
+<pre><code>
+align-self-start
+align-self-center
+align-self-end
+</code></pre>
+
+<div class="d-flex bg-light p-3 mb-3 border" style="height:120px;">
+  <div class="p-2 bg-primary text-white align-self-start">Start</div>
+  <div class="p-2 bg-success text-white align-self-center">Center</div>
+  <div class="p-2 bg-danger text-white align-self-end">End</div>
+</div>
+
+
+</div><!-- 8 FLOAT -->
+<div class="section-box">
+<h2>8️⃣ Float Utilities</h2>
+
+<pre><code>
+&lt;img class="float-end"&gt;
+</code></pre>
+
+<img src="data:image/jpeg;base64,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"
+     class="float-end mb-3"
+     alt="Sample Image">
+
+<p>
+This text wraps automatically around the floated image.
+Bootstrap float utilities:
+<strong>float-start</strong> and <strong>float-end</strong>.
+</p>
+
+</div>
+
+</div>
+
+</body>
+</html>

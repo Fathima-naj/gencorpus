@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class 5 - Bootstrap Forms</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body{
+  background:#f5f5f5;
+  font-family: Arial, sans-serif;
+}
+.section-box{
+  background:white;
+  padding:25px;
+  border-radius:6px;
+  margin-bottom:40px;
+}
+pre{
+  background:#f1f1f1;
+  padding:15px;
+  border-left:4px solid #04AA6D;
+  overflow:auto;
+}
+.desc{
+  background:#e9f7ef;
+  padding:15px;
+  border-left:4px solid #198754;
+  margin-bottom:20px;
+}
+</style>
+</head>
+<body>
+
+<div class="container my-5">
+
+<h1 class="text-center mb-4">Bootstrap Forms</h1>
+
+<!-- 1. Form Layout -->
+<div class="section-box">
+<h2>1️⃣ Form Layout (form-control)</h2>
+
+<div class="desc">
+<p><strong>form-control</strong> is used to style input fields in Bootstrap.</p>
+<ul>
+<li>Makes input full width</li>
+<li>Adds padding and border</li>
+<li>Makes the form responsive</li>
+<li>Gives professional styling</li>
+</ul>
+</div>
+
+<form>
+  <div class="mb-3">
+    <label class="form-label">Email address</label>
+    <input type="email" class="form-control" placeholder="Enter email">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Password</label>
+    <input type="password" class="form-control" placeholder="Enter password">
+  </div>
+
+  <button class="btn btn-primary">Submit</button>
+</form>
+
+</div>
+
+<!-- 2. Checkboxes & Radios -->
+<div class="section-box">
+<h2>2️⃣ Checkboxes, Radios & Switches</h2>
+
+<div class="desc">
+<p><strong>form-check</strong> is used for checkboxes, radio buttons and switches.</p>
+<ul>
+<li>Checkbox → Multiple options can be selected</li>
+<li>Radio → Only one option can be selected (same name attribute)</li>
+<li>Switch → Toggle style checkbox</li>
+</ul>
+</div>
+
+<h5>Checkbox</h5>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox">
+  <label class="form-check-label">Accept terms</label>
+</div>
+
+<h5 class="mt-3">Radio</h5>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="gender">
+  <label class="form-check-label">Male</label>
+</div>
+
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="gender">
+  <label class="form-check-label">Female</label>
+</div>
+
+<h5 class="mt-3">Switch</h5>
+<div class="form-check form-switch">
+  <input class="form-check-input" type="checkbox">
+  <label class="form-check-label">Enable Notifications</label>
+</div>
+
+</div>
+
+<!-- 3. Input Groups -->
+<div class="section-box">
+<h2>3️⃣ Input Groups (Addons)</h2>
+
+<div class="desc">
+<p><strong>input-group</strong> is used to add icons, symbols, or text before or after input fields.</p>
+<ul>
+<li>Useful for currency, username, URL, etc.</li>
+<li>Uses <code>input-group-text</code> for addons</li>
+</ul>
+</div>
+
+<div class="input-group mb-3">
+  <span class="input-group-text">@</span>
+  <input type="text" class="form-control" placeholder="Username">
+</div>
+
+<div class="input-group mb-3">
+  <input type="text" class="form-control" placeholder="Amount">
+  <span class="input-group-text">₹</span>
+</div>
+
+<div class="input-group">
+  <span class="input-group-text">https://</span>
+  <input type="text" class="form-control" placeholder="website.com">
+</div>
+
+</div>
+
+<!-- 4. Floating Labels -->
+<div class="section-box">
+<h2>4️⃣ Floating Labels</h2>
+
+<div class="desc">
+<p><strong>form-floating</strong> creates floating label inputs.</p>
+<ul>
+<li>Label appears inside input field</li>
+<li>Moves above when user types</li>
+<li>Modern UI design</li>
+</ul>
+</div>
+
+<div class="form-floating mb-3">
+  <input type="email" class="form-control" placeholder="name@example.com">
+  <label>Email address</label>
+</div>
+
+<div class="form-floating">
+  <input type="password" class="form-control" placeholder="Password">
+  <label>Password</label>
+</div>
+
+</div>
+
+<!-- 5. Validation -->
+<div class="section-box">
+<h2>5️⃣ Validation Classes</h2>
+
+<div class="desc">
+<p>Bootstrap provides validation classes to show input status.</p>
+<ul>
+<li><code>is-valid</code> → Green border (correct input)</li>
+<li><code>is-invalid</code> → Red border (wrong input)</li>
+<li><code>valid-feedback</code> → Success message</li>
+<li><code>invalid-feedback</code> → Error message</li>
+</ul>
+</div>
+
+<div class="mb-3">
+  <label class="form-label">Valid Input</label>
+  <input type="text" class="form-control is-valid" value="Correct value">
+  <div class="valid-feedback">
+    Looks good!
+  </div>
+</div>
+
+<div class="mb-3">
+  <label class="form-label">Invalid Input</label>
+  <input type="text" class="form-control is-invalid" value="Wrong value">
+  <div class="invalid-feedback">
+    Please enter valid data.
+  </div>
+</div>
+
+</div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

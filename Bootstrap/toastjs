@@ -1,0 +1,48 @@
+
+const toastLiveExample = document.getElementById('liveToast');
+const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+
+const select = document.getElementById("selectToastPlacement");
+const toastPlacement = document.getElementById("toastPlacement");
+
+select.addEventListener("change", function () {
+  // Reset classes
+  toastPlacement.className = "toast-container position-absolute p-3";
+
+  // Apply new position
+  if (this.value) {
+    this.value.split(" ").forEach(cls => {
+      toastPlacement.classList.add(cls);
+    });
+  }
+
+  //  Show toast automatically
+  toastBootstrap.show();
+});
+
+
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  // Select all toasts
+  const toastElList = document.querySelectorAll('.toast');
+
+  // Convert NodeList → Array and initialize each toast
+  const toastList = [...toastElList].map(toastEl => {
+    return new bootstrap.Toast(toastEl, {
+      autohide: true,   // auto hide
+      delay: 3000       // 3 seconds
+    });
+  });
+
+  // Show all toasts
+  toastList.forEach(toast => toast.show());
+
+});
+

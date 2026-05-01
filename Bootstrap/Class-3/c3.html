@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Class 3 - Bootstrap Components Part 1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap 5 CDN -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body{
+  background:#f5f5f5;
+  font-family: Arial, sans-serif;
+}
+.section-box{
+  background:white;
+  padding:25px;
+  border-radius:6px;
+  margin-bottom:40px;
+}
+pre{
+  background:#f1f1f1;
+  padding:15px;
+  border-left:4px solid #04AA6D;
+  overflow:auto;
+}
+.example-box{
+  border:1px solid #ddd;
+  padding:20px;
+  margin-top:10px;
+  background:#fff;
+}
+h5{
+  margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+<div class="container my-5">
+
+<h1 class="mb-4 text-center"> Bootstrap Components</h1>
+
+<!-- ================= BUTTONS ================= -->
+<div class="section-box">
+<h2>1. Buttons & Button Groups</h2>
+
+<p><strong>Definition:</strong> Buttons are styled using <code>.btn</code> class.</p>
+
+<h5>Example Code:</h5>
+<pre><code>
+&lt;button class="btn btn-primary"&gt;Primary&lt;/button&gt;
+&lt;button class="btn btn-success"&gt;Success&lt;/button&gt;
+&lt;button class="btn btn-danger"&gt;Danger&lt;/button&gt;
+</code></pre>
+
+<h5>Output:</h5>
+<div class="example-box">
+<button class="btn btn-primary">Primary</button>
+<button class="btn btn-success">Success</button>
+<button class="btn btn-danger">Danger</button>
+<button class="btn btn-warning">Warning</button>
+<button class="btn btn-info">Info</button>
+<button class="btn btn-dark">Dark</button>
+</div>
+
+<h5><strong>Outline Buttons :</strong></h5>
+<pre><code>
+  &lt;button class="btn btn-outline-primary"&gt;Outline&lt;/button&gt;
+</code></pre>
+<button class="btn btn-outline-primary">Outline</button>
+
+<h5><strong>Button Sizes :</strong></h5>
+<pre><code>
+&lt;button class="btn btn-primary btn-lg"&gt;Large&lt;/button&gt;
+&lt;button class="btn btn-primary btn-sm"&gt;Small&lt;/button&gt;
+</code></pre>
+
+<button class="btn btn-primary btn-lg">Large</button>
+<button class="btn btn-primary btn-sm">Small</button>
+
+<h5><strong>Button Group Code:</strong></h5>
+<p>Used to group multiple buttons together.</p>
+<pre><code>
+&lt;div class="btn-group"&gt;
+  &lt;button class="btn btn-primary"&gt;Left&lt;/button&gt;
+  &lt;button class="btn btn-primary"&gt;Middle&lt;/button&gt;
+  &lt;button class="btn btn-primary"&gt;Right&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+
+<h5>Output:</h5>
+<div class="example-box">
+<div class="btn-group">
+  <button class="btn btn-primary">Left</button>
+  <button class="btn btn-primary">Middle</button>
+  <button class="btn btn-primary">Right</button>
+</div>
+</div>
+
+<h5><strong>Vertical Button Group :</strong></h5>
+<pre><code>
+  &lt;div class="btn-group-vertical"&gt;
+  &lt;button class="btn btn-success"&gt;Top&lt;/button&gt;
+  &lt;button class="btn btn-success"&gt;Middle&lt;/button&gt;
+  &lt;button class="btn btn-success"&gt;Bottom&lt;/button&gt;
+  &lt;/div&gt;
+</code></pre>
+<div class="btn-group-vertical">
+  <button class="btn btn-success">Top</button>
+  <button class="btn btn-success">Middle</button>
+  <button class="btn btn-success">Bottom</button>
+</div>
+</div>
+
+
+<!-- ================= ALERTS ================= -->
+<div class="section-box">
+<h2>2. Alerts</h2>
+
+<p>Alerts are used to display important messages.</p>
+
+<h5>Example Code:</h5>
+<pre><code>
+&lt;div class="alert alert-success"&gt;
+  Success Message!
+&lt;/div&gt;
+
+&lt;div class="alert alert-danger"&gt;
+  Error Message!
+&lt;/div&gt;
+</code></pre>
+
+<h5>Output:</h5>
+<div class="example-box">
+<div class="alert alert-success">Success Message!</div>
+<div class="alert alert-danger">Error Message!</div>
+</div>
+
+</div>
+
+<!-- ================= BADGES ================= -->
+<div class="section-box">
+<h2>3. Badges</h2>
+
+<p>Badges are used for counters and labels.</p>
+
+<h5>Example Code:</h5>
+<pre><code>
+&lt;h4&gt;Notifications 
+  &lt;span class="badge bg-danger"&gt;5&lt;/span&gt;
+&lt;/h4&gt;
+</code></pre>
+
+<h5>Output:</h5>
+<div class="example-box">
+<h4>Notifications <span class="badge bg-danger">5</span></h4>
+</div>
+
+<h5>Pill Badges</h5>
+<pre><code>
+  &lt;span class="badge rounded-pill bg-success"&gt;New&lt;/span&gt;
+</code></pre>
+<span class="badge rounded-pill bg-success">New</span>
+</div>
+
+
+<!-- ================= CARDS ================= -->
+<div class="section-box">
+<h2>4. Cards</h2>
+
+<p>Cards are flexible content containers.</p>
+
+<h5>Example Code:</h5>
+<pre><code>
+&lt;div class="card" style="width:18rem;"&gt;
+  &lt;div class="card-body"&gt;
+    &lt;h5 class="card-title"&gt;Card Title&lt;/h5&gt;
+    &lt;p class="card-text"&gt;Card content here.&lt;/p&gt;
+    &lt;a href="#" class="btn btn-primary"&gt;Button&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<h5>Output:</h5>
+<div class="example-box">
+<div class="card" style="width:18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Card Title</h5>
+    <p class="card-text">Card content here.</p>
+    <a href="#" class="btn btn-primary">Button</a>
+  </div>
+</div>
+</div>
+
+<h5>Card with header & footer</h5>
+<pre><code>
+&lt;div class="card"&gt;
+  &lt;div class="card-header"&gt;Header&lt;/div&gt;
+  &lt;div class="card-body"&gt;
+    &lt;h5 class="card-title"&gt;Card Title&lt;/h5&gt;
+    &lt;p class="card-text"&gt;Card content.&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="card-footer text-muted"&gt;Footer&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+<div class="card">
+  <div class="card-header">Header</div>
+  <div class="card-body">
+    <h5 class="card-title">Card Title</h5>
+    <p class="card-text">Card content.</p>
+  </div>
+  <div class="card-footer text-muted">Footer</div>
+</div>
+</div>
+
+
+<!-- ================= IMAGES ================= -->
+<div class="section-box">
+<h2>5. Images & Responsive Images</h2>
+
+<p>Use <code>.img-fluid</code> to make images responsive.</p>
+<p>It automatically scales according to screen size.</p>
+
+<h5>Example Code:</h5>
+<pre><code>
+&lt;img src="image.jpg" class="img-fluid"&gt;
+</code></pre>
+
+<h5>Output:</h5>
+<div class="example-box">
+<img src="https://img.freepik.com/free-photo/closeup-scarlet-macaw-from-side-view-scarlet-macaw-closeup-head_488145-3540.jpg?semt=ais_rp_progressive&w=740&q=80" class="img-fluid w-25 h-25">
+</div>
+<!-- 
+<img src="https://img.freepik.com/free-photo/closeup-scarlet-macaw-from-side-view-scarlet-macaw-closeup-head_488145-3540.jpg?semt=ais_rp_progressive&w=740&q=80" class="rounded w-25 h-25">
+<img src="https://img.freepik.com/free-photo/closeup-scarlet-macaw-from-side-view-scarlet-macaw-closeup-head_488145-3540.jpg?semt=ais_rp_progressive&w=740&q=80" class="rounded-circle w-25 h-25">
+<img src="https://img.freepik.com/free-photo/closeup-scarlet-macaw-from-side-view-scarlet-macaw-closeup-head_488145-3540.jpg?semt=ais_rp_progressive&w=740&q=80" class="img-thumbnail w-25 h-25"> -->
+</div>
+
+
+<!-- ================= NAVBAR ================= -->
+<div class="section-box">
+<h2>6. Navbar</h2>
+
+<p>Navbar supports expand, collapse and responsiveness.</p>
+
+<h5>Example Code:</h5>
+<pre><code>
+&lt;nav class="navbar navbar-expand-lg navbar-dark bg-dark"&gt;
+  &lt;div class="container-fluid"&gt;
+    &lt;a class="navbar-brand" href="#"&gt;MySite&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;
+</code></pre>
+
+<h5>Output:</h5>
+<div class="example-box">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand text-white" href="#">MySite</a>
+  </div>
+</nav>
+</div>
+</div>
+
+
+<!-- ================= BREADCRUMB ================= -->
+<div class="section-box">
+<h2>7. Breadcrumb</h2>
+
+<p>Breadcrumb shows navigation path.</p>
+
+<h5>Example Code:</h5>
+<pre><code>
+&lt;nav&gt;
+  &lt;ol class="breadcrumb"&gt;
+    &lt;li class="breadcrumb-item"&gt;Home&lt;/li&gt;
+    &lt;li class="breadcrumb-item active"&gt;Library&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/nav&gt;
+</code></pre>
+
+<h5>Output:</h5>
+<div class="example-box">
+<nav>
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">Home</li>
+    <li class="breadcrumb-item active">Library</li>
+  </ol>
+</nav>
+</div>
+</div>
+
+</div>
+</body>
+</html>
