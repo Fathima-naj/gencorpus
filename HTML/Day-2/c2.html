@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTML Forms - Complete Notes</title>
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  line-height: 1.8;
+  max-width: 1100px;
+  margin:auto;
+  padding:20px;
+  background:#f4f6f8;
+}
+
+h1{
+  text-align:center;
+  color:#2c3e50;
+}
+
+h2{
+  color:#34495e;
+  border-bottom:2px solid #ddd;
+  padding-bottom:5px;
+}
+
+h3{
+  color:#2c3e50;
+}
+
+pre{
+  background:#f0f0f0;
+  color:#080808;
+  padding:15px;
+  border-radius:8px;
+  overflow:auto;
+}
+
+.box{
+  background:white;
+  padding:20px;
+  margin-bottom:20px;
+  border-radius:10px;
+  box-shadow:0 0 5px rgba(0,0,0,0.1);
+}
+</style>
+</head>
+
+<body>
+
+<h1> HTML Forms</h1>
+
+<!-- FORM INTRO -->
+<div class="box">
+<h2>1. What is HTML Form?</h2>
+
+<p>An HTML form is used to collect user input such as name, email, password, etc.</p>
+
+<p>The data entered in a form is usually sent to a server for processing.</p>
+
+<pre>
+&lt;form&gt;
+  form elements go here
+&lt;/form&gt;
+</pre>
+
+<p><b>Note:</b> All input elements must be inside the &lt;form&gt; tag.</p>
+</div>
+
+<!-- LABEL -->
+<div class="box">
+<h2>2. Label</h2>
+
+<p>The &lt;label&gt; tag defines a label for an input element.</p>
+<p>It improves accessibility and when clicked, it focuses the input field.</p>
+
+<pre>
+&lt;label for="name"&gt;Name:&lt;/label&gt;
+&lt;input type="text" id="name"&gt;
+</pre>
+</div>
+
+<!-- TEXTBOX -->
+<div class="box">
+<h2>3. Textbox & maxlength</h2>
+
+<p>A textbox is created using <b>type="text"</b>. It allows users to enter text.</p>
+
+<p>The <b>maxlength</b> attribute limits the number of characters.</p>
+
+<pre>
+&lt;input type="text" maxlength="10"&gt;
+</pre>
+
+<p>👉 User can enter only 10 characters.</p>
+</div>
+
+<!-- PASSWORD -->
+<div class="box">
+<h2>4. Password Textbox</h2>
+
+<p>The password field hides user input for security.</p>
+
+<pre>
+&lt;input type="password"&gt;
+</pre>
+
+<p>👉 Text appears as dots (••••).</p>
+</div>
+
+<!-- NUMBER -->
+<div class="box">
+<h2>5. Number Textbox (Min & Max)</h2>
+
+<p>The number input allows only numeric values.</p>
+
+<p><b>min</b> and <b>max</b> define the allowed range.</p>
+
+<pre>
+&lt;input type="number" min="1" max="100"&gt;
+</pre>
+
+<p>👉 Only values between 1 and 100 are allowed.</p>
+</div>
+
+<!-- EMAIL -->
+<div class="box">
+<h2>6. Email Textbox</h2>
+
+<p>The email input is used to enter email addresses.</p>
+
+<p>The browser automatically validates the format.</p>
+
+<pre>
+&lt;input type="email"&gt;
+</pre>
+
+<p>👉 Example: user@gmail.com</p>
+</div>
+
+<!-- TELEPHONE -->
+<div class="box">
+<h2>7. Telephone Textbox</h2>
+
+<p>The telephone input is used to enter phone numbers.</p>
+
+<pre>
+&lt;input type="tel"&gt;
+</pre>
+
+<p>👉 No strict validation by default.</p>
+</div>
+
+<!-- DROPDOWN -->
+<div class="box">
+<h2>8. Dropdown List</h2>
+
+<p>A dropdown list allows users to select one option from multiple choices.</p>
+
+<pre>
+&lt;select&gt;
+  &lt;option&gt;HTML&lt;/option&gt;
+  &lt;option&gt;CSS&lt;/option&gt;
+  &lt;option&gt;JavaScript&lt;/option&gt;
+&lt;/select&gt;
+</pre>
+</div>
+
+<!-- CHECKBOX -->
+<div class="box">
+<h2>9. Checkbox</h2>
+
+<p>Checkboxes allow users to select multiple options.</p>
+
+<pre>
+&lt;input type="checkbox"&gt; HTML
+&lt;input type="checkbox"&gt; CSS
+</pre>
+</div>
+<!-- RADIO BUTTON -->
+<div class="box">
+<h2>10. Radio Button</h2>
+
+<p>Radio buttons allow the user to select <b>only one option</b> from a group.</p>
+
+<p><b>Important:</b> All radio buttons must have the same <b>name</b> to work as a group.</p>
+
+<pre>
+&lt;input type="radio" name="gender"&gt; Male
+&lt;input type="radio" name="gender"&gt; Female
+</pre>
+
+<p>👉 Only one option can be selected at a time.</p>
+</div>
+
+<!-- IMPORTANT ATTRIBUTES -->
+<div class="box">
+<h2>11. Important Attributes (name, id, for)</h2>
+
+<h3>1. name Attribute</h3>
+<p>The <b>name</b> attribute is used to identify form data when it is submitted.</p>
+
+<pre>
+&lt;input type="text" name="username"&gt;
+</pre>
+
+<p>👉 Data is sent to server as: username=value</p>
+
+---
+
+<h3>2. id Attribute</h3>
+<p>The <b>id</b> attribute uniquely identifies an element.</p>
+
+<pre>
+&lt;input type="text" id="user"&gt;
+</pre>
+
+<p>👉 Used for linking with label or JavaScript.</p>
+
+---
+
+<h3>3. for Attribute (in label)</h3>
+<p>The <b>for</b> attribute connects label with input.</p>
+
+<pre>
+&lt;label for="user"&gt;Username:&lt;/label&gt;
+&lt;input type="text" id="user"&gt;
+</pre>
+
+<p>👉 Clicking label focuses input field.</p>
+
+</div>
+<!-- IMAGE -->
+<div class="box">
+<h2>12. How to Show Images</h2>
+
+<p>The &lt;img&gt; tag is used to display images in a webpage.</p>
+
+<pre>
+&lt;img src="image.jpg" alt="Sample Image" width="200"&gt;
+</pre>
+
+<p><b>src</b> → image path</p>
+<p><b>alt</b> → alternative text</p>
+</div>
+
+<!-- FIELDSET -->
+<div class="box">
+<h2>13. Fieldset and Legend</h2>
+
+<p>The &lt;fieldset&gt; tag groups related form elements.</p>
+<p>The &lt;legend&gt; tag gives a title to the group.</p>
+
+<pre>
+&lt;fieldset&gt;
+  &lt;legend&gt;Personal Info&lt;/legend&gt;
+  Name: &lt;input type="text"&gt;
+&lt;/fieldset&gt;
+</pre>
+</div>
+
+<!-- ANCHOR -->
+<div class="box">
+<h2>14. Anchor Tag</h2>
+
+<p>The &lt;a&gt; tag is used to create hyperlinks.</p>
+
+<pre>
+&lt;a href="https://www.google.com"&gt;Visit Google&lt;/a&gt;
+</pre>
+
+<p>👉 Clicking the link navigates to another page.</p>
+</div>
+
+<!-- COMPLETE FORM -->
+<div class="box">
+<h2>15. Complete Example</h2>
+<pre>
+&lt;form&gt;
+
+  &lt;label for="name"&gt;Name:&lt;/label&gt;
+  &lt;input type="text" id="name" name="name" maxlength="10"&gt;&lt;br&gt;&lt;br&gt;
+
+  &lt;label for="password"&gt;Password:&lt;/label&gt;
+  &lt;input type="password" id="password" name="password"&gt;&lt;br&gt;&lt;br&gt;
+
+  &lt;label&gt;Gender:&lt;/label&gt;
+  &lt;input type="radio" name="gender"&gt; Male
+  &lt;input type="radio" name="gender"&gt; Female&lt;br&gt;&lt;br&gt;
+
+  &lt;label&gt;Skills:&lt;/label&gt;
+  &lt;input type="checkbox"&gt; HTML
+  &lt;input type="checkbox"&gt; CSS&lt;br&gt;&lt;br&gt;
+
+  &lt;label for="age"&gt;Age:&lt;/label&gt;
+  &lt;input type="number" id="age" min="1" max="100"&gt;&lt;br&gt;&lt;br&gt;
+
+  &lt;label for="email"&gt;Email:&lt;/label&gt;
+  &lt;input type="email" id="email"&gt;&lt;br&gt;&lt;br&gt;
+
+  &lt;label&gt;Course:&lt;/label&gt;
+  &lt;select&gt;
+    &lt;option&gt;HTML&lt;/option&gt;
+    &lt;option&gt;CSS&lt;/option&gt;
+  &lt;/select&gt;&lt;br&gt;&lt;br&gt;
+
+  &lt;input type="submit"&gt;
+
+&lt;/form&gt;
+</pre>
+
+</div>
+
+</body>
+</html>

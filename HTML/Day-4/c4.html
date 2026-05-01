@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTML Notes - Part 4</title>
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  margin:0;
+  background:#f1f1f1;
+}
+
+.header{
+  color:rgb(16, 16, 16);
+  padding:20px;
+  text-align:center;
+}
+
+.container{
+  width:90%;
+  max-width:1000px;
+  margin:20px auto;
+  background:white;
+  padding:20px;
+  border-radius:8px;
+}
+
+h2{
+  color:#04AA6D;
+  border-bottom:2px solid #ddd;
+  padding-bottom:5px;
+}
+
+.example{
+  background:#f9f9f9;
+  border-left:5px solid #04AA6D;
+  padding:10px;
+  margin:10px 0;
+}
+
+code{
+  display:block;
+  background:#eee;
+  padding:10px;
+  border-radius:5px;
+  white-space:pre-wrap;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <h1>HTML - Day 4</h1>
+</div>
+
+<div class="container">
+
+<!-- 1 Anchor Target -->
+<h2>1. Anchor Target Attribute</h2>
+
+<p>Specifies where to open the linked document.</p>
+
+<div class="example">
+<code>
+&lt;a href="page.html" target="_self"&gt;Same Tab&lt;/a&gt;
+&lt;a href="page.html" target="_blank"&gt;New Tab&lt;/a&gt;
+&lt;a href="page.html" target="_parent"&gt;Parent Frame&lt;/a&gt;
+&lt;a href="page.html" target="_top"&gt;Full Window&lt;/a&gt;
+</code>
+</div>
+
+<ul>
+  <li><b>_self</b> → default (same tab)</li>
+  <li><b>_blank</b> → new tab</li>
+  <li><b>_parent</b> → parent frame</li>
+  <li><b>_top</b> → full window</li>
+</ul>
+
+<h2>Anchor Target Working Example (_parent & _top)</h2>
+
+<p>This example shows how links behave inside nested iframes.</p>
+
+<div class="example">
+<code>
+&lt;!-- Outer iframe --&gt;
+&lt;iframe name="parentFrame" width="100%" height="300"&gt;&lt;/iframe&gt;
+
+&lt;!-- Inner iframe content (simulate another page) --&gt;
+&lt;!-- Imagine this is loaded inside parentFrame --&gt;
+
+&lt;iframe name="childFrame" width="100%" height="150"&gt;&lt;/iframe&gt;
+
+&lt;!-- Links inside child iframe --&gt;
+
+&lt;a href="https://example.com" target="_self"&gt;
+_self → Opens inside child iframe
+&lt;/a&gt;
+
+&lt;br&gt;
+
+&lt;a href="https://example.com" target="_parent"&gt;
+_parent → Opens in parent iframe
+&lt;/a&gt;
+
+&lt;br&gt;
+
+&lt;a href="https://example.com" target="_top"&gt;
+_top → Opens full browser window
+&lt;/a&gt;
+</code>
+</div>
+<!-- 2 iframe target -->
+<h2>2. _self vs _top in iframe</h2>
+
+<p>Controls where the link opens when using iframe.</p>
+
+<div class="example">
+<code>
+&lt;iframe name="frame1"&gt;&lt;/iframe&gt;
+
+&lt;a href="page.html" target="frame1"&gt;Open in iframe&lt;/a&gt;
+&lt;a href="page.html" target="_top"&gt;Open full page&lt;/a&gt;
+</code>
+</div>
+
+<ul>
+  <li><b>_self</b> → inside iframe</li>
+  <li><b>_top</b> → breaks iframe</li>
+</ul>
+
+<!-- 3 download -->
+<h2>3. Download Attribute</h2>
+
+<p>Used to download a file instead of opening it.</p>
+
+<div class="example">
+<code>
+&lt;a href="file.pdf" download&gt;Download&lt;/a&gt;
+
+&lt;a href="file.pdf" download="notes.pdf"&gt;
+Download with new name
+&lt;/a&gt;
+</code>
+</div>
+
+<!-- 4 navigation -->
+<h2>4. Navigate to Section</h2>
+
+<p>Used to jump to another section of the same page.</p>
+
+<div class="example">
+<code>
+&lt;a href="#section1"&gt;Go to Section&lt;/a&gt;
+
+&lt;h2 id="section1"&gt;Section 1&lt;/h2&gt;
+</code>
+</div>
+
+<!-- 5 pre -->
+<h2>5. Pre Tag</h2>
+
+The &lt;pre&gt; tag defines preformatted text.<br><br>
+
+Text in a &lt;pre&gt; element is displayed in a fixed-width font, and the text preserves both spaces and line breaks. The text will be displayed exactly as written in the HTML source code.
+<div class="example">
+<code>
+&lt;pre&gt;
+Hello
+   World
+&lt;/pre&gt;
+</code>
+</div>
+
+<!-- 6 quote -->
+<h2>6. Quote Tag (q)</h2>
+
+<p>Defines short inline quotation.</p>
+
+<div class="example">
+<code>
+&lt;p&gt;He said &lt;q&gt;Hello&lt;/q&gt;&lt;/p&gt;
+</code>
+</div>
+
+<!-- 7 blockquote -->
+<h2>7. Blockquote Tag</h2>
+
+<p>Defines long quotation.</p>
+
+<div class="example">
+<code>
+&lt;blockquote&gt;
+This is a long quote
+&lt;/blockquote&gt;
+</code>
+</div>
+
+<!-- 8 abbr -->
+<h2>8. Abbr Tag</h2>
+
+<p>Defines abbreviation (shows full form on hover).</p>
+
+<div class="example">
+<code>
+&lt;abbr title="World Health Organization"&gt;WHO&lt;/abbr&gt;
+</code>
+</div>
+
+<!-- 9 favicon -->
+<h2>9. Favicon</h2>
+
+<p>Icon shown in browser tab.</p>
+
+<div class="example">
+<code>
+&lt;head&gt;
+  &lt;link rel="icon" href="favicon.png"&gt;
+&lt;/head&gt;
+</code>
+</div>
+
+<h2>10. HTML Entities</h2>
+
+<p>
+HTML entities are used to display reserved characters and special symbols in HTML.
+</p>
+
+<p>
+Entities can be written in two ways:
+</p>
+
+<ul>
+  <li><b>Entity Name</b> → &amp;name;</li>
+  <li><b>Entity Number</b> → &amp;#number;</li>
+</ul>
+
+<!-- ================= Reserved Characters ================= -->
+
+<h3>Reserved Characters</h3>
+
+<p>These characters have special meaning in HTML, so we use entities:</p>
+
+<div class="example">
+<code>
+&lt;  → &amp;lt;   → &amp;#60;
+&gt;  → &amp;gt;   → &amp;#62;
+&amp;  → &amp;amp;  → &amp;#38;
+"  → &amp;quot; → &amp;#34;
+'  → &amp;apos; → &amp;#39;
+</code>
+</div>
+
+<p>
+👉 These are mainly used to display HTML code in browser.
+</p>
+
+<!-- ================= Example ================= -->
+
+<h3>Example</h3>
+
+<div class="example">
+<code>
+&lt;p&gt;This is a paragraph&lt;/p&gt;
+</code>
+</div>
+
+<p>👉 Output shows the tag instead of executing it.</p>
+
+<!-- ================= Non Breaking Space ================= -->
+
+<h3>Non-Breaking Space (&amp;nbsp;)</h3>
+
+<p>
+The &amp;nbsp; entity is used to create extra spaces.
+</p>
+
+<div class="example">
+<code>
+Hello&amp;nbsp;&amp;nbsp;&amp;nbsp;World
+</code>
+</div>
+
+<p>👉 Output: Hello   World</p>
+
+<!-- ================= Symbols ================= -->
+
+<h3>Common Symbols</h3>
+
+<div class="example">
+<code>
+&amp;copy;  → ©  → &amp;#169;
+&amp;reg;   → ®  → &amp;#174;
+&amp;euro;  → €  → &amp;#8364;
+&amp;pound; → £  → &amp;#163;
+&amp;yen;   → ¥  → &amp;#165;
+&amp;dollar; → $ → &amp;#36;
+</code>
+</div>
+
+<!-- ================= Math Symbols ================= -->
+
+<h3>Mathematical Symbols</h3>
+
+<div class="example">
+<code>
+&amp;plusmn; → ± → &amp;#177;
+&amp;times;  → × → &amp;#215;
+&amp;divide; → ÷ → &amp;#247;
+</code>
+</div>
+
+<!-- ================= Card Symbols ================= -->
+
+<h3>Card Symbols</h3>
+
+<div class="example">
+<code>
+&amp;hearts; → ♥ → &amp;#9829;
+&amp;spades; → ♠ → &amp;#9824;
+&amp;clubs;  → ♣ → &amp;#9827;
+&amp;diams;  → ♦ → &amp;#9830;
+</code>
+</div>
+
+<!-- ================= Why Use ================= -->
+
+<h3>Why Use HTML Entities?</h3>
+
+<ul>
+  <li>To display reserved characters (&lt;, &gt;, &amp;)</li>
+  <li>To show HTML code as text</li>
+  <li>To add symbols and special characters</li>
+  <li>To create extra spaces using &amp;nbsp;</li>
+</ul>
+
+<!-- ================= Important Note ================= -->
+
+<h3>Important Notes</h3>
+
+<ul>
+  <li>Not all entities have names, but all have numbers</li>
+  <li>Entity names are easier to remember</li>
+  <li>Numbers are more universal (browser safe)</li>
+</ul>
+</div>
+
+
+
+</body>
+</html>

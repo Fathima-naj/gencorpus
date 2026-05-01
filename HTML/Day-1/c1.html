@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML Notes - Part 1</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/732/732212.png">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.7;
+      margin: 0;
+      background: #f4f6f8;
+    }
+
+    header {
+    
+      color: rgb(12, 12, 12);
+      padding: 20px;
+      text-align: center;
+    }
+
+    section {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+      background: white;
+      margin-top: 20px;
+      border-radius: 8px;
+    }
+
+    h1, h2, h3 {
+      color: #333;
+    }
+
+    pre {
+      background: #ebebeb;
+      color: #111111;
+      padding: 15px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+
+    code {
+      color: #0e0f0f;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background: #04AA6D;
+      color: white;
+    }
+
+    .note {
+      background: #fff3cd;
+      padding: 10px;
+      border-left: 5px solid #ffc107;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Introduction to HTML</h1>
+  
+</header>
+<section>
+
+  <h2>1. What is HTML?</h2>
+
+  <p><b>HTML (HyperText Markup Language)</b> is the standard language used to create and structure web pages.</p>
+
+  <h3>🔹 What does HTML mean?</h3>
+
+  <ul>
+    <li><b>HyperText</b> → Text that contains links to other pages (using links called hyperlinks).</li>
+    <li><b>Markup</b> → Tags are used to "mark" or structure the content.</li>
+    <li><b>Language</b> → A set of rules and syntax to write web pages.</li>
+  </ul>
+
+  <h3>🔹 Example of HyperText</h3>
+  <pre><code>&lt;a href="https://www.google.com"&gt;Go to Google&lt;/a&gt;</code></pre>
+
+  <p>Here, clicking the link takes you to another webpage. That is why it is called <b>HyperText</b>.</p>
+
+  <h3>🔹 What is Markup?</h3>
+  <p>HTML uses <b>tags</b> to define elements and structure content.</p>
+
+  <pre><code>
+&lt;h1&gt;Heading&lt;/h1&gt;
+&lt;p&gt;Paragraph&lt;/p&gt;
+  </code></pre>
+
+  <p>Tags tell the browser how content should appear.</p>
+
+  <h3>🔹 Key Features of HTML</h3>
+
+  <ul>
+    <li>Easy to learn and use</li>
+    <li>Platform independent (works on all browsers)</li>
+    <li>Used to create structure of web pages</li>
+    <li>Works with CSS (style) and JavaScript (functionality)</li>
+  </ul>
+
+  <h3>🔹 Example</h3>
+
+  <pre><code>&lt;p&gt;This is a paragraph&lt;/p&gt;</code></pre>
+
+  <div class="note">
+    HTML is not a programming language. It cannot perform logic like conditions or loops. It is only used for structuring content.
+  </div>
+
+</section>
+<section>
+
+  <h2>2. Frontend, Backend & Full Stack</h2>
+
+  <h3>🔹 Frontend (Client Side)</h3>
+  <p>The <b>frontend</b> is the part of the website that users can see and interact with directly.</p>
+
+  <ul>
+    <li>Design (UI - User Interface)</li>
+    <li>Buttons, forms, navigation menus</li>
+    <li>Layouts, colors, fonts</li>
+  </ul>
+
+  <h4>Technologies Used:</h4>
+  <ul>
+    <li>HTML → Structure</li>
+    <li>CSS → Styling</li>
+    <li>JavaScript → Interactivity</li>
+  </ul>
+
+  <h4>Example:</h4>
+  <pre><code>
+&lt;button&gt;Click Me&lt;/button&gt;
+  </code></pre>
+
+  <div class="note">
+    When you click a button or fill a form, you are interacting with the frontend.
+  </div>
+
+  <hr>
+
+  <h3>🔹 Backend (Server Side)</h3>
+  <p>The <b>backend</b> is the part of the website that works behind the scenes.</p>
+
+  <ul>
+    <li>Handles user data</li>
+    <li>Processes requests</li>
+    <li>Connects to databases</li>
+    <li>Authentication (login/signup)</li>
+  </ul>
+
+  <h4>Technologies Used:</h4>
+  <ul>
+    <li>Node.js</li>
+    <li>Python</li>
+    <li>Java</li>
+    <li>PHP</li>
+    <li>Databases (MongoDB, MySQL)</li>
+  </ul>
+
+  <h4>Example Flow:</h4>
+  <pre><code>
+User clicks "Login" → Data sent to server → Server checks database → Response sent back
+  </code></pre>
+
+  <div class="note">
+    Backend is not visible to users, but it powers the application.
+  </div>
+
+  <hr>
+
+  <h3>🔹 Full Stack</h3>
+  <p>A <b>Full Stack Developer</b> works on both frontend and backend.</p>
+
+  <ul>
+    <li>Designs UI (frontend)</li>
+    <li>Builds server logic (backend)</li>
+    <li>Manages database</li>
+  </ul>
+
+  <h4>Example Stack:</h4>
+  <ul>
+    <li>MERN Stack:
+      <ul>
+        <li>MongoDB (Database)</li>
+        <li>Express.js (Backend framework)</li>
+        <li>React (Frontend)</li>
+        <li>Node.js (Runtime)</li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="note">
+    A full stack developer can build a complete web application from start to end.
+  </div>
+
+</section>
+<section>
+
+  <h2>3. HTML vs HTML5</h2>
+
+  <table>
+    <tr>
+      <th>HTML</th>
+      <th>HTML5</th>
+    </tr>
+
+    <tr>
+      <td>Old version</td>
+      <td>Latest version</td>
+    </tr>
+
+    <tr>
+      <td>Limited features</td>
+      <td>Supports audio and video</td>
+    </tr>
+
+    <tr>
+      <td>No semantic elements</td>
+      <td>Provides semantic tags like &lt;header&gt;, &lt;footer&gt;, &lt;article&gt;</td>
+    </tr>
+
+    <tr>
+      <td>Uses plugins for multimedia (Flash)</td>
+      <td>No plugins required (built-in support)</td>
+    </tr>
+
+    <tr>
+      <td>No canvas or SVG support</td>
+      <td>Supports &lt;canvas&gt; and SVG for graphics</td>
+    </tr>
+
+    <tr>
+      <td>Limited form controls</td>
+      <td>New input types like email, date, range</td>
+    </tr>
+
+    <tr>
+      <td>No local storage</td>
+      <td>Supports localStorage and sessionStorage</td>
+    </tr>
+
+    <tr>
+      <td>Less mobile-friendly</td>
+      <td>Mobile-friendly and responsive</td>
+    </tr>
+
+    <tr>
+      <td>No built-in APIs</td>
+      <td>Supports APIs like Geolocation, Drag & Drop</td>
+    </tr>
+
+    <tr>
+      <td>Doctype was long and complex</td>
+      <td>Simple doctype: &lt;!DOCTYPE html&gt;</td>
+    </tr>
+
+  </table>
+
+  <div class="note">
+    HTML5 makes web development easier, faster, and more powerful with built-in features and better performance.
+  </div>
+
+</section>
+
+<section>
+
+  <h2>5. W3C & Markup Language</h2>
+
+  <h3>🔹 What is W3C?</h3>
+
+  <p><b>W3C (World Wide Web Consortium)</b> is an international organization that develops standards for the web.</p>
+
+  <ul>
+    <li>Creates rules and guidelines for web technologies</li>
+    <li>Ensures websites work consistently across all browsers</li>
+  </ul>
+
+  <h4>Examples of W3C Standards:</h4>
+  <ul>
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>XML</li>
+  </ul>
+
+  <div class="note">
+    W3C ensures that a webpage looks and works the same in Chrome, Firefox, Edge, etc.
+  </div>
+
+  <hr>
+
+  <h3>🔹 What is a Markup Language?</h3>
+
+  <p>A <b>markup language</b> is a system used to structure and format content using tags.</p>
+
+  <h4>🔸 Why is it called "Markup"?</h4>
+  <p>Because we "mark" the content with tags to define its structure.</p>
+
+  <h4>🔸 Example:</h4>
+
+  <pre><code>
+&lt;h1&gt;This is a Heading&lt;/h1&gt;
+&lt;p&gt;This is a paragraph&lt;/p&gt;
+  </code></pre>
+
+  <p>Here:</p>
+  <ul>
+    <li>&lt;h1&gt; defines a heading</li>
+    <li>&lt;p&gt; defines a paragraph</li>
+  </ul>
+
+  <h4>🔸 Features of Markup Languages</h4>
+
+  <ul>
+    <li>Uses tags to structure content</li>
+    <li>Easy to read and write</li>
+    <li>Platform independent</li>
+    <li>Does not perform logic (no loops, conditions)</li>
+  </ul>
+
+  <h4>🔸 Examples of Markup Languages</h4>
+
+  <ul>
+    <li>HTML (HyperText Markup Language)</li>
+    <li>XML (Extensible Markup Language)</li>
+  </ul>
+
+  <div class="note">
+    HTML is a markup language, not a programming language, because it only structures content and does not perform logical operations.
+  </div>
+  <div class="note">
+        W3C creates the standards (rules), and markup languages like HTML follow those rules.
+  </div>
+  
+</section>
+<section>
+
+  <h2>4. Basic HTML Structure</h2>
+
+  <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Page Title&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+  &lt;h1&gt;Hello World&lt;/h1&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+  </code></pre>
+
+  <h3>🔹 Explanation of Each Tag</h3>
+
+  <ul>
+    <li>
+      <b>&lt;!DOCTYPE html&gt;</b>  
+      <p>Declares the document type and tells the browser that this is an HTML5 document.</p>
+    </li>
+
+    <li>
+      <b>&lt;html&gt;</b>  
+      <p>The root element of the HTML page. All other elements are inside this tag.</p>
+    </li>
+
+    <li>
+      <b>&lt;head&gt;</b>  
+      <p>Contains metadata (information about the page) like title, links, styles, and scripts. This content is not visible on the webpage.</p>
+    </li>
+
+    <li>
+      <b>&lt;title&gt;</b>  
+      <p>Sets the title of the webpage, which appears in the browser tab.</p>
+    </li>
+
+    <li>
+      <b>&lt;body&gt;</b>  
+      <p>Contains all the visible content of the webpage such as text, images, headings, buttons, etc.</p>
+    </li>
+
+    <li>
+      <b>&lt;h1&gt;</b>  
+      <p>Defines the main heading. It is the most important heading on the page.</p>
+    </li>
+  </ul>
+
+  <div class="note">
+    The &lt;head&gt; section is for configuration, while the &lt;body&gt; section is for displaying content to users.
+  </div>
+
+</section>
+<section>
+
+  <h2>HTML Elements</h2>
+
+  <p>An <b>HTML element</b> is the complete structure from the opening tag to the closing tag, including the content inside.</p>
+
+  <h3>🔹 Basic Structure of an Element</h3>
+
+  <pre><code>
+&lt;tagname&gt;Content&lt;/tagname&gt;
+  </code></pre>
+
+  <p>Example:</p>
+
+  <pre><code>
+&lt;p&gt;This is a paragraph&lt;/p&gt;
+  </code></pre>
+
+  <ul>
+    <li>&lt;p&gt; → Opening tag</li>
+    <li>Content → Text inside the element</li>
+    <li>&lt;/p&gt; → Closing tag</li>
+  </ul>
+
+  <h3>🔹 Nested Elements</h3>
+
+  <p>HTML elements can be placed inside other elements.</p>
+
+  <pre><code>
+&lt;p&gt;This is &lt;b&gt;bold&lt;/b&gt; text&lt;/p&gt;
+  </code></pre>
+
+  <p>Here, the <b>&lt;b&gt;</b> element is inside the <b>&lt;p&gt;</b> element.</p>
+
+  <h3>🔹 Empty Elements</h3>
+
+  <p>Some elements do not have content and do not need closing tags.</p>
+
+  <pre><code>
+&lt;br&gt;
+&lt;hr&gt;
+  </code></pre>
+
+  <div class="note">
+    An HTML element usually has an opening tag, content, and a closing tag, but some elements are self-closing.
+  </div>
+
+</section>
+<section>
+
+  <h2>5. Text Formatting</h2>
+
+  <p>HTML provides several elements for formatting text.</p>
+
+  <h3>🔹 Examples</h3>
+
+  <p><b>Bold Text</b></p>
+  <p><strong>Important Text</strong></p>
+
+  <p><i>Italic Text</i></p>
+  <p><em>Emphasized Text</em></p>
+
+  <p><mark>Marked (Highlighted) Text</mark></p>
+  <p><small>Smaller Text</small></p>
+
+  <p><del>Deleted Text</del></p>
+  <p><ins>Inserted Text</ins></p>
+
+  <p>H<sub>2</sub>O (Subscript)</p>
+  <p>10<sup>2</sup> = 100 (Superscript)</p>
+
+  <p><u>Underlined Text</u></p>
+
+  <hr>
+
+  <h3>🔹 Tag Explanation</h3>
+
+  <ul>
+    <li><b>&lt;b&gt;</b> → Bold text (visual only)</li>
+    <li><b>&lt;strong&gt;</b> → Important text (semantic meaning)</li>
+
+    <li><b>&lt;i&gt;</b> → Italic text (visual only)</li>
+    <li><b>&lt;em&gt;</b> → Emphasized text (semantic meaning)</li>
+
+    <li><b>&lt;mark&gt;</b> → Highlights text</li>
+    <li><b>&lt;small&gt;</b> → Displays smaller text</li>
+
+    <li><b>&lt;del&gt;</b> → Shows deleted (strikethrough) text</li>
+    <li><b>&lt;ins&gt;</b> → Shows inserted (underlined) text</li>
+
+    <li><b>&lt;sub&gt;</b> → Subscript (below baseline)</li>
+    <li><b>&lt;sup&gt;</b> → Superscript (above baseline)</li>
+  </ul>
+
+  <div class="note">
+    Semantic tags like &lt;strong&gt; and &lt;em&gt; improve accessibility and SEO compared to &lt;b&gt; and &lt;i&gt;.
+  </div>
+
+</section>
+<section>
+
+  <h2>6. b vs strong</h2>
+
+  <p>Both <b>&lt;b&gt;</b> and <b>&lt;strong&gt;</b> display text in bold, but they have different meanings.</p>
+
+  <table>
+    <tr>
+      <th>&lt;b&gt;</th>
+      <th>&lt;strong&gt;</th>
+    </tr>
+    <tr>
+      <td>Used only for visual bold styling</td>
+      <td>Indicates important text (semantic meaning)</td>
+    </tr>
+    <tr>
+      <td>No importance for screen readers</td>
+      <td>Screen readers give extra importance</td>
+    </tr>
+    <tr>
+      <td>No SEO benefit</td>
+      <td>Improves accessibility and SEO</td>
+    </tr>
+  </table>
+
+  <h3>🔹 Example</h3>
+
+  <pre><code>
+&lt;p&gt;&lt;b&gt;This is bold text&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;This is important text&lt;/strong&gt;&lt;/p&gt;
+  </code></pre>
+
+  <div class="note">
+    Use &lt;strong&gt; when the text is important, not just for styling.
+  </div>
+
+</section>
+
+<section>
+
+  <h2>7. i vs em</h2>
+
+  <p>Both <b>&lt;i&gt;</b> and <b>&lt;em&gt;</b> display italic text, but they have different purposes.</p>
+
+  <table>
+    <tr>
+      <th>&lt;i&gt;</th>
+      <th>&lt;em&gt;</th>
+    </tr>
+    <tr>
+      <td>Used for visual italic styling</td>
+      <td>Used to emphasize text</td>
+    </tr>
+    <tr>
+      <td>No semantic meaning</td>
+      <td>Has semantic meaning</td>
+    </tr>
+    <tr>
+      <td>No effect on screen readers</td>
+      <td>Screen readers stress the text</td>
+    </tr>
+  </table>
+
+  <h3>🔹 Example</h3>
+
+  <pre><code>
+&lt;p&gt;&lt;i&gt;This is italic text&lt;/i&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;This is emphasized text&lt;/em&gt;&lt;/p&gt;
+  </code></pre>
+
+  <div class="note">
+    Use &lt;em&gt; when you want to give importance or stress to the text.
+  </div>
+
+</section>
+<section>
+<section>
+
+  <h2>8. Headings</h2>
+
+  <p>HTML provides six levels of headings from <b>&lt;h1&gt;</b> to <b>&lt;h6&gt;</b>.</p>
+  <p>These are used to define titles and subtitles on a webpage.</p>
+
+  <h3>🔹 Syntax</h3>
+
+  <pre><code>
+&lt;h1&gt;Heading 1&lt;/h1&gt;
+&lt;h2&gt;Heading 2&lt;/h2&gt;
+&lt;h3&gt;Heading 3&lt;/h3&gt;
+&lt;h4&gt;Heading 4&lt;/h4&gt;
+&lt;h5&gt;Heading 5&lt;/h5&gt;
+&lt;h6&gt;Heading 6&lt;/h6&gt;
+  </code></pre>
+
+  <h3>🔹 Output Example</h3>
+
+  <h1>Heading 1</h1>
+  <h2>Heading 2</h2>
+  <h3>Heading 3</h3>
+  <h4>Heading 4</h4>
+  <h5>Heading 5</h5>
+  <h6>Heading 6</h6>
+
+  <h3>🔹 Explanation</h3>
+
+  <ul>
+    <li><b>&lt;h1&gt;</b> → Main heading (most important, largest size)</li>
+    <li><b>&lt;h2&gt;</b> → Subheading</li>
+    <li><b>&lt;h3&gt;</b> → Section heading</li>
+    <li><b>&lt;h4&gt;</b> → Sub-section heading</li>
+    <li><b>&lt;h5&gt;</b> → Smaller heading</li>
+    <li><b>&lt;h6&gt;</b> → Smallest heading (least important)</li>
+  </ul>
+
+  <h3>🔹 Important Points</h3>
+
+  <ul>
+    <li>They help structure content clearly</li>
+    <li>Use only one <b>&lt;h1&gt;</b> per page (best practice)</li>
+    <li>Do not skip heading levels (use in order)</li>
+  </ul>
+
+  <div class="note">
+    Headings are not just for size. They give meaning and structure to your content, which helps both users and search engines.
+  </div>
+
+</section>
+<section>
+
+  <h2>9. Paragraph</h2>
+
+  <p>The <b>&lt;p&gt;</b> tag is used to define a paragraph in HTML.</p>
+
+  <h3>🔹 Syntax</h3>
+
+  <pre><code>&lt;p&gt;This is a paragraph&lt;/p&gt;</code></pre>
+
+  <h3>🔹 Example</h3>
+
+  <p>This is a paragraph.</p>
+  <p>This is another paragraph.</p>
+
+  <h3>🔹 Key Features</h3>
+
+  <ul>
+    <li>Browsers automatically add space (margin) before and after paragraphs</li>
+    <li>Used to group related text content</li>
+    <li>Helps improve readability of web pages</li>
+  </ul>
+
+  <h3>🔹 Important Note</h3>
+
+  <p>
+    HTML ignores extra spaces and line breaks inside a paragraph.
+  </p>
+
+  <pre><code>
+&lt;p&gt;
+This    is
+a    paragraph
+&lt;/p&gt;
+  </code></pre>
+
+  <p>👉 Output will be: "This is a paragraph"</p>
+
+  <div class="note">
+    Use the &lt;br&gt; tag if you want a line break inside a paragraph.
+  </div>
+
+</section>
+<section>
+
+  <h2>10. Line Break & Horizontal Line</h2>
+
+  <p>HTML provides special tags to control line breaks and separate content.</p>
+
+  <h3>🔹 Line Break (&lt;br&gt;)</h3>
+
+  <p>The <b>&lt;br&gt;</b> tag is used to insert a line break without starting a new paragraph.</p>
+
+  <h4>Example:</h4>
+
+  <pre><code>
+Line 1&lt;br&gt;Line 2
+  </code></pre>
+
+  <p>Output:</p>
+  <p>Line 1<br>Line 2</p>
+
+  <ul>
+    <li>Used to break lines inside text</li>
+    <li>Does not need a closing tag (self-closing)</li>
+    <li>Commonly used in poems, addresses, etc.</li>
+  </ul>
+
+  <hr>
+
+  <h3>🔹 Horizontal Line (&lt;hr&gt;)</h3>
+
+  <p>The <b>&lt;hr&gt;</b> tag is used to create a horizontal line to separate content.</p>
+
+  <h4>Example:</h4>
+
+  <pre><code>
+&lt;hr&gt;
+  </code></pre>
+
+  <p>Output:</p>
+  <hr>
+
+  <ul>
+    <li>Represents a thematic break between sections</li>
+    <li>Does not need a closing tag (self-closing)</li>
+    <li>Used to divide content visually</li>
+  </ul>
+
+  <div class="note">
+    Use &lt;br&gt; for line breaks within text, and &lt;hr&gt; to separate sections of content.
+  </div>
+
+</section>
+
+<section>
+<section>
+
+  <h2>12. Accessibility</h2>
+
+  <p>
+    <b>Accessibility</b> means designing websites so that everyone can use them, 
+    including people with disabilities such as visual, hearing, or motor impairments.
+  </p>
+
+  <h3>🔹 Why Accessibility is Important?</h3>
+
+  <ul>
+    <li>Helps visually impaired users using screen readers</li>
+    <li>Improves user experience for all users</li>
+    <li>Makes websites more inclusive</li>
+    <li>Improves SEO (Search Engine Optimization)</li>
+  </ul>
+
+  <h3>🔹 Best Practices</h3>
+
+  <ul>
+    <li><b>Use semantic tags</b> like &lt;header&gt;, &lt;nav&gt;, &lt;main&gt;, &lt;footer&gt;</li>
+    <li><b>Use proper heading structure</b> (&lt;h1&gt; to &lt;h6&gt; in order)</li>
+    <li><b>Use &lt;strong&gt; instead of &lt;b&gt;</b> for important text</li>
+    <li><b>Use &lt;em&gt; instead of &lt;i&gt;</b> for emphasis</li>
+    <li>Add <b>alt attributes</b> to images for screen readers</li>
+  </ul>
+
+  <h3>🔹 Example</h3>
+
+  <pre><code>
+&lt;img src="image.jpg" alt="A beautiful beach"&gt;
+  </code></pre>
+
+  <p>
+    The <b>alt</b> attribute helps screen readers describe the image to users who cannot see it.
+  </p>
+
+  <div class="note">
+    Accessibility ensures your website is usable by everyone, including people using assistive technologies like screen readers.
+  </div>
+
+</section><section>
+
+  <h2>13. Self Closing Tags</h2>
+
+  <p>
+    <b>Self-closing tags</b> (also called empty elements) are HTML elements that do not have any content 
+    and do not require a closing tag.
+  </p>
+
+  <h3>🔹 Syntax</h3>
+
+  <pre><code>
+&lt;tagname&gt;
+  </code></pre>
+
+  <p>These tags do not have a separate closing tag like &lt;/tagname&gt;.</p>
+
+  <h3>🔹 Examples</h3>
+
+  <pre><code>
+&lt;br&gt;
+&lt;hr&gt;
+&lt;img src="image.jpg"&gt;
+&lt;input type="text"&gt;
+&lt;meta&gt;
+&lt;link&gt;
+  </code></pre>
+
+  <h3>🔹 Explanation of Common Self-Closing Tags</h3>
+
+  <ul>
+    <li><b>&lt;br&gt;</b> → Inserts a line break</li>
+    <li><b>&lt;hr&gt;</b> → Creates a horizontal line</li>
+    <li><b>&lt;img&gt;</b> → Displays an image</li>
+    <li><b>&lt;input&gt;</b> → Creates input fields (forms)</li>
+    <li><b>&lt;meta&gt;</b> → Defines metadata (inside &lt;head&gt;)</li>
+    <li><b>&lt;link&gt;</b> → Links external resources (like CSS, favicon)</li>
+  </ul>
+
+  <h3>🔹 Important Points</h3>
+
+  <ul>
+    <li>They do not wrap content</li>
+    <li>They are written as a single tag</li>
+    <li>In HTML5, closing slash (/) is optional</li>
+  </ul>
+
+  <pre><code>
+&lt;br&gt;   <!-- Correct in HTML5 -->
+&lt;br /&gt; <!-- Also valid (XHTML style) -->
+  </code></pre>
+
+  <div class="note">
+    Self-closing tags are used when no content is needed inside the element.
+  </div>
+
+</section>
+
+</body>
+</html>

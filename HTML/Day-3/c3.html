@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTML Notes - Part 3</title>
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  margin:0;
+  background:#f1f1f1;
+}
+
+.header{
+ 
+  color:rgb(16, 16, 16);
+  padding:20px;
+  text-align:center;
+}
+
+.container{
+  width:90%;
+  max-width:1000px;
+  margin:20px auto;
+  background:white;
+  padding:20px;
+  border-radius:8px;
+}
+
+h2{
+  color:#04AA6D;
+  border-bottom:2px solid #ddd;
+  padding-bottom:5px;
+}
+
+.example{
+  background:#f9f9f9;
+  border-left:5px solid #04AA6D;
+  padding:10px;
+  margin:10px 0;
+}
+
+code{
+  display:block;
+  background:#eee;
+  padding:10px;
+  border-radius:5px;
+  white-space:pre-wrap;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <h1>HTML - Day 3</h1>
+</div>
+
+<div class="container">
+<h2>1. Marquee Tag</h2>
+<p>Used to create scrolling text (not recommended in modern HTML).</p>
+
+<div class="example">
+<code>
+&lt;marquee direction="right"&gt;Welcome to my website&lt;/marquee&gt;
+</code>
+</div>
+
+<p><b>Direction values:</b> left (default), right, up, down</p>
+
+<div class="example">
+<code>
+&lt;marquee direction="left"&gt;Left Scroll&lt;/marquee&gt;
+&lt;marquee direction="right"&gt;Right Scroll&lt;/marquee&gt;
+&lt;marquee direction="up"&gt;Up Scroll&lt;/marquee&gt;
+&lt;marquee direction="down"&gt;Down Scroll&lt;/marquee&gt;
+</code>
+</div>
+
+<p><b>Scroll Speed (scrollamount):</b></p>
+
+<div class="example">
+<code>
+&lt;marquee scrollamount="5"&gt;Slow Speed&lt;/marquee&gt;
+&lt;marquee scrollamount="15"&gt;Fast Speed&lt;/marquee&gt;
+</code>
+</div>
+
+<h2>2. Iframe</h2>
+<p>Used to embed another webpage.</p>
+<div class="example">
+<code>
+&lt;iframe src="https://example.com" width="300" height="200"&gt;&lt;/iframe&gt;
+</code>
+</div>
+<h2>3. Block Level Elements</h2>
+
+<p>
+Block-level elements always start on a new line and take up the full width available.
+They create a "block" structure in the webpage.
+</p>
+
+<p><b>Features:</b></p>
+<ul>
+  <li>Start on a new line</li>
+  <li>Take full width (100%)</li>
+  <li>Can contain other block and inline elements</li>
+</ul>
+
+<p><b>Common Block Elements:</b></p>
+<ul>
+  <li>&lt;div&gt;</li>
+  <li>&lt;p&gt;</li>
+  <li>&lt;h1&gt; to &lt;h6&gt;</li>
+  <li>&lt;section&gt;</li>
+  <li>&lt;article&gt;</li>
+  <li>&lt;header&gt;</li>
+  <li>&lt;footer&gt;</li>
+  <li>&lt;nav&gt;</li>
+  <li>&lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;</li>
+  <li>&lt;form&gt;</li>
+</ul>
+
+<div class="example">
+<code>
+&lt;div&gt;
+  &lt;p&gt;This is a block element&lt;/p&gt;
+&lt;/div&gt;
+</code>
+</div>
+
+
+<h2>4. Inline Elements</h2>
+
+<p>
+Inline elements do not start on a new line. They only take up as much width as necessary.
+They are usually used to style or format small parts of content.
+</p>
+
+<p><b>Features:</b></p>
+<ul>
+  <li>Do not start on a new line</li>
+  <li>Take only required width</li>
+  <li>Cannot contain block elements</li>
+</ul>
+
+<p><b>Common Inline Elements:</b></p>
+<ul>
+  <li>&lt;span&gt;</li>
+  <li>&lt;a&gt;</li>
+  <li>&lt;img&gt;</li>
+  <li>&lt;b&gt;, &lt;strong&gt;</li>
+  <li>&lt;i&gt;, &lt;em&gt;</li>
+  <li>&lt;mark&gt;</li>
+  <li>&lt;small&gt;</li>
+  <li>&lt;label&gt;</li>
+  <li>&lt;input&gt;</li>
+</ul>
+
+<div class="example">
+<code>
+&lt;p&gt;
+  This is &lt;span style="color:red"&gt;inline&lt;/span&gt; text.
+&lt;/p&gt;
+</code>
+</div>
+
+
+<h2>Difference Between Block and Inline Elements</h2>
+
+<div class="example">
+<code>
+Block Element:
+&lt;div&gt;Hello&lt;/div&gt;
+&lt;div&gt;World&lt;/div&gt;
+
+Inline Element:
+&lt;span&gt;Hello&lt;/span&gt;
+&lt;span&gt;World&lt;/span&gt;
+</code>
+</div>
+
+<p>
+👉 In block elements, "Hello" and "World" appear on separate lines. <br>
+👉 In inline elements, they appear on the same line.
+</p>
+<h2>5. Div</h2>
+<div class="example">
+<code>
+&lt;div&gt;
+  &lt;p&gt;Inside div&lt;/p&gt;
+&lt;/div&gt;
+</code>
+</div>
+
+<h2>6. Span</h2>
+<div class="example">
+<code>
+&lt;p&gt;This is &lt;span style="color:red"&gt;important&lt;/span&gt;&lt;/p&gt;
+</code>
+</div>
+<h2>7. Radio Button</h2>
+
+<p>
+Radio buttons are used when the user needs to select only one option from a group.
+</p>
+
+<p><b>Important:</b></p>
+<ul>
+  <li>All radio buttons in a group must have the same <code>name</code> attribute</li>
+  <li>This ensures only one option can be selected at a time</li>
+</ul>
+
+<div class="example">
+<code>
+&lt;input type="radio" name="gender"&gt; Male
+&lt;input type="radio" name="gender"&gt; Female
+</code>
+</div>
+
+<p><b>With value attribute:</b></p>
+<div class="example">
+<code>
+&lt;input type="radio" name="gender" value="male"&gt; Male
+&lt;input type="radio" name="gender" value="female"&gt; Female
+</code>
+</div>
+
+<p><b>Default selected option (checked):</b></p>
+<div class="example">
+<code>
+&lt;input type="radio" name="gender" value="male" checked&gt; Male
+&lt;input type="radio" name="gender" value="female"&gt; Female
+</code>
+</div>
+
+<p><b>Using label for better usability:</b></p>
+<div class="example">
+<code>
+&lt;label&gt;
+  &lt;input type="radio" name="gender" value="male"&gt; Male
+&lt;/label&gt;
+
+&lt;label&gt;
+  &lt;input type="radio" name="gender" value="female"&gt; Female
+&lt;/label&gt;
+</code>
+</div>
+<h2>8. Text Area</h2>
+
+<p>
+The &lt;textarea&gt; element is used to create a multi-line input field.
+It is mainly used for long text such as comments, messages, or descriptions.
+</p>
+
+<p><b>Features:</b></p>
+<ul>
+  <li>Allows multiple lines of text</li>
+  <li>Size can be controlled using <code>rows</code> and <code>cols</code></li>
+  <li>Can be resized by the user (default behavior)</li>
+</ul>
+
+<div class="example">
+<code>
+&lt;textarea rows="4" cols="30"&gt;&lt;/textarea&gt;
+</code>
+</div>
+
+<p><b>With placeholder text:</b></p>
+<div class="example">
+<code>
+&lt;textarea rows="4" cols="30" placeholder="Enter your message..."&gt;&lt;/textarea&gt;
+</code>
+</div>
+
+<p><b>Default text inside textarea:</b></p>
+<div class="example">
+<code>
+&lt;textarea rows="4" cols="30"&gt;
+This is default text
+&lt;/textarea&gt;
+</code>
+</div>
+
+<p><b>Disable resizing:</b></p>
+<div class="example">
+<code>
+&lt;textarea style="resize: none;" rows="4" cols="30"&gt;&lt;/textarea&gt;
+</code>
+</div>
+
+<p><b>Using name attribute (for form submission):</b></p>
+<div class="example">
+<code>
+&lt;form&gt;
+  &lt;textarea name="message"&gt;&lt;/textarea&gt;
+&lt;/form&gt;
+</code>
+</div>
+
+<p>
+👉 When the form is submitted, the data is sent as:
+<br>
+<b>message=your_text_here</b>
+</p>
+
+<h2>9. Unordered List (ul)</h2>
+
+<p>
+The &lt;ul&gt; tag is used to create an unordered list.
+Items in the list are displayed with bullet points.
+</p>
+
+<p><b>Features:</b></p>
+<ul>
+  <li>Displays items with bullets</li>
+  <li>Each item is defined using &lt;li&gt;</li>
+</ul>
+
+<div class="example">
+<code>
+&lt;ul&gt;
+  &lt;li&gt;Apple&lt;/li&gt;
+  &lt;li&gt;Banana&lt;/li&gt;
+&lt;/ul&gt;
+</code>
+</div>
+
+<p><b>Different bullet styles:</b></p>
+<div class="example">
+<code>
+&lt;ul style="list-style-type: disc;"&gt;
+&lt;ul style="list-style-type: circle;"&gt;
+&lt;ul style="list-style-type: square;"&gt;
+&lt;ul style="list-style-type: none;"&gt;
+</code>
+</div>
+
+
+<h2>10. Ordered List (ol)</h2>
+
+<p>
+The &lt;ol&gt; tag is used to create an ordered list.
+Items are displayed in a numbered format.
+</p>
+
+<p><b>Features:</b></p>
+<ul>
+  <li>Displays items with numbers or letters</li>
+  <li>Each item is defined using &lt;li&gt;</li>
+</ul>
+
+<div class="example">
+<code>
+&lt;ol&gt;
+  &lt;li&gt;Step 1&lt;/li&gt;
+  &lt;li&gt;Step 2&lt;/li&gt;
+&lt;/ol&gt;
+</code>
+</div>
+
+<p><b>Different numbering types:</b></p>
+<div class="example">
+<code>
+&lt;ol type="1"&gt;  <!-- default -->
+&lt;ol type="A"&gt;
+&lt;ol type="a"&gt;
+&lt;ol type="I"&gt;
+&lt;ol type="i"&gt;
+</code>
+</div>
+
+<p><b>Start from a specific number:</b></p>
+<div class="example">
+<code>
+&lt;ol start="5"&gt;
+  &lt;li&gt;Item&lt;/li&gt;
+&lt;/ol&gt;
+</code>
+</div>
+
+<p><b>Reversed list:</b></p>
+<div class="example">
+<code>
+&lt;ol reversed&gt;
+  &lt;li&gt;Item 1&lt;/li&gt;
+  &lt;li&gt;Item 2&lt;/li&gt;
+&lt;/ol&gt;
+</code>
+</div>
+
+
+<h2>Nested List (List inside List)</h2>
+
+<div class="example">
+<code>
+&lt;ul&gt;
+  &lt;li&gt;Fruits
+    &lt;ul&gt;
+      &lt;li&gt;Apple&lt;/li&gt;
+      &lt;li&gt;Mango&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</code>
+</div>
+<h2>11. Search Input</h2>
+
+<p>
+The &lt;input type="search"&gt; is used to create a search field.
+It is similar to a text input but is specially designed for search functionality.
+</p>
+
+<p><b>Features:</b></p>
+<ul>
+  <li>Used for search boxes</li>
+  <li>May show a clear (✖) button in some browsers</li>
+  <li>Behaves like a text input</li>
+</ul>
+
+<div class="example">
+<code>
+&lt;input type="search" placeholder="Search here"&gt;
+</code>
+</div>
+
+<p><b>With name attribute (for form submission):</b></p>
+<div class="example">
+<code>
+&lt;form&gt;
+  &lt;input type="search" name="query" placeholder="Search..."&gt;
+  &lt;button type="submit"&gt;Search&lt;/button&gt;
+&lt;/form&gt;
+</code>
+</div>
+
+<p>
+👉 When submitted, the data is sent as:
+<br>
+<b>query=your_search_text</b>
+</p>
+
+<p><b>With required validation:</b></p>
+<div class="example">
+<code>
+&lt;input type="search" placeholder="Search..." required&gt;
+</code>
+</div>
+
+<p><b>With default value:</b></p>
+<div class="example">
+<code>
+&lt;input type="search" value="HTML"&gt;
+</code>
+</div>
+
+<p><b>With autofocus:</b></p>
+<div class="example">
+<code>
+&lt;input type="search" placeholder="Search..." autofocus&gt;
+</code>
+</div>
+
+<p><b>Difference from text input:</b></p>
+<ul>
+  <li>&lt;input type="text"&gt; → general input</li>
+  <li>&lt;input type="search"&gt; → specifically for search fields</li>
+</ul>
+
+<h2>12. Date Picker</h2>
+<div class="example">
+<code>
+&lt;input type="date"&gt;
+</code>
+</div>
+
+<h2>13. Time Picker</h2>
+<div class="example">
+<code>
+&lt;input type="time"&gt;
+</code>
+</div>
+
+<h2>14. Date & Time Picker</h2>
+<div class="example">
+<code>
+&lt;input type="datetime-local"&gt;
+</code>
+</div>
+
+<h2>15. Month Picker</h2>
+<div class="example">
+<code>
+&lt;input type="month"&gt;
+</code>
+</div>
+
+<h2>16. Week Picker</h2>
+<div class="example">
+<code>
+&lt;input type="week"&gt;
+</code>
+</div>
+
+<h2>17. Grouping in Dropdown</h2>
+<div class="example">
+<code>
+&lt;select&gt;
+  &lt;optgroup label="Fruits"&gt;
+    &lt;option&gt;Apple&lt;/option&gt;
+  &lt;/optgroup&gt;
+&lt;/select&gt;
+</code>
+</div>
+<h2>18. Datalist</h2>
+
+<p>
+The &lt;datalist&gt; element provides a list of predefined options for an input field.
+It gives auto-suggestions as the user types.
+</p>
+
+<p><b>Features:</b></p>
+<ul>
+  <li>Provides suggestions while typing</li>
+  <li>User can select from list or enter custom value</li>
+  <li>Works with the <code>list</code> attribute of &lt;input&gt;</li>
+</ul>
+
+<div class="example">
+<code>
+&lt;input list="browsers"&gt;
+
+&lt;datalist id="browsers"&gt;
+  &lt;option value="Chrome"&gt;
+  &lt;option value="Firefox"&gt;
+  &lt;option value="Edge"&gt;
+&lt;/datalist&gt;
+</code>
+</div>
+
+<p><b>With placeholder:</b></p>
+<div class="example">
+<code>
+&lt;input list="browsers" placeholder="Choose browser"&gt;
+</code>
+</div>
+
+<p><b>Using name attribute (form submission):</b></p>
+<div class="example">
+<code>
+&lt;form&gt;
+  &lt;input list="browsers" name="browser"&gt;
+&lt;/form&gt;
+</code>
+</div>
+
+<p>
+👉 When form is submitted, selected value is sent as:
+<br>
+<b>browser=Chrome</b>
+</p>
+
+<p><b>Difference between select and datalist:</b></p>
+<ul>
+  <li>&lt;select&gt; → user must choose from given options</li>
+  <li>&lt;datalist&gt; → user can type or choose suggestion</li>
+</ul>
+
+<p><b>Important Note:</b></p>
+<ul>
+  <li>&lt;datalist&gt; only provides suggestions (not strict selection)</li>
+  <li>Not fully supported in very old browsers</li>
+</ul>
+
+<h2>19. File Upload</h2>
+<div class="example">
+<code>
+&lt;input type="file"&gt;
+</code>
+</div>
+<h2>20. Video</h2>
+
+<p>
+The &lt;video&gt; tag is used to embed video content in a webpage.
+It supports different formats like MP4, WebM, and OGG.
+</p>
+
+<p><b>Features:</b></p>
+<ul>
+  <li>Used to play videos in the browser</li>
+  <li>Supports controls like play, pause, volume</li>
+  <li>Can autoplay, loop, and mute</li>
+</ul>
+
+<div class="example">
+<code>
+&lt;video controls width="300"&gt;
+  &lt;source src="video.mp4" type="video/mp4"&gt;
+&lt;/video&gt;
+</code>
+</div>
+
+<p><b>Common attributes:</b></p>
+<div class="example">
+<code>
+&lt;video controls autoplay muted loop width="300"&gt;
+  &lt;source src="video.mp4" type="video/mp4"&gt;
+&lt;/video&gt;
+</code>
+</div>
+
+<ul>
+  <li><b>controls</b> → shows play/pause buttons</li>
+  <li><b>autoplay</b> → plays automatically</li>
+  <li><b>muted</b> → required for autoplay in many browsers</li>
+  <li><b>loop</b> → repeats video</li>
+</ul>
+
+<p><b>Multiple sources (for browser support):</b></p>
+<div class="example">
+<code>
+&lt;video controls width="300"&gt;
+  &lt;source src="video.mp4" type="video/mp4"&gt;
+  &lt;source src="video.webm" type="video/webm"&gt;
+&lt;/video&gt;
+</code>
+</div>
+
+
+<h2>21. Audio</h2>
+
+<p>
+The &lt;audio&gt; tag is used to embed sound or music in a webpage.
+It supports formats like MP3, WAV, and OGG.
+</p>
+
+<p><b>Features:</b></p>
+<ul>
+  <li>Used to play audio files</li>
+  <li>Supports controls like play, pause, volume</li>
+</ul>
+
+<div class="example">
+<code>
+&lt;audio controls&gt;
+  &lt;source src="audio.mp3" type="audio/mpeg"&gt;
+&lt;/audio&gt;
+</code>
+</div>
+
+<p><b>Common attributes:</b></p>
+<div class="example">
+<code>
+&lt;audio controls autoplay muted loop&gt;
+  &lt;source src="audio.mp3" type="audio/mpeg"&gt;
+&lt;/audio&gt;
+</code>
+</div>
+
+<ul>
+  <li><b>controls</b> → shows audio controls</li>
+  <li><b>autoplay</b> → plays automatically</li>
+  <li><b>muted</b> → starts with no sound</li>
+  <li><b>loop</b> → repeats audio</li>
+</ul>
+
+<p><b>Multiple sources:</b></p>
+<div class="example">
+<code>
+&lt;audio controls&gt;
+  &lt;source src="audio.mp3" type="audio/mpeg"&gt;
+  &lt;source src="audio.ogg" type="audio/ogg"&gt;
+&lt;/audio&gt;
+</code>
+</div>
+
+</div>
+
+
+</body>
+</html>

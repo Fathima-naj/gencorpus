@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTML Notes - Part 5</title>
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  margin:0;
+  background:#f1f1f1;
+}
+
+.header{
+  color:rgb(16, 16, 16);
+  padding:20px;
+  text-align:center;
+}
+
+.container{
+  width:90%;
+  max-width:1000px;
+  margin:20px auto;
+  background:white;
+  padding:20px;
+  border-radius:8px;
+}
+
+h2{
+  color:#04AA6D;
+  border-bottom:2px solid #ddd;
+  padding-bottom:5px;
+}
+
+.example{
+  background:#f9f9f9;
+  border-left:5px solid #04AA6D;
+  padding:10px;
+  margin:10px 0;
+}
+
+code{
+  display:block;
+  background:#eee;
+  padding:10px;
+  border-radius:5px;
+  white-space:pre-wrap;
+}
+
+table, th, td{
+  border:1px solid black;
+  border-collapse:collapse;
+}
+
+th, td{
+  padding:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <h1>HTML - Day 5</h1>
+</div>
+
+<div class="container">
+
+<!-- ================= TABLE ================= -->
+<h2>1. HTML Table</h2>
+
+<p>Used to display data in rows and columns.</p>
+
+<div class="example">
+<code>
+&lt;table border="1"&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Name&lt;/th&gt;
+    &lt;th&gt;Age&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Sara&lt;/td&gt;
+    &lt;td&gt;20&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+</code>
+</div>
+
+<ul>
+  <li>&lt;table&gt; → table container</li>
+  <li>&lt;tr&gt; → table row</li>
+  <li>&lt;th&gt; → table heading (bold & center)</li>
+  <li>&lt;td&gt; → table data</li>
+</ul>
+
+<!-- ================= TABLE BORDERS ================= -->
+<h3>Table Borders</h3>
+
+<p><b>Normal Border:</b></p>
+<div class="example">
+<code>
+&lt;table border="1"&gt;...&lt;/table&gt;
+</code>
+</div>
+
+<p><b>Collapsed Border:</b></p>
+<div class="example">
+<code>
+&lt;table style="border-collapse: collapse;" border="1"&gt;
+</code>
+</div>
+
+<p><b>Border Styles:</b></p>
+<div class="example">
+<code>
+table, th, td {
+  border: 2px solid black;
+}
+
+border-style:
+dotted
+dashed
+solid
+double
+groove
+ridge
+inset
+outset
+none
+hidden
+</code>
+</div>
+
+<p><b>Example:</b></p>
+<div class="example">
+<code>
+table, th, td {
+  border: 2px dashed red;
+}
+</code>
+</div>
+
+<p><b>Border Color:</b></p>
+<div class="example">
+<code>
+table, th, td {
+  border: 2px solid blue;
+}
+</code>
+</div>
+
+<!-- ================= TABLE SIZE ================= -->
+<h3>Table Size</h3>
+
+<p><b>Column Width:</b></p>
+<div class="example">
+<code>
+&lt;table style="width:100%"&gt;
+&lt;th style="width:70%"&gt;Name&lt;/th&gt;
+</code>
+</div>
+
+<p><b>Row Height:</b></p>
+<div class="example">
+<code>
+&lt;tr style="height:50px"&gt;
+</code>
+</div>
+
+<!-- ================= TABLE HEADERS ================= -->
+<h3>Table Headers</h3>
+
+<p><b>Vertical Header:</b></p>
+<div class="example">
+<code>
+&lt;tr&gt;
+  &lt;th&gt;Name&lt;/th&gt;
+  &lt;td&gt;Sara&lt;/td&gt;
+&lt;/tr&gt;
+</code>
+</div>
+
+<p><b>Align Header:</b></p>
+<div class="example">
+<code>
+&lt;th style="text-align:left"&gt;Name&lt;/th&gt;
+</code>
+</div>
+
+<p><b>Header for Multiple Columns:</b></p>
+<div class="example">
+<code>
+&lt;th colspan="2"&gt;Details&lt;/th&gt;
+</code>
+</div>
+
+<p><b>Table Caption:</b></p>
+<div class="example">
+<code>
+&lt;table&gt;
+  &lt;caption&gt;Student Table&lt;/caption&gt;
+&lt;/table&gt;
+</code>
+</div>
+
+<!-- ================= PADDING & SPACING ================= -->
+<h3>Padding & Spacing</h3>
+
+<p><b>Cell Padding (space inside cell):</b></p>
+<div class="example">
+<code>
+th, td {
+  padding: 10px;
+}
+</code>
+</div>
+
+<p><b>Cell Spacing (space between cells):</b></p>
+<div class="example">
+<code>
+table {
+  border-spacing: 10px;
+}
+</code>
+</div>
+
+<!-- ================= COLSPAN & ROWSPAN ================= -->
+<h3>Colspan & Rowspan</h3>
+
+<p><b>Colspan (merge columns):</b></p>
+<div class="example">
+<code>
+&lt;td colspan="2"&gt;Merged Columns&lt;/td&gt;
+</code>
+</div>
+
+<p><b>Rowspan (merge rows):</b></p>
+<div class="example">
+<code>
+&lt;td rowspan="2"&gt;Merged Rows&lt;/td&gt;
+</code>
+</div>
+<!-- ================= BUTTONS ================= -->
+<h2>2. Button Types</h2>
+
+<h3>Normal Button</h3>
+<p>Does nothing by default.</p>
+
+<div class="example">
+<code>
+&lt;button type="button"&gt;Click Me&lt;/button&gt;
+</code>
+</div>
+
+<h3>Submit Button</h3>
+<p>Submits form data.</p>
+
+<div class="example">
+<code>
+&lt;form&gt;
+  &lt;input type="text" name="name"&gt;
+  &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+</code>
+</div>
+
+<h3>Reset Button</h3>
+<p>Resets form fields to default values.</p>
+
+<div class="example">
+<code>
+&lt;form&gt;
+  &lt;input type="text" value="Hello"&gt;
+  &lt;button type="reset"&gt;Reset&lt;/button&gt;
+&lt;/form&gt;
+</code>
+</div>
+
+<!-- ================= SEMANTIC HTML ================= -->
+<h2>3. Semantic HTML</h2>
+
+<p>
+Semantic elements clearly describe their meaning to browser and developer.
+</p>
+
+<p><b>Examples:</b></p>
+<ul>
+  <li>&lt;header&gt;</li>
+  <li>&lt;nav&gt;</li>
+  <li>&lt;main&gt;</li>
+  <li>&lt;section&gt;</li>
+  <li>&lt;article&gt;</li>
+  <li>&lt;footer&gt;</li>
+</ul>
+
+<div class="example">
+<code>
+&lt;header&gt;Header Content&lt;/header&gt;
+&lt;nav&gt;Navigation&lt;/nav&gt;
+&lt;main&gt;
+  &lt;section&gt;
+    &lt;article&gt;Article Content&lt;/article&gt;
+  &lt;/section&gt;
+&lt;/main&gt;
+&lt;footer&gt;Footer&lt;/footer&gt;
+</code>
+</div>
+
+<!-- ================= HEADER ================= -->
+<h2>4. Header</h2>
+
+<p>Defines the top section of a webpage.</p>
+
+<div class="example">
+<code>
+&lt;header&gt;
+  &lt;h1&gt;My Website&lt;/h1&gt;
+&lt;/header&gt;
+</code>
+</div>
+
+<!-- ================= NAV ================= -->
+<h2>5. Nav</h2>
+
+<p>Defines navigation links.</p>
+
+<div class="example">
+<code>
+&lt;nav&gt;
+  &lt;a href="#"&gt;Home&lt;/a&gt;
+  &lt;a href="#"&gt;About&lt;/a&gt;
+&lt;/nav&gt;
+</code>
+</div>
+
+<!-- ================= MAIN ================= -->
+<h2>6. Main</h2>
+
+<p>Represents main content of the page.</p>
+
+<div class="example">
+<code>
+&lt;main&gt;
+  &lt;p&gt;Main Content&lt;/p&gt;
+&lt;/main&gt;
+</code>
+</div>
+
+<!-- ================= ARTICLE ================= -->
+<h2>7. Article</h2>
+
+<p>Represents independent content.</p>
+
+<div class="example">
+<code>
+&lt;article&gt;
+  &lt;h2&gt;Blog Title&lt;/h2&gt;
+  &lt;p&gt;Blog content&lt;/p&gt;
+&lt;/article&gt;
+</code>
+</div>
+
+<!-- ================= FOOTER ================= -->
+<h2>8. Footer</h2>
+
+<p>Defines bottom section of a page.</p>
+
+<div class="example">
+<code>
+&lt;footer&gt;
+  &lt;p&gt;© 2026 My Website&lt;/p&gt;
+&lt;/footer&gt;
+</code>
+</div>
+
+<!-- ================= BENEFITS ================= -->
+<h2>Why Use Semantic HTML?</h2>
+
+<ul>
+  <li>Improves readability</li>
+  <li>Better SEO</li>
+  <li>Better accessibility</li>
+  <li>Easy for developers to understand</li>
+</ul>
+
+</div>
+
+
+<div class="container">
+
+<h2>🧩 Practice Tasks</h2>
+
+
+<!-- HEADER -->
+<header>
+  <h1>My Student Page</h1>
+</header>
+
+<!-- NAV -->
+<nav>
+  <a href="#">Home</a>
+  <a href="#table">Table</a>
+  <a href="#form">Form</a>
+</nav>
+
+<!-- MAIN -->
+<main>
+
+  <!-- TABLE SECTION -->
+  <section id="table">
+    <h2>Student Table</h2>
+
+    <table style="width:100%">
+      <caption>Student Details</caption>
+
+      <tr>
+        <th colspan="2">Name</th>
+        <th>Age</th>
+      </tr>
+
+      <tr>
+        <td rowspan="2">Fathima</td>
+        <td>Naja</td>
+        <td>20</td>
+      </tr>
+
+      <tr>
+        <td>Student</td>
+        <td>20</td>
+      </tr>
+
+      <tr>
+        <td>Amina</td>
+        <td>K</td>
+        <td>21</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- FORM SECTION -->
+  <section id="form">
+    <h2>Registration Form</h2>
+
+    <form>
+
+      <label>Name:</label>
+      <input type="text" placeholder="Enter name">
+        <br><br>
+      <label>Email:</label>
+      <input type="email" placeholder="Enter email">
+<br><br>
+      <label>Age:</label>
+      <input type="number" min="18" max="30">
+<br><br>
+      <label>Course:</label>
+      <select>
+        <option>MERN</option>
+        <option>Python</option>
+        <option>Java</option>
+      </select>
+<br><br>
+      <label>Gender:</label><br>
+      <input type="radio" name="gender"> Male
+      <input type="radio" name="gender"> Female
+      <br><br>
+<br>
+      <label>Skills:</label><br>
+      <input type="checkbox"> HTML
+      <input type="checkbox"> CSS
+      <input type="checkbox"> JavaScript
+      <br><br>
+<br>
+      <button type="submit">Submit</button><br><br>
+      <button type="reset">Reset</button><br><br>
+      <button type="button">Click</button><br><br>
+
+    </form>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Student Page</p>
+</footer>
+
+
+
+
+</body>
+</html>
