@@ -1,0 +1,30 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+@theme{
+ --color-primary:#750c16;
+ --font-custom:"Betania Patmos"
+}
+@layer components{
+    .btn{
+        @apply bg-green-500 text-white p-3 rounded-lg shadow-lg;
+    }
+}
+
+@layer base{
+    body{
+        @apply m-3;
+    }
+}
+
+@layer utilities{
+    .flex-center{
+        @apply flex justify-center items-center;
+    }
+}
+
+@layer components{
+    .card{
+        @apply shadow-lg rounded p-5
+    }
+}
+

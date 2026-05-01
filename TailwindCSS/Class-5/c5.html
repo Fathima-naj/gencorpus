@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Class 5 - Tailwind Workflow & Customization</title>
+
+<style>
+body{
+max-width:900px;
+margin:auto;
+padding:20px;
+font-family:Arial, Helvetica, sans-serif;
+line-height:1.7;
+}
+
+code{
+background:#f3f3f3;
+padding:3px 6px;
+border-radius:4px;
+}
+
+pre{
+background:#f3f3f3;
+padding:12px;
+border-radius:6px;
+overflow:auto;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>Class 5 — Tailwind Workflow + Customization</h1>
+
+<h2>1. Tailwind CLI Setup (Important Workflow)</h2>
+
+<p>Before using Tailwind customization we must install Tailwind CLI.</p>
+
+<h3>Step 1 — Initialize Project</h3>
+
+<pre>
+npm init -y
+</pre>
+
+<h3>Step 2 — Install Tailwind</h3>
+
+<pre>
+npm install tailwindcss
+</pre>
+
+<h3>Step 3 — Create Tailwind Config</h3>
+
+<pre>
+npx tailwindcss init
+</pre>
+
+<p>This creates:</p>
+
+<pre>
+tailwind.config.js
+</pre>
+
+<h3>Step 4 — Create input.css</h3>
+
+<pre>
+@import "tailwindcss";
+</pre>
+
+<h3>Step 5 — Build Tailwind CSS</h3>
+
+<pre>
+npx tailwindcss -i ./input.css -o ./output.css --watch
+</pre>
+
+<p>This generates <code>output.css</code>.</p>
+
+<h3>Step 6 — Link CSS in HTML</h3>
+
+<pre>
+&lt;link rel="stylesheet" href="output.css"&gt;
+</pre>
+
+<hr>
+<h2>2. @layer in Tailwind CSS</h2>
+
+<p>
+In <strong>Tailwind CSS</strong>, <code>@layer</code> is used to define where your custom styles should be placed 
+within Tailwind’s styling system.
+</p>
+
+<h3>🔹 Tailwind Layers</h3>
+<p>Tailwind has 3 main layers:</p>
+<ul>
+  <li><strong>base</strong> → Default/reset styles (like headings, body, etc.)</li>
+  <li><strong>components</strong> → Reusable classes (like buttons, cards)</li>
+  <li><strong>utilities</strong> → Small helper classes (like padding, margin, colors)</li>
+</ul>
+
+<pre>
+base → components → utilities
+</pre>
+
+<p>
+This order is important because later layers override earlier ones.
+</p>
+
+<hr>
+
+<h3>🔹 @layer components</h3>
+
+<p>
+Used to create reusable UI components like buttons, cards, inputs, etc.
+</p>
+
+<h4>Example (input.css)</h4>
+
+<pre>
+@import "tailwindcss";
+
+@layer components {
+  .btn-primary {
+    @apply bg-blue-500 text-white px-4 py-2 rounded;
+  }
+}
+</pre>
+
+<h4>Usage</h4>
+
+<pre>
+&lt;button class="btn-primary"&gt;Submit&lt;/button&gt;
+</pre>
+
+<hr>
+
+<h3>🔹 @layer base</h3>
+
+<p>
+Used to define global styles like typography or reset styles.
+</p>
+
+<pre>
+@layer base {
+  h1 {
+    @apply text-3xl font-bold;
+  }
+}
+</pre>
+
+<hr>
+
+<h3>🔹 @layer utilities</h3>
+
+<p>
+Used to create custom utility classes.
+</p>
+
+<pre>
+@layer utilities {
+  .text-shadow {
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  }
+}
+</pre>
+
+<hr>
+
+<h3>🔹 @apply in Tailwind</h3>
+
+<p>
+<code>@apply</code> is used to combine multiple Tailwind utility classes into a single custom class.
+</p>
+
+<pre>
+.card {
+  @apply bg-white shadow p-4 rounded-lg;
+}
+</pre>
+
+<p>
+This helps reduce repetition and keeps HTML clean.
+</p>
+
+<hr>
+
+<h3>🔹 Why use @layer?</h3>
+
+<ul>
+  <li>✔ Ensures correct CSS order</li>
+  <li>✔ Prevents style conflicts</li>
+  <li>✔ Works with Tailwind's purge (removes unused CSS)</li>
+  <li>✔ Keeps styles organized</li>
+</ul>
+
+<hr>
+
+<h3>🔹 Important Behavior</h3>
+
+<p>
+Utilities override components because they come later in the CSS order.
+</p>
+
+<pre>
+&lt;div class="card bg-black"&gt;&lt;/div&gt;
+</pre>
+
+<p>
+Even if <code>.card</code> has <code>bg-white</code>, <code>bg-black</code> will override it.
+</p>
+
+<hr>
+
+<h3>🔹 Summary</h3>
+
+<ul>
+  <li><code>@layer</code> → defines where your styles belong</li>
+  <li><code>@apply</code> → combines utility classes</li>
+  <li>components → reusable styles</li>
+  <li>utilities → override styles</li>
+</ul><hr>
+
+<h2>3. Extending Theme</h2>
+
+<p>
+Theme extension allows adding custom colors, fonts, spacing etc.
+</p>
+
+<h3>Tailwind v3 Method</h3>
+
+<p>In Tailwind v3 we extend inside the config file.</p>
+
+<pre>
+/* tailwind.config.js */
+
+module.exports = {
+ theme:{
+  extend:{
+   colors:{
+    primary:"#ff4d4d"
+   }
+  }
+ }
+}
+</pre>
+
+Usage:
+
+<pre>
+&lt;button class="bg-primary text-white p-2"&gt;Click&lt;/button&gt;
+</pre>
+
+<h3>Tailwind v4 Method</h3>
+
+<p>
+Tailwind v4 uses CSS based configuration using <code>@theme</code>.
+</p>
+
+Example (input.css):
+
+<pre>
+@import "tailwindcss";
+
+@theme{
+ --color-primary:#ff4d4d;
+}
+</pre>
+
+Usage:
+
+<pre>
+&lt;button class="bg-primary text-white p-2"&gt;Click&lt;/button&gt;
+</pre>
+
+<hr>
+
+<h2>4. Adding Google Fonts</h2>
+
+<h3>Step 1 — Add Google Font</h3>
+
+<pre>
+&lt;link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet"&gt;
+</pre>
+
+<h3>Step 2 — Add font in input.css</h3>
+
+<pre>
+@theme{
+ --font-poppins:"Poppins", sans-serif;
+}
+</pre>
+
+<h3>Step 3 — Use in HTML</h3>
+
+<pre>
+&lt;h1 class="font-poppins text-2xl"&gt;
+Hello Tailwind
+&lt;/h1&gt;
+</pre>
+
+<hr>
+
+<h2>5. Dark Mode</h2>
+
+<p>Tailwind supports dark mode in two ways.</p>
+
+<h3>Method 1 — Media Strategy</h3>
+
+<p>Automatically follows system theme.</p>
+
+<pre>
+darkMode:"media"
+</pre>
+
+<h3>Method 2 — Class Strategy</h3>
+
+<p>Dark mode activates when <code>dark</code> class is added.</p>
+
+<pre>
+darkMode:"class"
+</pre>
+
+Example:
+
+<pre>
+&lt;html class="dark"&gt;
+
+&lt;body class="bg-white dark:bg-gray-800 dark:text-white"&gt;
+Dark Mode Example
+&lt;/body&gt;
+</pre>
+
+<h3>Important Note (Tailwind v4)</h3>
+
+<p>
+When using Tailwind v4 with CSS configuration we must add the dark variant manually.
+</p>
+
+Example:
+
+<pre>
+@import "tailwindcss";
+
+/* enable dark mode */
+@custom-variant dark (&:where(.dark, .dark *));
+</pre>
+
+<hr>
+
+
+
+<h2>6. Container Queries (Optional)</h2>
+
+<p>
+Container queries allow components to respond to the size of their parent container.
+</p>
+
+Example:
+
+<pre>
+&lt;div class="@container border p-4 overflow-auto resize-x w-[300px]"&gt;
+  &lt;div class="p-4 bg-red-200 
+              @sm:bg-yellow-200 
+              @md:bg-blue-200 
+              @lg:bg-green-200"&gt;
+    Container Responsive Content
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+<hr>
+
+<h2>Summary</h2>
+
+<ul>
+<li>Install Tailwind using CLI</li>
+<li>Create <code>tailwind.config.js</code></li>
+<li>Create <code>input.css</code></li>
+<li>Run Tailwind build command</li>
+<li>Use <code>@layer</code> for reusable components</li>
+<li>Use <code>@apply</code> to avoid repeating utilities</li>
+<li>Tailwind v3 uses config for extending theme</li>
+<li>Tailwind v4 uses <code>@theme</code> in CSS</li>
+<li>Dark mode requires class strategy</li>
+<li>Container queries make components responsive</li>
+</ul>
+
+</body>
+</html>

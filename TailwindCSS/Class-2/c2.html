@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tailwind CSS - Layout, Flex & Grid</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+}
+
+body{
+font-family:"Segoe UI", Arial, sans-serif;
+padding:40px 80px;
+background:#f9fafb;
+line-height:1.8;
+color:#1f2937;
+}
+
+.container{
+max-width:1100px;
+margin:auto;
+}
+
+h1{
+text-align:center;
+margin-bottom:40px;
+font-size:36px;
+}
+
+h2{
+margin-top:40px;
+border-bottom:2px solid #e5e7eb;
+padding-bottom:6px;
+color:#1e3a8a;
+}
+
+h3{
+margin-top:20px;
+color:#374151;
+}
+
+pre{
+background:#f3f4f6;
+padding:16px;
+border-radius:6px;
+overflow:auto;
+border-left:4px solid #3b82f6;
+}
+
+code{
+background:#eef2ff;
+padding:3px 6px;
+border-radius:4px;
+}
+
+.note{
+background:#e0f2fe;
+padding:12px;
+border-left:5px solid #0284c7;
+margin:20px 0;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Tailwind CSS - Layout, Flex & Grid</h1>
+
+<h2>1. Display Utilities</h2>
+
+<p>
+Display utilities control how elements appear in the layout. 
+They determine whether an element behaves like a block element,
+inline element, flex container, grid container, or if it is hidden.
+</p>
+
+<h3>Common Display Classes</h3>
+
+<pre><code>
+block
+inline
+inline-block
+hidden
+flex
+grid
+</code></pre>
+
+<h3>Example</h3>
+
+<pre><code>
+&lt;div class="block bg-gray-200 p-4"&gt;Block Element&lt;/div&gt;
+
+&lt;span class="inline bg-blue-200"&gt;Inline Element&lt;/span&gt;
+</code></pre>
+
+<div class="note">
+The <code>hidden</code> class is commonly used to hide elements and show them later using responsive prefixes.
+</div>
+
+
+<h2>2. Flexbox Utilities</h2>
+
+<p>
+Flexbox is a layout system used to arrange elements in a row or column.
+It helps developers easily align, space, and distribute items inside a container.
+
+Flexbox is widely used for:
+</p>
+
+<ul>
+<li>Navigation bars</li>
+<li>Card layouts</li>
+<li>Centering elements</li>
+<li>Responsive layouts</li>
+<li>Vertical and horizontal alignment</li>
+</ul>
+
+<p>
+In Tailwind CSS, Flexbox utilities allow you to control layout behavior
+without writing custom CSS.
+</p>
+
+<hr>
+
+<h3>1. Enable Flexbox</h3>
+
+<p>
+To use Flexbox, apply the <b>flex</b> class to a container.
+This turns the element into a flex container.
+</p>
+
+<pre><code>
+flex
+</code></pre>
+
+Example:
+
+<pre><code>
+&lt;div class="flex"&gt;
+  &lt;div&gt;Item 1&lt;/div&gt;
+  &lt;div&gt;Item 2&lt;/div&gt;
+  &lt;div&gt;Item 3&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+---
+
+<h3>2. Flex Direction</h3>
+
+<p>
+Flex direction controls how items are arranged inside the flex container.
+</p>
+
+<table border="1" cellpadding="6">
+<tr>
+<th>Class</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>flex-row</td>
+<td>Items arranged horizontally (default)</td>
+</tr>
+
+<tr>
+<td>flex-row-reverse</td>
+<td>Items arranged horizontally in reverse order</td>
+</tr>
+
+<tr>
+<td>flex-col</td>
+<td>Items arranged vertically</td>
+</tr>
+
+<tr>
+<td>flex-col-reverse</td>
+<td>Items arranged vertically in reverse order</td>
+</tr>
+
+</table>
+
+Example:
+
+<pre><code>
+&lt;div class="flex flex-col"&gt;
+  &lt;div&gt;Item 1&lt;/div&gt;
+  &lt;div&gt;Item 2&lt;/div&gt;
+  &lt;div&gt;Item 3&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+---
+
+<h3>3. Justify Content (Horizontal Alignment)</h3>
+
+<p>
+Controls how items are aligned horizontally along the main axis.
+</p>
+
+<table border="1" cellpadding="6">
+<tr>
+<th>Class</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>justify-start</td>
+<td>Items aligned to the left</td>
+</tr>
+
+<tr>
+<td>justify-center</td>
+<td>Items centered horizontally</td>
+</tr>
+
+<tr>
+<td>justify-end</td>
+<td>Items aligned to the right</td>
+</tr>
+
+<tr>
+<td>justify-between</td>
+<td>Space between items</td>
+</tr>
+
+<tr>
+<td>justify-around</td>
+<td>Equal space around items</td>
+</tr>
+
+<tr>
+<td>justify-evenly</td>
+<td>Equal spacing between all items</td>
+</tr>
+
+</table>
+
+Example:
+
+<pre><code>
+&lt;div class="flex justify-between bg-gray-200 p-4"&gt;
+  &lt;div&gt;Logo&lt;/div&gt;
+  &lt;div&gt;Menu&lt;/div&gt;
+  &lt;div&gt;Profile&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+---
+
+<h3>4. Align Items (Vertical Alignment)</h3>
+
+<p>
+Controls vertical alignment of items in the container.
+</p>
+
+<table border="1" cellpadding="6">
+<tr>
+<th>Class</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>items-start</td>
+<td>Align items at the top</td>
+</tr>
+
+<tr>
+<td>items-center</td>
+<td>Align items vertically in the center</td>
+</tr>
+
+<tr>
+<td>items-end</td>
+<td>Align items at the bottom</td>
+</tr>
+
+<tr>
+<td>items-baseline</td>
+<td>Align items based on text baseline</td>
+</tr>
+
+<tr>
+<td>items-stretch</td>
+<td>Stretch items to fill container height</td>
+</tr>
+
+</table>
+
+Example:
+
+<pre><code>
+&lt;div class="flex items-center h-40 bg-gray-200"&gt;
+  &lt;div&gt;Aligned Center&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+---
+
+<h3>5. Flex Wrap</h3>
+
+<p>
+Flex wrap allows items to move to the next line if there is not enough space.
+</p>
+
+<table border="1" cellpadding="6">
+<tr>
+<th>Class</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>flex-wrap</td>
+<td>Allow items to wrap</td>
+</tr>
+
+<tr>
+<td>flex-nowrap</td>
+<td>Prevent wrapping</td>
+</tr>
+
+<tr>
+<td>flex-wrap-reverse</td>
+<td>Wrap items in reverse order</td>
+</tr>
+
+</table>
+
+Example:
+
+<pre><code>
+&lt;div class="flex flex-wrap gap-4"&gt;
+  &lt;div class="bg-blue-200 p-4"&gt;Item&lt;/div&gt;
+  &lt;div class="bg-blue-200 p-4"&gt;Item&lt;/div&gt;
+  &lt;div class="bg-blue-200 p-4"&gt;Item&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+---
+
+<h3>6. Gap Utilities</h3>
+
+<p>
+Gap utilities create spacing between flex items.
+</p>
+
+<table border="1" cellpadding="6">
+<tr>
+<th>Class</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>gap-2</td>
+<td>Small gap</td>
+</tr>
+
+<tr>
+<td>gap-4</td>
+<td>Medium gap</td>
+</tr>
+
+<tr>
+<td>gap-6</td>
+<td>Larger gap</td>
+</tr>
+
+</table>
+
+Example:
+
+<pre><code>
+&lt;div class="flex gap-4"&gt;
+  &lt;div class="bg-green-200 p-4"&gt;1&lt;/div&gt;
+  &lt;div class="bg-green-200 p-4"&gt;2&lt;/div&gt;
+  &lt;div class="bg-green-200 p-4"&gt;3&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+---
+
+<h3>7. Flex Grow</h3>
+
+<p>
+Controls how much a flex item grows relative to other items.
+</p>
+
+<table border="1" cellpadding="6">
+<tr>
+<th>Class</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>grow</td>
+<td>Item grows to fill space</td>
+</tr>
+
+<tr>
+<td>grow-0</td>
+<td>Item does not grow</td>
+</tr>
+
+</table>
+
+Example:
+
+<pre><code>
+&lt;div class="flex"&gt;
+  &lt;div class="grow bg-red-200"&gt;Flexible&lt;/div&gt;
+  &lt;div class="bg-blue-200"&gt;Fixed&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+---
+
+<h3>8. Flex Shrink</h3>
+
+<p>
+Controls how items shrink when space is limited.
+</p>
+
+<table border="1" cellpadding="6">
+<tr>
+<th>Class</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>shrink</td>
+<td>Item can shrink</td>
+</tr>
+
+<tr>
+<td>shrink-0</td>
+<td>Item will not shrink</td>
+</tr>
+
+</table>
+
+---
+
+<h3>9. Order</h3>
+
+<p>
+Order utilities change the visual order of flex items.
+</p>
+
+<table border="1" cellpadding="6">
+<tr>
+<th>Class</th>
+<th>Purpose</th>
+</tr>
+
+<tr>
+<td>order-1</td>
+<td>Move item position</td>
+</tr>
+
+<tr>
+<td>order-2</td>
+<td>Second position</td>
+</tr>
+
+<tr>
+<td>order-last</td>
+<td>Move item to the end</td>
+</tr>
+
+</table>
+
+Example:
+
+<pre><code>
+&lt;div class="flex"&gt;
+  &lt;div class="order-2"&gt;Second&lt;/div&gt;
+  &lt;div class="order-1"&gt;First&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+---
+
+<h3>Example: Complete Flex Layout</h3>
+
+<pre><code>
+&lt;div class="flex justify-between items-center bg-gray-200 p-4"&gt;
+
+  &lt;div class="font-bold"&gt;Logo&lt;/div&gt;
+
+  &lt;div class="flex gap-6"&gt;
+    &lt;a href="#"&gt;Home&lt;/a&gt;
+    &lt;a href="#"&gt;About&lt;/a&gt;
+    &lt;a href="#"&gt;Contact&lt;/a&gt;
+  &lt;/div&gt;
+
+&lt;/div&gt;
+</code></pre>
+
+<p>
+This layout is commonly used for navigation bars.
+</p>
+
+<h2>3. Gap Utilities</h2>
+
+<p>
+Gap utilities control the spacing between flex or grid items.
+Instead of adding margin to each item, Tailwind provides a simpler way
+to add consistent spacing between elements.
+</p>
+
+<h3>Examples</h3>
+
+<pre><code>
+gap-2
+gap-4
+gap-6
+gap-8
+</code></pre>
+
+Example:
+
+<pre><code>
+&lt;div class="flex gap-4"&gt;
+
+&lt;div class="bg-blue-300 p-4"&gt;1&lt;/div&gt;
+&lt;div class="bg-blue-300 p-4"&gt;2&lt;/div&gt;
+&lt;div class="bg-blue-300 p-4"&gt;3&lt;/div&gt;
+
+&lt;/div&gt;
+</code></pre>
+
+
+
+<h2>4. Grid System</h2>
+
+<p>
+CSS Grid is a powerful layout system used to create complex layouts.
+It is commonly used for dashboards, galleries, product grids, and responsive layouts.
+</p>
+
+<h3>Enable Grid</h3>
+
+<pre><code>
+grid
+</code></pre>
+
+Example:
+
+<pre><code>
+&lt;div class="grid"&gt;
+  &lt;div&gt;Item 1&lt;/div&gt;
+  &lt;div&gt;Item 2&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+
+
+
+<h2>5. Grid Template Columns</h2>
+
+<p>
+Grid columns define how many columns exist inside the grid container.
+</p>
+
+<pre><code>
+grid-cols-1
+grid-cols-2
+grid-cols-3
+grid-cols-4
+</code></pre>
+
+Example:
+
+<pre><code>
+&lt;div class="grid grid-cols-3 gap-4"&gt;
+
+&lt;div class="bg-green-300 p-4"&gt;1&lt;/div&gt;
+&lt;div class="bg-green-300 p-4"&gt;2&lt;/div&gt;
+&lt;div class="bg-green-300 p-4"&gt;3&lt;/div&gt;
+
+&lt;/div&gt;
+</code></pre>
+
+
+
+<h2>6. Grid Template Rows</h2>
+
+<p>
+Grid rows control how many rows exist in the grid layout.
+</p>
+
+<pre><code>
+grid-rows-2
+grid-rows-3
+grid-rows-4
+</code></pre>
+
+Example:
+
+<pre><code>
+&lt;div class="grid grid-rows-2 gap-4"&gt;
+
+&lt;div class="bg-yellow-300 p-4"&gt;Row 1&lt;/div&gt;
+&lt;div class="bg-yellow-300 p-4"&gt;Row 2&lt;/div&gt;
+
+&lt;/div&gt;
+</code></pre>
+
+
+
+<h2>7. Responsive Grid Layout</h2>
+
+<p>
+Tailwind allows grid layouts to change based on screen size using responsive prefixes.
+</p>
+
+Example:
+
+<pre><code>
+&lt;div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"&gt;
+
+&lt;div class="bg-purple-300 p-4"&gt;1&lt;/div&gt;
+&lt;div class="bg-purple-300 p-4"&gt;2&lt;/div&gt;
+&lt;div class="bg-purple-300 p-4"&gt;3&lt;/div&gt;
+&lt;div class="bg-purple-300 p-4"&gt;4&lt;/div&gt;
+
+&lt;/div&gt;
+</code></pre>
+
+Explanation:
+
+<ul>
+<li>Mobile → 1 column</li>
+<li>Tablet → 2 columns</li>
+<li>Laptop → 4 columns</li>
+</ul>
+
+
+
+<h2>8. Position Utilities</h2>
+
+<p>
+Position utilities control how elements are placed on the page.
+They determine how an element behaves relative to its normal position
+or relative to other elements.
+
+These utilities work together with directional properties like:
+<code>top</code>, <code>right</code>, <code>bottom</code>, and <code>left</code>.
+</p>
+
+<h3>Position Classes</h3>
+
+<pre><code>
+static
+relative
+absolute
+fixed
+sticky
+</code></pre>
+
+<hr>
+
+<h3>1. static</h3>
+
+<p>
+<code>static</code> is the default positioning for all HTML elements.
+Elements follow the normal document flow and cannot be moved using
+<code>top</code>, <code>left</code>, <code>right</code>, or <code>bottom</code>.
+</p>
+
+<p>
+In most cases, you do not need to use <code>static</code> because it is already
+the default behavior.
+</p>
+
+Example:
+
+<pre><code>
+&lt;div class="static bg-gray-200 p-4"&gt;
+Normal static element
+&lt;/div&gt;
+</code></pre>
+
+<hr>
+
+<h3>2. relative</h3>
+
+<p>
+<code>relative</code> positions the element relative to its normal position.
+This means the element remains in the document flow, but you can shift it
+using <code>top</code>, <code>bottom</code>, <code>left</code>, or <code>right</code>.
+</p>
+
+<p>
+It is also commonly used to create a reference point for absolutely
+positioned child elements.
+</p>
+
+Example:
+
+<pre><code>
+&lt;div class="relative top-4 left-4 bg-green-200 p-4"&gt;
+Moved slightly from original position
+&lt;/div&gt;
+</code></pre>
+
+Explanation:
+<ul>
+<li>The element still occupies its original space.</li>
+<li>It only moves visually.</li>
+</ul>
+
+<hr>
+
+<h3>3. absolute</h3>
+
+<p>
+<code>absolute</code> removes the element from the normal document flow.
+The element is positioned relative to the nearest parent element
+that has <code>relative</code>, <code>absolute</code>, or <code>fixed</code> positioning.
+</p>
+
+<p>
+If no positioned parent exists, the element is positioned relative
+to the entire page.
+</p>
+
+Example:
+
+<pre><code>
+&lt;div class="relative bg-gray-200 p-10"&gt;
+
+&lt;div class="absolute top-0 right-0 bg-blue-400 p-2"&gt;
+Top Right
+&lt;/div&gt;
+
+&lt;/div&gt;
+</code></pre>
+
+Explanation:
+<ul>
+<li>The parent container is <code>relative</code>.</li>
+<li>The child element is positioned at the top-right corner.</li>
+<li>The element does not take up space in the layout.</li>
+</ul>
+
+<hr>
+
+<h3>4. fixed</h3>
+
+<p>
+<code>fixed</code> positions an element relative to the browser viewport
+instead of a parent container.
+</p>
+
+<p>
+The element stays in the same place even when the page is scrolled.
+</p>
+
+Common uses:
+<ul>
+<li>Navigation bars</li>
+<li>Floating buttons</li>
+<li>Chat widgets</li>
+</ul>
+
+Example:
+
+<pre><code>
+&lt;div class="fixed bottom-4 right-4 bg-blue-500 text-white p-3"&gt;
+Chat
+&lt;/div&gt;
+</code></pre>
+
+Explanation:
+<ul>
+<li>The element stays at the bottom-right of the screen.</li>
+<li>Scrolling the page will not move it.</li>
+</ul>
+
+<hr>
+
+<h3>5. sticky</h3>
+
+<p>
+<code>sticky</code> behaves like <code>relative</code> until a scroll
+position is reached. After that point, it behaves like <code>fixed</code>.
+</p>
+
+<p>
+This is commonly used for headers that stay visible while scrolling.
+</p>
+
+Example:
+
+<pre><code>
+&lt;div class="sticky top-0 bg-gray-800 text-white p-4"&gt;
+Sticky Header
+&lt;/div&gt;
+</code></pre>
+
+Explanation:
+<ul>
+<li>The element scrolls normally at first.</li>
+<li>When it reaches the top of the screen, it sticks there.</li>
+</ul>
+
+<hr>
+
+<h3>Directional Position Utilities</h3>
+
+<p>
+These classes control the exact position of an element.
+</p>
+
+<table border="1" cellpadding="6">
+
+<tr>
+<th>Class</th>
+<th>Meaning</th>
+</tr>
+
+<tr>
+<td>top-0</td>
+<td>Position element at top</td>
+</tr>
+
+<tr>
+<td>bottom-0</td>
+<td>Position element at bottom</td>
+</tr>
+
+<tr>
+<td>left-0</td>
+<td>Position element at left</td>
+</tr>
+
+<tr>
+<td>right-0</td>
+<td>Position element at right</td>
+</tr>
+
+<tr>
+<td>top-4</td>
+<td>Move element down slightly</td>
+</tr>
+
+<tr>
+<td>left-4</td>
+<td>Move element slightly to the right</td>
+</tr>
+
+</table>
+
+Example:
+
+<pre><code>
+&lt;div class="relative h-40 bg-gray-200"&gt;
+
+&lt;div class="absolute bottom-0 left-0 bg-red-400 p-2"&gt;
+Bottom Left
+&lt;/div&gt;
+
+&lt;/div&gt;
+</code></pre>
+
+<hr>
+
+<div class="note">
+Absolute elements are positioned relative to the nearest parent that has
+<code>relative</code>, <code>absolute</code>, or <code>fixed</code> positioning.
+If no such parent exists, the element will be positioned relative to the page.
+</div>
+
+
+<h2>Practice Tasks</h2>
+<h3>Task 1 – Answer</h3>
+
+<p>Create a flex container with 3 boxes aligned in the center.</p>
+
+<pre><code>
+&lt;div class="flex justify-center items-center h-40 bg-gray-200 gap-4"&gt;
+
+  &lt;div class="bg-green-300 p-6"&gt;1&lt;/div&gt;
+  &lt;div class="bg-green-300 p-6"&gt;2&lt;/div&gt;
+  &lt;div class="bg-green-300 p-6"&gt;3&lt;/div&gt;
+
+&lt;/div&gt;
+</code></pre>
+
+<p>
+<code>justify-center</code> centers items horizontally and  
+<code>items-center</code> centers items vertically.
+</p>
+
+<hr>
+
+<h3>Task 2 – Answer</h3>
+
+<p>Create a grid layout with 3 columns and spacing between items.</p>
+
+<pre><code>
+&lt;div class="grid grid-cols-3 gap-4 bg-gray-200 p-4"&gt;
+
+  &lt;div class="bg-blue-300 p-6"&gt;1&lt;/div&gt;
+  &lt;div class="bg-blue-300 p-6"&gt;2&lt;/div&gt;
+  &lt;div class="bg-blue-300 p-6"&gt;3&lt;/div&gt;
+  &lt;div class="bg-blue-300 p-6"&gt;4&lt;/div&gt;
+  &lt;div class="bg-blue-300 p-6"&gt;5&lt;/div&gt;
+  &lt;div class="bg-blue-300 p-6"&gt;6&lt;/div&gt;
+
+&lt;/div&gt;
+</code></pre>
+
+<p>
+<code>grid</code> enables grid layout and  
+<code>grid-cols-3</code> creates three columns.
+</p>
+
+<hr>
+
+<h3>Task 3 – Answer</h3>
+
+<p>Create a responsive grid layout.</p>
+
+<pre><code>
+&lt;div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4"&gt;
+
+  &lt;div class="bg-purple-300 p-6"&gt;1&lt;/div&gt;
+  &lt;div class="bg-purple-300 p-6"&gt;2&lt;/div&gt;
+  &lt;div class="bg-purple-300 p-6"&gt;3&lt;/div&gt;
+  &lt;div class="bg-purple-300 p-6"&gt;4&lt;/div&gt;
+  &lt;div class="bg-purple-300 p-6"&gt;5&lt;/div&gt;
+  &lt;div class="bg-purple-300 p-6"&gt;6&lt;/div&gt;
+
+&lt;/div&gt;
+</code></pre>
+
+<p>
+Responsive behavior:
+</p>
+
+<ul>
+<li><code>grid-cols-1</code> → Mobile (1 column)</li>
+<li><code>md:grid-cols-2</code> → Tablet (2 columns)</li>
+<li><code>lg:grid-cols-3</code> → Laptop (3 columns)</li>
+</ul>
+
+<hr>
+
+<h3>Task 4 – Answer</h3>
+
+<p>Create a parent container with <code>relative</code> and place a box at the top-right.</p>
+
+<pre><code>
+&lt;div class="relative h-40 bg-gray-200 p-4"&gt;
+
+  &lt;div class="absolute top-0 right-0 bg-red-400 p-2"&gt;
+  Top Right
+  &lt;/div&gt;
+
+&lt;/div&gt;
+</code></pre>
+
+<p>
+The parent container uses <code>relative</code>.  
+The child box uses <code>absolute</code> with <code>top-0</code> and <code>right-0</code>
+to position it at the top-right corner.
+</p>
+</div>
+
+</body>
+</html>

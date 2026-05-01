@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tailwind Components & Patterns</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+<style>
+body{
+font-family:"Segoe UI",Arial;
+max-width:1000px;
+margin:auto;
+padding:40px;
+background:#f9fafb;
+line-height:1.7;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1 class="text-4xl font-bold text-center mb-14 text-blue-900">
+Tailwind Components & Patterns
+</h1>
+
+
+<!-- INTRO -->
+
+<section class="mb-14">
+
+<p class="text-gray-700 mb-4">
+In real projects we rarely style single elements.
+Instead we create <b>UI components</b> like buttons, cards,
+navigation bars and sidebars.
+</p>
+
+<p class="text-gray-700">
+Tailwind allows developers to build these components by
+combining multiple utility classes.
+</p>
+
+</section>
+
+
+<!-- BUTTON -->
+
+<section class="mb-14">
+
+<h2 class="text-2xl font-bold text-blue-800 mb-4">
+1. Building Custom Buttons
+</h2>
+
+<p class="text-gray-700 mb-6">
+Buttons are used for user actions like submitting forms,
+navigating pages or triggering events.
+</p>
+
+<pre class="bg-gray-50 border p-4 rounded-lg mb-6"><code>
+&lt;button class="bg-blue-600 text-white px-6 py-3 
+rounded-lg shadow hover:bg-blue-700 transition"&gt;
+Primary Button
+&lt;/button&gt;
+</code></pre>
+
+<button class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-700 transition">
+Primary Button
+</button>
+
+</section>
+
+
+<!-- NAVBAR -->
+
+<section class="mb-14">
+
+<h2 class="text-2xl font-bold text-blue-800 mb-4">
+2. Navbar with Mobile Toggle
+</h2>
+
+<p class="text-gray-700 mb-6">
+A navigation bar helps users move between pages of a website.
+Tailwind uses Flexbox utilities and responsive prefixes
+to build responsive navigation.
+</p>
+
+<pre class="bg-gray-50 border p-4 rounded-lg mb-6"><code>
+&lt;nav class="flex justify-between items-center p-4 bg-white shadow"&gt;
+
+&lt;div class="font-bold"&gt;MySite&lt;/div&gt;
+
+&lt;div class="hidden md:flex gap-6"&gt;
+&lt;a&gt;Home&lt;/a&gt;
+&lt;a&gt;About&lt;/a&gt;
+&lt;a&gt;Contact&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;button class="md:hidden bg-blue-600 text-white px-3 py-1 rounded"&gt;
+Menu
+&lt;/button&gt;
+
+&lt;/nav&gt;
+</code></pre>
+
+<nav class="flex justify-between items-center p-4 bg-white shadow rounded-lg">
+
+<div class="font-bold">MySite</div>
+
+<div class="hidden md:flex gap-6">
+<a class="hover:text-blue-600">Home</a>
+<a class="hover:text-blue-600">About</a>
+<a class="hover:text-blue-600">Contact</a>
+</div>
+
+<button class="md:hidden bg-blue-600 text-white px-3 py-1 rounded">
+Menu
+</button>
+
+</nav>
+
+</section>
+
+
+<!-- SIDEBAR -->
+
+<section class="mb-14">
+
+<h2 class="text-2xl font-bold text-blue-800 mb-4">
+3. Sidebar
+</h2>
+
+<p class="text-gray-700 mb-6">
+Sidebars are used in dashboards and admin panels.
+They usually contain navigation links.
+</p>
+
+<pre class="bg-gray-50 border p-4 rounded-lg mb-6"><code>
+&lt;div class="flex"&gt;
+
+&lt;div class="w-48 bg-white shadow p-6"&gt;
+&lt;ul class="space-y-4"&gt;
+&lt;li&gt;Dashboard&lt;/li&gt;
+&lt;li&gt;Users&lt;/li&gt;
+&lt;li&gt;Settings&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div class="flex-1 p-6"&gt;
+Main Content
+&lt;/div&gt;
+
+&lt;/div&gt;
+</code></pre>
+
+<div class="flex gap-6">
+
+<div class="w-48 bg-white shadow p-6 rounded-lg">
+<ul class="space-y-4">
+<li class="hover:text-blue-600">Dashboard</li>
+<li class="hover:text-blue-600">Users</li>
+<li class="hover:text-blue-600">Settings</li>
+</ul>
+</div>
+
+<div class="flex-1 bg-gray-100 p-6 rounded-lg">
+Main Content Area
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CARD -->
+
+<section class="mb-14">
+
+<h2 class="text-2xl font-bold text-blue-800 mb-4">
+4. Card Design
+</h2>
+
+<p class="text-gray-700 mb-6">
+Cards are reusable UI blocks used to display information
+such as products, blog posts or images.
+</p>
+
+<pre class="bg-gray-50 border p-4 rounded-lg mb-6"><code>
+&lt;div class="bg-white shadow-lg p-6 rounded-xl w-72"&gt;
+
+&lt;img src="image.jpg" class="rounded-lg mb-4"&gt;
+
+&lt;h3 class="font-bold text-lg"&gt;Card Title&lt;/h3&gt;
+
+&lt;p class="text-gray-600"&gt;
+Card description text
+&lt;/p&gt;
+
+&lt;/div&gt;
+</code></pre>
+
+<div class="bg-white shadow-lg p-6 rounded-xl w-72">
+
+<img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"
+class="rounded-lg mb-4">
+
+<h3 class="font-bold text-lg mb-2">
+Beautiful Landscape
+</h3>
+
+<p class="text-gray-600">
+A simple card built using Tailwind utilities.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- PRICING -->
+
+<section class="mb-14">
+
+<h2 class="text-2xl font-bold text-blue-800 mb-4">
+5. Pricing Cards
+</h2>
+
+<p class="text-gray-700 mb-6">
+Pricing sections show different service plans with their features and costs so users can select the plan that fits their needs.
+</p>
+
+<pre class="bg-gray-50 border p-4 rounded-lg mb-6"><code>
+&lt;div class="grid md:grid-cols-3 gap-6"&gt;
+
+&lt;div class="bg-white p-6 shadow rounded-xl text-center"&gt;
+
+&lt;h3&gt;Basic&lt;/h3&gt;
+&lt;p class="text-3xl"&gt;$9&lt;/p&gt;
+
+&lt;button class="bg-blue-600 text-white px-4 py-2 rounded"&gt;
+Choose Plan
+&lt;/button&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+</code></pre>
+
+<div class="grid md:grid-cols-3 gap-6 max-w-3xl">
+
+<div class="bg-white p-6 shadow rounded-xl text-center">
+
+<h3 class="font-bold text-xl mb-2">Basic</h3>
+
+<p class="text-3xl font-bold mb-4">$9</p>
+
+<button class="bg-blue-600 text-white px-4 py-2 rounded">
+Choose Plan
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- TESTIMONIAL -->
+
+<section class="mb-14">
+
+<h2 class="text-2xl font-bold text-blue-800 mb-4">
+6. Testimonials UI
+</h2>
+
+<p class="text-gray-700 mb-6">
+Testimonials display feedback from users or customers.
+They help increase trust on websites.
+</p>
+
+<pre class="bg-gray-50 border p-4 rounded-lg mb-6"><code>
+&lt;div class="bg-white p-6 shadow rounded-xl"&gt;
+
+&lt;p&gt;"Great product!"&lt;/p&gt;
+
+&lt;div class="flex items-center gap-3"&gt;
+&lt;img src="avatar.jpg" class="rounded-full"&gt;
+&lt;span&gt;User Name&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+</code></pre>
+
+<div class="bg-white p-6 shadow rounded-xl w-80">
+
+<p class="text-gray-600 mb-4">
+"This platform helped me learn Tailwind faster."
+</p>
+
+<div class="flex items-center gap-3">
+
+<img src="https://i.pravatar.cc/40" class="rounded-full">
+
+<div>
+<p class="font-bold">Sarah</p>
+<p class="text-sm text-gray-500">Frontend Developer</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- BADGE / PILL / AVATAR -->
+
+<section class="mb-14">
+
+<h2 class="text-2xl font-bold text-blue-800 mb-4">
+7. Badge, Pill & Avatar UI
+</h2>
+
+<p class="text-gray-700 mb-6">
+Small UI elements like badges and avatars are used to show
+status, notifications or user identity.
+</p>
+
+<pre class="bg-gray-50 border p-4 rounded-lg mb-6"><code>
+&lt;span class="bg-green-100 text-green-700 
+px-3 py-1 rounded-full text-sm"&gt;
+Active
+&lt;/span&gt;
+</code></pre>
+
+<div class="flex items-center gap-6">
+
+<span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
+Active
+</span>
+
+<img src="https://i.pravatar.cc/50"
+class="rounded-full">
+
+</div>
+
+</section>
+
+
+<!-- FORMS PLUGIN -->
+<!-- TAILWIND FORMS PLUGIN INTRO -->
+<section>
+
+<h2 class="text-2xl font-bold text-blue-800 mb-4">
+9. Tailwind Forms Plugin (Introduction)
+</h2>
+
+<p class="text-gray-700 mb-6">
+Tailwind provides an official plugin called 
+<b>@tailwindcss/forms</b> that improves the default styling of 
+form elements like inputs, checkboxes, radio buttons, and select menus.
+</p>
+
+<p class="text-gray-700 mb-6">
+Browsers apply different default styles to form elements.
+The Tailwind Forms plugin removes these inconsistent styles
+and replaces them with clean, minimal styles that work well
+with Tailwind utilities.
+</p>
+
+<h3 class="text-xl font-semibold text-gray-700 mb-4">
+Complete Installation (Tailwind v4)
+</h3>
+
+<p class="text-gray-700 mb-4">
+Follow these steps to install Tailwind and the Forms plugin.
+</p>
+
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+1. Initialize a Node project
+
+npm init -y
+
+
+2. Install Tailwind CSS and CLI
+
+npm install -D tailwindcss @tailwindcss/cli
+
+
+3. Install the Forms plugin
+
+npm install -D @tailwindcss/forms
+</code></pre>
+
+<h3 class="text-xl font-semibold text-gray-700 mb-4">
+Create Tailwind Input CSS
+</h3>
+
+<p class="text-gray-700 mb-4">
+Create a file called <b>input.css</b> and add the following:
+</p>
+
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+@import "tailwindcss";
+@plugin "@tailwindcss/forms";
+</code></pre>
+
+<h3 class="text-xl font-semibold text-gray-700 mb-4">
+Build Tailwind CSS
+</h3>
+
+<p class="text-gray-700 mb-4">
+Run this command to generate the CSS file.
+</p>
+
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+npx tailwindcss -i ./input.css -o ./output.css --watch
+</code></pre>
+
+<h3 class="text-xl font-semibold text-gray-700 mb-4">
+Simple Example
+</h3>
+
+<p class="text-gray-700 mb-4">
+Include the generated CSS file inside your HTML page.
+</p>
+
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+&lt;link rel="stylesheet" href="output.css"&gt;
+</code></pre>
+
+<p class="text-gray-700 mb-4">
+Example form elements using the plugin:
+</p>
+
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+&lt;input type="text"  placeholder="Your name"&gt;
+
+&lt;select&gt;
+  &lt;option&gt;India&lt;/option&gt;
+  &lt;option&gt;USA&lt;/option&gt;
+&lt;/select&gt;
+
+&lt;input type="checkbox" &gt; Accept terms
+</code></pre>
+
+<div class="space-y-4">
+
+<input 
+type="text" 
+placeholder="Your name"
+class="form-input w-full">
+
+<select class="form-select w-full">
+<option>India</option>
+<option>USA</option>
+<option>UK</option>
+</select>
+
+<label class="flex items-center gap-2">
+<input type="checkbox" class="form-checkbox">
+<span>Accept terms</span>
+</label>
+
+</div>
+
+<p class="text-gray-700 mt-6">
+The Forms plugin automatically provides better base styling, while still
+allowing developers to customize form elements using Tailwind utilities.
+</p>
+
+</section>
+
+
+</body>
+</html>

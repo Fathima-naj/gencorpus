@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tailwind CSS - Introduction Notes</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+}
+
+html{
+font-size:16px;
+}
+
+body{
+font-family: "Segoe UI", Arial, sans-serif;
+padding:40px 80px;
+line-height:1.8;
+background:#f9fafb;
+color:#1f2937;
+}
+
+/* Container */
+
+.container{
+max-width:1100px;
+margin:auto;
+}
+
+/* Headings */
+
+h1{
+text-align:center;
+margin-bottom:40px;
+color:#111827;
+font-size:38px;
+font-weight:700;
+}
+
+h2{
+margin-top:45px;
+margin-bottom:15px;
+padding-bottom:8px;
+border-bottom:2px solid #e5e7eb;
+color:#1e3a8a;
+font-size:28px;
+font-weight:700;
+}
+
+h3{
+margin-top:25px;
+margin-bottom:10px;
+color:#374151;
+font-size:22px;
+font-weight:600;
+}
+
+/* Text */
+
+p{
+font-size:16px;
+line-height:1.9;
+margin:15px 0;
+}
+
+ul{
+margin-left:25px;
+margin-top:10px;
+}
+
+li{
+margin:6px 0;
+}
+
+/* Inline code */
+
+code{
+background:#eef2ff;
+padding:3px 6px;
+border-radius:4px;
+font-size:14px;
+color:#1e40af;
+}
+
+/* Code block */
+
+pre{
+background:#f3f4f6;
+padding:18px;
+border-radius:8px;
+overflow:auto;
+margin:18px 0;
+border-left:4px solid #3b82f6;
+font-size:14px;
+line-height:1.6;
+}
+
+/* Notes */
+
+.note{
+background:#e0f2fe;
+padding:14px;
+border-left:5px solid #0284c7;
+border-radius:5px;
+margin:20px 0;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Tailwind CSS - Introduction</h1>
+
+<h2>1. What is Tailwind?</h2>
+
+<p>
+Tailwind CSS is a <b>utility-first CSS framework</b> used to build modern user interfaces quickly.
+Instead of writing custom CSS classes, Tailwind provides small reusable utility classes that directly control styling.
+</p>
+
+<div class="note">
+Utility-first means we style elements using small classes instead of writing large CSS files.
+</div>
+
+<h3>Example without Tailwind</h3>
+
+<pre><code>
+.button{
+background-color:blue;
+color:white;
+padding:10px;
+border-radius:5px;
+}
+</code></pre>
+
+<h3>Example with Tailwind</h3>
+
+<pre><code>
+&lt;button class="bg-blue-500 text-white p-2 rounded"&gt;
+Click Me
+&lt;/button&gt;
+</code></pre>
+
+<ul>
+<li><code>bg-blue-500</code> → background color</li>
+<li><code>text-white</code> → text color</li>
+<li><code>p-2</code> → padding</li>
+<li><code>rounded</code> → border radius</li>
+</ul>
+
+<h3>Why Developers Use Tailwind</h3>
+
+<ul>
+<li>Faster UI development</li>
+<li>No need to switch between HTML and CSS files</li>
+<li>Consistent design system</li>
+<li>Built-in responsive utilities</li>
+<li>Perfect for modern frameworks like React and Vue</li>
+</ul>
+
+<h2>2. Installing Tailwind</h2>
+
+<h3>Using CDN (Beginner Method)</h3>
+
+<p>The easiest way to use Tailwind is by adding the CDN link.</p>
+
+<pre><code>
+&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;
+</code></pre>
+
+Example:
+
+<pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;h1 class="text-3xl font-bold text-blue-600"&gt;
+Hello Tailwind
+&lt;/h1&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<div class="note">
+CDN is useful for learning but not recommended for production websites.
+</div>
+
+<h3>Proper Setup (PostCSS / Vite)</h3>
+
+Steps:
+
+<ul>
+<li>Install Node.js</li>
+<li>Create project using Vite / React</li>
+<li>Install Tailwind</li>
+</ul>
+
+<pre><code>
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+</code></pre>
+
+Add Tailwind directives to CSS:
+
+<pre><code>
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+</code></pre>
+
+<h2>3. Tailwind Config File</h2>
+
+The configuration file is:
+
+<code>tailwind.config.js</code>
+
+Example:
+
+<pre><code>
+module.exports = {
+content: ["./index.html"],
+theme: {
+extend: {},
+},
+plugins: [],
+}
+</code></pre>
+
+Explanation:
+
+<ul>
+<li><b>content</b> → files that contain Tailwind classes</li>
+<li><b>theme</b> → customize design values</li>
+<li><b>extend</b> → extend default styles</li>
+<li><b>plugins</b> → add extra features</li>
+</ul>
+
+<h2>4. Colors</h2>
+
+Tailwind has a large color palette.
+
+Each color contains a scale from <b>50 to 900</b>.
+</p>
+
+<ul>
+<li>50 → very light shade</li>
+<li>100–400 → light colors</li>
+<li>500 → base color</li>
+<li>600–900 → darker shades</li>
+</ul>
+
+Examples:
+
+<pre><code>
+text-red-500
+bg-blue-400
+border-green-600
+</code></pre>
+
+Example usage:
+
+<pre><code>
+&lt;h1 class="text-red-500"&gt;
+Red Text
+&lt;/h1&gt;
+
+&lt;div class="bg-blue-500 text-white p-4"&gt;
+Blue Background
+&lt;/div&gt;
+</code></pre>
+
+<h2>5. Spacing Utilities</h2>
+
+Spacing utilities control **margin and padding**.
+
+<p>
+Tailwind spacing utilities follow a consistent spacing scale.
+Each number represents a specific pixel value based on a
+4-pixel spacing system.
+</p>
+
+
+
+<pre>
+p-0
+p-1
+p-2
+p-3
+p-4
+p-5
+p-6
+p-7
+p-8
+p-9
+p-10
+p-12
+p-16
+p-20
+p-24
+p-32
+p-40
+p-48
+p-56
+p-64
+p-72
+p-80
+p-96
+</pre>
+Padding:
+
+<pre><code>
+p-4
+pt-4
+pb-4
+px-4
+py-4
+</code></pre>
+
+Margin:
+
+<pre><code>
+m-4
+mt-4
+mb-4
+mx-4
+my-4
+</code></pre>
+
+Example:
+
+<pre><code>
+&lt;div class="p-6 m-4 bg-gray-200"&gt;
+Spacing Example
+&lt;/div&gt;
+</code></pre>
+<h2>6. Typography Utilities</h2>
+
+<p>Typography utilities in Tailwind CSS control text appearance, alignment, spacing, and behavior.</p>
+
+<h3>1. Font Size</h3>
+<p>Font size utilities control the size of the text. Tailwind provides a predefined scale from extra small to very large headings.</p>
+
+<ul>
+  <li><code>text-xs</code> → Extra small text (12px)</li>
+  <li><code>text-sm</code> → Small text (14px)</li>
+  <li><code>text-base</code> → Default text size (16px)</li>
+  <li><code>text-lg</code> → Large text (18px)</li>
+  <li><code>text-xl</code> → Extra large text (20px)</li>
+  <li><code>text-2xl</code> → <code>text-9xl</code> → Heading sizes (24px to very large display text)</li>
+</ul>
+
+<p>These classes follow a consistent scale, making it easy to maintain visual hierarchy in your design.</p>
+<h3>2. Font Weight</h3>
+<ul>
+  <li><code>font-thin</code></li>
+  <li><code>font-light</code></li>
+  <li><code>font-normal</code></li>
+  <li><code>font-medium</code></li>
+  <li><code>font-semibold</code></li>
+  <li><code>font-bold</code></li>
+  <li><code>font-extrabold</code></li>
+  <li><code>font-black</code></li>
+</ul>
+
+<h3>3. Text Alignment</h3>
+<ul>
+  <li><code>text-left</code></li>
+  <li><code>text-center</code></li>
+  <li><code>text-right</code></li>
+  <li><code>text-justify</code></li>
+</ul>
+
+<h3>4. Text Color</h3>
+<ul>
+  <li><code>text-red-500</code></li>
+  <li><code>text-blue-600</code></li>
+  <li><code>text-green-400</code></li>
+  <li><code>text-white</code></li>
+  <li><code>text-black</code></li>
+  <li><code>text-[#ff5733]</code> (custom)</li>
+  <li><code>text-[rgb(255,0,0)]</code> (custom)</li>
+</ul>
+
+<h3>5. Text Transform</h3>
+<ul>
+  <li><code>uppercase</code></li>
+  <li><code>lowercase</code></li>
+  <li><code>capitalize</code></li>
+  <li><code>normal-case</code></li>
+</ul>
+
+<h3>6. Text Decoration</h3>
+<ul>
+  <li><code>underline</code></li>
+  <li><code>overline</code></li>
+  <li><code>line-through</code></li>
+  <li><code>no-underline</code></li>
+  <li><code>decoration-red-500</code></li>
+  <li><code>decoration-2</code></li>
+  <li><code>decoration-dashed</code></li>
+</ul>
+
+<h3>7. Letter Spacing (Tracking)</h3>
+<ul>
+  <li><code>tracking-tight</code></li>
+  <li><code>tracking-normal</code></li>
+  <li><code>tracking-wide</code></li>
+  <li><code>tracking-wider</code></li>
+  <li><code>tracking-widest</code></li>
+</ul>
+
+<h3>8. Line Height (Leading)</h3>
+<ul>
+  <li><code>leading-none</code></li>
+  <li><code>leading-tight</code></li>
+  <li><code>leading-normal</code></li>
+  <li><code>leading-relaxed</code></li>
+  <li><code>leading-loose</code></li>
+</ul>
+
+<h3>9. Font Family</h3>
+<ul>
+  <li><code>font-sans</code></li>
+  <li><code>font-serif</code></li>
+  <li><code>font-mono</code></li>
+</ul>
+
+<h3>10. Font Style</h3>
+<ul>
+  <li><code>italic</code></li>
+  <li><code>not-italic</code></li>
+</ul>
+
+<h3>11. Text Overflow</h3>
+<ul>
+  <li><code>truncate</code></li>
+  <li><code>text-ellipsis</code></li>
+  <li><code>text-clip</code></li>
+</ul>
+
+<h3>12. White Space</h3>
+<ul>
+  <li><code>whitespace-normal</code> → Default behavior. Text wraps normally and extra spaces are removed.</li>
+
+<li><code>whitespace-nowrap</code> → Prevents text from wrapping. All text stays on a single line.</li>
+
+<li><code>whitespace-pre</code> → Preserves spaces and line breaks exactly as written, but does not wrap text.</li>
+
+<li><code>whitespace-pre-line</code> → Preserves line breaks but removes extra spaces. Text wraps normally.</li>
+
+<li><code>whitespace-pre-wrap</code> → Preserves both spaces and line breaks, and also allows text to wrap.</li>
+</ul>
+
+
+
+<h3>Example</h3>
+
+<pre><code>
+&lt;h1 class="text-3xl font-bold text-center text-blue-600"&gt;
+  Tailwind Typography
+&lt;/h1&gt;
+
+&lt;p class="text-lg leading-relaxed tracking-wide"&gt;
+  This is an example paragraph with spacing and styling.
+&lt;/p&gt;
+</code></pre>
+
+<h2>7. Border & Radius Utilities</h2>
+
+Border utilities:
+
+<pre><code>
+border
+border-2
+border-red-500
+</code></pre>
+
+Border radius:
+
+<pre><code>
+rounded
+rounded-md
+rounded-lg
+rounded-full
+</code></pre>
+
+Example:
+
+<pre><code>
+&lt;button class="border border-blue-500 rounded-lg p-2"&gt;
+Button
+&lt;/button&gt;
+</code></pre>
+
+<h2>8. Responsive Prefixes</h2>
+
+Tailwind supports responsive design using prefixes.
+
+Breakpoints:
+
+<ul>
+<li><code>sm:</code> small devices</li>
+<li><code>md:</code> tablets</li>
+<li><code>lg:</code> laptops</li>
+<li><code>xl:</code> desktops</li>
+</ul>
+
+Example:
+
+<pre><code>
+&lt;div class="bg-red-500 md:bg-blue-500 lg:bg-green-500 p-4 text-white"&gt;
+Responsive Box
+&lt;/div&gt;
+</code></pre>
+
+Explanation:
+
+<ul>
+<li>Mobile → red</li>
+<li>Tablet → blue</li>
+<li>Desktop → green</li>
+</ul>
+
+</div>
+
+<h2>Practice Questions</h2>
+
+<p>Use Tailwind utility classes to complete the following tasks.</p>
+
+<h3>1. Text Color</h3>
+<p>Create a heading with:</p>
+<ul>
+<li>Text size → large</li>
+<li>Text color → blue</li>
+<li>Bold font</li>
+</ul>
+
+<h3>2. Background Color</h3>
+<p>Create a div with:</p>
+<ul>
+<li>Green background</li>
+<li>White text</li>
+<li>Padding</li>
+</ul>
+
+<h3>3. Spacing Practice</h3>
+<p>Create a box with:</p>
+<ul>
+<li>Padding of 4</li>
+<li>Margin of 4</li>
+<li>Gray background</li>
+</ul>
+
+<h3>4. Typography</h3>
+<p>Create a paragraph with:</p>
+<ul>
+<li>Centered text</li>
+<li>Uppercase letters</li>
+<li>Font size large</li>
+</ul>
+
+<h3>5. Border & Radius</h3>
+<p>Create a button with:</p>
+<ul>
+<li>Border</li>
+<li>Blue border color</li>
+<li>Rounded corners</li>
+<li>Padding</li>
+</ul>
+
+
+<h3>6. Card Layout</h3>
+<p>Create a simple card with:</p>
+<ul>
+<li>White background</li>
+<li>Padding</li>
+<li>Rounded corners</li>
+<li>Border</li>
+</ul>
+
+
+</body>
+</html>

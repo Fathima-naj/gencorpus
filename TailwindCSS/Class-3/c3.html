@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tailwind CSS - Styling & Effects</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+<style>
+body{
+font-family: 'Inter', system-ui, sans-serif;
+}
+
+pre{
+tab-size:4;
+}
+
+.text-shadow-demo{
+text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+}
+</style>
+
+</head>
+
+<body class="bg-gray-50 text-gray-800 antialiased leading-relaxed py-12 px-4">
+
+<div class="max-w-4xl mx-auto bg-white border border-gray-200 shadow-sm rounded-2xl overflow-hidden">
+
+<!-- HEADER -->
+
+<div class="px-8 py-12 text-center">
+
+<h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
+Tailwind CSS – Styling & Effects
+</h1>
+
+
+</div>
+
+
+<div class="p-8 md:p-12 space-y-16">
+
+<!-- SHADOWS -->
+<section>
+  <h2 class="text-3xl font-bold text-blue-900 border-b-2 border-blue-100 pb-2 mb-4">
+    1. Shadows
+  </h2>
+
+  <p class="mb-6">
+    Shadows add depth and elevation to elements. They are commonly used for cards, buttons, modals, and panels to make UI elements appear layered.
+  </p>
+
+  <!-- WHY SHADOW -->
+  <h3 class="text-xl font-semibold text-gray-700 mb-3">Why Use Shadows</h3>
+  <ul class="list-disc ml-6 text-gray-600 mb-6">
+    <li>Create visual hierarchy</li>
+    <li>Improve UI clarity</li>
+    <li>Make elements look interactive</li>
+    <li>Give modern design feel</li>
+  </ul>
+
+  <!-- SHADOW CLASSES -->
+  <h3 class="text-xl font-semibold text-gray-700 mb-3">Shadow Classes</h3>
+  <pre class="bg-gray-50 border border-gray-200 text-gray-800 p-5 rounded-xl text-sm mb-6"><code>
+shadow-sm
+shadow
+shadow-md
+shadow-lg
+shadow-xl
+shadow-2xl
+shadow-inner
+shadow-none
+  </code></pre>
+
+  <!-- NEW INNER SHADOW (v4/v5) -->
+  <h3 class="text-xl font-semibold text-gray-700 mb-3">Inset Shadow (New - v4/v5)</h3>
+  <p class="text-gray-600 mb-4">
+    Newer versions of Tailwind introduce <b>inset-shadow-*</b> utilities for inner shadows with consistent naming.
+  </p>
+
+  <pre class="bg-gray-50 border border-gray-200 text-gray-800 p-5 rounded-xl text-sm mb-6"><code>
+inset-shadow-xs
+inset-shadow-sm
+inset-shadow
+inset-shadow-md
+inset-shadow-lg
+inset-shadow-xl
+  </code></pre>
+
+  <pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+&lt;div class="inset-shadow-md p-6 bg-gray-100 rounded"&gt;
+  New inner shadow
+&lt;/div&gt;
+  </code></pre>
+
+  <div class="inset-shadow-md p-6 bg-gray-100 rounded w-64 text-center text-gray-600 mb-8">
+    New inner shadow
+  </div>
+
+  <!-- BASIC EXAMPLE -->
+  <h3 class="text-xl font-semibold text-gray-700 mb-3">Basic Example</h3>
+  <pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+&lt;div class="shadow-lg p-6 bg-white rounded"&gt;
+  Card with shadow
+&lt;/div&gt;
+  </code></pre>
+
+  <div class="shadow-lg p-8 bg-white rounded-xl border w-64 text-center font-medium text-gray-600 mb-8">
+    Card with shadow
+  </div>
+
+  <!-- CUSTOM SHADOW -->
+  <h3 class="text-xl font-semibold text-gray-700 mb-3">Custom Shadow (Arbitrary Value)</h3>
+  <pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+&lt;div class="shadow-[0_10px_20px_rgba(0,0,0,0.3)] p-6 bg-white"&gt;
+  Custom shadow
+&lt;/div&gt;
+  </code></pre>
+
+  <!-- CUSTOM INNER SHADOW -->
+  <h3 class="text-xl font-semibold text-gray-700 mb-3">Custom Inner Shadow</h3>
+  <pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+&lt;div class="shadow-[inset_0_4px_10px_rgba(0,0,0,0.3)] p-6 bg-white"&gt;
+  Custom inner shadow
+&lt;/div&gt;
+  </code></pre>
+
+  <!-- CSS VARIABLE -->
+  <h3 class="text-xl font-semibold text-gray-700 mb-3">Using CSS Variable</h3>
+  <pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+:root {
+  --my-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+&lt;div class="shadow-(--my-shadow)"&gt;
+  Variable shadow
+&lt;/div&gt;
+  </code></pre>
+
+  <!-- COLORED SHADOW -->
+  <h3 class="text-xl font-semibold text-gray-700 mb-3">Colored Shadow</h3>
+  <pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+&lt;div class="shadow-lg shadow-blue-500/50 p-6 bg-white"&gt;
+  Blue shadow
+&lt;/div&gt;
+  </code></pre>
+
+  <!-- INNER SHADOW (OLD) -->
+  <h3 class="text-xl font-semibold text-gray-700 mb-3">Inner Shadow (Old)</h3>
+  <pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+&lt;div class="shadow-inner p-6 bg-gray-100"&gt;
+  Inner shadow
+&lt;/div&gt;
+  </code></pre>
+
+  <!-- REMOVE SHADOW -->
+  <h3 class="text-xl font-semibold text-gray-700 mb-3">Remove Shadow</h3>
+  <pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+&lt;div class="shadow-none"&gt;
+  No shadow
+&lt;/div&gt;
+  </code></pre>
+
+  <!-- HOVER EFFECT -->
+  <h3 class="text-xl font-semibold text-gray-700 mb-3">Hover Shadow Effect</h3>
+  <pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+&lt;div class="shadow-lg hover:shadow-2xl transition duration-300"&gt;
+  Hover effect
+&lt;/div&gt;
+  </code></pre>
+
+</section><section>
+
+<h2 class="text-3xl font-bold text-blue-900 border-b-2 border-blue-100 pb-2 mb-4">
+Text Shadow
+</h2>
+
+<p class="mb-6 text-gray-600">
+Text shadow adds a shadow effect behind text. It improves readability
+and creates depth, especially on headings or text placed on images.
+Unlike box shadows, text shadows apply only to text.
+</p>
+
+<!-- BASIC SYNTAX -->
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Basic CSS Text Shadow Syntax
+</h3>
+
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+text-shadow: horizontal vertical blur color;
+</code></pre>
+
+<!-- TAILWIND DEFAULT (NEW) -->
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Text Shadow Classes (Tailwind v4/v5)
+</h3>
+
+<p class="text-gray-600 mb-4">
+New Tailwind versions support text shadow utilities similar to box-shadow.
+</p>
+
+<pre class="bg-gray-50 border border-gray-200 text-gray-800 p-5 rounded-xl text-sm mb-6"><code>
+text-shadow-xs
+text-shadow-sm
+text-shadow
+text-shadow-md
+text-shadow-lg
+text-shadow-xl
+text-shadow-none
+</code></pre>
+
+<!-- EXAMPLE -->
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+&lt;h1 class="text-4xl font-bold text-shadow-md"&gt;
+  Shadow Text
+&lt;/h1&gt;
+</code></pre>
+
+<h1 class="text-4xl font-bold text-shadow-md text-gray-800 mb-8">
+Text Shadow Example
+</h1>
+
+<!-- COLORED TEXT SHADOW -->
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Colored Text Shadow
+</h3>
+
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+&lt;h1 class="text-4xl font-bold text-shadow-lg text-shadow-blue-500/50"&gt;
+  Blue Shadow
+&lt;/h1&gt;
+</code></pre>
+
+<h1 class="text-4xl font-bold text-shadow-lg text-shadow-blue-500/50 mb-8">
+Colored Shadow
+</h1>
+
+<!-- CUSTOM TEXT SHADOW -->
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Custom Text Shadow (Arbitrary Value)
+</h3>
+
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+&lt;h1 class="text-4xl font-bold text-[text-shadow:2px_2px_10px_rgba(0,0,0,0.5)]"&gt;
+  Custom Shadow
+&lt;/h1&gt;
+</code></pre>
+
+<h1 class="text-4xl font-bold [text-shadow:2px_2px_10px_rgba(0,0,0,0.5)] mb-8">
+Custom Shadow
+</h1>
+
+<!-- CSS VARIABLE -->
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Using CSS Variable
+</h3>
+
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+:root {
+  --text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+}
+
+&lt;h1 class="text-[text-shadow:var(--text-shadow)]"&gt;
+  Variable Shadow
+&lt;/h1&gt;
+</code></pre>
+
+<!-- REMOVE -->
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Remove Text Shadow
+</h3>
+
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+&lt;h1 class="text-shadow-none"&gt;
+  No Shadow
+&lt;/h1&gt;
+</code></pre>
+
+<!-- HOVER EFFECT -->
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Hover Effect
+</h3>
+
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+&lt;h1 class="text-4xl font-bold text-shadow-sm hover:text-shadow-xl transition duration-300"&gt;
+  Hover Shadow
+&lt;/h1&gt;
+</code></pre>
+
+<h1 class="text-4xl font-bold text-shadow-sm hover:text-shadow-xl transition duration-300 mb-8">
+Hover Shadow
+</h1>
+
+<!-- GLOW EFFECT -->
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Glow Effect (Popular UI)
+</h3>
+
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+&lt;h1 class="text-4xl font-bold text-[text-shadow:0_0_10px_rgba(59,130,246,0.8)] text-blue-500"&gt;
+  Glow Text
+&lt;/h1&gt;
+</code></pre>
+
+<h1 class="text-4xl font-bold text-[text-shadow:0_0_10px_rgba(59,130,246,0.8)] text-blue-500 mb-8">
+Glow Text
+</h1>
+
+
+</section>
+
+<!-- OPACITY -->
+<section>
+
+<h2 class="text-3xl font-bold text-blue-900 border-b-2 border-blue-100 pb-2 mb-4">
+2. Opacity
+</h2>
+
+<p class="mb-6 text-gray-600">
+Opacity controls the transparency of an element. It determines how visible
+or faded an element appears. Values range from completely invisible (0)
+to fully visible (100).
+</p>
+
+<!-- OPACITY CLASSES -->
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Opacity Classes
+</h3>
+
+<pre class="bg-gray-50 border border-gray-200 text-gray-800 p-5 rounded-xl text-sm mb-6"><code>
+opacity-0
+opacity-25
+opacity-50
+opacity-75
+opacity-100
+</code></pre>
+
+<!-- BASIC EXAMPLE -->
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Basic Example
+</h3>
+
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+&lt;img src="image.jpg" class="opacity-50"&gt;
+</code></pre>
+
+<img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470"
+class="opacity-50 w-72 rounded-xl shadow-md mb-8">
+
+<!-- HOVER OPACITY -->
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Hover Opacity
+</h3>
+
+<p class="text-gray-600 mb-4">
+Change opacity when hovering for interactive UI effects.
+</p>
+
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+&lt;img class="opacity-50 hover:opacity-100 transition duration-300"&gt;
+</code></pre>
+
+<img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470"
+class="opacity-50 hover:opacity-100 transition duration-300 w-72 rounded-xl shadow-md mb-8">
+
+<!-- ARBITRARY VALUE -->
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Custom Opacity (Arbitrary Value)
+</h3>
+
+<p class="text-gray-600 mb-4">
+Use custom values for precise control.
+</p>
+
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+&lt;div class="opacity-[0.35]"&gt;
+  Custom opacity
+&lt;/div&gt;
+</code></pre>
+
+<!-- OPACITY WITH COLORS -->
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Opacity with Colors
+</h3>
+
+<p class="text-gray-600 mb-4">
+Tailwind allows opacity directly inside color utilities.
+</p>
+
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+bg-blue-500/50
+text-red-500/70
+border-black/30
+</code></pre>
+
+<div class="bg-blue-500/50 text-white p-4 rounded mb-8 w-64 text-center">
+Background opacity
+</div>
+
+<!-- BACKDROP OPACITY -->
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Backdrop Opacity
+</h3>
+
+<p class="text-gray-600 mb-4">
+Controls opacity of background behind an element (used with blur).
+</p>
+
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+&lt;div class="backdrop-opacity-50 backdrop-blur-md"&gt;
+  Glass effect
+&lt;/div&gt;
+</code></pre>
+
+<div class="bg-[url('https://images.unsplash.com/photo-1501785888041-af3ef285b470')] bg-cover h-64 flex items-center justify-center">
+  
+  <div class="backdrop-blur-md bg-white/30 p-6 rounded-xl w-64 text-center">
+    Glass effect
+  </div>
+
+</div>
+<!-- DISABLED EFFECT -->
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Disabled State
+</h3>
+
+<p class="text-gray-600 mb-4">
+Opacity is commonly used to show disabled elements.
+</p>
+
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+&lt;button class="opacity-50 cursor-not-allowed"&gt;
+  Disabled
+&lt;/button&gt;
+</code></pre>
+
+<button class="opacity-50 cursor-not-allowed bg-gray-300 px-4 py-2 rounded mb-8">
+Disabled
+</button>
+
+
+<!-- ANIMATION -->
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Opacity Animation
+</h3>
+
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+&lt;div class="opacity-0 hover:opacity-100 transition duration-500"&gt;
+  Fade in
+&lt;/div&gt;
+</code></pre>
+
+<div class="opacity-0 hover:opacity-100 transition duration-500 bg-blue-500 text-white p-4 rounded w-40 text-center">
+Fade in
+</div>
+
+
+</section>
+<!-- BACKGROUND -->
+<section>
+
+<h2 class="text-3xl font-bold text-blue-900 border-b-2 border-blue-100 pb-2 mb-4">
+3. Background Images & Gradients
+</h2>
+
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Background Image
+</h3>
+
+<p class="mb-4 text-gray-600">
+Background images allow developers to place images behind content. 
+In modern Tailwind (JIT mode), we can use the <strong>bg-[url()]</strong> utility 
+to directly add a background image without writing inline CSS.
+</p>
+
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+&lt;div class="h-40 bg-[url('image.jpg')] bg-cover bg-center"&gt;
+&lt;/div&gt;
+</code></pre>
+
+<div class="h-44 w-full md:w-96 bg-[url('https://images.unsplash.com/photo-1501785888041-af3ef285b470')] bg-cover bg-center rounded-xl shadow mb-8"></div>
+
+<!-- BACKGROUND SIZE -->
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Background Size
+</h3>
+
+<p class="text-gray-600 mb-4">
+Controls how the background image fits inside the container.
+</p>
+
+<pre class="bg-gray-50 border border-gray-200 text-gray-800 p-5 rounded-xl text-sm mb-6"><code>
+bg-cover    /* fills container (may crop) */
+bg-contain  /* fits image fully (no crop) */
+bg-auto     /* original size */
+</code></pre>
+
+<div class="flex gap-4 mb-8">
+  <div class="h-32 w-32 bg-[url('https://images.unsplash.com/photo-1501785888041-af3ef285b470')] bg-cover bg-center rounded"></div>
+  <div class="h-32 w-32 bg-[url('https://images.unsplash.com/photo-1501785888041-af3ef285b470')] bg-contain bg-no-repeat bg-center rounded border"></div>
+</div>
+
+<!-- BACKGROUND POSITION -->
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Background Position
+</h3>
+
+<p class="text-gray-600 mb-4">
+Controls where the image is positioned inside the container.
+</p>
+
+<pre class="bg-gray-50 border border-gray-200 text-gray-800 p-5 rounded-xl text-sm mb-6"><code>
+bg-center
+bg-top
+bg-bottom
+bg-left
+bg-right
+</code></pre>
+<div class="flex gap-4">
+  <div class="h-64 w-40 bg-[url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e')] bg-contain bg-no-repeat bg-top border"></div>
+  <div class="h-64 w-40 bg-[url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e')] bg-contain bg-no-repeat bg-center border"></div>
+  <div class="h-64 w-40 bg-[url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e')] bg-contain bg-no-repeat bg-bottom border"></div>
+</div>
+
+<!-- BACKGROUND REPEAT -->
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Background Repeat
+</h3>
+
+<p class="text-gray-600 mb-4">
+Controls whether the background image repeats.
+</p>
+
+<pre class="bg-gray-50 border border-gray-200 text-gray-800 p-5 rounded-xl text-sm mb-6"><code>
+bg-repeat
+bg-no-repeat
+bg-repeat-x
+bg-repeat-y
+</code></pre>
+
+
+</section>
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Gradient Background
+</h3>
+
+<p class="mb-4 text-gray-600">
+Gradients allow you to smoothly transition between two or more colors. 
+In Tailwind CSS, gradients are created using three main utilities:
+<strong>gradient direction</strong>, <strong>starting color</strong>, and <strong>ending color</strong>.
+</p>
+
+<p class="mb-4 text-gray-600">
+The class <strong>bg-gradient-to-r</strong> means the gradient will move 
+<strong>from left to right</strong>. The class <strong>from-blue-500</strong> 
+defines the starting color, and <strong>to-purple-500</strong> defines the ending color.
+</p>
+
+<p class="mb-4 text-gray-600">
+Together these classes create a smooth transition from blue to purple across the element's background.
+</p>
+
+<pre class="bg-gray-50 border border-gray-200 text-gray-800 p-5 rounded-xl text-sm mb-6"><code>
+bg-gradient-to-r
+from-blue-500
+to-purple-500
+</code></pre>
+
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+&lt;div class="bg-gradient-to-r from-blue-500 to-purple-500 text-white p-6"&gt;
+Gradient Background
+&lt;/div&gt;
+</code></pre>
+
+<div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8 rounded-xl w-80 text-center shadow-lg">
+Gradient Background
+</div>
+
+<p class="mt-4 text-gray-600">
+Tailwind also supports other gradient directions such as 
+<strong>bg-gradient-to-l</strong> (right to left), 
+<strong>bg-gradient-to-t</strong> (bottom to top), and 
+<strong>bg-gradient-to-b</strong> (top to bottom).
+</p>
+
+</section>
+
+
+
+<!-- OBJECT FIT -->
+
+<section>
+<h2 class="text-3xl font-bold text-blue-900 border-b-2 border-blue-100 pb-2 mb-4">
+4. Object Fit
+</h2>
+
+<p class="mb-6 text-gray-600">
+The <strong>object-fit</strong> utility controls how an image or video fits inside a fixed
+container. When width and height are set, the image may need to scale,
+crop, or stretch to fit the container. Tailwind provides several
+utilities to control this behavior.
+</p>
+
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Object Fit Utilities
+</h3>
+
+<pre class="bg-gray-50 border border-gray-200 text-gray-800 p-5 rounded-xl text-sm mb-6"><code>
+object-cover
+object-contain
+object-fill
+object-none
+object-scale-down
+</code></pre>
+
+<p class="mb-2 text-gray-700"><strong>object-cover</strong> – The image fills the entire container while maintaining its aspect ratio. Some parts of the image may be cropped.</p>
+
+<p class="mb-2 text-gray-700"><strong>object-contain</strong> – The entire image is visible inside the container while maintaining the aspect ratio. Empty space may appear around the image.</p>
+
+<p class="mb-2 text-gray-700"><strong>object-fill</strong> – The image stretches to fill the container completely. The aspect ratio is not preserved, so the image may look distorted.</p>
+
+<p class="mb-2 text-gray-700"><strong>object-none</strong> – The image keeps its original size and does not scale to fit the container.</p>
+
+<p class="mb-6 text-gray-700"><strong>object-scale-down</strong> – The image behaves like <em>object-contain</em> or <em>object-none</em>, whichever results in the smaller image.</p>
+
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Example
+</h3>
+
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+&lt;img src="image.jpg" class="w-80 h-48 object-cover"&gt;
+</code></pre>
+
+<img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d"
+class="w-80 h-48 object-cover rounded-xl shadow">
+
+<!-- TEXT ALIGNMENT & LETTER SPACING -->
+
+<section>
+
+<h2 class="text-3xl font-bold text-blue-900 border-b-2 border-blue-100 pb-2 mb-4">
+10. Text Alignment & Letter Spacing
+</h2>
+
+<p class="text-gray-600 mb-6">
+Tailwind provides utilities to control how text is aligned and how much
+space exists between letters. These utilities help improve readability
+and visual hierarchy in UI design.
+</p>
+
+
+
+<!-- TEXT ALIGNMENT -->
+
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Text Alignment
+</h3>
+
+<p class="text-gray-600 mb-6">
+Text alignment determines how text is positioned inside its container.
+It is commonly used in headings, paragraphs, buttons, and cards.
+</p>
+
+<pre class="bg-gray-50 border border-gray-200 text-gray-800 p-5 rounded-xl text-sm mb-6"><code>
+text-left
+text-center
+text-right
+text-justify
+</code></pre>
+
+
+<h4 class="text-lg font-semibold text-gray-700 mb-3">Example</h4>
+
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+&lt;p class="text-left"&gt;Left aligned text&lt;/p&gt;
+
+&lt;p class="text-center"&gt;Center aligned text&lt;/p&gt;
+
+&lt;p class="text-right"&gt;Right aligned text&lt;/p&gt;
+</code></pre>
+
+<div class="space-y-3 mb-10">
+
+<p class="text-left bg-gray-100 p-3 rounded">
+Left aligned text
+</p>
+
+<p class="text-center bg-gray-100 p-3 rounded">
+Center aligned text
+</p>
+
+<p class="text-right bg-gray-100 p-3 rounded">
+Right aligned text
+</p>
+
+</div>
+
+
+<p class="text-gray-600 mb-10">
+In UI design, headings are often centered, while paragraphs are
+usually left aligned because it improves readability.
+</p>
+
+
+
+<!-- LETTER SPACING -->
+
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Letter Spacing
+</h3>
+
+<p class="text-gray-600 mb-6">
+Letter spacing controls the space between characters in text.
+In typography this is called <b>tracking</b>.
+</p>
+
+<p class="text-gray-600 mb-6">
+Increasing spacing can make headings look more elegant,
+while decreasing spacing makes text more compact.
+</p>
+
+<pre class="bg-gray-50 border border-gray-200 text-gray-800 p-5 rounded-xl text-sm mb-6"><code>
+tracking-tight
+tracking-normal
+tracking-wide
+tracking-wider
+tracking-widest
+</code></pre>
+
+
+
+<h4 class="text-lg font-semibold text-gray-700 mb-3">
+Letter Spacing Examples
+</h4>
+
+<div class="space-y-4 mb-10">
+
+<p class="tracking-tight bg-gray-100 p-3 rounded">
+Tracking Tight
+</p>
+
+<p class="tracking-normal bg-gray-100 p-3 rounded">
+Tracking Normal
+</p>
+
+<p class="tracking-wide bg-gray-100 p-3 rounded">
+Tracking Wide
+</p>
+
+<p class="tracking-wider bg-gray-100 p-3 rounded">
+Tracking Wider
+</p>
+
+<p class="tracking-widest bg-gray-100 p-3 rounded">
+Tracking Widest
+</p>
+
+</div>
+
+
+
+<p class="text-gray-600">
+Letter spacing is commonly used in headings, badges, and navigation
+menus to create a clean and modern UI appearance.
+</p>
+
+</section>
+<section>
+
+<h2 class="text-3xl font-bold text-blue-900 border-b-2 border-blue-100 pb-2 mb-4">
+5. Transform & Scale
+</h2>
+
+<p class="mb-6 text-gray-600">
+Transform utilities allow you to visually change the position, size, rotation, or shape of an element.
+They are widely used for animations, hover effects, interactive UI, and modern designs.
+</p>
+
+<!-- SCALE -->
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Scale (Resize)
+</h3>
+
+<p class="text-gray-600 mb-3">
+Scale changes the size of an element. Values above 100 increase size, below 100 decrease size.
+</p>
+
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+&lt;div class="hover:scale-90 transition duration-300"&gt;Shrink&lt;/div&gt;
+&lt;div class="hover:scale-110 transition duration-300"&gt;Grow&lt;/div&gt;
+</code></pre>
+
+<div class="flex gap-4 mb-8">
+  <div class="bg-blue-500 text-white p-4 rounded text-center w-24 
+              hover:scale-90 transition duration-300">
+    Shrink
+  </div>
+  <div class="bg-blue-500 text-white p-4 rounded text-center w-24 
+              hover:scale-110 transition duration-300">
+    Grow
+  </div>
+</div>
+
+<!-- ROTATE -->
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Rotate
+</h3>
+
+<p class="text-gray-600 mb-3">
+Rotate spins the element clockwise or counterclockwise.
+</p>
+
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+&lt;div class="hover:rotate-45 transition duration-300"&gt;Rotate&lt;/div&gt;
+&lt;div class="hover:-rotate-45 transition duration-300"&gt;Reverse&lt;/div&gt;
+</code></pre>
+
+<div class="flex gap-6 mb-8">
+  <div class="bg-green-500 text-white p-4 rounded text-center w-24 
+              hover:rotate-45 transition duration-300">
+    Rotate
+  </div>
+  <div class="bg-green-500 text-white p-4 rounded text-center w-24 
+              hover:-rotate-45 transition duration-300">
+    Reverse
+  </div>
+</div>
+
+<!-- TRANSLATE -->
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Translate (Move)
+</h3>
+
+<p class="text-gray-600 mb-3">
+Translate moves the element along X or Y axis without affecting layout.
+</p>
+
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+&lt;div class="hover:translate-y-4 transition duration-300"&gt;Down&lt;/div&gt;
+&lt;div class="hover:-translate-y-4 transition duration-300"&gt;Up&lt;/div&gt;
+</code></pre>
+
+<div class="flex gap-6 mb-8">
+  <div class="bg-purple-500 text-white p-4 rounded text-center w-24 
+              hover:translate-y-4 transition duration-300">
+    Down
+  </div>
+  <div class="bg-purple-500 text-white p-4 rounded text-center w-24 
+              hover:-translate-y-4 transition duration-300">
+    Up
+  </div>
+</div>
+
+<!-- SKEW -->
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Skew
+</h3>
+
+<p class="text-gray-600 mb-3">
+Skew tilts the element along X or Y axis.
+</p>
+
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+&lt;div class="hover:skew-x-6 transition duration-300"&gt;Skew X&lt;/div&gt;
+&lt;div class="hover:skew-y-6 transition duration-300"&gt;Skew Y&lt;/div&gt;
+</code></pre>
+
+<div class="flex gap-6 mb-8">
+  <div class="bg-red-500 text-white p-4 rounded text-center w-24 
+              hover:skew-x-6 transition duration-300">
+    Skew X
+  </div>
+  <div class="bg-red-500 text-white p-4 rounded text-center w-24 
+              hover:skew-y-6 transition duration-300">
+    Skew Y
+  </div>
+</div>
+
+<!-- TRANSFORM ORIGIN -->
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Transform Origin
+</h3>
+
+<p class="text-gray-600 mb-3">
+Controls the starting point of transformation.
+</p>
+
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+&lt;div class="origin-top hover:rotate-45 transition"&gt;Top&lt;/div&gt;
+&lt;div class="origin-bottom hover:rotate-45 transition"&gt;Bottom&lt;/div&gt;
+</code></pre>
+
+<div class="flex gap-6 mb-8">
+  <div class="bg-yellow-500 text-white p-4 rounded text-center w-24 
+              origin-top hover:rotate-45 transition duration-300">
+    Top
+  </div>
+  <div class="bg-yellow-500 text-white p-4 rounded text-center w-24 
+              origin-bottom hover:rotate-45 transition duration-300">
+    Bottom
+  </div>
+</div>
+
+
+
+<!-- COMBINED -->
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Combine Multiple Transforms
+</h3>
+
+<p class="text-gray-600 mb-3">
+You can combine multiple transforms for advanced UI interactions.
+</p>
+
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+&lt;div class="hover:scale-110 hover:rotate-3 hover:-translate-y-2 transition"&gt;
+  Combined
+&lt;/div&gt;
+</code></pre>
+
+<div class="bg-indigo-500 text-white p-4 rounded w-40 text-center 
+            hover:scale-110 hover:rotate-3 hover:-translate-y-2 
+            transition duration-300 mb-8">
+  Combined
+</div>
+
+</section>
+
+
+</section><!-- TRANSITIONS -->
+<section>
+
+<h2 class="text-3xl font-bold text-blue-900 border-b-2 border-blue-100 pb-2 mb-4">
+6. Transitions
+</h2>
+
+<p class="mb-6 text-gray-600">
+Transitions allow elements to change styles smoothly instead of instantly.
+They are commonly used with <strong>hover</strong>, <strong>focus</strong>, and 
+interactive UI effects to improve user experience.
+</p>
+
+<!-- TRANSITION TYPES -->
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Transition Utilities
+</h3>
+
+<pre class="bg-gray-50 border border-gray-200 text-gray-800 p-5 rounded-xl text-sm mb-6"><code>
+transition
+transition-all
+transition-colors
+transition-opacity
+transition-transform
+</code></pre>
+
+<ul class="list-disc ml-6 text-gray-700 mb-6 space-y-1">
+<li><b>transition</b> → Default transition (most commonly used)</li>
+<li><b>transition-all</b> → Applies transition to all properties</li>
+<li><b>transition-colors</b> → Only colors (text, bg, border)</li>
+<li><b>transition-opacity</b> → Only opacity changes</li>
+<li><b>transition-transform</b> → Only scale, rotate, translate</li>
+</ul>
+
+<!-- DURATION -->
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Duration
+</h3>
+
+<pre class="bg-gray-50 border border-gray-200 text-gray-800 p-5 rounded-xl text-sm mb-6"><code>
+duration-75
+duration-150
+duration-300
+duration-500
+duration-700
+duration-1000
+</code></pre>
+
+<p class="text-gray-600 mb-6">
+Controls how long the animation takes. <b>300ms</b> is the most commonly used for UI.
+</p>
+
+<!-- TIMING FUNCTION -->
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Timing Function (Easing)
+</h3>
+
+<pre class="bg-gray-50 border border-gray-200 text-gray-800 p-5 rounded-xl text-sm mb-6"><code>
+ease-linear
+ease-in
+ease-out
+ease-in-out
+</code></pre>
+
+<ul class="list-disc ml-6 text-gray-700 mb-6">
+<li><b>ease-linear</b> → constant speed</li>
+<li><b>ease-in</b> → slow start</li>
+<li><b>ease-out</b> → slow end</li>
+<li><b>ease-in-out</b> → smooth start & end</li>
+</ul>
+
+<!-- DELAY -->
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Delay
+</h3>
+
+<pre class="bg-gray-50 border border-gray-200 text-gray-800 p-5 rounded-xl text-sm mb-6"><code>
+delay-75
+delay-150
+delay-300
+</code></pre>
+
+<p class="text-gray-600 mb-6">
+Adds a delay before the transition starts.
+</p>
+
+<!-- PROPERTY DEMOS -->
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Examples
+</h3>
+
+<!-- COLOR -->
+<p class="text-gray-600 mb-2"><b>Color Transition</b></p>
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-3 rounded mb-4 text-sm"><code>
+&lt;button class="transition-colors duration-300 hover:bg-blue-800"&gt;
+</code></pre>
+
+<button class="bg-blue-600 text-white px-6 py-2 rounded transition-colors duration-300 hover:bg-blue-800 mb-6">
+Color
+</button>
+
+<!-- SCALE -->
+<p class="text-gray-600 mb-2"><b>Transform Transition</b></p>
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-3 rounded mb-4 text-sm"><code>
+&lt;div class="transition-transform duration-300 hover:scale-110"&gt;
+</code></pre>
+
+<div class="bg-green-500 text-white w-32 p-4 text-center rounded 
+            transition-transform duration-300 hover:scale-110 mb-6">
+Scale
+</div>
+
+<!-- OPACITY -->
+<p class="text-gray-600 mb-2"><b>Opacity Transition</b></p>
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-3 rounded mb-4 text-sm"><code>
+&lt;div class="transition-opacity duration-500 hover:opacity-50"&gt;
+</code></pre>
+
+<div class="bg-purple-500 text-white w-32 p-4 text-center rounded 
+            transition-opacity duration-500 hover:opacity-50 mb-6">
+Fade
+</div>
+
+<!-- COMBINED -->
+<p class="text-gray-600 mb-2"><b>Combined Effects</b></p>
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-3 rounded mb-4 text-sm"><code>
+&lt;div class="transition duration-300 hover:scale-110 hover:bg-indigo-600"&gt;
+</code></pre>
+
+<div class="bg-indigo-500 text-white w-40 p-4 text-center rounded 
+            transition duration-300 hover:scale-110 hover:bg-indigo-600 mb-6">
+Combined
+</div>
+
+<!-- DELAY EXAMPLE -->
+<p class="text-gray-600 mb-2"><b>Delay Example</b></p>
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-3 rounded mb-4 text-sm"><code>
+&lt;div class="transition duration-500 delay-300 hover:scale-110"&gt;
+</code></pre>
+
+<div class="bg-yellow-500 text-white w-40 p-4 text-center rounded 
+            transition duration-500 delay-300 hover:scale-110 mb-8">
+Delay
+</div>
+
+
+</section>
+
+<!-- HOVER & FOCUS STATES -->
+
+<section>
+
+<h2 class="text-3xl font-bold text-blue-900 border-b-2 border-blue-100 pb-2 mb-4">
+7. Hover & Focus States
+</h2>
+
+<p class="text-gray-600 mb-6">
+Tailwind provides <b>state modifiers</b> that allow styles to change when a user
+interacts with an element. Two common states are:
+</p>
+
+<ul class="list-disc ml-6 text-gray-700 mb-6 space-y-2">
+<li><b>hover:</b> applies styles when the mouse pointer moves over an element.</li>
+<li><b>focus:</b> applies styles when an input field or element becomes active.</li>
+</ul>
+
+<p class="text-gray-600 mb-8">
+These states help create interactive UI elements like buttons, forms, and links.
+They also improve user experience by providing visual feedback.
+</p>
+
+
+<!-- HOVER BUTTON -->
+
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Hover Example
+</h3>
+
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+&lt;button class="bg-green-600 hover:bg-green-700 text-white font-bold
+py-3 px-6 rounded-xl transition"&gt;
+Hover Button
+&lt;/button&gt;
+</code></pre>
+
+<button class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl transition shadow-md mb-10">
+Hover Button
+</button>
+
+<p class="text-gray-600 mb-10">
+When the user moves the mouse over the button, the background color changes
+from <b>green-600</b> to <b>green-700</b>. The <b>transition</b> class makes
+the color change smooth.
+</p>
+
+
+
+<!-- HOVER SCALE EXAMPLE -->
+
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Hover Scale Example
+</h3>
+
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+&lt;button class="bg-blue-600 text-white px-6 py-3 rounded-xl
+transition hover:scale-105"&gt;
+Hover Scale
+&lt;/button&gt;
+</code></pre>
+
+<button class="bg-blue-600 text-white px-6 py-3 rounded-xl transition hover:scale-105 shadow mb-10">
+Hover Scale
+</button>
+
+<p class="text-gray-600 mb-10">
+Here the button slightly increases in size when hovered.
+This effect is created using <b>hover:scale-105</b>.
+</p>
+
+
+
+<!-- FOCUS INPUT -->
+
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Focus Example
+</h3>
+
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+&lt;input
+class="w-72 border-2 border-gray-200 p-4
+focus:outline-none
+focus:border-blue-500
+focus:ring-4 focus:ring-blue-100
+rounded-xl transition"
+placeholder="Focus here"&gt;
+</code></pre>
+
+<input
+class="w-72 border-2 border-gray-200 p-4 focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-100 rounded-xl transition mb-10"
+placeholder="Focus here">
+
+
+
+<p class="text-gray-600 mb-6">
+When the user clicks or tabs into the input field:
+</p>
+
+<ul class="list-disc ml-6 text-gray-700 space-y-2">
+<li><b>focus:outline-none</b> removes the default browser outline.</li>
+<li><b>focus:border-blue-500</b> changes the border color.</li>
+<li><b>focus:ring-4</b> adds a focus ring around the input.</li>
+<li><b>focus:ring-blue-100</b> sets the ring color.</li>
+</ul>
+
+</section>
+
+
+<!-- RING UTILITIES -->
+
+<section>
+
+<h2 class="text-3xl font-bold text-blue-900 border-b-2 border-blue-100 pb-2 mb-4">
+8. Ring Utilities
+</h2>
+
+<p class="text-gray-600 mb-6">
+Ring utilities in Tailwind are used to create an outer glow or highlight
+around an element. Unlike borders, rings appear <b>outside the element</b>
+and are commonly used for focus states and accessibility indicators.
+</p>
+
+<p class="text-gray-600 mb-6">
+Common ring classes include:
+</p>
+
+<pre class="bg-gray-50 border border-gray-200 text-gray-800 p-5 rounded-xl text-sm mb-6"><code>
+ring-1
+ring-2
+ring-4
+ring-8
+
+ring-blue-500
+ring-red-500
+ring-green-500
+</code></pre>
+
+
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Basic Ring Example
+</h3>
+
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+&lt;button class="ring-4 ring-blue-500 bg-white text-blue-600
+font-bold p-4 rounded-xl"&gt;
+Button with Ring
+&lt;/button&gt;
+</code></pre>
+
+<button class="ring-4 ring-blue-500 bg-white text-blue-600 font-bold p-4 rounded-xl shadow-sm mb-8">
+Button with Ring
+</button>
+
+
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Hover Ring Example
+</h3>
+
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+&lt;button class="bg-blue-600 text-white px-6 py-3 rounded-xl
+hover:ring-4 hover:ring-blue-300 transition"&gt;
+Hover Ring
+&lt;/button&gt;
+</code></pre>
+
+<button class="bg-blue-600 text-white px-6 py-3 rounded-xl hover:ring-4 hover:ring-blue-300 transition mb-8">
+Hover Ring
+</button>
+
+
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Focus Ring Example
+</h3>
+
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+&lt;input class="border p-3 rounded-lg
+focus:ring-4 focus:ring-blue-300
+focus:outline-none"&gt;
+</code></pre>
+
+<input class="border p-3 rounded-lg focus:ring-4 focus:ring-blue-300 focus:outline-none mb-10"
+placeholder="Focus ring example">
+
+</section>
+
+
+
+<!-- OUTLINE UTILITIES -->
+
+<section>
+
+<h2 class="text-3xl font-bold text-blue-900 border-b-2 border-blue-100 pb-2 mb-4">
+9. Outline Utilities
+</h2>
+
+<p class="text-gray-600 mb-6">
+Outline utilities create a line outside the border of an element.
+Outlines are commonly used for accessibility and focus indicators.
+Unlike borders, outlines do not affect the layout or size of elements.
+</p>
+
+<p class="text-gray-600 mb-6">
+Common outline utilities include:
+</p>
+
+<pre class="bg-gray-50 border border-gray-200 text-gray-800 p-5 rounded-xl text-sm mb-6"><code>
+outline
+outline-2
+outline-4
+outline-red-500
+outline-blue-500
+outline-offset-4
+</code></pre>
+
+
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Basic Outline Example
+</h3>
+
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+&lt;input class="outline outline-4 outline-red-500 p-4
+rounded-lg bg-gray-50 w-72"&gt;
+</code></pre>
+
+<input class="outline outline-4 outline-red-500 p-4 rounded-lg bg-gray-50 w-72 mb-8"
+placeholder="Outline example">
+
+
+<h3 class="text-xl font-semibold text-gray-700 mb-3">
+Outline Offset  Example
+</h3>
+<p>space between outline and element</p>
+
+<pre class="bg-gray-50 border border-gray-200 text-blue-700 p-5 rounded-xl text-sm mb-6"><code>
+&lt;button class="outline outline-2 outline-blue-500
+outline-offset-4 px-6 py-3 rounded-lg"&gt;
+Outline Offset
+&lt;/button&gt;
+</code></pre>
+
+<button class="outline outline-2 outline-blue-500 outline-offset-4 px-6 py-3 rounded-lg mb-10">
+Outline Offset
+</button>
+
+</section>
+
+</div>
+
+</div>
+
+</body>
+</html>

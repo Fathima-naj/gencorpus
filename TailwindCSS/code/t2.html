@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        :root{
+            --my-shadow: 12px 12px 20px rgba(171, 31, 31, 0.3);
+        }
+        :root{
+            --text-shadow:22px 22px 10px rgba(0,0,0,0.5);
+        }
+    </style>
+  </head>
+  <body>
+    <nav class="flex justify-between relative items-center p-4  bg-white shadow">
+
+<div class="font-bold">MySite</div>
+
+<div class="hidden md:flex gap-6">
+<a>Home</a>
+<a>About</a>
+<a>Contact</a>
+</div>
+
+<button id="btn" class="md:hidden bg-blue-600 text-white px-3 py-1 rounded">
+Menu
+</button>
+
+<div id="list" class="hidden md:hidden absolute top-full right-0 ">
+<a class="block">Home</a>
+<a class="block">About</a>
+<a class="block">Contact</a>
+</div>
+</nav>
+<br><br>
+
+<div class="flex gap-3">
+
+<div class="w-48 bg-white shadow p-6">
+<ul class="space-y-4">
+<li>Dashboard</li>
+<li>Users</li>
+<li>Settings</li>
+</ul>
+</div>
+
+<div class="flex-1 bg-gray-200 p-6">
+Main Content
+</div>
+
+</div>
+
+<div class="bg-black shadow-lg p-6 rounded-xl w-72">
+
+<img src="image.jpg" class="rounded-lg mb-4">
+
+<h3 class="font-bold text-lg">Card Title</h3>
+
+<p class="text-gray-600">
+Card description text
+</p>
+
+</div
+<script>
+ const btn=document.getElementById("btn")
+ const list=document.getElementById("list")
+
+ btn.onclick=()=>{
+  list.classList.toggle("hidden")
+ }
+</script>
+  </body>
+  
+</html>
