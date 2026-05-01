@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .static{
+            background-color: olivedrab;
+            top:10px;
+        }
+        .relative{
+            background-color: bisque;
+            position: relative;
+           bottom:10px;
+            left: 10px;
+        }
+        .parent{
+            position: relative;
+            background-color: rgb(234, 139, 139);
+            height: 300px;
+        }
+        .child{
+            position: absolute;
+            background-color: azure;
+            bottom: 0;
+            right: 0;
+
+        }
+        .fixed{
+            position: fixed;
+            background-color: aquamarine;
+        }
+        .sticky{
+            position: sticky;
+            background-color: rgb(178, 178, 221);
+            top: 0;
+            padding: 10px;
+            margin:12px
+        }
+       
+    </style>
+</head>
+<body style="height: 1500px;">
+    <div class="static">Static</div>
+    <div class="relative">Relative</div>
+    <div class="parent">Parent
+         <div class="child">Absolute</div>
+    </div>
+    <div class="fixed">Fixed</div>
+    <div class="sticky">Sticky</div>
+    
+</body>
+</html>

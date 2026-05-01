@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Introduction to CSS - Part 4</title>
+
+<style>
+
+/* ================= GLOBAL STYLES ================= */
+body{
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    line-height: 1.6;
+    background: #f4f6f8;
+}
+
+h1{
+    text-align: center;
+    color: #2c3e50;
+}
+
+h2{
+    color: #34495e;
+    margin-top: 30px;
+}
+
+.box{
+    padding: 20px;
+    margin: 10px 0;
+    background: #3498db;
+    color: white;
+    text-align: center;
+}
+
+/* ================= MEDIA QUERIES ================= */
+
+/* Default (Desktop) */
+.media-box{
+    background: green;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Tablet */
+@media (max-width: 768px){
+    .media-box{
+        background: orange;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px){
+    .media-box{
+        background: red;
+    }
+}
+/* ================= FLEXBOX ================= */
+
+.flex-container{
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.flex-item{
+    background: #e67e22;
+    color: white;
+    padding: 20px;
+    flex: 1;
+    text-align: center;
+}
+
+/* Responsive Flex */
+@media (max-width: 768px){
+    .flex-container{
+        flex-direction: column;
+    }
+}
+
+/* ================= GRID ================= */
+
+.grid-container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.grid-item{
+    background: #9b59b6;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Responsive Grid */
+@media (max-width: 768px){
+    .grid-container{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px){
+    .grid-container{
+        grid-template-columns: 1fr;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>📘 Introduction to CSS - Part 4</h1>
+
+<!-- ================= MEDIA QUERIES ================= -->
+<h2>🔹 Media Queries</h2>
+
+<p>
+Media Queries are a feature in CSS used to create <b>responsive web design</b>.  
+They allow a webpage to adapt its layout, colors, fonts, and structure based on 
+different screen sizes, resolutions, and device types such as mobile, tablet, and desktop.
+</p>
+
+<p>
+Without Media Queries, a website designed for desktop may look broken or too large on smaller screens.  
+Using Media Queries ensures a smooth user experience across all devices.
+</p>
+
+<h3>🔸 Why Media Queries are Important?</h3>
+
+<ul>
+<li> Makes websites mobile-friendly</li>
+<li> Improves user experience on different devices</li>
+<li> Helps create flexible and adaptive layouts</li>
+<li> Essential for modern web development</li>
+</ul>
+
+<h3>🔸 Syntax</h3>
+
+<pre>
+@media (condition){
+    /* CSS rules */
+}
+</pre>
+
+<p>
+The CSS inside the media query will only apply when the given condition is true.
+</p>
+
+<h3>🔸 Types of Conditions</h3>
+
+<ul>
+<li><b>max-width</b> → Applies styles when screen is smaller than given width</li>
+<li><b>min-width</b> → Applies styles when screen is larger than given width</li>
+<li><b>orientation</b> → Checks if device is portrait or landscape</li>
+<li><b>resolution</b> → For high-resolution screens</li>
+</ul>
+
+<h3>🔸 Example</h3>
+
+<p>
+In this example, the background color changes based on screen size:
+</p>
+
+<pre>
+/* Desktop */
+.media-box{
+    background: green;
+}
+
+/* Tablet */
+@media (max-width: 768px){
+    .media-box{
+        background: orange;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px){
+    .media-box{
+        background: red;
+    }
+}
+</pre>
+
+<div class="media-box">
+    Resize the screen to see color change
+</div>
+
+<ul>
+<li><b>Desktop:</b> Green (Default style)</li>
+<li><b>Tablet:</b> Orange (Screen ≤ 768px)</li>
+<li><b>Mobile:</b> Red (Screen ≤ 480px)</li>
+</ul>
+
+<h3>🔸 Common Breakpoints</h3>
+
+<p>
+Breakpoints are specific screen sizes where the layout changes.
+</p>
+
+<ul>
+<li> Mobile → max-width: 480px</li>
+<li> Large Mobile → max-width: 600px</li>
+<li> Tablet → max-width: 768px</li>
+<li> Laptop → max-width: 1024px</li>
+<li> Desktop → min-width: 1025px</li>
+</ul>
+
+<h3>🔸 Mobile First vs Desktop First</h3>
+
+<p><b>1. Mobile First Approach:</b></p>
+<ul>
+<li>Start designing for mobile devices</li>
+<li>Use <b>min-width</b> to scale up</li>
+</ul>
+
+<pre>
+/* Mobile */
+.box{
+    font-size: 14px;
+}
+
+/* Tablet & above */
+@media (min-width: 768px){
+    .box{
+        font-size: 18px;
+    }
+}
+</pre>
+
+<p><b>2. Desktop First Approach:</b></p>
+<ul>
+<li>Start designing for desktop</li>
+<li>Use <b>max-width</b> to scale down</li>
+</ul>
+
+<h3>🔸 Multiple Conditions</h3>
+
+<pre>
+@media (max-width: 768px) and (orientation: portrait){
+    body{
+        background: lightblue;
+    }
+}
+</pre>
+
+<p>
+This applies styles only when both conditions are true.
+</p>
+
+<h3>🔸 Real Use Cases</h3>
+
+<ul>
+<li>Changing layout from grid to single column</li>
+<li>Adjusting font size for readability</li>
+<li>Hiding/showing elements on mobile</li>
+<li>Making navigation responsive (hamburger menu)</li>
+</ul>
+
+<h3>🔸 Summary</h3>
+
+<ul>
+<li>Media Queries make websites responsive</li>
+<li>They apply CSS based on screen conditions</li>
+<li>Common properties: max-width, min-width</li>
+<li>Breakpoints control layout changes</li>
+<li>Two approaches: Mobile First & Desktop First</li>
+</ul>
+
+
+<!-- ================= FLEXBOX WITH MEDIA QUERIES ================= -->
+
+<h2>🔹 Flexbox with Media Queries</h2>
+
+<p>
+Flexbox is a one-dimensional layout system used to arrange items in a row or column.
+When combined with Media Queries, it becomes very powerful for building responsive layouts.
+</p>
+
+<h3>🔸 Flex Container</h3>
+
+<pre>
+display: flex;
+</pre>
+
+<h3>🔸 Example</h3>
+
+<p>
+In this example, items are displayed in a row on desktop and change to column on mobile.
+</p>
+
+<pre>
+.flex-container{
+    display: flex;
+    gap: 10px;
+}
+
+.flex-item{
+    background: #e67e22;
+    color: white;
+    padding: 20px;
+    flex: 1;
+    text-align: center;
+}
+
+/* Mobile */
+@media (max-width: 768px){
+    .flex-container{
+        flex-direction: column;
+    }
+}
+</pre>
+
+<div class="flex-container">
+    <div class="flex-item">Box 1</div>
+    <div class="flex-item">Box 2</div>
+    <div class="flex-item">Box 3</div>
+</div>
+
+<ul>
+<li>Desktop → Items in row</li>
+<li>Mobile → Items in column</li>
+</ul>
+
+<h3>🔸 Explanation</h3>
+
+<ul>
+<li><b>display: flex</b> → Activates flexbox</li>
+<li><b>flex-direction: row</b> (default) → Horizontal layout</li>
+<li><b>flex-direction: column</b> → Vertical layout</li>
+<li><b>gap</b> → Space between items</li>
+<li><b>flex: 1</b> → Equal width for all items</li>
+</ul>
+
+<h3>🔸 Real Use Cases</h3>
+
+<ul>
+<li>Responsive navigation bars</li>
+<li>Card layouts</li>
+<li>Aligning items horizontally or vertically</li>
+<li>Switching layout direction on smaller screens</li>
+</ul>
+<!-- ================= GRID ================= -->
+<h2>🔹 CSS Grid (Starting)</h2>
+
+<p>
+CSS Grid is a powerful <b>two-dimensional layout system</b> used to design web pages 
+with rows and columns. It allows developers to control both horizontal and vertical 
+alignment at the same time, making it more flexible than traditional layouts.
+</p>
+
+<p>
+It is mainly used for creating complex layouts like dashboards, galleries, and responsive designs.
+</p>
+
+<h3>🔸 Grid Container</h3>
+
+<pre>
+display: grid;
+</pre>
+
+<p>
+When you apply <b>display: grid</b> to a parent element, it becomes a 
+<b>grid container</b>, and all its child elements become <b>grid items</b>.
+</p>
+
+<h3>🔸 Grid Columns</h3>
+
+<pre>
+grid-template-columns: repeat(3, 1fr);
+</pre>
+
+<p>
+This creates <b>3 equal columns</b> using the <b>fr (fraction unit)</b>.
+</p>
+
+<ul>
+<li><b>1fr</b> → takes 1 part of available space</li>
+<li><b>repeat(3, 1fr)</b> → creates 3 equal columns</li>
+</ul>
+
+<h3>🔸 Grid Rows</h3>
+
+<pre>
+grid-template-rows: auto;
+</pre>
+
+<p>
+Defines the height of rows.  
+<b>auto</b> means rows adjust based on content size.
+</p>
+
+<h3>🔸 Gap</h3>
+
+<pre>
+gap: 10px;
+</pre>
+
+<p>
+Adds space between rows and columns.
+</p>
+
+<ul>
+<li><b>row-gap</b> → space between rows</li>
+<li><b>column-gap</b> → space between columns</li>
+</ul>
+
+<h3>🔸 Example Grid</h3>
+
+<div class="grid-container">
+    <div class="grid-item">1</div>
+    <div class="grid-item">2</div>
+    <div class="grid-item">3</div>
+    <div class="grid-item">4</div>
+    <div class="grid-item">5</div>
+    <div class="grid-item">6</div>
+</div>
+
+<p>
+This layout automatically places items into rows and columns.
+</p>
+
+<ul>
+<li>Desktop → 3 columns</li>
+<li>Tablet → 2 columns</li>
+<li>Mobile → 1 column</li>
+</ul>
+
+<h3>🔸 How Responsive Grid Works</h3>
+
+<p>
+Using Media Queries, we change the number of columns based on screen size:
+</p>
+
+<pre>
+/* Desktop */
+grid-template-columns: repeat(3, 1fr);
+
+/* Tablet */
+@media (max-width: 768px){
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* Mobile */
+@media (max-width: 480px){
+    grid-template-columns: 1fr;
+}
+</pre>
+
+<p>
+This ensures the layout adapts smoothly across devices.
+</p>
+
+
+<h3>🔸 Important Concepts</h3>
+
+<ul>
+<li>Grid = <b>2D layout</b> (rows + columns)</li>
+<li>Flexbox = <b>1D layout</b> (row OR column)</li>
+<li>fr unit divides available space</li>
+<li>Grid is best for full-page layouts</li>
+</ul>
+
+<h3>🔸 Real Use Cases</h3>
+
+<ul>
+<li>Dashboard layouts</li>
+<li>Image galleries</li>
+<li>Card-based UI designs</li>
+<li>Responsive website structures</li>
+</ul>
+
+<!-- ================= SUMMARY ================= -->
+
+<h2>📌 Summary</h2>
+
+<ul>
+<li>Media Queries → Used for responsive design</li>
+<li>Breakpoints → Control layout at different screen sizes</li>
+<li>CSS Grid → Creates row & column layout</li>
+<li>fr unit → Divides available space</li>
+<li>Responsive Grid → Changes columns based on screen</li>
+<li>Grid is a 2D layout system (rows + columns)</li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box-scroll{
+            background-image: url("https://images.pexels.com/photos/36448945/pexels-photo-36448945.jpeg");
+            height: 300px;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .display{
+            display: inline-block;
+            background-color: brown;
+            color: white;
+           opacity: 1;
+        }
+        .red{
+            background-color: red;
+            width: 150px;
+            height: 150px;
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            z-index:2
+        }
+        .blue{
+             background-color: rgb(8, 0, 255);
+            width: 150px;
+            height: 150px;
+            position: absolute;
+            top: 100px;
+            left: 100px;
+            z-index:1
+
+        }
+        .animate{
+            width: 100px;
+            height:100px;
+            background-color: brown;
+            animation: move 2s 3 alternate;
+        }
+
+        @keyframes move{
+            from {
+                transform: translateX(0);
+            }
+            to{
+                transform: translateX(200px);
+            }
+        }
+    </style>
+</head>
+<body style="height: 1500px;">
+    <p style="font-size: 24px; font-family:'Courier New', Courier, monospace; font-weight: bolder; font-variant: small-caps;">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+         Quia animi labore ipsam minus ut accusantium eos,
+          quae corporis debitis, esse dolor eum reiciendis,
+           quisquam odio dicta ea tenetur in totam quam autem ipsa
+            numquam nam illo. Enim inventore beatae eaque, praesentium 
+            natus eum aut placeat adipisci excepturi, optio autem? Temporibus tenetur accusamus autem dolores tempora ex nisi deserunt consequatur aperiam.</p>
+
+ <div class="box-scroll">Scroll background</div>
+ <p class="display">Hello world</p>
+ <div class="red">Red</div>
+ <div class="blue">blue</div>
+ <ul style="list-style-image: url('/instagram.png');">
+    <li>1</li>
+    <li>2</li>
+ </ul>
+ <br><br>
+ <ul style="list-style-position: inside;">
+    <li>Lorem, ipsum dolor sit amet consectetur <br> adipisicing elit. In, ab?</li>
+    <li>Lorem ipsum dolor sit amet consectetur <br> adipisicing elit. Amet mollitia adipisci tempora perspiciatis voluptatum cumque iure vel dolores quia sunt.</li>
+ </ul>
+ <br><br>
+ <div class="animate"></div>
+        </body>
+</html>

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Introduction to CSS - Part 5 (Complete Grid)</title>
+
+<style>
+
+/* ================= GLOBAL ================= */
+body{
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background: #f4f6f8;
+}
+
+h1{
+    text-align: center;
+    color: #2c3e50;
+}
+
+h2{
+    color: #34495e;
+    margin-top: 30px;
+}
+
+/* ================= BASIC GRID ================= */
+.grid-basic{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.grid-basic div{
+    background: #3498db;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/* ================= ALIGNMENT ================= */
+.grid-align{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    height: 200px;
+    place-items: center;
+    gap: 10px;
+}
+
+.grid-align div{
+    background: #e67e22;
+    padding: 20px;
+}
+
+/* ================= AUTO-FIT / MINMAX ================= */
+.grid-auto{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+}
+
+.grid-auto div{
+    background: #2ecc71;
+    padding: 20px;
+    color: white;
+    text-align: center;
+}
+
+/* ================= GRID AREAS ================= */
+.layout{
+    display: grid;
+    grid-template-areas:
+        "header header header"
+        "sidebar content content"
+        "footer footer footer";
+    gap: 10px;
+}
+
+.layout div{
+    padding: 20px;
+    color: white;
+    text-align: center;
+}
+
+.header{ background: #1abc9c; grid-area: header; }
+.sidebar{ background: #e67e22; grid-area: sidebar; }
+.content{ background: #3498db; grid-area: content; }
+.footer{ background: #9b59b6; grid-area: footer; }
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px){
+    .layout{
+        grid-template-areas:
+            "header"
+            "content"
+            "sidebar"
+            "footer";
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>CSS Grid </h1>
+
+<!-- ================= INTRO ================= -->
+<h2>🔹 What is CSS Grid?</h2>
+
+<p>
+CSS Grid is a <b>two-dimensional layout system</b> used to create layouts using rows and columns.
+It is powerful, flexible, and widely used in modern web design.
+</p>
+
+<!-- ================= BASIC ================= -->
+<h2>🔹 Basic Grid</h2>
+
+<pre>
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 10px;
+</pre>
+
+<div class="grid-basic">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+</div>
+
+<!-- ================= TRACKS ================= -->
+<h2>🔹 Grid Tracks (Rows & Columns)</h2>
+
+<ul>
+<li><b>grid-template-columns</b> → defines columns</li>
+<li><b>grid-template-rows</b> → defines rows</li>
+<li><b>fr</b> → fraction of available space</li>
+</ul>
+
+<!-- ================= SPANNING ================= -->
+<h2>🔹 Grid Item Spanning</h2>
+
+<pre>
+grid-column: span 2;
+grid-row: span 2;
+</pre>
+
+<p>
+Allows items to occupy multiple rows or columns.
+</p>
+<!-- ================= ALIGNMENT ================= -->
+<h2>🔹 Alignment in Grid</h2>
+
+<p>
+In CSS Grid, alignment is used to control how items are positioned 
+inside each grid cell (horizontally and vertically).
+</p>
+
+<!-- ===== justify-items ===== -->
+<h3>🔸 justify-items (Horizontal Alignment)</h3>
+
+<ul>
+  <li>Controls alignment from <b>left → right</b></li>
+  <li>Works on <b>inline axis</b></li>
+</ul>
+
+<h4>Values:</h4>
+<ul>
+  <li><b>start</b> → align left</li>
+  <li><b>end</b> → align right</li>
+  <li><b>center</b> → center horizontally</li>
+  <li><b>stretch</b> → fill full width (default)</li>
+</ul>
+
+<div class="example">
+<pre>
+.grid-align {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  justify-items: center;
+}
+</pre>
+</div>
+
+<p>👉 Items will be centered horizontally inside each cell</p>
+
+<hr>
+
+<!-- ===== align-items ===== -->
+<h3>🔸 align-items (Vertical Alignment)</h3>
+
+<ul>
+  <li>Controls alignment from <b>top → bottom</b></li>
+  <li>Works on <b>block axis</b></li>
+</ul>
+
+<h4>Values:</h4>
+<ul>
+  <li><b>start</b> → align top</li>
+  <li><b>end</b> → align bottom</li>
+  <li><b>center</b> → center vertically</li>
+  <li><b>stretch</b> → fill full height (default)</li>
+</ul>
+
+<div class="example">
+<pre>
+.grid-align {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  height: 200px;
+  align-items: center;
+}
+</pre>
+</div>
+
+<p>👉 Items will be centered vertically inside each cell</p>
+
+<hr>
+
+<!-- ===== place-items ===== -->
+<h3>🔸 place-items (Shorthand)</h3>
+
+<ul>
+  <li>Shorthand for <b>align-items + justify-items</b></li>
+</ul>
+
+<h4>Syntax:</h4>
+<div class="example">
+<pre>
+place-items: align-items justify-items;
+</pre>
+</div>
+
+<h4>Example:</h4>
+<div class="example">
+<pre>
+.grid-align {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  height: 200px;
+  place-items: center;
+}
+</pre>
+</div>
+
+<p>👉 This centers items both horizontally and vertically</p>
+
+<hr>
+
+<!-- ===== DEMO HTML ===== -->
+<h3>🔸 Demo Structure</h3>
+
+<div class="example">
+<pre>
+<div class="grid-align">
+  <div>A</div>
+  <div>B</div>
+  <div>C</div>
+</div>
+</pre>
+</div>
+
+<!-- ================= AUTO FIT ================= -->
+<h2>🔹 Auto-Fit & Minmax</h2>
+
+<pre>
+grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+</pre>
+
+<p>
+Automatically adjusts number of columns based on screen size.
+</p>
+
+<div class="grid-auto">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+</div>
+
+<!-- ================= AUTO FLOW ================= -->
+<h2>🔹 Grid Auto Flow</h2>
+
+<pre>
+grid-auto-flow: row;
+grid-auto-flow: column;
+</pre>
+
+<p>
+Controls how items are automatically placed.
+</p>
+
+<!-- ================= GRID AREAS ================= -->
+<h2>🔹 Grid Template Areas</h2>
+
+<pre>
+grid-template-areas:
+"header header header"
+"sidebar content content"
+"footer footer footer";
+</pre>
+
+<div class="layout">
+    <div class="header">Header</div>
+    <div class="sidebar">Sidebar</div>
+    <div class="content">Content</div>
+    <div class="footer">Footer</div>
+</div>
+
+<!-- ================= LAYOUT ================= -->
+<h2>🔹 Layout Use Case</h2>
+
+<ul>
+<li>Header → top section</li>
+<li>Sidebar → navigation</li>
+<li>Content → main section</li>
+<li>Footer → bottom</li>
+</ul>
+
+<!-- ================= IMPORTANT ================= -->
+<h2>🔹 Important Concepts</h2>
+
+<ul>
+<li>Grid = 2D layout (rows + columns)</li>
+<li>Flexbox = 1D layout</li>
+<li>Auto-fit makes layout responsive</li>
+<li>Minmax controls size limits</li>
+</ul>
+
+<!-- ================= SUMMARY ================= -->
+<h2>📌 Summary</h2>
+
+<ul>
+<li>display: grid activates grid</li>
+<li>grid-template-columns defines structure</li>
+<li>gap adds spacing</li>
+<li>grid-column / grid-row controls size</li>
+<li>auto-fit + minmax creates responsive grids</li>
+<li>grid-template-areas creates layouts</li>
+</ul>
+
+</body>
+</html>

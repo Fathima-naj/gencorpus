@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Introduction to CSS - Part 2</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    line-height: 1.6;
+}
+
+h1{
+    text-align: center;
+    color: #2c3e50;
+}
+
+h2{
+    color: #34495e;
+    margin-top: 25px;
+}
+
+.box{
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin: 10px 0;
+}
+
+/* Example styles */
+.example div{
+    padding: 5px;
+    margin: 5px;
+    background: #ecf0f1;
+}
+
+/* Hover Example */
+.hover-btn{
+    padding:10px;
+    background:#3498db;
+    color:white;
+    border:none;
+}
+.hover-btn:hover{
+    background:#2ecc71;
+}
+
+/* Combinator Example */
+.parent div{
+    background: lightblue;
+}
+
+.parent > div{
+    border: 2px solid red;
+}
+input[required] { border: 2px solid red; }
+#header { color: red; }
+
+input[flag="orange"] { background: orange; }
+</style>
+
+</head>
+
+<body>
+
+<h1>Introduction to CSS - Part 2</h1>
+
+<!-- BASIC SELECTORS -->
+<h2>🔹 Basic CSS Selectors</h2>
+<p>
+Selectors are used to target HTML elements and apply styles to them.
+They tell the browser <b>“which element should get the style”</b>.
+</p>
+
+<!-- UNIVERSAL SELECTOR -->
+<h2>🔹 Universal Selector (*)</h2>
+<p>
+The universal selector selects <b>all elements</b> on the page.
+It is mostly used to remove default spacing.
+</p>
+
+<div class="box">
+<code>* { margin: 0; padding: 0; }</code>
+</div>
+
+<p><b>Example:</b></p>
+<div class="example">
+    <p>This paragraph</p>
+    <h4>This heading</h4>
+    <span>This span</span>
+</div>
+
+<!-- ID SELECTOR -->
+<h2>🔹 ID Selector (#)</h2>
+<p>
+The ID selector targets a <b>unique element</b>.
+Each ID should be used only once in a page.
+</p>
+
+<div class="box">
+<code>#header { color: red; }</code>
+</div>
+
+<p><b>Example:</b></p>
+<div class="example">
+    <h3 id="header" >This is a header</h3>
+</div>
+
+<!-- CLASS SELECTOR -->
+<h2>🔹 Class Selector (.)</h2>
+<p>
+The class selector is used to target <b>multiple elements</b>.
+You can reuse the same class many times.
+</p>
+
+<div class="box">
+<code>.box { background: yellow; }</code>
+</div>
+
+<p><b>Example:</b></p>
+<div class="example">
+    <p class="box" style="background-color: yellow;">Box 1</p>
+    <p class="box" style="background-color: yellow;">Box 2</p>
+</div>
+
+<!-- TYPE SELECTOR -->
+<h2>🔹 Type / Element Selector</h2>
+<p>
+This selector targets elements using their <b>tag name</b>.
+</p>
+
+<div class="box">
+<code>p { color: blue; }</code>
+</div>
+
+<p><b>Example:</b></p>
+<div class="example">
+    <p style="color: blue;">This will be blue</p>
+    <p style="color: blue;">This will also be blue</p>
+</div>
+
+<!-- ATTRIBUTE SELECTORS -->
+<h2>🔹 Attribute Selectors</h2>
+<p>
+Attribute selectors target elements based on their <b>HTML attributes</b>.
+Very useful in forms and dynamic UI.
+</p>
+
+<!-- REQUIRED -->
+<p><b>1. Required Attribute</b></p>
+<p>Selects inputs that have the <b>required</b> attribute.</p>
+
+<div class="box">
+<code>input[required] { border: 2px solid red; }</code>
+</div>
+
+<p><b>Example:</b></p>
+<div class="example">
+    <input type="text" required placeholder="Required field">
+    <input type="text" placeholder="Normal field">
+</div>
+
+<!-- EXACT VALUE -->
+<p><b>2. Exact Value</b></p>
+<p>Selects elements where attribute value exactly matches.</p>
+
+<div class="box">
+<code>input[flag="orange"] { background: orange; }</code>
+</div>
+
+<p><b>Example:</b></p>
+<div class="example">
+    <input flag="orange" value="Orange">
+    <input flag="green" value="Green">
+</div>
+
+<!-- CONTAINS LETTERS -->
+<p><b>3. Contains Letters (*=)</b></p>
+<p>Selects elements whose attribute contains specific letters.</p>
+
+<div class="box">
+<code>input[flag*="white"] { color: red; }</code>
+</div>
+
+<p><b>Example:</b></p>
+<div class="example">
+    <input flag="whitecolor" value="Match">
+    <input flag="black" value="No Match">
+</div>
+
+<!-- CONTAINS WORD -->
+<p><b>4. Contains Word (~=)</b></p>
+<p>
+Selects elements where the attribute contains a <b>specific word</b> (space-separated).
+</p>
+
+<div class="box">
+<code>input[eligible~="violet"] { border: 2px solid violet; }</code>
+</div>
+
+<p><b>Example:</b></p>
+<div class="example">
+    <input eligible="red violet blue" value="Match">
+    <input eligible="redblue" value="No Match">
+</div>
+
+<!-- STARTS WITH -->
+<p><b>5. Starts With (^=)</b></p>
+<p>Selects elements whose attribute value <b>starts with</b> given text.</p>
+
+<div class="box">
+<code>input[colors^="red"] { background: pink; }</code>
+</div>
+
+<p><b>Example:</b></p>
+<div class="example">
+    <input colors="redapple" value="Match">
+    <input colors="greenred" value="No Match">
+</div>
+
+<!-- ENDS WITH -->
+<p><b>6. Ends With ($=)</b></p>
+<p>Selects elements whose attribute value <b>ends with</b> given text.</p>
+
+<div class="box">
+<code>input[colors$="green"] { background: lightgreen; }</code>
+</div>
+
+<p><b>Example:</b></p>
+<div class="example">
+    <input colors="lightgreen" value="Match">
+    <input colors="greenishcolor" value="No Match">
+</div>
+
+<!-- HOVER -->
+<h2>🔹 Hover Selector (:hover)</h2>
+<p>Applies style when user moves mouse over element.</p>
+
+<button class="hover-btn">Hover Me</button>
+
+<div class="box">
+<code>
+button:hover {
+  background: green;
+}
+</code>
+</div>
+
+<!-- COMBINATORS -->
+<h2>🔹 Combinator Selectors</h2>
+
+<p>
+Combinator selectors are used to define the <b>relationship between elements</b>.
+They help you target elements based on their position inside other elements.
+</p>
+
+<!-- DESCENDANT -->
+<p><b>1. Descendant Selector (space)</b></p>
+
+<p>
+This selector targets <b>all matching elements inside a parent</b>, no matter how deeply nested.
+</p>
+
+<div class="box">
+<code>.div1 div { color: blue; }</code>
+</div>
+
+<p><b>Meaning:</b></p>
+<p>
+👉 Select <b>all &lt;div&gt;</b> elements that are inside <b>.div1</b> (child, grandchild, etc.)
+</p>
+
+<p><b>Working Example:</b></p>
+
+<style>
+.div1 div {
+    color: blue;
+}
+</style>
+
+<div class="div1 example">
+    <div>Direct Child (Blue)</div>
+
+    <section>
+        <div>Nested Child (Also Blue)</div>
+    </section>
+</div>
+
+<hr>
+
+<!-- CHILD -->
+<p><b>2. Child Selector (>)</b></p>
+
+<p>
+This selector targets only <b>direct children</b>, not nested elements.
+</p>
+
+<div class="box">
+<code>.div1 > div { color: red; }</code>
+</div>
+
+<p><b>Meaning:</b></p>
+<p>
+👉 Select only the <b>immediate &lt;div&gt;</b> children of <b>.div1</b>
+</p>
+
+<p><b>Working Example:</b></p>
+
+<style>
+.div2 > div {
+    color: red;
+}
+</style>
+
+<div class="div2 example">
+    <div>Direct Child (Red)</div>
+
+    <section>
+        <div>Nested Child (NOT affected)</div>
+    </section>
+</div>
+
+<hr>
+
+<!-- COMBINED COMPARISON -->
+<h3>🔸 Difference Between Descendant and Child</h3>
+
+<table border="1" cellpadding="8">
+<tr>
+    <th>Selector</th>
+    <th>What it selects</th>
+</tr>
+
+<tr>
+    <td>.div1 div</td>
+    <td>All divs inside (any level)</td>
+</tr>
+
+<tr>
+    <td>.div1 > div</td>
+    <td>Only direct children</td>
+</tr>
+</table>
+
+<p>
+👉 <b>Easy Trick:</b><br>
+- Space = “any level inside”<br>
+- > = “only direct child”
+</p>
+<!-- SPECIFICITY -->
+<h2>🔹 CSS Specificity</h2>
+
+<p>
+Specificity decides which CSS rule is applied when multiple rules target the same element.
+</p>
+
+<ul>
+<li><b>Inline Style</b> → Highest priority</li>
+<li><b>ID Selector (#)</b> → High priority</li>
+<li><b>Class / Attribute / Pseudo-class</b> → Medium</li>
+<li><b>Element Selector</b> → Low</li>
+</ul>
+
+<div class="box">
+<code>
+#id { color: red; }        /* Higher priority */
+.class { color: blue; }    /* Lower than ID */
+p { color: green; }        /* Lowest */
+</code>
+</div>
+
+<p>
+👉 If multiple rules apply, the one with higher specificity wins.
+</p>
+
+</body>
+</html>

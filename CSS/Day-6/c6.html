@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CSS Properties Notes</title>
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  padding: 20px;
+}
+
+h1{
+  color: #333;
+}
+
+.section{
+  margin-bottom: 40px;
+}
+
+.example{
+  background: #f4f4f4;
+  padding: 10px;
+  border-left: 4px solid #333;
+  margin-top: 10px;
+}
+
+.output{
+  margin-top: 10px;
+  padding: 10px;
+  background: #eaeaea;
+}
+
+.box{
+  border: 3px solid red;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.shadow-box{
+  box-shadow: 2px 2px 10px gray;
+  padding: 10px;
+}
+
+.text-shadow{
+  text-shadow: 2px 2px 5px gray;
+}
+
+.overflow-box{
+  width: 150px;
+  height: 50px;
+  overflow: scroll;
+  border: 1px solid black;
+}
+
+.ellipsis{
+  width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border: 1px solid black;
+}
+
+.transition-btn{
+  background: blue;
+  color: white;
+  padding: 10px;
+  transition: 0.5s;
+}
+
+.transition-btn:hover{
+  background: red;
+}
+
+.transform-box{
+  width: 100px;
+  height: 100px;
+  background: orange;
+  transition: 0.5s;
+}
+
+.transform-box:hover{
+  transform: scale(1.2);
+}
+</style>
+
+</head>
+
+<body>
+
+<h1 style="text-align: center;">CSS Properties - 6</h1>
+
+<div class="section">
+<h2>Border Properties</h2>
+<p>Used to style borders of elements.</p>
+
+<div class="example">
+border-width, border-style, border-color, border-radius
+</div>
+
+<div class="output">
+<div class="box">Border Example</div>
+</div>
+</div>
+<div class="section">
+<h2>Width & Height</h2>
+
+<p>
+These properties are used to control the size of an element.
+</p>
+
+<ul>
+  <li><b>width</b> → Sets the horizontal size of an element.</li>
+  <li><b>height</b> → Sets the vertical size of an element.</li>
+  <li><b>max-width</b> → Defines the maximum width. The element will not grow beyond this.</li>
+  <li><b>max-height</b> → Defines the maximum height. The element will not grow beyond this.</li>
+</ul>
+
+<div class="example">
+width: 200px;<br>
+height: 100px;<br>
+max-width: 100%;<br>
+max-height: 120px;
+</div>
+<div class="section">
+<h2>Difference: Width vs Max-Width & Height vs Max-Height</h2>
+
+<p>
+These properties control the size of elements, but they behave differently.
+</p>
+
+<h3>🔹 Width vs Max-Width</h3>
+
+<ul>
+  <li><b>width</b> → Sets a fixed width. The element will always try to stay this size.</li>
+  <li><b>max-width</b> → Sets the maximum width. The element can shrink but will not exceed this value.</li>
+</ul>
+
+<div class="example">
+width: 300px;<br>
+max-width: 300px;
+</div>
+
+<div class="output">
+<div style="width:300px; background:lightcoral; margin-bottom:10px;">
+Width: Fixed (may overflow on small screens)
+</div>
+
+<div style="max-width:300px; background:lightgreen;">
+Max-Width: Flexible (adjusts to screen size)
+</div>
+</div>
+
+<hr>
+
+<h3>🔹 Height vs Max-Height</h3>
+
+<ul>
+  <li><b>height</b> → Sets a fixed height. The element will always stay this height.</li>
+  <li><b>max-height</b> → Sets the maximum height. The element can grow but not beyond this limit.</li>
+</ul>
+
+<div class="example">
+height: 100px;<br>
+max-height: 100px;<br>
+overflow: auto;
+</div>
+
+<div class="output">
+<div style="height:100px; background:lightblue; margin-bottom:10px;">
+Height: Always 100px<br>
+Even if content is small or large
+</div>
+
+<div style="max-height:100px; overflow:auto; background:lightyellow;">
+Max-Height: Grows until 100px<br>
+Then scroll appears if content is more<br>
+More content... More content... More content...
+</div>
+</div>
+
+<hr>
+
+<h3> Summary</h3>
+
+<ul>
+  <li><b>width / height</b> → Fixed size (strict)</li>
+  <li><b>max-width / max-height</b> → Flexible with limit (responsive)</li>
+</ul>
+
+</div>
+
+
+</div>
+
+<div class="section">
+<h2>Object Fit</h2>
+
+<p>
+The <b>object-fit</b> property controls how an image or video fits inside its container.
+</p>
+
+<ul>
+  <li><b>fill</b> → Default. Stretches image to fill the container (may distort).</li>
+  <li><b>contain</b> → Fits the entire image inside the box (no crop, may leave empty space).</li>
+  <li><b>cover</b> → Fills the box while maintaining aspect ratio (image may be cropped).</li>
+  <li><b>none</b> → Keeps original size (may overflow).</li>
+  <li><b>scale-down</b> → Chooses smaller of <i>none</i> or <i>contain</i>.</li>
+</ul>
+
+<div class="example">
+object-fit: fill;<br>
+object-fit: contain;<br>
+object-fit: cover;<br>
+object-fit: none;<br>
+object-fit: scale-down;
+</div>
+
+<div class="output">
+
+<p><b>fill (default)</b></p>
+<img src="/img.webp" style="width:150px;height:200px;object-fit:fill; border:1px solid black;">
+
+<p><b>contain</b></p>
+<img src="https://images.pexels.com/photos/13808699/pexels-photo-13808699.jpeg" style="width:200px;height:150px;object-fit:contain; border:1px solid black;">
+
+<p><b>cover</b></p>
+<img src="https://images.pexels.com/photos/13808699/pexels-photo-13808699.jpeg" style="width:150px;height:150px;object-fit:cover; border:1px solid black;">
+
+<p><b>none</b></p>
+<img src="https://images.pexels.com/photos/13808699/pexels-photo-13808699.jpeg" style="width:200px;height:200px;object-fit:none; border:1px solid black;">
+
+<p><b>scale-down</b></p>
+<img src="https://images.pexels.com/photos/13808699/pexels-photo-13808699.jpeg" style="width:150px;height:150px;object-fit:scale-down; border:1px solid black;">
+
+</div>
+
+</div>
+<div class="section">
+<h2>Box Shadow</h2>
+
+<p>
+The <b>box-shadow</b> property adds shadow effects around an element.
+</p>
+
+<h3>🔹 Syntax</h3>
+<div class="example">
+box-shadow: h-offset v-offset blur spread color;
+</div>
+
+<ul>
+  <li><b>h-offset</b> → Horizontal shadow (left/right)</li>
+  <li><b>v-offset</b> → Vertical shadow (top/bottom)</li>
+  <li><b>blur</b> → Blur radius (higher = softer shadow)</li>
+  <li><b>spread</b> → Expands or shrinks shadow size</li>
+  <li><b>color</b> → Shadow color</li>
+</ul>
+
+<h3>🔹 Basic Example</h3>
+<div class="example">
+box-shadow: 2px 2px 10px gray;
+</div>
+
+<div class="output">
+<div style="box-shadow:2px 2px 10px gray; padding:10px;">
+Basic Shadow
+</div>
+</div>
+
+<h3>🔹 With Spread</h3>
+<div class="example">
+box-shadow: 2px 2px 10px 5px gray;
+</div>
+
+<div class="output">
+<div style="box-shadow:2px 2px 10px 5px gray; padding:10px;">
+Shadow with Spread
+</div>
+</div>
+
+<h3>🔹 Multiple Shadows</h3>
+<div class="example">
+box-shadow: 2px 2px 5px red, -2px -2px 5px blue;
+</div>
+
+<div class="output">
+<div style="box-shadow:2px 2px 5px red, -2px -2px 5px blue; padding:10px;">
+Multiple Shadows
+</div>
+</div>
+
+<h3>🔹 Inset Shadow (Inside)</h3>
+<div class="example">
+box-shadow: inset 2px 2px 10px gray;
+</div>
+
+<div class="output">
+<div style="box-shadow:inset 2px 2px 10px gray; padding:10px;">
+Inset Shadow
+</div>
+</div>
+
+</div>
+
+<div class="section">
+<h2>Text Shadow</h2>
+
+<p>
+The <b>text-shadow</b> property adds shadow to text.
+</p>
+
+<h3>🔹 Syntax</h3>
+<div class="example">
+text-shadow: h-offset v-offset blur color;
+</div>
+
+<ul>
+  <li><b>h-offset</b> → Horizontal shadow</li>
+  <li><b>v-offset</b> → Vertical shadow</li>
+  <li><b>blur</b> → Blur effect</li>
+  <li><b>color</b> → Shadow color</li>
+</ul>
+
+<h3>🔹 Basic Example</h3>
+<div class="example">
+text-shadow: 2px 2px 5px gray;
+</div>
+
+<div class="output">
+<p style="text-shadow:2px 2px 5px gray;">
+Shadow Text
+</p>
+</div>
+
+<h3>🔹 Glow Effect</h3>
+<div class="example">
+text-shadow: 0 0 10px red;
+</div>
+
+<div class="output">
+<p style="text-shadow:0 0 10px red;">
+Glowing Text
+</p>
+</div>
+
+<h3>🔹 Multiple Shadows</h3>
+<div class="example">
+text-shadow: 2px 2px 2px red, -2px -2px 2px blue;
+</div>
+
+<div class="output">
+<p style="text-shadow:2px 2px 2px red, -2px -2px 2px blue;">
+Multi Shadow Text
+</p>
+</div>
+
+</div>
+
+<div class="section">
+<h2>Overflow</h2>
+
+<p>
+The <b>overflow</b> property controls what happens when content is too big to fit inside a container.
+</p>
+
+<h3>🔹 Values</h3>
+<ul>
+  <li><b>visible</b> → Default. Content overflows outside the box.</li>
+  <li><b>hidden</b> → Extra content is clipped (not visible).</li>
+  <li><b>scroll</b> → Scrollbars always appear.</li>
+  <li><b>auto</b> → Scrollbars appear only when needed.</li>
+</ul>
+
+<div class="example">
+overflow: visible | hidden | scroll | auto;
+</div>
+
+<!-- VISIBLE -->
+
+<h3>🔹 overflow: visible (default)</h3>
+<div class="output">
+<div style="width:150px;height:50px;border:1px solid black;">
+This is long content that overflows outside the box.
+</div>
+</div>
+
+<!-- HIDDEN -->
+
+<h3>🔹 overflow: hidden</h3>
+<div class="output">
+<div style="width:150px;height:50px;border:1px solid black; overflow:hidden;">
+This is long content that gets cut off and not visible.
+</div>
+</div>
+
+<!-- SCROLL -->
+
+<h3>🔹 overflow: scroll</h3>
+<div class="output">
+<div style="width:150px;height:50px;border:1px solid black; overflow:scroll;">
+This is long content that shows scrollbars always.
+</div>
+</div>
+
+<!-- AUTO -->
+
+<h3>🔹 overflow: auto</h3>
+<div class="output">
+<div style="width:150px;height:50px;border:1px solid black; overflow:auto;">
+This is long content. Scroll appears only when needed.
+</div>
+</div>
+
+<hr>
+
+<h3>🔹 overflow-x and overflow-y</h3>
+
+<p>
+Used to control horizontal and vertical overflow separately.
+</p>
+
+<div class="example">
+overflow-x: hidden;<br>
+overflow-y: scroll;
+</div>
+
+<div class="output">
+<div style="width:150px;height:50px;border:1px solid black; overflow-x:hidden; overflow-y:scroll;">
+This is a very long content that will only scroll vertically and not horizontally.
+More text... More text... More text...
+</div>
+</div>
+
+<hr>
+
+<h3> Summary</h3>
+<ul>
+  <li><b>visible</b> → overflow outside</li>
+  <li><b>hidden</b> → cut content</li>
+  <li><b>scroll</b> → always scrollbars</li>
+  <li><b>auto</b> → smart scroll</li>
+</ul>
+
+</div>
+<div class="section">
+<h2>Text Align & Indent</h2>
+
+<p>
+Used to control alignment and spacing of text inside elements.
+</p>
+
+<h3>🔹 text-align</h3>
+<ul>
+  <li><b>left</b> → Align text to left (default)</li>
+  <li><b>right</b> → Align text to right</li>
+  <li><b>center</b> → Center text</li>
+</ul>
+
+<div class="example">
+text-align: left | right | center | justify;
+</div>
+
+<div class="output">
+<p style="text-align:left;">Left aligned</p>
+<p style="text-align:center;">Center aligned</p>
+<p style="text-align:right;">Right aligned</p>
+
+</div>
+
+<h3>🔹 text-indent</h3>
+<ul>
+  <li>Adds space at the beginning of first line</li>
+</ul>
+
+<div class="example">
+text-indent: 50px;
+</div>
+
+<div class="output">
+<p style="text-indent:50px;">
+This paragraph has indentation at the beginning.
+</p>
+</div>
+
+</div>
+
+<div class="section">
+<h2>Text Decoration</h2>
+
+<p>
+Used to add decoration lines to text.
+</p>
+
+<h3>🔹 text-decoration-line</h3>
+<ul>
+  <li><b>none</b></li>
+  <li><b>underline</b></li>
+  <li><b>overline</b></li>
+  <li><b>line-through</b></li>
+</ul>
+
+<h3>🔹 text-decoration-style</h3>
+<ul>
+  <li><b>solid</b></li>
+  <li><b>dotted</b></li>
+  <li><b>dashed</b></li>
+  <li><b>double</b></li>
+  <li><b>wavy</b></li>
+</ul>
+
+<h3>🔹 text-decoration-color</h3>
+<ul>
+  <li>Sets color of decoration</li>
+</ul>
+
+<div class="example">
+text-decoration-line: underline;<br>
+text-decoration-style: wavy;<br>
+text-decoration-color: red;
+</div>
+
+<div class="output">
+<p style="text-decoration: underline wavy red;">
+Decorated Text
+</p>
+<p style="text-decoration: line-through;">
+Strikethrough Text
+</p>
+</div>
+
+</div>
+
+<div class="section">
+<h2>Spacing</h2>
+
+<p>
+Controls space between letters and words.
+</p>
+
+<h3>🔹 letter-spacing</h3>
+<ul>
+  <li>Controls space between characters</li>
+</ul>
+
+<h3>🔹 word-spacing</h3>
+<ul>
+  <li>Controls space between words</li>
+</ul>
+
+<div class="example">
+letter-spacing: 3px;<br>
+word-spacing: 10px;
+</div>
+
+<div class="output">
+<p style="letter-spacing:3px;">
+Letter spacing example
+</p>
+
+<p style="word-spacing:10px;">
+Word spacing example text
+</p>
+</div>
+
+</div>
+
+<div class="section">
+<h2>Text Overflow</h2>
+
+<p>
+Controls how overflowed text is displayed.
+</p>
+
+<h3>🔹 Values</h3>
+<ul>
+  <li><b>clip</b> → Cuts text</li>
+  <li><b>ellipsis</b> → Adds ...</li>
+</ul>
+
+<p><b>⚠ Important:</b> Requires:</p>
+<ul>
+  <li>overflow: hidden;</li>
+  <li>white-space: nowrap;</li>
+</ul>
+
+<div class="example">
+overflow: hidden;<br>
+white-space: nowrap;<br>
+text-overflow: ellipsis;
+</div>
+
+<div class="output">
+<div style="width:150px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; border:1px solid black;">
+This is a very long text example
+</div>
+</div>
+
+</div>
+
+<div class="section">
+<h2>White Space</h2>
+
+<p>
+Controls how whitespace and line breaks are handled.
+</p>
+
+<h3>🔹 Values</h3>
+<ul>
+  <li><b>normal</b> → Default. Text wraps normally</li>
+  <li><b>nowrap</b> → No line break</li>
+  <li><b>pre</b> → Preserves spaces & line breaks</li>
+  <li><b>pre-line</b> → Preserves line breaks only</li>
+  <li><b>pre-wrap</b> → Preserves spaces + wraps text</li>
+</ul>
+
+<div class="example">
+white-space: normal | nowrap | pre | pre-line | pre-wrap;
+</div>
+
+<div class="output">
+
+<p><b>nowrap</b></p>
+<p style="white-space:nowrap;">
+This text will not break into next line
+</p>
+
+<p><b>pre</b></p>
+<p style="white-space:pre;">
+Line 1
+Line 2     with spaces
+</p>
+
+<p><b>pre-wrap</b></p>
+<p style="white-space:pre-wrap;">
+Line 1
+Line 2     with spaces and wrapping
+</p>
+
+</div>
+
+</div>
+<div class="section">
+<h2>Transition</h2>
+
+<p>
+The <b>transition</b> property is used to create smooth animation when a CSS property changes.
+</p>
+
+<p>
+Without transition, changes happen instantly. With transition, they happen gradually.
+</p>
+
+<hr>
+
+<h3>🔹 Syntax</h3>
+<div class="example">
+transition: property duration timing-function delay;
+</div>
+
+<ul>
+  <li><b>property</b> → Which CSS property to animate (e.g., background, width, transform)</li>
+  <li><b>duration</b> → How long the animation takes (e.g., 0.5s, 1s)</li>
+  <li><b>timing-function</b> → Speed style of animation</li>
+  <li><b>delay</b> → Wait time before animation starts</li>
+</ul>
+
+<hr>
+
+<h3>🔹 1. Basic Transition</h3>
+
+<p>
+This creates a smooth color change on hover.
+</p>
+
+<div class="example">
+button {<br>
+&nbsp;&nbsp;background: blue;<br>
+&nbsp;&nbsp;transition:background-color 0.5s ease;<br>
+}<br><br>
+
+button:hover {<br>
+  background: red;<br>
+}
+
+</div>
+
+<div class="output">
+<button style="
+background:blue;
+color:white;
+padding:10px;
+border:2px solid black;
+transition:all 0.5s ease;
+"
+onmouseover="this.style.background='red'"
+onmouseout="this.style.background='blue'">
+Hover Me
+</button>
+</div>
+
+<p>
+👉 Here, the background changes smoothly in 0.5 seconds.
+</p>
+
+<hr>
+
+<h3>🔹 2. Transition Specific Property</h3>
+
+<p>
+Instead of applying transition to all properties, you can target only one.
+</p>
+
+<div class="example">
+transition: background 0.5s;
+</div>
+
+<div class="output">
+<button style="
+padding:10px;
+background:green;
+color:white;
+transition:background 0.5s;
+"
+onmouseover="this.style.background='black'"
+onmouseout="this.style.background='green'">
+Hover Me
+</button>
+</div>
+
+<p>
+👉 Only the background will animate, other properties change instantly.
+</p>
+
+<hr>
+
+<h3>🔹 3. Multiple Properties</h3>
+
+<p>
+You can animate more than one property at the same time.
+</p>
+
+<div class="example">
+transition: all 0.5s;
+</div>
+
+<div class="output">
+<button style="
+padding:10px;
+background:orange;
+width: 100px;
+transition:all 0.5s;
+"
+onmouseover="this.style.background='purple'; this.style.width='150px'"
+onmouseout="this.style.background='orange'; this.style.width='100px'">
+Hover Me
+</button>
+</div>
+
+<p>
+👉 Color changes + button grows smoothly.
+</p>
+
+<hr>
+<h2>Transition Timing Functions</h2>
+
+<p>
+The <b>timing-function</b> defines the speed curve of the transition.
+</p>
+
+<ul>
+  <li><b>ease</b> → slow start, fast middle, slow end (default)</li>
+  <li><b>linear</b> → constant speed</li>
+  <li><b>ease-in</b> → slow start</li>
+  <li><b>ease-out</b> → slow end</li>
+  <li><b>ease-in-out</b> → slow start and end</li>
+</ul>
+
+<h3>🔹 Syntax</h3>
+<div class="example">
+transition: property duration timing-function;
+</div>
+
+<h3>🔹 Examples</h3>
+
+<div style="display:flex; flex-direction:column; gap:10px;">
+
+  <!-- ease -->
+  <div style="
+    width:100px; height:50px; background:red;
+    transition: width 1s ease;"
+    onmouseover="this.style.width='220px'"
+    onmouseout="this.style.width='100px'">
+    ease
+  </div>
+
+  <!-- linear -->
+  <div style="
+    width:100px; height:50px; background:blue;
+    transition: width 1s linear;"
+    onmouseover="this.style.width='220px'"
+    onmouseout="this.style.width='100px'">
+    linear
+  </div>
+
+  <!-- ease-in -->
+  <div style="
+    width:100px; height:50px; background:green;
+    transition: width 1s ease-in;"
+    onmouseover="this.style.width='220px'"
+    onmouseout="this.style.width='100px'">
+    ease-in
+  </div>
+
+  <!-- ease-out -->
+  <div style="
+    width:100px; height:50px; background:purple;
+    transition: width 1s ease-out;"
+    onmouseover="this.style.width='220px'"
+    onmouseout="this.style.width='100px'">
+    ease-out
+  </div>
+
+  <!-- ease-in-out -->
+  <div style="
+    width:100px; height:50px; background:orange;
+    transition: width 1s ease-in-out;"
+    onmouseover="this.style.width='220px'"
+    onmouseout="this.style.width='100px'">
+    ease-in-out
+  </div>
+
+</div>
+<p>
+👉 Movement starts slow → speeds up → slows down again.
+</p>
+
+<hr>
+
+<h3>🔹 5. Delay</h3>
+
+<p>
+Adds waiting time before animation starts.
+</p>
+
+<div class="example">
+transition: transform 1s;<br>
+transition-delay: 1s;
+</div>
+
+<div class="output">
+<div style="
+width:100px;
+height:50px;
+background:purple;
+color:white;
+transition:transform 1s;
+transition-delay:1s;
+"
+onmouseover="this.style.transform='scale(1.2)'"
+onmouseout="this.style.transform='scale(1)'">
+Delay
+</div>
+</div>
+
+<p>
+👉 Animation starts after 1 second delay.
+</p>
+
+<hr>
+
+<h3>🔹 6. Important Notes</h3>
+
+<ul>
+  <li>Transition works only when a property <b>changes</b> (like hover, focus, etc.)</li>
+  <li>Not all properties are animatable (e.g., display cannot be animated)</li>
+  <li>Most commonly used with <b>hover effects</b></li>
+</ul>
+
+<hr>
+
+<h3> Summary</h3>
+
+<ul>
+  <li><b>transition</b> → controls animation</li>
+  <li><b>duration</b> → how long</li>
+  <li><b>timing</b> → speed style</li>
+  <li><b>delay</b> → when to start</li>
+</ul>
+
+</div>
+
+<div class="section">
+<h2>Transform</h2>
+
+<p>
+The <b>transform</b> property is used to move, rotate, scale, or skew elements.
+</p>
+
+<h3>🔹 Values</h3>
+
+<ul>
+  <li><b>scale()</b> → Resize element</li>
+  <li><b>translate()</b> → Move element</li>
+  <li><b>rotate()</b> → Rotate element</li>
+  <li><b>skew()</b> → Skew element</li>
+</ul>
+
+<h3>🔹 Scale</h3>
+<div class="example">
+transform: scale(1.2);
+</div>
+
+<div class="output">
+<div style="width:100px;height:100px;background:lightblue;transition:0.5s;"
+onmouseover="this.style.transform='scale(1.2)'"
+onmouseout="this.style.transform=''">
+</div>
+</div>
+
+<h3>🔹 Translate</h3>
+<div class="example">
+transform: translate(50px, 20px);
+</div>
+
+<div class="output">
+<div style="width:100px;height:50px;background:orange;transition:0.5s;"
+onmouseover="this.style.transform='translate(50px,20px)'"
+onmouseout="this.style.transform=''">
+</div>
+</div>
+
+<h3>🔹 Rotate</h3>
+<div class="example">
+transform: rotate(45deg);
+</div>
+
+<div class="output">
+<div style="width:100px;height:100px;background:green;transition:0.5s;"
+onmouseover="this.style.transform='rotate(-45deg)'"
+onmouseout="this.style.transform=''">
+</div>
+</div>
+
+<h3>🔹 Skew</h3>
+<div class="example">
+transform: skew(20deg);
+</div>
+
+<div class="output">
+<div style="width:100px;height:100px;background:red;transition:0.5s;"
+onmouseover="this.style.transform='skew(20deg)'"
+onmouseout="this.style.transform=''">
+</div>
+</div>
+
+<h3>🔹 Multiple Transform</h3>
+<div class="example">
+transform: scale(1.2) rotate(45deg);
+</div>
+
+<div class="output">
+<div style="width:100px;height:100px;background:gray;transition:0.5s;"
+onmouseover="this.style.transform='scale(1.2) rotate(45deg)'"
+onmouseout="this.style.transform=''">
+</div>
+</div>
+
+<h3>🔹 Transform with Translate + Transition</h3>
+
+<div class="example">
+<pre>
+  .box {
+  width: 150px;
+  height: 150px;
+  background-color: blue;
+
+  /* Apply transition */
+  transition: background-color 0.5s ease, transform 0.5s ease;
+}
+
+.box:hover {
+  background-color: red;
+
+  /* Move element to right */
+  transform: translateX(100px);
+}
+</pre>
+</div>
+
+<div class="output">
+<div style="
+  width:100px;
+  height:100px;
+  background:blue;
+  transition:0.5s;"
+  
+  onmouseover="this.style.transform='translateX(100px)'; this.style.backgroundColor='red';"
+  
+  onmouseout="this.style.transform='translateX(0)'; this.style.backgroundColor='blue';">
+</div>
+</div>
+</div>
+
+</body>
+</html>

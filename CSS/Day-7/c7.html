@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CSS Notes</title>
+
+<style>
+body{
+  font-family: Arial;
+  line-height: 1.6;
+  padding: 20px;
+}
+
+h2{
+  padding:10px;
+
+}
+
+.example{
+  background:#f1f1f1;
+  padding:10px;
+  margin:10px 0;
+  border-left:5px solid #04AA6D;
+}
+
+.output{
+  margin:10px 0;
+  padding:10px;
+  border:1px solid #ccc;
+}
+</style>
+
+</head>
+<body>
+
+<h1 style="text-align: center;">CSS Properties - 7</h1>
+
+<!-- line-height -->
+<h2>line-height</h2>
+<p>Controls the space between lines of text.</p>
+<div class="example">line-height: 2;</div>
+<div class="output" style="line-height:2; border:1px solid;">
+This is line 1<br>This is line 2<br>This is line 3
+</div>
+
+<!-- font -->
+<h2>font</h2>
+<p>Shorthand property for font-style, font-weight, font-size, and font-family.</p>
+<div class="example">font: italic bold 20px Arial;</div>
+<div class="output" style="font: italic bold 20px Arial;">
+Sample Text
+</div>
+
+<!-- font-size -->
+<h2>font-size</h2>
+<p>Defines the size of text.</p>
+<div class="example">font-size: 24px;</div>
+<div class="output" style="font-size:24px;">Large Text</div>
+
+<!-- font-family -->
+<h2>font-family</h2>
+<p>Specifies the font style.</p>
+<div class="example">font-family: 'Courier New';</div>
+<div class="output" style="font-family:'Courier New';">Font Example</div>
+
+<!-- clamp -->
+<h2>font-size: clamp()</h2>
+<p>Creates responsive text that adjusts between min and max values.</p>
+<div class="example">font-size: clamp(16px, 5vw, 40px);</div>
+<div class="output" style="font-size:clamp(16px,5vw,40px);">
+Resize screen to see effect
+</div>
+
+<!-- font-weight -->
+<h2>font-weight</h2>
+<p>Controls thickness of text.</p>
+<div class="example">font-weight: bold;</div>
+<div class="output" style="font-weight:bold;">Bold Text</div>
+
+<!-- font-variant -->
+<h2>font-variant</h2>
+<p>Displays text in small capital letters.</p>
+<div class="example">font-variant: small-caps;</div>
+<div class="output" style="font-variant:small-caps;">small caps example</div>
+
+
+<!-- background-attachment -->
+<h2>background-attachment</h2>
+
+<p>Controls whether the background image scrolls with the content or stays fixed.</p>
+
+<!-- 🔹 Scroll -->
+<h3>🔹 scroll (default)</h3>
+<div class="example">
+background-attachment: scroll;
+</div>
+
+<div class="output" style="
+  height:100px;
+  overflow:auto;
+  background:url('https://picsum.photos/300') no-repeat;
+  background-attachment:scroll;">
+  Scroll inside this box <br><br><br><br><br><br><br><br>
+</div>
+
+<p>
+👉 Background moves along with the content when scrolling.
+</p>
+
+<!-- 🔹 Fixed -->
+<h3>🔹 fixed</h3>
+<div class="example">
+background-attachment: fixed;
+</div>
+
+<div class="output" style="
+  height:100px;
+  overflow:auto;
+  background:url('https://picsum.photos/300') no-repeat;
+  background-attachment:fixed;">
+  Scroll inside this box <br><br><br><br><br><br><br><br>
+</div>
+
+<p>
+👉 Background stays fixed while the content scrolls.
+</p>>
+
+<!-- display -->
+<h2>display</h2>
+<p>Controls layout behavior of elements.</p>
+
+<div class="example">
+display: block;<br>
+display: inline;<br>
+display: inline-block;
+</div>
+
+<div class="output">
+<span style="display:block; background:lightblue;">Block</span>
+<span style="display:inline; background:lightgreen;">Inline</span>
+<span style="display:inline-block; width:100px; background:orange;">Inline-block</span>
+</div>
+
+<!-- visibility -->
+<h2>visibility</h2>
+<p>Hides element but keeps its space.</p>
+<div class="example">visibility: hidden;</div>
+<div class="output">
+<span style="background:red;">Visible</span>
+<span style="visibility:hidden; background:blue;">Hidden</span>
+<span style="background:red;">Visible</span>
+</div>
+
+<!-- opacity -->
+<h2>opacity</h2>
+<p>Controls transparency (0 = invisible, 1 = fully visible).</p>
+<div class="example">opacity: 0.3;</div>
+<div class="output">
+<div style="opacity:0.3; background:red;">Transparent</div>
+</div>
+
+<!-- z-index -->
+<h2>z-index</h2>
+<p>Controls stacking order (works with position).</p>
+<div class="example">z-index: 2;</div>
+<div class="output" style="position:relative; height:80px;">
+<div style="position:absolute; left:10px; top:10px; background:red; z-index:1;">Box 1</div>
+<div style="position:absolute; left:20px; top:20px; background:blue; z-index:2;">Box 2</div>
+</div>
+
+<!-- list-style -->
+<h2>list-style-type</h2>
+<p>Changes bullet style.</p>
+<div class="example">list-style-type: square;</div>
+<ul style="list-style-type:square;">
+<li>Item</li><li>Item</li>
+</ul>
+
+<h2>list-style-image</h2>
+<p>Uses image as bullet.</p>
+<div class="example">list-style-image: url('star.png');</div>
+<ul style="list-style: none; padding-left: 20px;">
+  <li style="
+    background-image: url('/img.webp');
+    background-size: 12px 12px;
+    background-repeat: no-repeat;
+    background-position: left center;
+    padding-left: 20px;
+  ">
+    Item
+  </li>
+
+  <li style="
+    background-image: url('/img.webp');
+    background-size: 12px 12px;
+    background-repeat: no-repeat;
+    background-position: left center;
+    padding-left: 20px;
+  ">
+    Item
+  </li>
+</ul>
+
+<h2>list-style-position</h2>
+<p>Controls bullet position.</p>
+<div class="example">list-style-position: inside;</div>
+<ul style="list-style-position:inside;">
+<li>Coffee - A brewed drink prepared from roasted coffee beans,<br> which are the seeds of berries from the Coffea plant</li>
+  <li>Tea - An aromatic beverage commonly <br>
+     prepared by pouring hot or boiling water over cured leaves of the Camellia sinensis, an evergreen shrub (bush) native to Asia</li>
+</ul>
+
+<!-- table -->
+<h2>table border-collapse</h2>
+<p>Removes double borders.</p>
+<div class="example">border-collapse: collapse;</div>
+
+<div class="output">
+<table border="1" style="border-collapse:collapse;">
+<tr><td>A</td><td>B</td></tr>
+</table>
+</div>
+<!-- ================= ANIMATION & KEYFRAMES ================= -->
+
+<h2>Animation & Keyframes</h2>
+<p>CSS animations are used to create movement and visual effects.</p>
+
+<!-- 🔹 Basic Syntax -->
+
+<h3>🔹 Basic Syntax</h3>
+<div class="example">
+<pre>
+  @keyframes animationName {
+  from { property: value; }
+  to { property: value; }
+}
+
+.element {
+animation: animationName duration timing-function delay iteration direction fill-mode;
+}
+
+</pre>
+</div>
+
+<!-- 🔹 Example -->
+
+<h3>🔹 Basic Example</h3>
+<div class="example">
+<pre>@keyframes move {
+  from { transform: translateX(0); }
+  to { transform: translateX(100px); }
+}
+
+.box {
+animation: move 2s infinite;
+}
+</pre>
+</div>
+
+<div class="output">
+  <div class="box1"></div>
+</div>
+
+<!-- 🔹 Multiple Steps -->
+
+<h3>🔹 Multiple Steps</h3>
+<div class="example">
+<pre>
+  @keyframes move {
+  0%   { transform: translateX(0); background: red; }
+  50%  { transform: translateX(100px); background: blue; }
+  100% { transform: translateX(0); background: green; }
+}
+</pre>
+</div>
+
+<!-- 🔹 Animation Properties -->
+
+<h3>🔹 Animation Properties</h3>
+<ul>
+  <li><b>animation-name</b> → Name of keyframes</li>
+  <li><b>animation-duration</b> → Time (e.g., 2s)</li>
+  <li><b>animation-delay</b> → Delay before start</li>
+  <li><b>animation-iteration-count</b> → Number / infinite</li>
+  <li><b>animation-direction</b> → normal, reverse, alternate</li>
+  <li><b>animation-timing-function</b> → ease, linear, ease-in, ease-out</li>
+  <li><b>animation-fill-mode</b> → forwards, backwards, both</li>
+</ul>
+
+<!-- 🔹 Timing Functions -->
+
+<h3>🔹 Timing Functions</h3>
+<div class="example">
+<pre>
+animation-timing-function: ease;
+animation-timing-function: linear;
+animation-timing-function: ease-in;
+animation-timing-function: ease-out;
+animation-timing-function: ease-in-out;
+</pre>
+</div>
+
+<!-- 🔹 Direction -->
+
+<h3>🔹 Direction</h3>
+<div class="example">
+<pre>
+animation-direction: normal;
+animation-direction: reverse;
+animation-direction: alternate;
+animation-direction: alternate-reverse;
+</pre>
+</div>
+
+<!-- 🔹 Iteration -->
+
+<h3>🔹 Iteration Count</h3>
+<div class="example">
+<pre>
+animation-iteration-count: 3;
+animation-iteration-count: infinite;
+</pre>
+</div>
+
+<!-- 🔹 Delay -->
+
+<h3>🔹 Delay</h3>
+<div class="example">
+animation-delay: 2s;
+</div>
+
+<!-- 🔹 Fill Mode -->
+
+<h3>🔹 Fill Mode</h3>
+<div class="example">
+<pre>
+animation-fill-mode: forwards;
+animation-fill-mode: backwards;
+animation-fill-mode: both;
+</pre>
+</div>
+
+<!-- 🔹 Shorthand -->
+
+<h3>🔹 Shorthand</h3>
+<div class="example">
+animation: move 2s ease 1s infinite alternate forwards;
+</div>
+
+<!-- 🔹 Output Style -->
+
+<style>
+.box1 {
+  width: 50px;
+  height: 50px;
+  background: red;
+  animation: move 2s infinite alternate;
+}
+
+@keyframes move {
+  from { transform: translateX(0); }
+  to { transform: translateX(150px); }
+}
+</style>
+
+<!-- 🔹 Summary -->
+
+<h3>🔹 Summary</h3>
+<p>
+Animation defines movement over time using keyframes. <br>
+Keyframes define the steps, and animation properties control the behavior.
+</p>
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+        }
+        #paragraph{
+            color: red;
+        }
+        .box{
+            background-color: yellow;
+            border: 1px solid red;
+        }
+        h2{
+            color: blue;
+        }
+        input[required] {
+            border: 2px solid red;
+        }
+        input[flag="orange"]{
+            background-color: orange;
+        }
+        input[flag*="whit"]{
+            color: red;
+        }
+        input[eligible~="red"]{
+            background-color: aquamarine;
+        }
+        input[eligible^="fer"]{
+            background-color: bisque;
+        }
+        input[eligible$="my"]{
+            background-color: lightgreen;
+        }
+        button:hover{
+            background-color: blue;
+        }
+        .div1 div{
+            color: green;
+        }
+        .div2>div{
+            color: blueviolet;
+        }
+    </style>
+</head>
+<body>
+    <h2>CLASS2  </h2>
+    <h1>Welcome</h1>
+    <p id="paragraph">Hello</p>
+    <p class="box">Box1</p>
+    <button class="box">Submit</button>
+    <h2>Element Selector</h2>
+    <h2>Attribute Selctor</h2>
+    <input type="text" placeholder="Enter name" required>
+    <input type="text" placeholder="Enter Address" >
+    <br><br>
+    <input type="text" placeholder="Enter Name" flag="orange">
+    <input type="text" placeholder="Enter Address" flag="green">
+    <br><br>
+    <input type="text" placeholder="Enter Name" flag="whiteRed">
+    <input type="text" placeholder="Enter Name" flag="greenYellow">
+    <br><br>
+    <input type="text" placeholder="Enter Name" eligible="violet red yellow">
+    <input type="text" placeholder="Enter Name" eligible="violet orange yellow">
+    <br><br>
+    <input type="text" placeholder="Enter Name" eligible="ferletredyellow">
+    <input type="text" placeholder="Enter Name" eligible="gfyletredyellow">
+    <br><br>
+    <input type="text" placeholder="Enter Name" eligible="ffferletredyellowgh">
+    <input type="text" placeholder="Enter Name" eligible="ferletredyellowmy">
+    <br><br>
+    <button class="box">Sumit</button>
+    <br>
+    <div class="div1">
+       <div>Hello</div>
+       <div>Hi</div>
+       <section>
+        <div>Child1</div>
+        <div>Child2</div>
+       </section>
+    </div>
+     <div class="div2">
+       <div>Hello</div>
+       <div>Hi</div>
+       <section>
+        <div>Child1</div>
+        <div>Child2</div>
+       </section>
+    </div>
+</body>
+</html>

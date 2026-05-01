@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* .box{
+            border: 2px solid red;
+            padding: 4px;
+            border-radius: 5px;
+        } */
+         .box {
+            height: 300px;
+            background-image: url("https://picsum.photos/800");
+            background-size: cover;
+            background-attachment: scroll;
+            }
+        .width1{
+            width:300px;
+            background-color: bisque;
+        }
+        .width2{
+            max-width: 300px;
+            background-color: aquamarine;
+        }
+        .height1{
+            height: 400px;
+            width: 200px;
+            background-color: rgb(234, 157, 157);
+        }
+        .height2{
+            max-height: 150px;
+            background-color: rgb(191, 158, 222);
+            width: 200px;
+            overflow: scroll;
+        }
+        .image{
+            border: 2px solid black;
+        }
+        .image1{
+            border: 2px solid rgb(225, 21, 21);
+            object-fit: contain;
+        }
+        .image2{
+            border: 2px solid red;
+            object-fit: cover;
+        }
+        .image3{
+            object-fit: scale-down;
+             border: 2px solid red;
+        }
+        .shadow{
+            padding: 4px;
+            box-shadow:inset -2px -2px 10px 2px black;
+        }
+        .text{
+            width:100px;
+            border: 2px solid black;
+            
+            white-space: pre-line;
+        }
+        button {
+  background: blue;
+  transition:transform 0.5s ease ;
+  margin-left:50px ;
+}
+
+button:hover {
+   transform:  scale(1.2) rotate(45deg);
+}
+.custom-list {
+  list-style-image: url("/marker.png");
+}
+    </style>
+</head>
+<body>
+    <ul class="custom-list">
+  <li>HTML</li>
+  <li>CSS</li>
+  <li>JavaScript</li>
+</ul>
+    <div class="box">Hello</div>
+    <h2>width & max-width</h2>
+    <p class="width1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,</p>
+    <p class="width2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,</p>
+    <p class="height1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,</p>
+    <p class="height2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,</p>
+    <h2>Object fit</h2>
+    <img src="https://images.pexels.com/photos/18478135/pexels-photo-18478135.jpeg" width="300px" height="200px" class="image">
+    <img src="https://images.pexels.com/photos/18478135/pexels-photo-18478135.jpeg" width="300px" height="200px" class="image1">
+    <img src="https://images.pexels.com/photos/18478135/pexels-photo-18478135.jpeg" width="300px" height="200px" class="image2">
+    <img src="https://images.pexels.com/photos/18478135/pexels-photo-18478135.jpeg" width="300px" height="200px" class="image3">
+    <br><br>
+    <h2>Box-shadow</h2>
+    <div class="shadow">Box shadow</div>
+    <br><br><br>
+    <h2 style="text-align: end;">Welcome</h2>
+    <p style="text-indent: 50px;  word-spacing: 10px;">Lorem Ipsum is simply dummy text of the printing and typesetting</p>
+
+    <h2 style="text-decoration:underline wavy red;">Text</h2>
+    <p class="text">     Lorem Ipsum is 
+           simply dummy 
+        text of the printing
+           and typesetting</p>
+<button class="button">Hover</button>
+<br><br><br><br><br><br>
+
+<p style="line-height: 2; font-size: clamp(26px,5vw,40px);">Lorem ipsum dolor sit amet consectetur adipisicing elit. <br> Eveniet sit rem rerum at mollitia?
+     <br> Voluptatibus deserunt maxime harum rerum natus?</p>
+     <div class="box scroll">
+  Scroll background
+</div>
+<br><br><br>
+</body>
+
+</html>
