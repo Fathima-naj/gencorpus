@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Student Course Registration Form</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/732/732212.png">
+</head>
+
+<body>
+
+    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png"
+         alt="Student Image"
+         width="150">
+
+    <h1>Student Course Registration Form</h1>
+
+    <p>Welcome to our registration portal. Please fill in the details below.</p>
+
+    <form>
+
+        <fieldset>
+
+            <legend><b>Student Details</b></legend>
+
+            <label for="name">Full Name:</label><br>
+            <input type="text"
+                   id="name"
+                   name="name"
+                   maxlength="30"
+                   placeholder="Enter your full name"
+                   required
+                   >
+                   
+            <br><br>
+
+            <label for="password">Password:</label><br>
+            <input type="password"
+                   id="password"
+                   name="password"
+                   placeholder="Enter password"
+                   required
+                   >
+            <br><br>
+
+            <label for="age">Age:</label><br>
+            <input type="number"
+                   id="age"
+                   name="age"
+                   min="17"
+                   max="35"
+                   required
+                   >
+            <br><br>
+
+            <label for="email">Email:</label><br>
+            <input type="email"
+                   id="email"
+                   name="email"
+                   placeholder="example@gmail.com"
+                   required
+                   >
+            <br><br>
+
+            <label for="phone">Phone Number:</label><br>
+            <input type="tel"
+                   id="phone"
+                   name="phone"
+                   placeholder="9876543210"
+                   minlength="10"
+                   maxlength="10"
+                   pattern="[0-9]{10}"
+                   required
+                   >
+            <br><br>
+
+            <label>Gender:</label><br>
+
+            <input type="radio" id="male" name="gender" value="Male" checked>
+            <label for="male">Male</label>
+
+            <input type="radio" id="female" name="gender" value="Female">
+            <label for="female">Female</label>
+
+            <input type="radio" id="other" name="gender" value="Other">
+            <label for="other">Other</label>
+
+            <br><br>
+
+            <label>Skills:</label><br>
+
+            <input type="checkbox" id="html">
+            <label for="html">HTML</label>
+
+            <input type="checkbox" id="css">
+            <label for="css">CSS</label>
+
+            <input type="checkbox" id="js">
+            <label for="js">JavaScript</label>
+
+            <br><br>
+
+            <label for="department">Department:</label><br>
+
+            <select id="department" name="department">
+                <option>Select Department</option>
+                <option>BCA</option>
+                <option>BSc Computer Science</option>
+                <option>BCom</option>
+                <option>BBA</option>
+            </select>
+
+            <br><br>
+
+            <label for="city">City:</label><br>
+
+            <input type="text"
+                   id="city"
+                   name="city"
+                   maxlength="20"
+                   placeholder="Enter your city">
+
+            <br><br>
+
+            <input type="submit" value="Submit">
+            <input type="reset" value="Reset">
+
+        </fieldset>
+
+    </form>
+
+    <h3>Need Help?</h3>
+
+    <a href="https://www.google.com">
+        Visit Google
+    </a>
+
+</body>
+
+</html>
